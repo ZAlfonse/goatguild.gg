@@ -1,0 +1,78 @@
+---
+import { schedule } from '../data/guild';
+import { upcomingEvents } from '../data/news';
+
+const typeColors: Record<string, string> = {
+  Progression: 'text-purple-400',
+  'Alt Run / Cleanup': 'text-blue-400',
+};
+
+const eventTypeColors: Record<string, string> = {
+  raid: 'bg-purple-500',
+  social: 'bg-green-500',
+  meeting: 'bg-blue-500',
+  other: 'bg-gray-500',
+};
+---
+
+<div class="space-y-6">
+  <!-- Regular Raid Schedule -->
+  <div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
+    <h4 class="font-semibold text-gray-100 mb-4 flex items-center gap-2">
+      <span>📅</span>
+      Raid Schedule
+    </h4>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-midnight-500">
+            <th class="text-left py-2 px-3 text-gray-400 font-medium">Day</th>
+            <th class="text-left py-2 px-3 text-gray-400 font-medium">Time</th>
+            <th class="text-left py-2 px-3 text-gray-400 font-medium">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {schedule.map(slot => (
+            <tr class="border-b border-midnight-600 last:border-0">
+              <td class="py-2 px-3 font-medium text-gray-100">{slot.day}</td>
+              <td class="py-2 px-3 text-gray-300">{slot.time} {slot.timezone}</td>
+              <td class={`py-2 px-3 ${typeColors[slot.type] || 'text-gray-300'}`}>{slot.type}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
+    <h4 class="font-semibold text-gray-100 mb-4 flex items-center gap-2">
+      <span>🗓️</span>
+      Upcoming Events
+    </h4>
+    <div class="space-y-3">
+      {upcomingEvents.slice(0, 5).map(event => {
+        const eventDate = new Date(event.date);
+        const formattedDate = eventDate.toLocaleDateString('en-US', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+        });
+        
+        return (
+          <div class="flex items-start gap-3 p-3 bg-midnight-800 rounded-lg">
+            <div class={`w-1 h-full self-stretch rounded ${eventTypeColors[event.type]}`}></div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-2">
+                <h5 class="font-medium text-gray-100">{event.title}</h5>
+                <span class="text-xs text-gray-500 shrink-0">{formattedDate}</span>
+              </div>
+              <p class="text-sm text-gray-400 mt-1">{event.time}</p>
+              <p class="text-sm text-gray-500 mt-1">{event.description}</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</div>

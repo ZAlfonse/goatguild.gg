@@ -1,0 +1,116 @@
+---
+import { guild } from '../data/guild';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = guild.name, 
+  description = guild.description 
+} = Astro.props;
+
+const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="bg-midnight-900 text-gray-100 min-h-screen font-body">
+    <!-- Header -->
+    <header class="border-b border-midnight-600 bg-midnight-800/80 backdrop-blur-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="/" class="flex items-center space-x-3">
+            <img src="/images/pixel goat small.png" alt="Goat Guild" class="w-8 h-8" />
+            <span class="font-display font-bold text-xl text-accent-gold">{guild.name}</span>
+          </a>
+          <nav class="hidden md:flex items-center space-x-8">
+            <a href="/" class="text-gray-300 hover:text-accent-purple transition-colors">Home</a>
+            <a href="#progression" class="text-gray-300 hover:text-accent-purple transition-colors">Progression</a>
+            <a href="#roster" class="text-gray-300 hover:text-accent-purple transition-colors">Roster</a>
+            <a href="#addons" class="text-gray-300 hover:text-accent-purple transition-colors">Addons</a>
+            <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="bg-accent-purple hover:bg-accent-purple/80 text-white px-4 py-2 rounded-lg transition-colors">
+              Join Discord
+            </a>
+          </nav>
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-midnight-600">
+        <div class="px-4 py-4 space-y-3">
+          <a href="/" class="block text-gray-300 hover:text-accent-purple">Home</a>
+          <a href="#progression" class="block text-gray-300 hover:text-accent-purple">Progression</a>
+          <a href="#roster" class="block text-gray-300 hover:text-accent-purple">Roster</a>
+          <a href="#addons" class="block text-gray-300 hover:text-accent-purple">Addons</a>
+          <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="block bg-accent-purple text-white px-4 py-2 rounded-lg text-center">
+            Join Discord
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-midnight-600 bg-midnight-800 mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="flex items-center space-x-2 mb-4 md:mb-0">
+            <img src="/images/pixel goat small.png" alt="Goat Guild" class="w-6 h-6" />
+            <span class="font-display text-accent-gold">{guild.name}</span>
+            <span class="text-gray-500">• {guild.server}</span>
+          </div>
+          <div class="flex items-center space-x-6 text-sm text-gray-400">
+            <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors">Discord</a>
+            <span>© {new Date().getFullYear()} {guild.name}</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      menuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #12121f;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #363659;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4a4a70;
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+import { midnightRoster, roleTargets, type ClassPick } from '../data/classComposition';
+
+const classColors: Record<string, string> = {
+  warrior: 'bg-class-warrior',
+  paladin: 'bg-class-paladin',
+  hunter: 'bg-class-hunter',
+  rogue: 'bg-class-rogue',
+  priest: 'bg-class-priest',
+  shaman: 'bg-class-shaman',
+  mage: 'bg-class-mage',
+  warlock: 'bg-class-warlock',
+  monk: 'bg-class-monk',
+  druid: 'bg-class-druid',
+  demonhunter: 'bg-class-demonhunter',
+  deathknight: 'bg-class-deathknight',
+  evoker: 'bg-class-evoker',
+};
+
+const classTextColors: Record<string, string> = {
+  warrior: 'text-class-warrior',
+  paladin: 'text-class-paladin',
+  hunter: 'text-class-hunter',
+  rogue: 'text-class-rogue',
+  priest: 'text-class-priest',
+  shaman: 'text-class-shaman',
+  mage: 'text-class-mage',
+  warlock: 'text-class-warlock',
+  monk: 'text-class-monk',
+  druid: 'text-class-druid',
+  demonhunter: 'text-class-demonhunter',
+  deathknight: 'text-class-deathknight',
+  evoker: 'text-class-evoker',
+};
+
+const tanks = midnightRoster.filter(p => p.role === 'tank');
+const healers = midnightRoster.filter(p => p.role === 'healer');
+const dps = midnightRoster.filter(p => p.role === 'dps');
+
+// Separate melee and ranged DPS (rough categorization)
+const meleeSpecs = ['Protection', 'Fury', 'Arms', 'Assassination', 'Outlaw', 'Subtlety', 'Retribution', 'Windwalker', 'Brewmaster', 'Havoc', 'Vengeance', 'Frost', 'Unholy', 'Blood', 'Feral', 'Guardian', 'Enhancement', 'Survival'];
+const meleeDps = dps.filter(p => meleeSpecs.includes(p.spec));
+const rangedDps = dps.filter(p => !meleeSpecs.includes(p.spec));
+
+function formatClassName(className: string): string {
+  if (className === 'demonhunter') return 'Demon Hunter';
+  if (className === 'deathknight') return 'Death Knight';
+  return className.charAt(0).toUpperCase() + className.slice(1);
+}
+
+interface RosterSectionProps {
+  title: string;
+  players: ClassPick[];
+  icon: string;
+  target?: { current: number; target: number };
+}
+
+const sections: RosterSectionProps[] = [
+  { title: 'Tanks', players: tanks, icon: '🛡️', target: roleTargets.tank },
+  { title: 'Healers', players: healers, icon: '💚', target: roleTargets.healer },
+  { title: 'Melee DPS', players: meleeDps, icon: '⚔️' },
+  { title: 'Ranged DPS', players: rangedDps, icon: '🏹' },
+];
+
+// Pre-compute class distribution for the template
+const classDistribution = Object.entries(
+  midnightRoster.reduce<Record<string, number>>((acc, p) => {
+    acc[p.class] = (acc[p.class] || 0) + 1;
+    return acc;
+  }, {})
+).sort((a, b) => b[1] - a[1]);
+---
+
+<div class="space-y-6">
+  {sections.map(section => (
+    <div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
+      <div class="flex items-center justify-between mb-4">
+        <h4 class="font-semibold text-gray-100 flex items-center gap-2">
+          <span>{section.icon}</span>
+          {section.title}
+          <span class="text-sm text-gray-400">({section.players.length})</span>
+        </h4>
+        {section.target && (
+          <span class={`text-sm ${section.target.current >= section.target.target ? 'text-green-400' : 'text-yellow-400'}`}>
+            {section.target.current} / {section.target.target} target
+          </span>
+        )}
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+        {section.players.map(player => (
+          <div class="flex items-center gap-2 p-2 rounded bg-midnight-800">
+            <div class={`w-2 h-8 rounded ${classColors[player.class]}`}></div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span class={`font-medium truncate ${classTextColors[player.class]}`}>
+                  {player.player}
+                </span>
+                {!player.confirmed && (
+                  <span class="text-xs text-yellow-400" title="Not confirmed">?</span>
+                )}
+              </div>
+              <p class="text-xs text-gray-400 truncate">
+                {player.spec} {formatClassName(player.class)}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+  
+  <!-- Class Distribution Chart -->
+  <div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
+    <h4 class="font-semibold text-gray-100 mb-4">Class Distribution</h4>
+    <div class="flex flex-wrap gap-2">
+      {classDistribution.map(([className, count]) => (
+        <div class={`px-3 py-1 rounded-full text-sm font-medium ${classColors[className]} text-midnight-900`}>
+          {formatClassName(className)}: {count}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProgressionCard from '../components/ProgressionCard.astro';
+import ClassRoster from '../components/ClassRoster.astro';
+import AddonList from '../components/AddonList.astro';
+import NewsCard from '../components/NewsCard.astro';
+import ScheduleTable from '../components/ScheduleTable.astro';
+
+import { guild } from '../data/guild';
+import { currentTier, achievements } from '../data/progression';
+import { news } from '../data/news';
+
+const pinnedNews = news.filter(n => n.pinned);
+const recentNews = news.filter(n => !n.pinned).slice(0, 4);
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <!-- Background gradient inspired by Midnight's dark vampire aesthetic -->
+    <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-midnight-900 to-midnight-900"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      <div class="text-center">
+        <img src="/images/pixel goat big.png" alt="Goat Guild" class="w-24 h-24 mx-auto mb-4" />
+        <h1 class="font-display text-4xl md:text-6xl font-bold text-accent-gold mb-4">
+          {guild.name}
+        </h1>
+        <p class="text-xl text-gray-300 mb-2">{guild.server}</p>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+          {guild.description}
+        </p>
+        
+        <!-- Recruitment Banner -->
+        {guild.recruitmentStatus !== 'Closed' && (
+          <div class="inline-flex items-center gap-3 bg-midnight-700/80 border border-accent-purple rounded-lg px-6 py-3 mb-8">
+            <span class="flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+            <span class="text-gray-200">
+              <strong class="text-green-400">Recruiting:</strong> {guild.recruitmentNote}
+            </span>
+          </div>
+        )}
+        
+        <div class="flex flex-wrap justify-center gap-4">
+          <a 
+            href={guild.discordLink} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="bg-accent-purple hover:bg-accent-purple/80 text-white font-medium px-6 py-3 rounded-lg transition-colors"
+          >
+            Join Our Discord
+          </a>
+          <a 
+            href={guild.classSelectionForm}
+            target="_blank"
+            rel="noopener noreferrer" 
+            class="bg-accent-gold hover:bg-accent-gold/80 text-midnight-900 font-medium px-6 py-3 rounded-lg transition-colors"
+          >
+            Midnight Class Selection Form
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pinned Announcements -->
+  {pinnedNews.length > 0 && (
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
+      <div class="grid gap-4">
+        {pinnedNews.map(post => (
+          <NewsCard post={post} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Main Content Grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid lg:grid-cols-3 gap-8">
+      
+      <!-- Left Column: News & Schedule -->
+      <div class="lg:col-span-1 space-y-8">
+        <!-- News -->
+        <section>
+          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+            <span>📰</span> News
+          </h2>
+          <div class="space-y-4">
+            {recentNews.map(post => (
+              <NewsCard post={post} />
+            ))}
+          </div>
+        </section>
+
+        <!-- Schedule -->
+        <section>
+          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4">Schedule</h2>
+          <ScheduleTable />
+        </section>
+      </div>
+
+      <!-- Right Column: Progression & Roster -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- Progression -->
+        <section id="progression">
+          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+            <span>⚔️</span> Raid Progression
+          </h2>
+          <div class="grid sm:grid-cols-2 gap-4 mb-4">
+            {currentTier.map(raid => (
+              <ProgressionCard raid={raid} />
+            ))}
+          </div>
+          
+          {achievements.length > 0 && (
+            <div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
+              <h4 class="font-semibold text-gray-100 mb-3">🏆 Achievements</h4>
+              <div class="flex flex-wrap gap-2">
+                {achievements.map(achievement => (
+                  <span class="bg-accent-gold/20 text-accent-gold text-sm px-3 py-1 rounded-full">
+                    {achievement.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+
+        <!-- Class Composition -->
+        <section id="roster">
+          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+            <span>👥</span> Midnight Roster (Tentative)
+          </h2>
+          <p class="text-gray-400 mb-4">
+            Current class selections for the Midnight expansion. 
+            <a href={guild.classSelectionForm} target="_blank" rel="noopener noreferrer" class="text-accent-purple hover:underline">
+              Submit your class pick →
+            </a>
+          </p>
+          <ClassRoster />
+        </section>
+      </div>
+    </div>
+
+    <!-- Addons Section (Full Width) -->
+    <section id="addons" class="mt-12">
+      <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+        <span>🔧</span> Addons & Profiles
+      </h2>
+      <p class="text-gray-400 mb-6">
+        Required and recommended addons for raiding, plus guild-specific profiles.
+      </p>
+      <AddonList />
+    </section>
+  </div>
+</Layout>

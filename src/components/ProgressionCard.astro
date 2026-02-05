@@ -1,0 +1,58 @@
+---
+import type { RaidProgress } from '../data/progression';
+
+interface Props {
+  raid: RaidProgress;
+}
+
+const { raid } = Astro.props;
+
+const progressPercent = (raid.bossesKilled / raid.totalBosses) * 100;
+const isCleared = raid.bossesKilled === raid.totalBosses;
+
+const difficultyColors = {
+  LFR: 'text-green-400',
+  Normal: 'text-green-400',
+  Heroic: 'text-purple-400',
+  Mythic: 'text-orange-400',
+};
+
+const progressBarColors = {
+  LFR: 'bg-green-500',
+  Normal: 'bg-green-500',
+  Heroic: 'bg-purple-500',
+  Mythic: 'bg-gradient-to-r from-orange-500 to-red-500',
+};
+---
+
+<div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
+  <div class="flex items-center justify-between mb-2">
+    <h4 class="font-semibold text-gray-100">{raid.name}</h4>
+    <span class={`text-sm font-medium ${difficultyColors[raid.difficulty]}`}>
+      {raid.difficulty}
+    </span>
+  </div>
+  
+  <div class="mb-2">
+    <div class="flex items-center justify-between text-sm mb-1">
+      <span class="text-gray-400">
+        {raid.bossesKilled} / {raid.totalBosses} Bosses
+      </span>
+      {isCleared && (
+        <span class="text-accent-gold font-medium">✓ Cleared</span>
+      )}
+    </div>
+    <div class="w-full bg-midnight-900 rounded-full h-2.5">
+      <div 
+        class={`h-2.5 rounded-full ${progressBarColors[raid.difficulty]}`}
+        style={`width: ${progressPercent}%`}
+      ></div>
+    </div>
+  </div>
+  
+  {raid.currentBoss && !isCleared && (
+    <p class="text-sm text-gray-400">
+      Currently progressing: <span class="text-accent-purple">{raid.currentBoss}</span>
+    </p>
+  )}
+</div>
