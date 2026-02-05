@@ -21,6 +21,11 @@ npm run build
 goatguild.gg/
 ├── src/
 │   ├── components/       # Reusable UI components
+│   │   ├── AddonList.astro
+│   │   ├── ClassRoster.astro
+│   │   ├── NewsCard.astro
+│   │   ├── ProgressionCard.astro
+│   │   └── ScheduleTable.astro
 │   ├── data/            # Guild data (edit these!)
 │   │   ├── guild.ts     # Guild info, schedule
 │   │   ├── progression.ts
@@ -32,10 +37,17 @@ goatguild.gg/
 │   └── pages/
 │       └── index.astro
 ├── public/
-│   ├── profiles/        # Addon profile downloads
-│   └── images/          # Static images
-└── scripts/
-    └── deploy.sh
+│   ├── favicon.ico      # Browser tab icon
+│   ├── images/          # Static images (guild icons)
+│   └── profiles/        # Addon profile downloads
+├── scripts/
+│   └── deploy.sh        # Manual S3 deploy script
+├── .github/
+│   └── workflows/
+│       └── deploy.yml   # CI/CD auto-deploy on push to main
+├── astro.config.mjs     # Astro configuration
+├── tailwind.config.mjs  # Tailwind CSS theme (WoW class colors)
+└── tsconfig.json        # TypeScript configuration
 ```
 
 ## Updating Content
