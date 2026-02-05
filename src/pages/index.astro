@@ -84,7 +84,7 @@ const recentNews = news.filter(n => !n.pinned).slice(0, 4);
       <!-- Left Column: News & Schedule -->
       <div class="lg:col-span-1 space-y-8">
         <!-- News -->
-        <section>
+        <section id="news">
           <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
             <span>📰</span> News
           </h2>
@@ -96,7 +96,7 @@ const recentNews = news.filter(n => !n.pinned).slice(0, 4);
         </section>
 
         <!-- Schedule -->
-        <section>
+        <section id="schedule">
           <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4">Schedule</h2>
           <ScheduleTable />
         </section>

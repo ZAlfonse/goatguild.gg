@@ -37,6 +37,8 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
           </a>
           <nav class="hidden md:flex items-center space-x-8">
             <a href="/" class="text-gray-300 hover:text-accent-purple transition-colors">Home</a>
+            <a href="#news" class="text-gray-300 hover:text-accent-purple transition-colors">News</a>
+            <a href="#schedule" class="text-gray-300 hover:text-accent-purple transition-colors">Schedule</a>
             <a href="#progression" class="text-gray-300 hover:text-accent-purple transition-colors">Progression</a>
             <a href="#roster" class="text-gray-300 hover:text-accent-purple transition-colors">Roster</a>
             <a href="#addons" class="text-gray-300 hover:text-accent-purple transition-colors">Addons</a>
@@ -56,6 +58,8 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
       <div id="mobile-menu" class="hidden md:hidden border-t border-midnight-600">
         <div class="px-4 py-4 space-y-3">
           <a href="/" class="block text-gray-300 hover:text-accent-purple">Home</a>
+          <a href="#news" class="block text-gray-300 hover:text-accent-purple">News</a>
+          <a href="#schedule" class="block text-gray-300 hover:text-accent-purple">Schedule</a>
           <a href="#progression" class="block text-gray-300 hover:text-accent-purple">Progression</a>
           <a href="#roster" class="block text-gray-300 hover:text-accent-purple">Roster</a>
           <a href="#addons" class="block text-gray-300 hover:text-accent-purple">Addons</a>
@@ -99,6 +103,26 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
 </html>
 
 <style is:global>
+  /* Account for sticky header when scrolling to anchors */
+  html {
+    scroll-padding-top: 5rem;
+  }
+
+  /* Pulse animation when section is targeted */
+  @keyframes section-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.4);
+    }
+  }
+
+  section:target {
+    animation: section-pulse 0.6s ease-out 2;
+    border-radius: 0.5rem;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
