@@ -13,9 +13,6 @@ npm run dev
 
 # Build for production
 npm run build
-
-# Deploy to S3
-npm run deploy
 ```
 
 ## Project Structure
@@ -73,30 +70,6 @@ Edit `src/data/addons.ts`:
 - Required addons
 - Recommended addons
 - Profile download links
-
-## Deployment
-
-### Manual Deploy
-```bash
-./scripts/deploy.sh
-```
-
-### GitHub Actions (Automatic)
-1. Add these secrets to your GitHub repo:
-   - `AWS_ACCESS_KEY_ID`
-   - `AWS_SECRET_ACCESS_KEY`
-   - (Optional) `CLOUDFRONT_DISTRIBUTION_ID`
-
-2. Push to `main` branch - deploys automatically!
-
-## S3 Setup Notes
-
-Your bucket `s3://goatguild.gg` should be configured for static website hosting:
-
-1. Enable static website hosting in bucket properties
-2. Set index document to `index.html`
-3. Configure bucket policy for public read access
-4. (Recommended) Set up CloudFront for HTTPS
 
 ## Tech Stack
 
