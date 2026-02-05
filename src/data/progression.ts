@@ -24,9 +24,9 @@ export const currentTier: RaidProgress[] = [
   {
     name: 'Liberation of Undermine',
     difficulty: 'Mythic',
-    bossesKilled: 2,
+    bossesKilled: 1,
     totalBosses: 8,
-    currentBoss: 'Rik Reverb',
+    currentBoss: 'Cauldron of Carnage',
   },
   {
     name: 'Liberation of Undermine',
@@ -52,9 +52,21 @@ export const currentTier: RaidProgress[] = [
 // Historical progression (most recent first)
 export const previousTiers: RaidProgress[] = [
   {
+    name: 'Amirdrassil',
+    difficulty: 'Heroic',
+    bossesKilled: 9,
+    totalBosses: 9,
+  },
+  {
+    name: 'Aberrus',
+    difficulty: 'Heroic',
+    bossesKilled: 9,
+    totalBosses: 9,
+  },
+  {
     name: 'Vault of the Incarnates',
     difficulty: 'Mythic',
-    bossesKilled: 8,
+    bossesKilled: 2,
     totalBosses: 8,
   },
   // Add more previous tiers as needed
@@ -62,6 +74,7 @@ export const previousTiers: RaidProgress[] = [
 
 // Boss kill order / notable achievements
 export const achievements = [
-  { name: 'Cutting Edge: Raszageth', date: 'March 2024' },
   { name: 'Ahead of the Curve: Queen Ansurek', date: 'October 2024' },
+  { name: 'Ahead of the Curve: Chrome King Gallywix', date: 'April 2025' },
+  { name: 'Ahead of the Curve: Dimensius', date: 'September 2025' },
 ];

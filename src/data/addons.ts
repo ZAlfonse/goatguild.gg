@@ -37,6 +37,14 @@ export const addons: Addon[] = [
     downloadUrl: 'https://www.curseforge.com/wow/addons/simulationcraft',
     curseforgeSlug: 'simulationcraft',
   },
+
+  {
+    name: 'ConsumeFood',
+    description: 'Sends a chat message when consuming food.',
+    category: 'utility',
+    downloadUrl: 'https://www.curseforge.com/wow/addons/consumefood',
+    curseforgeSlug: 'consumefood',
+  },
 ];
 
 // Guild addon profiles available for download
@@ -46,6 +54,6 @@ export const guildProfiles = [
     name: 'Jundies Nameplates',
     description: 'Custom Plater profile optimized for raid visibility and clarity.',
     downloadPath: 'https://wago.io/ak3iS95aa',
-    lastUpdated: '2026-02-03',
+    lastUpdated: '2026-01-21',
   },
 ];
