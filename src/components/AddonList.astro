@@ -1,19 +1,16 @@
 ---
 import { addons, guildProfiles } from '../data/addons';
-
-const requiredAddons = addons.filter(a => a.required);
-const recommendedAddons = addons.filter(a => !a.required);
 ---
 
 <div class="space-y-6">
-  <!-- Required Addons -->
+  <!-- Recommended Addons -->
   <div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
     <h4 class="font-semibold text-gray-100 mb-4 flex items-center gap-2">
-      <span class="text-red-400">⚠️</span>
-      Required for Raiding
+      <span>👍</span>
+      Recommended Addons
     </h4>
     <div class="grid gap-3">
-      {requiredAddons.map(addon => (
+      {addons.map(addon => (
         <div class="bg-midnight-800 rounded-lg p-3 flex items-start justify-between gap-4">
           <div class="flex-1">
             <h5 class="font-medium text-gray-100">{addon.name}</h5>
@@ -32,11 +29,11 @@ const recommendedAddons = addons.filter(a => !a.required);
     </div>
   </div>
 
-  <!-- Guild Profiles -->
+  <!-- Recommended Profiles -->
   <div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
     <h4 class="font-semibold text-gray-100 mb-4 flex items-center gap-2">
       <span>⚙️</span>
-      Guild Addon Profiles
+      Recommended Profiles
     </h4>
     <div class="grid gap-3">
       {guildProfiles.map(profile => (
@@ -49,36 +46,11 @@ const recommendedAddons = addons.filter(a => !a.required);
           </div>
           <a 
             href={profile.downloadPath} 
-            download
-            class="shrink-0 bg-midnight-600 hover:bg-midnight-500 text-white text-sm px-3 py-1.5 rounded transition-colors"
-          >
-            Download
-          </a>
-        </div>
-      ))}
-    </div>
-  </div>
-
-  <!-- Recommended Addons -->
-  <div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
-    <h4 class="font-semibold text-gray-100 mb-4 flex items-center gap-2">
-      <span>👍</span>
-      Recommended
-    </h4>
-    <div class="grid gap-3">
-      {recommendedAddons.map(addon => (
-        <div class="bg-midnight-800 rounded-lg p-3 flex items-start justify-between gap-4">
-          <div class="flex-1">
-            <h5 class="font-medium text-gray-100">{addon.name}</h5>
-            <p class="text-sm text-gray-400 mt-1">{addon.description}</p>
-          </div>
-          <a 
-            href={addon.downloadUrl} 
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             class="shrink-0 bg-midnight-600 hover:bg-midnight-500 text-white text-sm px-3 py-1.5 rounded transition-colors"
           >
-            Download
+            View
           </a>
         </div>
       ))}

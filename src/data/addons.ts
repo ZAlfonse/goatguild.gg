@@ -2,7 +2,6 @@
 export interface Addon {
   name: string;
   description: string;
-  required: boolean; // Required for raiding
   category: 'raiding' | 'ui' | 'utility' | 'class';
   downloadUrl: string;
   wowInterfaceId?: string;
@@ -11,29 +10,19 @@ export interface Addon {
 }
 
 export const addons: Addon[] = [
-  // Required Raiding Addons
-  {
-    name: 'BigWigs / LittleWigs',
-    description: 'Boss mod for raid and dungeon encounters. Provides timers, warnings, and alerts.',
-    required: true,
-    category: 'raiding',
-    downloadUrl: 'https://www.curseforge.com/wow/addons/big-wigs',
-    curseforgeSlug: 'big-wigs',
-  },
+  // Raiding
   {
     name: 'Details! Damage Meter',
     description: 'Combat log analysis and damage/healing meters.',
-    required: true,
     category: 'raiding',
     downloadUrl: 'https://www.curseforge.com/wow/addons/details',
     curseforgeSlug: 'details',
   },
 
-  // Recommended UI
+  // UI
   {
     name: 'Plater Nameplates',
     description: 'Highly customizable nameplate addon. Recommended for M+ and raiding.',
-    required: false,
     category: 'ui',
     downloadUrl: 'https://www.curseforge.com/wow/addons/plater-nameplates',
     curseforgeSlug: 'plater-nameplates',
@@ -44,7 +33,6 @@ export const addons: Addon[] = [
   {
     name: 'Simulationcraft',
     description: 'Export your character for sim optimization.',
-    required: false,
     category: 'utility',
     downloadUrl: 'https://www.curseforge.com/wow/addons/simulationcraft',
     curseforgeSlug: 'simulationcraft',
