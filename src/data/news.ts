@@ -50,7 +50,7 @@ export interface GuildEvent {
 export const upcomingEvents: GuildEvent[] = [
   {
     title: 'Midnight Pre-Launch!',
-    date: '2026-02-28',
+    date: '2026-02-26',
     time: '5:00 PM EST',
     description: 'Join us for pre release Midnight to get a head start on leveling!',
     type: 'social',
@@ -61,5 +61,12 @@ export const upcomingEvents: GuildEvent[] = [
     time: '5:00 PM EST',
     description: 'Join us for day 1 in Midnight as we tackle the new content together!',
     type: 'social',
+  },
+  {
+    title: 'Voidspire Normal Raid',
+    date: '2026-03-17',
+    time: '8:00 PM EST',
+    description: 'Join us in the new raid, Voidspire',
+    type: 'raid',
   },
 ];
