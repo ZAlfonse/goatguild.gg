@@ -49,16 +49,16 @@ export interface GuildEvent {
 
 export const upcomingEvents: GuildEvent[] = [
   {
-    title: 'Midnight Pre-Launch!',
+    title: 'Midnight Early Access!',
     date: '2026-02-26',
-    time: '5:00 PM EST',
-    description: 'Join us for pre release Midnight to get a head start on leveling!',
+    time: '6:00 PM EST',
+    description: 'Join us for Midnight's Early access to get a head start on leveling!',
     type: 'social',
   },
   {
     title: 'Midnight Official Launch!',
-    date: '2026-03-03',
-    time: '5:00 PM EST',
+    date: '2026-03-02',
+    time: '6:00 PM EST',
     description: 'Join us for day 1 in Midnight as we tackle the new content together!',
     type: 'social',
   },
