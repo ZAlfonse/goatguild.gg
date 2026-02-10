@@ -54,6 +54,6 @@ export const guildProfiles = [
     name: 'Jundies Nameplates',
     description: 'Custom Plater profile optimized for raid visibility and clarity.',
     downloadPath: 'https://wago.io/ak3iS95aa',
-    lastUpdated: '2026-01-21',
+    lastUpdated: '2026-02-10',
   },
 ];
