@@ -29,7 +29,7 @@ export interface ClassPick {
 export const midnightRoster: ClassPick[] = [
   // Confirmed
   { player: 'Zakage', class: 'mage', spec: 'Arcane', role: 'dps', confirmed: true },
-  { player: 'Flaviya', class: 'druid', spec: 'Restoration', role: 'healer', confirmed: true },
+  { player: 'Flayvia', class: 'druid', spec: 'Restoration', role: 'healer', confirmed: true },
   { player: 'Unknown', class: 'warlock', spec: 'Destruction', role: 'dps', confirmed: true },
   { player: 'Unknown', class: 'priest', spec: 'Shadow', role: 'dps', confirmed: true },
   { player: 'Bloodieph', class: 'deathknight', spec: 'Blood', role: 'tank', confirmed: true },
