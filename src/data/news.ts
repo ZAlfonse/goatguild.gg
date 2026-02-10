@@ -52,7 +52,7 @@ export const upcomingEvents: GuildEvent[] = [
     title: 'Midnight Early Access!',
     date: '2026-02-26',
     time: '6:00 PM EST',
-    description: 'Join us for Midnight's Early access to get a head start on leveling!',
+    description: 'Join us for Midnight\'s Early access to get a head start on leveling!',
     type: 'social',
   },
   {
