@@ -27,26 +27,6 @@ export interface ClassPick {
 
 // Update this list with your guild's actual class picks
 export const midnightRoster: ClassPick[] = [
-<<<<<<< HEAD
-  // Confirmed
-  { player: 'Zakage', class: 'mage', spec: 'Arcane', role: 'dps', confirmed: true },
-  { player: 'Flayvia', class: 'druid', spec: 'Restoration', role: 'healer', confirmed: true },
-  { player: 'Unknown', class: 'warlock', spec: 'Destruction', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'priest', spec: 'Shadow', role: 'dps', confirmed: true },
-  { player: 'Bloodieph', class: 'deathknight', spec: 'Blood', role: 'tank', confirmed: true },
-  { player: 'Gotdazoomies', class: 'druid', spec: 'Feral', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'hunter', spec: 'Beast Mastery', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'hunter', spec: 'Marksmanship', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'rogue', spec: 'Outlaw', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'demonhunter', spec: 'Devourer', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'rogue', spec: 'Assassination', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'warlock', spec: 'Affliction', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'shaman', spec: 'Enhancement', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'shaman', spec: 'Restoration', role: 'healer', confirmed: true },
-  { player: 'Unknown', class: 'rogue', spec: 'Assassination', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'shaman', spec: 'Enhancement', role: 'dps', confirmed: true },
-  { player: 'Unknown', class: 'rogue', spec: 'Subtlety', role: 'dps', confirmed: true },
-=======
   // Tanks (2)
   { player: 'Chieph', class: 'druid', spec: 'Guardian', role: 'tank', confirmed: true },
   { player: 'Wyatt', class: 'paladin', spec: 'Protection', role: 'tank', confirmed: true },
@@ -64,7 +44,6 @@ export const midnightRoster: ClassPick[] = [
   // Ranged DPS (2)
   { player: 'Mal', class: 'warlock', spec: 'Affliction', role: 'dps', confirmed: true },
   { player: 'Kelrud', class: 'hunter', spec: 'Marksmanship', role: 'dps', confirmed: true },
->>>>>>> 82999b4 (Update roster)
 ];
 
 // Role targets for Midnight
