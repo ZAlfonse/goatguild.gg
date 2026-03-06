@@ -43,6 +43,7 @@ export const midnightRoster: ClassPick[] = [
   { player: 'David(Goodroud', class: 'druid', spec: 'Feral', role: 'dps', confirmed: true, notes: 'Also plays Arms Warrior' },
   { player: 'Crageos', class: 'warrior', spec: 'Fury', role: 'dps', confirmed: true },
   { player: 'Clovis', class: 'paladin', spec: 'Retribution', role: 'dps', confirmed: true },
+  { player: 'Tazstinko', class: 'warrior', spec: 'Fury', role: 'dps', confirmed: true },
   // Ranged DPS (7)
   { player: 'Mal', class: 'warlock', spec: 'Affliction', role: 'dps', confirmed: true },
   { player: 'Kelrud', class: 'hunter', spec: 'Marksmanship', role: 'dps', confirmed: true },
