@@ -33,7 +33,9 @@ export const midnightRoster: ClassPick[] = [
   // Healers (3)
   { player: 'Vateau', class: 'paladin', spec: 'Holy', role: 'healer', confirmed: true },
   { player: 'AndisNamis', class: 'evoker', spec: 'Preservation', role: 'healer', confirmed: true },
-  { player: 'Liasham', class: 'druid', spec: 'Restoration', role: 'healer', confirmed: true },
+  { player: 'Liasham', class: 'shaman', spec: 'Restoration', role: 'healer', confirmed: true },
+  { player: 'Lasciel', class: 'priest', spec: 'Holy', role: 'healer', confirmed: true },
+  { player: 'Restodeez', class: 'druid', spec: 'Restoration', role: 'healer', confirmed: true },
   // Melee DPS (6)
   { player: 'Zak', class: 'shaman', spec: 'Enhancement', role: 'dps', confirmed: true },
   { player: 'Mully', class: 'shaman', spec: 'Enhancement', role: 'dps', confirmed: true, notes: 'Also plays Unholy DK' },
@@ -41,14 +43,19 @@ export const midnightRoster: ClassPick[] = [
   { player: 'David(Goodroud', class: 'druid', spec: 'Feral', role: 'dps', confirmed: true, notes: 'Also plays Arms Warrior' },
   { player: 'Crageos', class: 'warrior', spec: 'Fury', role: 'dps', confirmed: true },
   { player: 'Clovis', class: 'paladin', spec: 'Retribution', role: 'dps', confirmed: true },
-  // Ranged DPS (2)
+  // Ranged DPS (7)
   { player: 'Mal', class: 'warlock', spec: 'Affliction', role: 'dps', confirmed: true },
   { player: 'Kelrud', class: 'hunter', spec: 'Marksmanship', role: 'dps', confirmed: true },
+  { player: 'Buttburper', class: 'warlock', spec: 'Affliction', role: 'dps', confirmed: true },
+  { player: 'Krazykiller', class: 'hunter', spec: 'Beast Mastery', role: 'dps', confirmed: true },
+  { player: 'Jon', class: 'mage', spec: 'Arcane', role: 'dps', confirmed: true },
+  { player: 'Rhuenon', class: 'demonhunter', spec: 'Devourer', role: 'dps', confirmed: true },
+  { player: 'Pepsivoker', class: 'evoker', spec: 'Augmentation', role: 'dps', confirmed: true },
 ];
 
 // Role targets for Midnight
 export const roleTargets = {
   tank: { current: 2, target: 2 },
-  healer: { current: 3, target: 5 },
-  dps: { current: 8, target: 13 },
+  healer: { current: 5, target: 5 },
+  dps: { current: 13, target: 13 },
 };
