@@ -38,7 +38,7 @@ export const midnightRoster: ClassPick[] = [
   { player: 'Restodeez', class: 'druid', spec: 'Restoration', role: 'healer', confirmed: true },
   // Melee DPS (6)
   { player: 'Zak', class: 'shaman', spec: 'Enhancement', role: 'dps', confirmed: true },
-  { player: 'Mully', class: 'shaman', spec: 'Enhancement', role: 'dps', confirmed: true, notes: 'Also plays Unholy DK' },
+  { player: 'Mully', class: 'deathknight', spec: 'Unholy', role: 'dps', confirmed: true, notes: 'Also plays Unholy DK' },
   { player: 'Makoblade', class: 'rogue', spec: 'Subtlety', role: 'dps', confirmed: true },
   { player: 'David(Goodroud', class: 'druid', spec: 'Feral', role: 'dps', confirmed: true, notes: 'Also plays Arms Warrior' },
   { player: 'Crageos', class: 'warrior', spec: 'Fury', role: 'dps', confirmed: true },
