@@ -48,25 +48,50 @@ export interface GuildEvent {
 }
 
 export const upcomingEvents: GuildEvent[] = [
+  // Week of March 17
   {
-    title: 'Midnight Early Access!',
-    date: '2026-02-26',
-    time: '6:00 PM EST',
-    description: 'Join us for Midnight\'s Early access to get a head start on leveling!',
-    type: 'social',
-  },
-  {
-    title: 'Midnight Official Launch!',
-    date: '2026-03-02',
-    time: '6:00 PM EST',
-    description: 'Join us for day 1 in Midnight as we tackle the new content together!',
-    type: 'social',
-  },
-  {
-    title: 'Voidspire Normal Raid',
+    title: 'Season 1 Launch!',
     date: '2026-03-17',
-    time: '8:00 PM EST',
-    description: 'Join us in the new raid, Voidspire',
+    time: '11:00 AM EST',
+    description: 'Voidspire & Dreamrift (Normal/Heroic/LFR Wing 1), Delves T8+, Heroic/M0 dungeons, World Bosses, PvP Season 1!',
     type: 'raid',
+  },
+  {
+    title: 'Guild Normal Voidspire',
+    date: '2026-03-19',
+    time: '8:00 PM EST',
+    description: 'First guild raid night - Normal Voidspire clear.',
+    type: 'raid',
+  },
+  // Week of March 24
+  {
+    title: 'Mythic Week - RWF Begins!',
+    date: '2026-03-24',
+    time: '11:00 AM EST',
+    description: 'M+ Keystones! Voidspire & Dreamrift Mythic opens. LFR Wing 2 & Story Mode. New Delve: The Darkway.',
+    type: 'raid',
+  },
+  {
+    title: 'RWF Watch Party',
+    date: '2026-03-28',
+    time: '2:00 PM EST',
+    description: 'Join us in Discord to watch the Race to World First progress!',
+    type: 'social',
+  },
+  // March 31
+  {
+    title: 'March on Quel\'Danas Opens',
+    date: '2026-03-31',
+    time: '11:00 AM EST',
+    description: 'New raid: March on Quel\'Danas (Normal/Heroic/Mythic). Voidspire LFR Wing 3. New Delve: Parhelion Plaza.',
+    type: 'raid',
+  },
+  // April 7
+  {
+    title: 'March on Quel\'Danas LFR & Story',
+    date: '2026-04-07',
+    time: '11:00 AM EST',
+    description: 'March on Quel\'Danas Raid Finder and Story Mode now available.',
+    type: 'other',
   },
 ];
