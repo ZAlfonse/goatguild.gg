@@ -12,12 +12,12 @@ export interface NewsPost {
 
 export const news: NewsPost[] = [
   {
-    id: 'midnight-prep-2026',
-    title: 'Midnight Class Selection Now Open!',
-    date: '2026-02-01',
+    id: 'midnight-launch-2026',
+    title: 'Season 1 Release Schedule',
+    date: '2026-03-09',
     author: 'GM',
     category: 'announcement',
-    summary: 'Fill out the class selection form to lock in your main for Midnight!',
+    summary: 'March 17: Raids open (Normal/Heroic). March 24: Mythic raids & M+ Keystones available!',
     pinned: true,
   },
   {
