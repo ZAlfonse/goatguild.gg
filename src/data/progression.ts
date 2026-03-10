@@ -9,6 +9,18 @@ export interface RaidProgress {
 
 export const currentTier: RaidProgress[] = [
   {
+    name: 'The Voidspire',
+    difficulty: 'Mythic',
+    bossesKilled: 0,
+    totalBosses: 8,
+  },
+  {
+    name: 'The Voidspire',
+    difficulty: 'Heroic',
+    bossesKilled: 0,
+    totalBosses: 8,
+  },
+  {
     name: 'Manaforge Omega',
     difficulty: 'Mythic',
     bossesKilled: 2,
@@ -30,19 +42,6 @@ export const currentTier: RaidProgress[] = [
   },
   {
     name: 'Liberation of Undermine',
-    difficulty: 'Heroic',
-    bossesKilled: 8,
-    totalBosses: 8,
-  },
-  {
-    name: 'Nerub-ar Palace',
-    difficulty: 'Mythic',
-    bossesKilled: 4,
-    totalBosses: 8,
-    currentBoss: 'Broodtwister Ovi\'nax',
-  },
-  {
-    name: 'Nerub-ar Palace',
     difficulty: 'Heroic',
     bossesKilled: 8,
     totalBosses: 8,
