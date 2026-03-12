@@ -50,7 +50,7 @@ export const midnightRoster: ClassPick[] = [
   { player: 'Buttburper', class: 'warlock', spec: 'Affliction', role: 'dps', confirmed: true },
   { player: 'Krazykiller', class: 'hunter', spec: 'Beast Mastery', role: 'dps', confirmed: true },
   { player: 'Jon', class: 'mage', spec: 'Arcane', role: 'dps', confirmed: true },
-  { player: 'Rhuenon', class: 'demonhunter', spec: 'Devourer', role: 'dps', confirmed: true },
+  { player: 'Rheunom', class: 'demonhunter', spec: 'Devourer', role: 'dps', confirmed: true },
   { player: 'Pepsivoker', class: 'evoker', spec: 'Augmentation', role: 'dps', confirmed: true },
 ];
 
