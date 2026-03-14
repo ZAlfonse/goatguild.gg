@@ -53,14 +53,21 @@ export const upcomingEvents: GuildEvent[] = [
     title: 'Season 1 Launch!',
     date: '2026-03-17',
     time: '11:00 AM EST',
-    description: 'Voidspire & Dreamrift (Normal/Heroic/LFR Wing 1), Delves T8+, Heroic/M0 dungeons, World Bosses, PvP Season 1!',
+    description: 'Voidspire & Dreamrift (Normal/Heroic/LFR Wing 1), Delves T8+, M0 dungeons, World Bosses, PvP Season 1!',
     type: 'raid',
   },
   {
-    title: 'Guild Normal Voidspire',
+    title: 'Guild Raid Night (Normal Voidspire + Dreamrift)',
+    date: '2026-03-17',
+    time: '8:00 PM EST',
+    description: 'Leader: Vateau | 25 sign-ups (+1 late)',
+    type: 'raid',
+  },
+  {
+    title: 'Guild Raid Night Thur (Heroic Voidspire + Dreamrift)',
     date: '2026-03-19',
     time: '8:00 PM EST',
-    description: 'First guild raid night - Normal Voidspire clear.',
+    description: 'First thursday guild raid night.',
     type: 'raid',
   },
   // Week of March 24
@@ -70,13 +77,6 @@ export const upcomingEvents: GuildEvent[] = [
     time: '11:00 AM EST',
     description: 'M+ Keystones! Voidspire & Dreamrift Mythic opens. LFR Wing 2 & Story Mode. New Delve: The Darkway.',
     type: 'raid',
-  },
-  {
-    title: 'RWF Watch Party',
-    date: '2026-03-28',
-    time: '2:00 PM EST',
-    description: 'Join us in Discord to watch the Race to World First progress!',
-    type: 'social',
   },
   // March 31
   {
