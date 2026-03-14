@@ -7,17 +7,55 @@ export interface RaidProgress {
   currentBoss?: string;
 }
 
+// Midnight Expansion Raids (Current)
 export const currentTier: RaidProgress[] = [
+  // The Voidspire (8 bosses) - Opens March 17
+  {
+    name: 'The Voidspire',
+    difficulty: 'Heroic',
+    bossesKilled: 0,
+    totalBosses: 8,
+  },
   {
     name: 'The Voidspire',
     difficulty: 'Mythic',
     bossesKilled: 0,
     totalBosses: 8,
   },
+  // Dreamrift (4 bosses) - Opens March 17
   {
-    name: 'The Voidspire',
+    name: 'Dreamrift',
     difficulty: 'Heroic',
     bossesKilled: 0,
+    totalBosses: 4,
+  },
+  {
+    name: 'Dreamrift',
+    difficulty: 'Mythic',
+    bossesKilled: 0,
+    totalBosses: 4,
+  },
+  // March on Quel'Danas (8 bosses) - Opens March 31
+  {
+    name: "March on Quel'Danas",
+    difficulty: 'Heroic',
+    bossesKilled: 0,
+    totalBosses: 8,
+  },
+  {
+    name: "March on Quel'Danas",
+    difficulty: 'Mythic',
+    bossesKilled: 0,
+    totalBosses: 8,
+  },
+];
+
+// The War Within Expansion Raids (Previous)
+export const twwTier: RaidProgress[] = [
+  {
+    name: 'Manaforge Omega',
+    difficulty: 'Heroic',
+    bossesKilled: 8,
     totalBosses: 8,
   },
   {
@@ -28,7 +66,7 @@ export const currentTier: RaidProgress[] = [
     currentBoss: "Loom'ithar",
   },
   {
-    name: 'Manaforge Omega',
+    name: 'Liberation of Undermine',
     difficulty: 'Heroic',
     bossesKilled: 8,
     totalBosses: 8,
@@ -41,7 +79,7 @@ export const currentTier: RaidProgress[] = [
     currentBoss: 'Cauldron of Carnage',
   },
   {
-    name: 'Liberation of Undermine',
+    name: "Nerub'ar Palace",
     difficulty: 'Heroic',
     bossesKilled: 8,
     totalBosses: 8,
@@ -61,12 +99,6 @@ export const previousTiers: RaidProgress[] = [
     difficulty: 'Heroic',
     bossesKilled: 9,
     totalBosses: 9,
-  },
-  {
-    name: 'Vault of the Incarnates',
-    difficulty: 'Mythic',
-    bossesKilled: 2,
-    totalBosses: 8,
   },
   // Add more previous tiers as needed
 ];
