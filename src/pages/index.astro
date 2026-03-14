@@ -79,7 +79,7 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
 
   <script>
     function updateCountdown() {
-      const raidTime = new Date('2026-03-17T20:00:00-05:00'); // 8 PM EST
+      const raidTime = new Date('2026-03-17T20:00:00-04:00'); // 8 PM EST
       const now = new Date();
       const diff = raidTime.getTime() - now.getTime();
 

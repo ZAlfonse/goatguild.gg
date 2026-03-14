@@ -1,4 +1,4 @@
-// Tentative Midnight Class Composition
+// Midnight Class Composition
 export type WowClass =
   | 'warrior'
   | 'paladin'
