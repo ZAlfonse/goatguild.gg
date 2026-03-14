@@ -12,9 +12,96 @@ import { news } from '../data/news';
 
 const pinnedNews = news.filter(n => n.pinned);
 const recentNews = news.filter(n => !n.pinned).slice(0, 4);
+
+const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 ---
 
 <Layout>
+  <!-- Countdown Sticker -->
+  <a 
+    href={guild.raidSignupForm}
+    target="_blank"
+    rel="noopener noreferrer"
+    id="raid-countdown-sticker"
+    class="fixed top-20 left-4 z-50 cursor-pointer select-none transition-transform duration-300 ease-out"
+  >
+    <div id="sticker-inner" class="sticker-wiggle">
+      <div class="sticker-content relative w-40 h-40 md:w-48 md:h-48">
+        <!-- Starburst SVG background - serrated circle with 20 spikes -->
+        <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full" style="filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)) drop-shadow(0 8px 20px rgba(0,0,0,0.4));">
+          <polygon 
+            points="100,5 109,25 118,8 124,29 135,15 138,37 150,26 150,48 164,40 160,62 176,58 168,78 186,78 174,95 192,100 174,105 186,122 168,122 176,142 160,138 164,160 150,152 150,174 138,163 135,185 124,171 118,192 109,175 100,195 91,175 82,192 76,171 65,185 62,163 50,174 50,152 36,160 40,138 24,142 32,122 14,122 26,105 8,100 26,95 14,78 32,78 24,58 40,62 36,40 50,48 50,26 62,37 65,15 76,29 82,8 91,25"
+            fill="url(#starGradient)"
+          />
+          <defs>
+            <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#fbbf24" />
+              <stop offset="50%" style="stop-color:#f59e0b" />
+              <stop offset="100%" style="stop-color:#ea580c" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <!-- Content -->
+        <div class="relative w-full h-full flex flex-col items-center justify-center text-midnight-900 font-bold text-center">
+          <div class="text-[10px] uppercase tracking-wider mb-0.5 text-midnight-700">⚔️ Raid In</div>
+          <div id="countdown-timer" class="font-mono text-lg md:text-xl font-black tracking-tight leading-tight">
+            --:--:--
+          </div>
+          <div class="text-[9px] mt-0.5 text-midnight-700">Mar 17 @ 8PM</div>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <style>
+    #raid-countdown-sticker:hover {
+      transform: scale(1.15);
+    }
+    .sticker-wiggle {
+      animation: wiggle 2s ease-in-out infinite;
+    }
+    #raid-countdown-sticker:hover .sticker-wiggle {
+      animation-play-state: paused;
+    }
+    .sticker-content {
+      transition: transform 0.3s ease-out;
+    }
+    #raid-countdown-sticker:hover .sticker-content {
+      transform: rotate(12deg);
+    }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-12deg) scale(1); }
+      25% { transform: rotate(-15deg) scale(1.03); }
+      50% { transform: rotate(-9deg) scale(1); }
+      75% { transform: rotate(-14deg) scale(1.02); }
+    }
+  </style>
+
+  <script>
+    function updateCountdown() {
+      const raidTime = new Date('2026-03-17T20:00:00-05:00'); // 8 PM EST
+      const now = new Date();
+      const diff = raidTime.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        document.getElementById('countdown-timer')!.textContent = '🎉 RAID!';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const pad = (n: number) => n.toString().padStart(2, '0');
+      document.getElementById('countdown-timer')!.textContent = 
+        `${days}d ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
   <!-- Hero Section -->
   <section class="relative overflow-hidden">
     <!-- Background gradient inspired by Midnight's dark vampire aesthetic -->
@@ -59,7 +146,7 @@ const recentNews = news.filter(n => !n.pinned).slice(0, 4);
             rel="noopener noreferrer" 
             class="bg-accent-gold hover:bg-accent-gold/80 text-midnight-900 font-medium px-6 py-3 rounded-lg transition-colors"
           >
-            Sign Up for Next Raid
+            Sign Up for Next Raid ({nextRaidFormatted})
           </a>
         </div>
       </div>
