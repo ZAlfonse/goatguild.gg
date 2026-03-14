@@ -13,5 +13,6 @@ export const guild = {
 
 // Raid Schedule
 export const schedule = [
+  { day: 'Tuesday', time: '8:00 PM - 11:00 PM', timezone: 'EST', type: 'Progression' },
   { day: 'Thursday', time: '8:00 PM - 11:00 PM', timezone: 'EST', type: 'Progression' },
 ];
