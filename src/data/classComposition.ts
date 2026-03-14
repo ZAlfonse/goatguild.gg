@@ -56,6 +56,7 @@ export const midnightRoster: ClassPick[] = [
   { player: 'Zak', class: 'mage', spec: 'Arcane', role: 'dps', confirmed: true },
   { player: 'Platinga', class: 'priest', spec: 'Shadow', role: 'dps', confirmed: true },
   { player: 'Mal', class: 'warlock', spec: 'Affliction', role: 'dps', confirmed: true },
+  { player: 'Ruin', class: 'rogue', spec: 'Assassination', role: 'dps', confirmed: true },
   // Late (1)
   { player: 'Thraln', class: 'warlock', spec: 'Demonology', role: 'dps', confirmed: true, notes: 'Late signup, also known as Tuatev' },
 ];
