@@ -37,7 +37,7 @@ export const midnightRoster: ClassPick[] = [
   { player: 'Lasciel', class: 'priest', spec: 'Holy', role: 'healer', confirmed: true },
   { player: 'Restodeez', class: 'druid', spec: 'Restoration', role: 'healer', confirmed: true },
   { player: 'AndisNamis', class: 'evoker', spec: 'Preservation', role: 'healer', confirmed: true },
-  // Melee DPS (7)
+  // Melee DPS (8)
   { player: 'Drack', class: 'demonhunter', spec: 'Havoc', role: 'dps', confirmed: true },
   { player: 'Makoblade', class: 'rogue', spec: 'Subtlety', role: 'dps', confirmed: true },
   { player: 'Crageos', class: 'warrior', spec: 'Fury', role: 'dps', confirmed: true },
@@ -45,6 +45,7 @@ export const midnightRoster: ClassPick[] = [
   { player: 'Sanguinous', class: 'paladin', spec: 'Retribution', role: 'dps', confirmed: true },
   { player: 'Mully', class: 'deathknight', spec: 'Unholy', role: 'dps', confirmed: true, notes: 'Also plays Unholy DK' },
   { player: 'David', class: 'druid', spec: 'Feral', role: 'dps', confirmed: true, notes: 'Also plays Arms Warrior' },
+  { player: 'Ruin', class: 'rogue', spec: 'Assassination', role: 'dps', confirmed: true },
   // Ranged DPS (10)
   { player: 'Krazykiller', class: 'hunter', spec: 'Beast Mastery / Marksmanship', role: 'dps', confirmed: true },
   { player: 'PepsiPerson', class: 'evoker', spec: 'Augmentation', role: 'dps', confirmed: true },
@@ -56,7 +57,7 @@ export const midnightRoster: ClassPick[] = [
   { player: 'Zak', class: 'mage', spec: 'Arcane', role: 'dps', confirmed: true },
   { player: 'Platinga', class: 'priest', spec: 'Shadow', role: 'dps', confirmed: true },
   { player: 'Mal', class: 'warlock', spec: 'Affliction', role: 'dps', confirmed: true },
-  { player: 'Ruin', class: 'rogue', spec: 'Assassination', role: 'dps', confirmed: true },
+
   // Late (1)
   { player: 'Thraln', class: 'warlock', spec: 'Demonology', role: 'dps', confirmed: true, notes: 'Late signup, also known as Tuatev' },
 ];
