@@ -20,6 +20,7 @@ export const wowSpecs: WowSpec[] = [
   // Evoker
   { class: 'Evoker', spec: 'Augmentation', role: 'DPS' },
   { class: 'Evoker', spec: 'Devastation', role: 'DPS' },
+  { class: 'Evoker', spec: 'Devourer', role: 'DPS' },
   { class: 'Evoker', spec: 'Preservation', role: 'Healer' },
   // Hunter
   { class: 'Hunter', spec: 'Beast Mastery', role: 'DPS' },
