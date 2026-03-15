@@ -122,7 +122,7 @@ export const seasonPrepCards: PrepCard[] = [
     title: 'Buy and Macro Light\'s Potential Combat Potions',
     icon: '🔥',
     time: '~5 min',
-    goldCost: 'Free',
+    goldCost: '~6,000g',
     statBoost: '+1-2% damage/healing from optimal potion usage',
     steps: [
         'Buy 100 Light\'s Potential Combat Potions (Silver tier are very cheap).',
