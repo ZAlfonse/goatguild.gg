@@ -12,6 +12,7 @@ export const wowSpecs: WowSpec[] = [
   // Demon Hunter
   { class: 'Demon Hunter', spec: 'Havoc', role: 'DPS' },
   { class: 'Demon Hunter', spec: 'Vengeance', role: 'Tank' },
+  { class: 'Demon Hunter', spec: 'Devourer', role: 'DPS' },
   // Druid
   { class: 'Druid', spec: 'Balance', role: 'DPS' },
   { class: 'Druid', spec: 'Feral', role: 'DPS' },
@@ -20,7 +21,6 @@ export const wowSpecs: WowSpec[] = [
   // Evoker
   { class: 'Evoker', spec: 'Augmentation', role: 'DPS' },
   { class: 'Evoker', spec: 'Devastation', role: 'DPS' },
-  { class: 'Evoker', spec: 'Devourer', role: 'DPS' },
   { class: 'Evoker', spec: 'Preservation', role: 'Healer' },
   // Hunter
   { class: 'Hunter', spec: 'Beast Mastery', role: 'DPS' },
