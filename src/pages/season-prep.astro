@@ -9,14 +9,14 @@ const classes = [...new Set(wowSpecs.map(s => s.class))];
 <Layout title="Season Prep" description="Get ready for the new M+ and Raid season with this interactive checklist.">
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-midnight-900 to-midnight-900"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="text-center mb-12">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center mb-6">
         <h1 class="font-display text-4xl md:text-5xl font-bold text-accent-gold mb-4">
           ⚔️ Easy Season Prep Checklist
         </h1>
         <div class="flex items-center justify-center gap-4 mb-6 flex-wrap">
           <h3 class="text-md text-gray-700">
-            Cheap Boi Edition
+            Choose a spec to customize links:
           </h3>
           <select
             id="spec-select"
@@ -50,7 +50,7 @@ const classes = [...new Set(wowSpecs.map(s => s.class))];
         </div>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="card-grid">
+      <div class="grid grid-cols-3 gap-6 max-w-5xl mx-auto" id="card-grid">
         {seasonPrepCards.map((card, i) => (
           <div
             class="flashcard-container perspective-1000 cursor-pointer"
