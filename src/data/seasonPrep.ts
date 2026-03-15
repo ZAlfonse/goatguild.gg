@@ -46,6 +46,43 @@ export const seasonPrepCards: PrepCard[] = [
       'Silver tier flasks, oils and food are very cheap right now.' 
     ],
   },
+  { id: 'lights-potential',
+    title: 'Buy and Macro Light\'s Potential Combat Potions',
+    icon: '🔥',
+    time: '~5 min',
+    goldCost: '~6,000g',
+    statBoost: '+1-2% damage/healing from optimal potion usage',
+    steps: [
+        'Buy 100 Light\'s Potential Combat Potions (Silver tier are very cheap).',
+        'Macro them in to your main CD to set and forget. Or bind them separately if you want to use them more situationally.',
+    ],
+  },
+  {
+    id: 'gearing',
+    title: 'Craft A Weapon (Probably)',
+    icon: '⚒️',
+    time: '~15 min',
+    goldCost: '~20,000g',
+    statBoost: '+10-15% damage/healing from BiS crafted weapon',
+    steps: [
+      'Check {{wowhead:crafting|your spec\'s Wowhead crafting order guide}} to see which crafted piece is recommended first.',
+      'Craft a 2h (staff) instead of multiple 1h (mh and oh) to save crests.',
+      'Put in a guild crafting order for the recommended piece.',
+    ],
+  },
+  {
+    id: 'macros',
+    title: 'Macro Your Cooldowns and Racials',
+    icon: '⌨️',
+    time: '~5 min',
+    goldCost: 'Free',
+    statBoost: '+1-2% damage/healing from optimal racial usage',
+    steps: [
+        'Create a macro to use your abilities optimally in combat situations.',
+        'For example: `/cast [combat] Blood Fury /cast [combat] Big Cooldown Spell`',
+        'Test the macro on a target dummy to ensure it works as intended.',
+    ],
+  },
   {
     id: 'hearty-food',
     title: 'Train Cooking For Hearty Food',
@@ -80,19 +117,6 @@ export const seasonPrepCards: PrepCard[] = [
     ],
   },
   {
-    id: 'gearing',
-    title: 'Craft A Weapon (Probably)',
-    icon: '⚒️',
-    time: '~15 min',
-    goldCost: '~20,000g',
-    statBoost: '+10-15% damage/healing from BiS crafted weapon',
-    steps: [
-      'Check {{wowhead:crafting|your spec\'s Wowhead crafting order guide}} to see which crafted piece is recommended first.',
-      'Craft a 2h (staff) instead of multiple 1h (mh and oh) to save crests.',
-      'Put in a guild crafting order for the recommended piece.',
-    ],
-  },
-  {
     id: 'addons',
     title: 'Never Forget Your Buffs (BuffReminders Addon)',
     icon: '📦',
@@ -103,30 +127,6 @@ export const seasonPrepCards: PrepCard[] = [
       'Search CurseForge or WoWUp for "BuffReminders" and install the addon.',
       'Use /buffreminders to open the configuration menu and move it around.',
       'Click the icons it makes to apply missing buffs.'
-    ],
-  },
-  {
-    id: 'macros',
-    title: 'Macro Your Cooldowns and Racials',
-    icon: '⌨️',
-    time: '~5 min',
-    goldCost: 'Free',
-    statBoost: '+1-2% damage/healing from optimal racial usage',
-    steps: [
-        'Create a macro to use your abilities optimally in combat situations.',
-        'For example: `/cast [combat] Blood Fury /cast [combat] Big Cooldown Spell`',
-        'Test the macro on a target dummy to ensure it works as intended.',
-    ],
-  },
-  { id: 'lights-potential',
-    title: 'Buy and Macro Light\'s Potential Combat Potions',
-    icon: '🔥',
-    time: '~5 min',
-    goldCost: '~6,000g',
-    statBoost: '+1-2% damage/healing from optimal potion usage',
-    steps: [
-        'Buy 100 Light\'s Potential Combat Potions (Silver tier are very cheap).',
-        'Macro them in to your main CD to set and forget. Or bind them separately if you want to use them more situationally.',
     ],
   }
 ];
