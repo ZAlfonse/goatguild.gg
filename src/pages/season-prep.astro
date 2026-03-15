@@ -1,0 +1,371 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { seasonPrepCards } from '../data/seasonPrep';
+import { wowSpecs, classColors } from '../data/wowSpecs';
+
+const classes = [...new Set(wowSpecs.map(s => s.class))];
+---
+
+<Layout title="Season Prep" description="Get ready for the new M+ and Raid season with this interactive checklist.">
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-midnight-900 to-midnight-900"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-12">
+        <h1 class="font-display text-4xl md:text-5xl font-bold text-accent-gold mb-4">
+          ⚔️ Easy Season Prep Checklist
+        </h1>
+        <div class="flex items-center justify-center gap-4 mb-6 flex-wrap">
+          <h3 class="text-md text-gray-700">
+            Cheap Boi Edition
+          </h3>
+          <select
+            id="spec-select"
+            class="bg-midnight-700 border border-midnight-500 text-gray-200 text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:border-accent-purple transition-colors cursor-pointer"
+          >
+            <option value="">Select your spec</option>
+            {classes.map(cls => (
+              <optgroup label={cls}>
+                {wowSpecs.filter(s => s.class === cls).map(s => (
+                  <option
+                    value={`${s.class}-${s.spec}`}
+                    data-class={s.class}
+                    data-role={s.role}
+                  >
+                    {s.spec} {s.class} ({s.role})
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+          <span id="spec-badge" class="hidden text-xs font-medium px-2 py-1 rounded-full border"></span>
+        </div>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+          Easy things to do before the new M+ and Raid season. Click a card to flip it and see the steps. Mark each one complete as you go.
+        </p>
+        <div class="mt-4 flex items-center justify-center gap-4 text-sm text-gray-500">
+          <span id="progress-text">0 / {seasonPrepCards.length} completed</span>
+          <div class="w-48 bg-midnight-700 rounded-full h-2">
+            <div id="progress-bar" class="h-2 rounded-full bg-accent-purple transition-all duration-500" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="card-grid">
+        {seasonPrepCards.map((card, i) => (
+          <div
+            class="flashcard-container perspective-1000 cursor-pointer"
+            data-card-id={card.id}
+            data-index={i}
+          >
+            <div class="flashcard relative w-full transition-transform duration-500" style="transform-style: preserve-3d;">
+              {/* Back of card (visible first) */}
+              <div class="flashcard-back absolute inset-0 rounded-xl border border-midnight-500 bg-midnight-700 p-5 flex flex-col items-center justify-center text-center" style="backface-visibility: hidden;">
+                <div class="text-4xl mb-3">{card.icon}</div>
+                <h3 class="font-display text-lg font-semibold text-gray-100 mb-4">{card.title}</h3>
+                <div class="space-y-2 text-sm w-full">
+                  <div class="flex items-center justify-between bg-midnight-800 rounded-lg px-3 py-2">
+                    <span class="text-gray-400">⏱ Time</span>
+                    <span class="text-gray-200 font-medium">{card.time}</span>
+                  </div>
+                  <div class="flex items-center justify-between bg-midnight-800 rounded-lg px-3 py-2">
+                    <span class="text-gray-400">💰 Gold</span>
+                    <span class="text-accent-gold font-medium">{card.goldCost}</span>
+                  </div>
+                  <div class="flex items-center justify-between bg-midnight-800 rounded-lg px-3 py-2">
+                    <span class="text-gray-400">📈 Boost</span>
+                    <span class="text-green-400 font-medium">{card.statBoost}</span>
+                  </div>
+                </div>
+                <div class="mt-4 text-xs text-gray-500">Click to flip →</div>
+                <div class="done-overlay hidden absolute inset-0 rounded-xl bg-midnight-900/70 flex flex-col items-center justify-center gap-3">
+                  <span class="text-2xl font-extrabold text-green-500 tracking-wider">✓ DONE</span>
+                  <button class="undo-btn text-sm text-gray-400 hover:text-white transition-colors underline" data-card-id={card.id}>Undo</button>
+                </div>
+              </div>
+
+              {/* Front of card (instructions side) */}
+              <div class="flashcard-front absolute inset-0 rounded-xl border border-midnight-500 bg-midnight-700 p-5 flex flex-col" style="backface-visibility: hidden; transform: rotateY(180deg);">
+                <h3 class="font-display text-lg font-semibold text-gray-100 mb-3 flex items-center gap-2">
+                  <span>{card.icon}</span> {card.title}
+                </h3>
+                <ol class="space-y-2 text-sm text-gray-300 flex-1 overflow-y-auto pr-1 list-decimal list-inside">
+                  {card.steps.map(step => (
+                    <li class="leading-relaxed" set:html={step} />
+                  ))}
+                </ol>
+                <button
+                  class="complete-btn mt-4 w-full py-2 px-4 rounded-lg text-sm font-medium transition-colors bg-accent-purple hover:bg-accent-purple/80 text-white"
+                  data-card-id={card.id}
+                >
+                  ✓ Mark Completed
+                </button>
+                <div class="mt-2 text-xs text-gray-500 text-center">Click card to flip back</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .flashcard-container {
+      min-height: 340px;
+    }
+    .flashcard {
+      min-height: 340px;
+    }
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+    .flashcard-back,
+    .flashcard-front {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    .flashcard-container.completed .flashcard {
+      pointer-events: auto;
+    }
+    .flashcard-front ol::-webkit-scrollbar {
+      width: 4px;
+    }
+    .flashcard-front ol::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .flashcard-front ol::-webkit-scrollbar-thumb {
+      background: #4a4a70;
+      border-radius: 2px;
+    }
+  </style>
+
+  <script>
+    const STORAGE_KEY_PREFIX = 'goatguild-season-prep-';
+    const SPEC_KEY = 'goatguild-season-prep-spec';
+
+    function storageKeyForSpec(spec: string): string {
+      return spec ? `${STORAGE_KEY_PREFIX}${spec}` : `${STORAGE_KEY_PREFIX}default`;
+    }
+
+    // Spec dropdown persistence
+    const classColors: Record<string, string> = {
+      'Death Knight': '#C41F3B', 'Demon Hunter': '#A330C9', 'Druid': '#FF7D0A',
+      'Evoker': '#33937F', 'Hunter': '#ABD473', 'Mage': '#69CCF0',
+      'Monk': '#00FF96', 'Paladin': '#F58CBA', 'Priest': '#FFFFFF',
+      'Rogue': '#FFF569', 'Shaman': '#0070DE', 'Warlock': '#9482C9', 'Warrior': '#C79C6E',
+    };
+
+    const specSelect = document.getElementById('spec-select') as HTMLSelectElement;
+    const specBadge = document.getElementById('spec-badge') as HTMLElement;
+
+    function applySpecSelection(value: string) {
+      if (!value) {
+        specBadge.classList.add('hidden');
+        return;
+      }
+      const option = specSelect.querySelector(`option[value="${CSS.escape(value)}"]`) as HTMLOptionElement;
+      if (!option) return;
+      const cls = option.dataset.class ?? '';
+      const role = option.dataset.role ?? '';
+      const color = classColors[cls] ?? '#8b5cf6';
+      specBadge.textContent = `${option.textContent}`;
+      specBadge.style.borderColor = color;
+      specBadge.style.color = color;
+      specBadge.classList.remove('hidden');
+    }
+
+    // Restore saved spec
+    const savedSpec = localStorage.getItem(SPEC_KEY) ?? '';
+    if (savedSpec) {
+      specSelect.value = savedSpec;
+      applySpecSelection(savedSpec);
+    }
+
+    specSelect.addEventListener('change', () => {
+      localStorage.setItem(SPEC_KEY, specSelect.value);
+      applySpecSelection(specSelect.value);
+      updateWowheadLinks(specSelect.value);
+    });
+
+    // Wowhead URL builder
+    function slugify(str: string): string {
+      return str.toLowerCase().replace(/\s+/g, '-');
+    }
+
+    const roleSlugMap: Record<string, string> = {
+      'DPS': 'dps', 'Tank': 'tank', 'Healer': 'healer',
+    };
+
+    function buildWowheadUrls(specValue: string) {
+      if (!specValue) return null;
+      const [cls, spec] = specValue.split('-');
+      if (!cls || !spec) return null;
+      const option = specSelect.querySelector(`option[value="${CSS.escape(specValue)}"]`) as HTMLOptionElement;
+      const role = roleSlugMap[option?.dataset.role ?? ''] ?? 'dps';
+      const classSlug = slugify(cls);
+      const specSlug = slugify(spec);
+      const base = `https://www.wowhead.com/guide/classes/${classSlug}/${specSlug}`;
+      return {
+        enchants: `${base}/enchants-gems-pve-${role}`,
+        gems: `${base}/enchants-gems-pve-${role}#gems`,
+        consumables: `${base}/enchants-gems-pve-${role}#consumables`,
+        bis: `${base}/bis-gear`,
+        crafting: `${base}/bis-gear#crafting-order`,
+        talents: `${base}/talent-builds-pve-${role}#talent-import-codes`,
+        rotation: `${base}/rotation-cooldowns-pve-${role}`,
+      } as Record<string, string>;
+    }
+
+    // Replace {{wowhead:key|label}} tokens in step text with actual links
+    function updateWowheadLinks(specValue: string) {
+      const urls = buildWowheadUrls(specValue);
+      document.querySelectorAll('.flashcard-front li').forEach(li => {
+        const el = li as HTMLElement;
+        // Store original template on first pass
+        if (!el.dataset.template) {
+          el.dataset.template = el.innerHTML;
+        }
+        const template = el.dataset.template;
+        if (!template.includes('{{wowhead:')) return;
+
+        el.innerHTML = template.replace(
+          /\{\{wowhead:(\w+)\|([^}]+)\}\}/g,
+          (_match, key: string, label: string) => {
+            if (urls && urls[key]) {
+              return `<a href="${urls[key]}" target="_blank" rel="noopener noreferrer" class="text-accent-purple hover:text-accent-gold transition-colors underline">${label}</a>`;
+            }
+            return `<span class="text-gray-500 italic">${label} (select a spec above)</span>`;
+          }
+        );
+      });
+    }
+
+    // Apply on load if spec was saved
+    if (savedSpec) {
+      updateWowheadLinks(savedSpec);
+    } else {
+      updateWowheadLinks('');
+    }
+
+    interface CardState {
+      flipped: boolean;
+      completed: boolean;
+    }
+
+    function loadState(spec: string): Record<string, CardState> {
+      try {
+        const raw = localStorage.getItem(storageKeyForSpec(spec));
+        if (raw) return JSON.parse(raw);
+      } catch { /* ignore */ }
+      return {};
+    }
+
+    function saveState(spec: string, state: Record<string, CardState>) {
+      localStorage.setItem(storageKeyForSpec(spec), JSON.stringify(state));
+    }
+
+    function updateProgress(state: Record<string, CardState>) {
+      const total = document.querySelectorAll('.flashcard-container').length;
+      const done = Object.values(state).filter(s => s.completed).length;
+      const progressText = document.getElementById('progress-text');
+      const progressBar = document.getElementById('progress-bar');
+      if (progressText) progressText.textContent = `${done} / ${total} completed`;
+      if (progressBar) progressBar.style.width = `${(done / total) * 100}%`;
+    }
+
+    function applyState(container: Element, cardState: CardState | undefined) {
+      const flashcard = container.querySelector('.flashcard') as HTMLElement;
+      if (!flashcard) return;
+
+      if (cardState?.flipped && !cardState?.completed) {
+        flashcard.classList.add('flipped');
+      } else {
+        flashcard.classList.remove('flipped');
+      }
+
+      const overlay = container.querySelector('.done-overlay') as HTMLElement;
+
+      if (cardState?.completed) {
+        container.classList.add('completed');
+        flashcard.classList.remove('flipped');
+        overlay?.classList.remove('hidden');
+      } else {
+        container.classList.remove('completed');
+        overlay?.classList.add('hidden');
+      }
+    }
+
+    // Initialize
+    let currentSpec = savedSpec;
+    let state = loadState(currentSpec);
+
+    function reloadAllCards() {
+      document.querySelectorAll('.flashcard-container').forEach(container => {
+        const cardId = (container as HTMLElement).dataset.cardId!;
+        applyState(container, state[cardId]);
+      });
+      updateProgress(state);
+    }
+
+    document.querySelectorAll('.flashcard-container').forEach(container => {
+      const cardId = (container as HTMLElement).dataset.cardId!;
+      applyState(container, state[cardId]);
+
+      // Flip on click (but not when clicking the complete/undo buttons)
+      container.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('.complete-btn') || target.closest('.undo-btn')) return;
+
+        if (!state[cardId]) state[cardId] = { flipped: false, completed: false };
+
+        // If completed, don't allow flipping from the back
+        if (state[cardId].completed && !state[cardId].flipped) {
+          state[cardId].flipped = true;
+        } else {
+          state[cardId].flipped = !state[cardId].flipped;
+        }
+
+        applyState(container, state[cardId]);
+        saveState(currentSpec, state);
+      });
+
+      // Complete button
+      const btn = container.querySelector('.complete-btn');
+      btn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!state[cardId]) state[cardId] = { flipped: false, completed: false };
+
+        state[cardId].completed = true;
+        state[cardId].flipped = false;
+
+        applyState(container, state[cardId]);
+        updateProgress(state);
+        saveState(currentSpec, state);
+      });
+
+      // Undo button on the done overlay
+      const undoBtn = container.querySelector('.undo-btn');
+      undoBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!state[cardId]) return;
+
+        state[cardId].completed = false;
+
+        applyState(container, state[cardId]);
+        updateProgress(state);
+        saveState(currentSpec, state);
+      });
+    });
+
+    updateProgress(state);
+
+    // Reload card state when spec changes
+    specSelect.addEventListener('change', () => {
+      currentSpec = specSelect.value;
+      state = loadState(currentSpec);
+      reloadAllCards();
+    });
+  </script>
+</Layout>
