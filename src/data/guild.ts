@@ -8,8 +8,8 @@ export const guild = {
   recruitmentStatus: 'Open', // 'Open', 'Closed', 'Limited'
   recruitmentNote: 'Currently recruiting all classes for Midnight!',
   discordLink: 'https://discord.gg/goatguild', // Update with your Discord
-  raidSignupForm: 'https://discord.com/channels/1058475877941395506/1277720437396213852/1481810037885374564',
-  nextRaidDate: '2026-03-17',
+  raidSignupForm: 'https://discord.com/channels/1058475877941395506/1277720437396213852/1483660860252491799',
+  nextRaidDate: '2026-03-19',
 };
 
 // Raid Schedule
