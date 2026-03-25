@@ -58,13 +58,21 @@ export const midnightRoster: ClassPick[] = [
   { player: 'Platinga', class: 'priest', spec: 'Shadow', role: 'dps', confirmed: true },
   { player: 'Mal', class: 'warlock', spec: 'Affliction', role: 'dps', confirmed: true },
 
-  // Late (1)
-  { player: 'Thraln', class: 'warlock', spec: 'Demonology', role: 'dps', confirmed: true, notes: 'Late signup, also known as Tuatev' },
+  { player: 'Thraln', class: 'warlock', spec: 'Destruction', role: 'dps', confirmed: true, notes: 'Also known as Tuatev' },
+  { player: 'Oog', class: 'shaman', spec: 'Restoration', role: 'healer', confirmed: true, notes: 'Also known as Moshi' },
+  { player: 'TronCat', class: 'monk', spec: 'Mistweaver', role: 'healer', confirmed: true },
+  { player: 'ElStinko', class: 'warrior', spec: 'Fury', role: 'dps', confirmed: true },
+  { player: 'DarkHour', class: 'demonhunter', spec: 'Devourer', role: 'dps', confirmed: true },
+  { player: 'Griseldaa', class: 'hunter', spec: 'Beast Mastery', role: 'dps', confirmed: true, notes: 'Also plays Shadow Priest, also known as Noct' },
+  { player: 'L3G3ND', class: 'shaman', spec: 'Elemental', role: 'dps', confirmed: true },
+  // Late
+  { player: 'Dylan', class: 'rogue', spec: 'Assassination', role: 'dps', confirmed: true, notes: 'Late signup' },
+  { player: 'Thembönes', class: 'mage', spec: 'Arcane', role: 'dps', confirmed: true, notes: 'Late signup' },
 ];
 
 // Role targets for Midnight
 export const roleTargets = {
   tank: { current: 2, target: 2 },
-  healer: { current: 6, target: 6 },
-  dps: { current: 18, target: 18 },
+  healer: { current: 8, target: 8 },
+  dps: { current: 24, target: 24 },
 };

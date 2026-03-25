@@ -35,15 +35,6 @@ Giga Goat Bounty
     pinned: true,
   },
   {
-    id: 'midnight-launch-2026',
-    title: 'Season 1 Release Schedule',
-    date: '2026-03-09',
-    author: 'GM',
-    category: 'announcement',
-    summary: 'March 17: Raids open (Normal/Heroic). March 24: Mythic raids & M+ Keystones available!',
-    pinned: true,
-  },
-  {
     id: 'recruitment-update',
     title: 'Recruiting for Midnight',
     date: '2026-01-20',
@@ -71,37 +62,6 @@ export interface GuildEvent {
 }
 
 export const upcomingEvents: GuildEvent[] = [
-  // Week of March 17
-  {
-    title: 'Season 1 Launch!',
-    date: '2026-03-17',
-    time: '11:00 AM EST',
-    description: 'Voidspire & Dreamrift (Normal/Heroic/LFR Wing 1), Delves T8+, M0 dungeons, World Bosses, PvP Season 1!',
-    type: 'raid',
-  },
-  {
-    title: 'Guild Raid Night (Normal Voidspire + Dreamrift)',
-    date: '2026-03-17',
-    time: '8:00 PM EST',
-    description: 'Leader: Vateau | 25 sign-ups (+1 late)',
-    type: 'raid',
-  },
-  {
-    title: 'Guild Raid Night Thur (Heroic Voidspire + Dreamrift)',
-    date: '2026-03-19',
-    time: '8:00 PM EST',
-    description: 'First thursday guild raid night.',
-    type: 'raid',
-  },
-  // Week of March 24
-  {
-    title: 'Mythic Week - RWF Begins!',
-    date: '2026-03-24',
-    time: '11:00 AM EST',
-    description: 'M+ Keystones! Voidspire & Dreamrift Mythic opens. LFR Wing 2 & Story Mode. New Delve: The Darkway.',
-    type: 'raid',
-  },
-  // March 31
   {
     title: 'March on Quel\'Danas Opens',
     date: '2026-03-31',
