@@ -12,6 +12,29 @@ export interface NewsPost {
 
 export const news: NewsPost[] = [
   {
+    id: 'goat-push-s1-bounties',
+    title: '🐐 The Goat Push - M+ Bounties',
+    date: '2026-03-24',
+    author: 'GM',
+    category: 'event',
+    summary: 'Mega Goat Bounty: Time a +14 key with 4+ guildies for a ~30k consumable package. Giga Goat Bounty: First full guild group (5/5) to time a +?? key splits 300,000g!',
+    content: `🐐 🐐 The Goat Push - Midnight Season 1 M+ Bounties 🐐 🐐
+
+Mega Goat Bounty
+🏆 Goal: Time a +14 key in a group with at least 4 guild members. Bounty may be earned once per player.
+💎 Reward: Consumable package valued ~30,000g (may vary) containing combat/health/mana pots, flasks, food.
+
+Giga Goat Bounty
+🏆 Goal: Time the first +?? key in a full guild group (5/5). Bounty disappears after first claim.
+💎 Reward: 300,000g split.
+
+📜 Rules
+• Team members must have been in Guild for at least 2 weeks.
+• Giga goat key level requirement TBD.
+• To submit a bounty, reply to RaiderIO bot url with your key and @ me or a GoatOfficer.`,
+    pinned: true,
+  },
+  {
     id: 'midnight-launch-2026',
     title: 'Season 1 Release Schedule',
     date: '2026-03-09',

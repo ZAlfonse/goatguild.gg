@@ -17,8 +17,8 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
 ---
 
 <Layout>
-  <!-- Countdown Sticker -->
-  <a 
+  <!-- Countdown Sticker (disabled) -->
+  <!-- <a 
     href={guild.raidSignupForm}
     target="_blank"
     rel="noopener noreferrer"
@@ -27,7 +27,7 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
   >
     <div id="sticker-inner" class="sticker-wiggle">
       <div class="sticker-content relative w-40 h-40 md:w-48 md:h-48">
-        <!-- Starburst SVG background - serrated circle with 20 spikes -->
+        <%-- Starburst SVG background - serrated circle with 20 spikes --%>
         <svg viewBox="0 0 200 200" class="absolute inset-0 w-full h-full" style="filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)) drop-shadow(0 8px 20px rgba(0,0,0,0.4));">
           <polygon 
             points="100,5 109,25 118,8 124,29 135,15 138,37 150,26 150,48 164,40 160,62 176,58 168,78 186,78 174,95 192,100 174,105 186,122 168,122 176,142 160,138 164,160 150,152 150,174 138,163 135,185 124,171 118,192 109,175 100,195 91,175 82,192 76,171 65,185 62,163 50,174 50,152 36,160 40,138 24,142 32,122 14,122 26,105 8,100 26,95 14,78 32,78 24,58 40,62 36,40 50,48 50,26 62,37 65,15 76,29 82,8 91,25"
@@ -41,7 +41,7 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
             </linearGradient>
           </defs>
         </svg>
-        <!-- Content -->
+        <%-- Content --%>
         <div class="relative w-full h-full flex flex-col items-center justify-center text-midnight-900 font-bold text-center">
           <div class="text-[10px] uppercase tracking-wider mb-0.5 text-midnight-700">⚔️ Raid In</div>
           <div id="countdown-timer" class="font-mono text-lg md:text-xl font-black tracking-tight leading-tight">
@@ -51,9 +51,9 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
         </div>
       </div>
     </div>
-  </a>
+  </a> -->
 
-  <style>
+  <!--<style>
     #raid-countdown-sticker:hover {
       transform: scale(1.15);
     }
@@ -75,9 +75,9 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
       50% { transform: rotate(-9deg) scale(1); }
       75% { transform: rotate(-14deg) scale(1.02); }
     }
-  </style>
+  </style>-->
 
-  <script>
+  <!--<script>
     function updateCountdown() {
       const raidTime = new Date('2026-03-19T20:00:00-04:00'); // 8 PM EST
       const now = new Date();
@@ -100,7 +100,7 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-  </script>
+  </script>-->
 
   <!-- Hero Section -->
   <section class="relative overflow-hidden">
