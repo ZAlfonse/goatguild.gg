@@ -7,7 +7,7 @@ import NewsCard from '../components/NewsCard.astro';
 import ScheduleTable from '../components/ScheduleTable.astro';
 
 import { guild } from '../data/guild';
-import { currentTier, twwTier, achievements } from '../data/progression';
+import { currentTier, midnightS1Tier, twwTier, achievements } from '../data/progression';
 import { news } from '../data/news';
 import { classInterest, roleInterest, totalResponses } from '../data/wowForever';
 
@@ -242,6 +242,18 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
             ))}
           </div>
           
+          <!-- Midnight S1 Collapsible Section -->
+          <details class="bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
+            <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
+              🌙 Midnight Season 1 (Previous Season)
+            </summary>
+            <div class="grid sm:grid-cols-2 gap-4 p-4 pt-0">
+              {midnightS1Tier.map(raid => (
+                <ProgressionCard raid={raid} />
+              ))}
+            </div>
+          </details>
+
           <!-- TWW Collapsible Section -->
           <details class="bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
             <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">

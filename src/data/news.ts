@@ -12,43 +12,29 @@ export interface NewsPost {
 
 export const news: NewsPost[] = [
   {
-    id: 'goat-push-s1-bounties',
-    title: '🐐 The Goat Push - M+ Bounties',
-    date: '2026-03-24',
+    id: 'venomous-abyss-aotc',
+    title: '🐍 AOTC: The Venomous Abyss — Mythic Prog Begins',
+    date: '2026-10-06',
     author: 'GM',
-    category: 'event',
-    summary: 'Mega Goat Bounty: Time a +14 key with 4+ guildies for a ~30k consumable package. Giga Goat Bounty: First full guild group (5/5) to time a +?? key splits 300,000g!',
-    content: `🐐 🐐 The Goat Push - Midnight Season 1 M+ Bounties 🐐 🐐
-
-Mega Goat Bounty
-🏆 Goal: Time a +14 key in a group with at least 4 guild members. Bounty may be earned once per player.
-💎 Reward: Consumable package valued ~30,000g (may vary) containing combat/health/mana pots, flasks, food.
-
-Giga Goat Bounty
-🏆 Goal: Time the first +?? key in a full guild group (5/5). Bounty disappears after first claim.
-💎 Reward: 300,000g split.
-
-📜 Rules
-• Team members must have been in Guild for at least 2 weeks.
-• Giga goat key level requirement TBD.
-• To submit a bounty, reply to RaiderIO bot url with your key and @ me or a GoatOfficer.`,
+    category: 'raid',
+    summary: 'We cleared 8/8 Heroic in The Venomous Abyss for Ahead of the Curve! Mythic progression starts this week — sign up for raid nights and get your gear sorted.',
     pinned: true,
   },
   {
-    id: 'recruitment-update',
-    title: 'Recruiting for Midnight',
-    date: '2026-01-20',
+    id: 'wow-forever-plans',
+    title: '🏔️ Our WoW: Forever Plans Are In',
+    date: '2026-10-09',
     author: 'Officer',
-    category: 'recruitment',
-    summary: 'Currently looking for all classes for our Midnight roster.',
+    category: 'announcement',
+    summary: '22 goats answered the WoW: Forever interest survey. Shaman, Priest, and Druid lead the pack. Check the full class and faction breakdown on the WoW Forever page.',
   },
   {
-    id: 'addon-update',
-    title: 'Updated Addon Recommendations',
-    date: '2026-01-15',
+    id: 'recruitment-s2',
+    title: 'Recruiting for Venomous Abyss Mythic',
+    date: '2026-10-01',
     author: 'Officer',
-    category: 'guide',
-    summary: 'We\'ve updated our recommended addon list and guild profiles. Check the Addons section for the latest imports.',
+    category: 'recruitment',
+    summary: 'With AOTC in the bag, we\'re recruiting all classes and roles for Mythic progression in The Venomous Abyss.',
   },
 ];
 
@@ -63,18 +49,17 @@ export interface GuildEvent {
 
 export const upcomingEvents: GuildEvent[] = [
   {
-    title: 'March on Quel\'Danas Opens',
-    date: '2026-03-31',
-    time: '11:00 AM EST',
-    description: 'New raid: March on Quel\'Danas (Normal/Heroic/Mythic). Voidspire LFR Wing 3. New Delve: Parhelion Plaza.',
+    title: 'Venomous Abyss Mythic Prog',
+    date: '2026-10-13',
+    time: '8:00 PM EST',
+    description: 'First Mythic progression night in The Venomous Abyss. Bring flasks, pots, and your A-game.',
     type: 'raid',
   },
-  // April 7
   {
-    title: 'March on Quel\'Danas LFR & Story',
-    date: '2026-04-07',
-    time: '11:00 AM EST',
-    description: 'March on Quel\'Danas Raid Finder and Story Mode now available.',
-    type: 'other',
+    title: 'Venomous Abyss Mythic Prog',
+    date: '2026-10-15',
+    time: '8:00 PM EST',
+    description: 'Mythic progression continues. Sign up in Discord.',
+    type: 'raid',
   },
 ];

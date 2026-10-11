@@ -4,12 +4,12 @@ export const guild = {
   server: 'Mal\'Ganis - US', // Update with your server
   faction: 'Horde', // or 'Alliance'
   founded: '1996',
-  description: 'An AOTC + Mythic progression raiding guild preparing for Midnight.',
+  description: 'An AOTC + Mythic progression raiding guild pushing Midnight Season 2.',
   recruitmentStatus: 'Open', // 'Open', 'Closed', 'Limited'
-  recruitmentNote: 'Currently recruiting all classes for Midnight!',
+  recruitmentNote: 'Recruiting all classes for Venomous Abyss Mythic progression!',
   discordLink: 'https://discord.gg/goatguild', // Update with your Discord
   raidSignupForm: 'https://discord.com/channels/1058475877941395506/1277720437396213852/1483660860252491799',
-  nextRaidDate: '2026-03-19',
+  nextRaidDate: '2026-10-13',
 };
 
 // Raid Schedule

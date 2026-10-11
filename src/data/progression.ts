@@ -7,46 +7,41 @@ export interface RaidProgress {
   currentBoss?: string;
 }
 
-// Midnight Expansion Raids (Current) — AOTC earned in all three Season 1 raids
+// Midnight Season 2 (Current) — The Venomous Abyss
 export const currentTier: RaidProgress[] = [
-  // The Voidspire (8 bosses)
   {
-    name: 'The Voidspire',
+    name: 'The Venomous Abyss',
     difficulty: 'Heroic',
     bossesKilled: 8,
     totalBosses: 8,
   },
   {
+    name: 'The Venomous Abyss',
+    difficulty: 'Mythic',
+    bossesKilled: 0,
+    totalBosses: 8,
+  },
+];
+
+// Midnight Season 1 Raids (Previous Season) — AOTC in all three
+export const midnightS1Tier: RaidProgress[] = [
+  {
     name: 'The Voidspire',
-    difficulty: 'Mythic',
-    bossesKilled: 0,
-    totalBosses: 8,
-  },
-  // Dreamrift (4 bosses)
-  {
-    name: 'Dreamrift',
     difficulty: 'Heroic',
-    bossesKilled: 4,
-    totalBosses: 4,
+    bossesKilled: 6,
+    totalBosses: 6,
   },
   {
-    name: 'Dreamrift',
-    difficulty: 'Mythic',
-    bossesKilled: 0,
-    totalBosses: 4,
+    name: 'The Dreamrift',
+    difficulty: 'Heroic',
+    bossesKilled: 1,
+    totalBosses: 1,
   },
-  // March on Quel'Danas (8 bosses)
   {
     name: "March on Quel'Danas",
     difficulty: 'Heroic',
-    bossesKilled: 8,
-    totalBosses: 8,
-  },
-  {
-    name: "March on Quel'Danas",
-    difficulty: 'Mythic',
-    bossesKilled: 0,
-    totalBosses: 8,
+    bossesKilled: 2,
+    totalBosses: 2,
   },
 ];
 
@@ -105,8 +100,9 @@ export const previousTiers: RaidProgress[] = [
 
 // Boss kill order / notable achievements
 export const achievements = [
+  { name: 'Ahead of the Curve: The Venomous Abyss', date: 'October 2026' },
   { name: 'Ahead of the Curve: The Voidspire', date: '2026' },
-  { name: 'Ahead of the Curve: Dreamrift', date: '2026' },
+  { name: 'Ahead of the Curve: The Dreamrift', date: '2026' },
   { name: "Ahead of the Curve: March on Quel'Danas", date: '2026' },
   { name: 'Ahead of the Curve: Queen Ansurek', date: 'October 2024' },
   { name: 'Ahead of the Curve: Chrome King Gallywix', date: 'April 2025' },
