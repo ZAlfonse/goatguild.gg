@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProgressionCard from '../components/ProgressionCard.astro';
-import ClassRoster from '../components/ClassRoster.astro';
 import AddonList from '../components/AddonList.astro';
 import NewsCard from '../components/NewsCard.astro';
 import ScheduleTable from '../components/ScheduleTable.astro';
@@ -278,20 +277,6 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
               </div>
             </div>
           )}
-        </section>
-
-        <!-- Class Composition -->
-        <section id="roster">
-          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
-            <span>👥</span> Midnight Roster
-          </h2>
-          <p class="text-gray-400 mb-4">
-            Current class selections for the Midnight expansion. 
-            <a href={guild.raidSignupForm} target="_blank" rel="noopener noreferrer" class="text-accent-purple hover:underline">
-              Sign up for raid →
-            </a>
-          </p>
-          <ClassRoster />
         </section>
       </div>
     </div>
