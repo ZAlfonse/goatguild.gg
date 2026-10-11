@@ -1,0 +1,166 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { guild } from '../data/guild';
+import {
+  foreverResponses,
+  classInterest,
+  roleInterest,
+  serverTypeInterest,
+  factionInterest,
+  totalResponses,
+} from '../data/wowForever';
+
+const classColors: Record<string, string> = {
+  warrior: 'bg-class-warrior',
+  paladin: 'bg-class-paladin',
+  hunter: 'bg-class-hunter',
+  rogue: 'bg-class-rogue',
+  priest: 'bg-class-priest',
+  shaman: 'bg-class-shaman',
+  mage: 'bg-class-mage',
+  warlock: 'bg-class-warlock',
+  druid: 'bg-class-druid',
+};
+
+const classTextColors: Record<string, string> = {
+  warrior: 'text-class-warrior',
+  paladin: 'text-class-paladin',
+  hunter: 'text-class-hunter',
+  rogue: 'text-class-rogue',
+  priest: 'text-class-priest',
+  shaman: 'text-class-shaman',
+  mage: 'text-class-mage',
+  warlock: 'text-class-warlock',
+  druid: 'text-class-druid',
+};
+
+const formatClassName = (c: string) => c.charAt(0).toUpperCase() + c.slice(1);
+
+const sortedClasses = Object.entries(classInterest).sort((a, b) => b[1] - a[1]);
+const maxClassCount = Math.max(...sortedClasses.map(([, n]) => n));
+
+const roleIcons: Record<string, string> = { Tank: '🛡️', Healer: '💚', DPS: '⚔️' };
+const roleOrder = ['Tank', 'Healer', 'DPS'];
+
+const serverTypeOrder = ['PVE', 'PVP', 'RP'];
+const factionOrder = ['Horde', 'Alliance', 'Either'];
+const factionColors: Record<string, string> = {
+  Horde: 'bg-red-500',
+  Alliance: 'bg-blue-500',
+  Either: 'bg-gray-500',
+};
+---
+
+<Layout title="WoW: Forever Plans" description="Goat Guild's plans for WoW: Forever — class picks, roles, and server preferences from our interest survey.">
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-amber-900/20 via-midnight-900 to-midnight-900"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-12">
+        <h1 class="font-display text-4xl md:text-5xl font-bold text-accent-gold mb-4">
+          🏔️ WoW: Forever Plans
+        </h1>
+        <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+          Blizzard's Classic+ relaunch is in beta, and the goats are heading back to old Azeroth.
+          Here's what {totalResponses} of us said we're planning to play — names withheld, hype included.
+        </p>
+        <div class="mt-6">
+          <a
+            href={guild.discordLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-accent-purple hover:bg-accent-purple/80 text-white font-medium px-6 py-3 rounded-lg transition-colors"
+          >
+            Join the Discord to get in on it
+          </a>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Class Interest -->
+        <div class="lg:col-span-2 bg-midnight-700 rounded-lg p-6 border border-midnight-500">
+          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-1">Class Interest</h2>
+          <p class="text-sm text-gray-400 mb-6">How many members are considering each class (multiple picks allowed).</p>
+          <div class="space-y-3">
+            {sortedClasses.map(([cls, count]) => (
+              <div class="flex items-center gap-3">
+                <span class={`w-20 shrink-0 text-sm font-medium ${classTextColors[cls]}`}>
+                  {formatClassName(cls)}
+                </span>
+                <div class="flex-1 bg-midnight-800 rounded-full h-5 overflow-hidden">
+                  <div
+                    class={`h-5 rounded-full ${classColors[cls]}`}
+                    style={`width: ${(count / maxClassCount) * 100}%`}
+                  ></div>
+                </div>
+                <span class="w-6 text-right text-sm text-gray-300 font-medium">{count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Roles / Server Type / Faction -->
+        <div class="space-y-8">
+          <div class="bg-midnight-700 rounded-lg p-6 border border-midnight-500">
+            <h2 class="font-display text-xl font-semibold text-gray-100 mb-4">Roles</h2>
+            <div class="space-y-2">
+              {roleOrder.map(role => (
+                <div class="flex items-center justify-between bg-midnight-800 rounded-lg px-3 py-2">
+                  <span class="text-gray-300">{roleIcons[role]} {role}</span>
+                  <span class="text-accent-gold font-medium">{roleInterest[role] ?? 0}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="bg-midnight-700 rounded-lg p-6 border border-midnight-500">
+            <h2 class="font-display text-xl font-semibold text-gray-100 mb-4">Server Type</h2>
+            <div class="space-y-2">
+              {serverTypeOrder.map(type => (
+                <div class="flex items-center justify-between bg-midnight-800 rounded-lg px-3 py-2">
+                  <span class="text-gray-300">{type}</span>
+                  <span class="text-accent-gold font-medium">{serverTypeInterest[type] ?? 0}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="bg-midnight-700 rounded-lg p-6 border border-midnight-500">
+            <h2 class="font-display text-xl font-semibold text-gray-100 mb-4">Faction</h2>
+            <div class="space-y-2">
+              {factionOrder.map(faction => (
+                <div class="flex items-center gap-3 bg-midnight-800 rounded-lg px-3 py-2">
+                  <span class={`w-2 h-6 rounded ${factionColors[faction]}`}></span>
+                  <span class="flex-1 text-gray-300">{faction}</span>
+                  <span class="text-accent-gold font-medium">{factionInterest[faction] ?? 0}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual (anonymized) picks -->
+      <div class="max-w-6xl mx-auto mt-8 bg-midnight-700 rounded-lg p-6 border border-midnight-500">
+        <h2 class="font-display text-2xl font-semibold text-gray-100 mb-1">The Picks</h2>
+        <p class="text-sm text-gray-400 mb-6">Every response from the interest survey, anonymized.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {foreverResponses.map((r, i) => (
+            <div class="bg-midnight-800 rounded-lg p-3">
+              <div class="flex items-center justify-between mb-2 text-xs text-gray-500">
+                <span>Goat #{i + 1}</span>
+                <span>{r.roles.join(' / ')}</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                {r.classes.map(cls => (
+                  <span class={`text-xs font-medium px-2 py-0.5 rounded-full ${classColors[cls]} text-midnight-900`}>
+                    {formatClassName(cls)}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

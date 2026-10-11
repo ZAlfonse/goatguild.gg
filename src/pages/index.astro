@@ -9,6 +9,9 @@ import ScheduleTable from '../components/ScheduleTable.astro';
 import { guild } from '../data/guild';
 import { currentTier, twwTier, achievements } from '../data/progression';
 import { news } from '../data/news';
+import { classInterest, roleInterest, totalResponses } from '../data/wowForever';
+
+const topForeverClasses = Object.entries(classInterest).sort((a, b) => b[1] - a[1]).slice(0, 3);
 
 const pinnedNews = news.filter(n => n.pinned);
 const recentNews = news.filter(n => !n.pinned).slice(0, 4);
@@ -241,6 +244,42 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
             </a>
           </p>
           <ClassRoster />
+        </section>
+
+        <!-- WoW: Forever Plans -->
+        <section id="wow-forever">
+          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+            <span>🏔️</span> WoW: Forever Plans
+          </h2>
+          <div class="bg-midnight-700 rounded-lg p-6 border border-midnight-500">
+            <p class="text-gray-300 mb-4">
+              The goats are heading back to old Azeroth for Blizzard's Classic+ relaunch.
+              <strong class="text-accent-gold">{totalResponses} members</strong> have shared their plans so far.
+            </p>
+            <div class="grid sm:grid-cols-2 gap-4 mb-4">
+              <div class="bg-midnight-800 rounded-lg p-4">
+                <h4 class="text-sm text-gray-400 mb-2">Most Popular Classes</h4>
+                <div class="flex flex-wrap gap-2">
+                  {topForeverClasses.map(([cls, count]) => (
+                    <span class="bg-accent-gold/20 text-accent-gold text-sm px-3 py-1 rounded-full">
+                      {cls.charAt(0).toUpperCase() + cls.slice(1)}: {count}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div class="bg-midnight-800 rounded-lg p-4">
+                <h4 class="text-sm text-gray-400 mb-2">Role Interest</h4>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-accent-purple/20 text-accent-purple text-sm px-3 py-1 rounded-full">🛡️ Tank: {roleInterest['Tank'] ?? 0}</span>
+                  <span class="bg-accent-purple/20 text-accent-purple text-sm px-3 py-1 rounded-full">💚 Healer: {roleInterest['Healer'] ?? 0}</span>
+                  <span class="bg-accent-purple/20 text-accent-purple text-sm px-3 py-1 rounded-full">⚔️ DPS: {roleInterest['DPS'] ?? 0}</span>
+                </div>
+              </div>
+            </div>
+            <a href="/wow-forever" class="text-accent-purple hover:underline font-medium">
+              See the full class breakdown →
+            </a>
+          </div>
         </section>
       </div>
     </div>

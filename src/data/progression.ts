@@ -7,13 +7,13 @@ export interface RaidProgress {
   currentBoss?: string;
 }
 
-// Midnight Expansion Raids (Current)
+// Midnight Expansion Raids (Current) — AOTC earned in all three Season 1 raids
 export const currentTier: RaidProgress[] = [
-  // The Voidspire (8 bosses) - Opens March 17
+  // The Voidspire (8 bosses)
   {
     name: 'The Voidspire',
     difficulty: 'Heroic',
-    bossesKilled: 0,
+    bossesKilled: 8,
     totalBosses: 8,
   },
   {
@@ -22,11 +22,11 @@ export const currentTier: RaidProgress[] = [
     bossesKilled: 0,
     totalBosses: 8,
   },
-  // Dreamrift (4 bosses) - Opens March 17
+  // Dreamrift (4 bosses)
   {
     name: 'Dreamrift',
     difficulty: 'Heroic',
-    bossesKilled: 0,
+    bossesKilled: 4,
     totalBosses: 4,
   },
   {
@@ -35,11 +35,11 @@ export const currentTier: RaidProgress[] = [
     bossesKilled: 0,
     totalBosses: 4,
   },
-  // March on Quel'Danas (8 bosses) - Opens March 31
+  // March on Quel'Danas (8 bosses)
   {
     name: "March on Quel'Danas",
     difficulty: 'Heroic',
-    bossesKilled: 0,
+    bossesKilled: 8,
     totalBosses: 8,
   },
   {
@@ -105,6 +105,9 @@ export const previousTiers: RaidProgress[] = [
 
 // Boss kill order / notable achievements
 export const achievements = [
+  { name: 'Ahead of the Curve: The Voidspire', date: '2026' },
+  { name: 'Ahead of the Curve: Dreamrift', date: '2026' },
+  { name: "Ahead of the Curve: March on Quel'Danas", date: '2026' },
   { name: 'Ahead of the Curve: Queen Ansurek', date: 'October 2024' },
   { name: 'Ahead of the Curve: Chrome King Gallywix', date: 'April 2025' },
   { name: 'Ahead of the Curve: Dimensius', date: 'September 2025' },
