@@ -11,7 +11,8 @@ on:
       - '.gitignore'
   workflow_dispatch:
   schedule:
-    - cron: '0 11 * * *' # Daily, 6 AM Eastern: refresh Raider.io / blue posts / Forever data
+    # Off the top of the hour on purpose: GitHub delays or drops :00 schedules under load.
+    - cron: '17 */3 * * *' # Every 3 hours at :17: refresh Raider.io / blue posts / Forever data
 
 permissions:
   contents: write # lets the daily run commit refreshed data back to main

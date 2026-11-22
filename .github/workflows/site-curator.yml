@@ -6,7 +6,8 @@ name: Site Curator (AI)
 
 on:
   schedule:
-    - cron: '0 12 * * *' # Daily, 7 AM Eastern (an hour after the data refresh)
+    # Off the top of the hour on purpose: GitHub delays or drops :00 schedules under load.
+    - cron: '43 11 * * *' # Daily, ~6:43 AM Eastern (after the data refresh)
   workflow_dispatch:
 
 permissions:
