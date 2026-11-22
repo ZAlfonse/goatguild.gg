@@ -1,30 +1,30 @@
 {
-  "updatedAt": "2026-11-22T03:50:42.611Z",
+  "updatedAt": "2026-11-22T17:11:55.849Z",
   "maxLevel": 60,
   "members": [
     {
       "name": "Za Kk",
-      "level": 34,
+      "level": 35,
       "classId": 8,
       "rank": 0,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Chieph Beef",
-      "level": 53,
+      "level": 54,
       "classId": 11,
       "rank": 1,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Turb Low",
-      "level": 40,
+      "level": 42,
       "classId": 7,
       "rank": 4,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Malanyr Malafjar",
@@ -44,43 +44,43 @@
     },
     {
       "name": "Zet Blade",
-      "level": 52,
+      "level": 53,
       "classId": 1,
       "rank": 3,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Lia Valentine",
-      "level": 52,
+      "level": 53,
       "classId": 3,
       "rank": 3,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Bloolust Jadebreaker",
-      "level": 44,
+      "level": 45,
       "classId": 7,
       "rank": 2,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Bone Danger",
-      "level": 23,
+      "level": 25,
       "classId": 2,
       "rank": 3,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Torcula Sinus",
-      "level": 51,
+      "level": 52,
       "classId": 8,
       "rank": 5,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Goat Vanios",
@@ -100,11 +100,11 @@
     },
     {
       "name": "Krazykiller Forever",
-      "level": 38,
+      "level": 39,
       "classId": 1,
       "rank": 3,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Pryme Priest",
@@ -132,11 +132,11 @@
     },
     {
       "name": "Gar Jon",
-      "level": 33,
+      "level": 34,
       "classId": 7,
       "rank": 2,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Clo Vis",
@@ -156,11 +156,11 @@
     },
     {
       "name": "Mully Midrange",
-      "level": 55,
+      "level": 56,
       "classId": 3,
       "rank": 3,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Kerry Goldhand",
@@ -204,11 +204,11 @@
     },
     {
       "name": "Mobak Mohunt",
-      "level": 35,
+      "level": 36,
       "classId": 3,
       "rank": 2,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Blump Trickel",
@@ -228,11 +228,11 @@
     },
     {
       "name": "Evil Zebra",
-      "level": 46,
+      "level": 47,
       "classId": 4,
       "rank": 5,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Hilla Kelkin",
@@ -244,11 +244,11 @@
     },
     {
       "name": "Zen Fuzz",
-      "level": 28,
+      "level": 29,
       "classId": 8,
       "rank": 5,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Damelia Shadowbourn",
@@ -260,11 +260,11 @@
     },
     {
       "name": "Ten Zion",
-      "level": 41,
+      "level": 42,
       "classId": 2,
       "rank": 5,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Anz Zu",
@@ -355,7 +355,128 @@
       "lastLevelUp": null
     }
   ],
-  "activity": [],
+  "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Za Kk",
+      "classId": 8,
+      "from": 34,
+      "to": 35
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Chieph Beef",
+      "classId": 11,
+      "from": 53,
+      "to": 54
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Turb Low",
+      "classId": 7,
+      "from": 40,
+      "to": 42
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Zet Blade",
+      "classId": 1,
+      "from": 52,
+      "to": 53
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Lia Valentine",
+      "classId": 3,
+      "from": 52,
+      "to": 53
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Bloolust Jadebreaker",
+      "classId": 7,
+      "from": 44,
+      "to": 45
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Bone Danger",
+      "classId": 2,
+      "from": 23,
+      "to": 25
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Torcula Sinus",
+      "classId": 8,
+      "from": 51,
+      "to": 52
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Krazykiller Forever",
+      "classId": 1,
+      "from": 38,
+      "to": 39
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Gar Jon",
+      "classId": 7,
+      "from": 33,
+      "to": 34
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Mully Midrange",
+      "classId": 3,
+      "from": 55,
+      "to": 56
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Mobak Mohunt",
+      "classId": 3,
+      "from": 35,
+      "to": 36
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Evil Zebra",
+      "classId": 4,
+      "from": 46,
+      "to": 47
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Zen Fuzz",
+      "classId": 8,
+      "from": 28,
+      "to": 29
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T17:11:55.849Z",
+      "name": "Ten Zion",
+      "classId": 2,
+      "from": 41,
+      "to": 42
+    }
+  ],
   "history": {
     "2026-11-21": {
       "Za Kk": 34,
@@ -391,6 +512,52 @@
       "Zen Fuzz": 28,
       "Damelia Shadowbourn": 17,
       "Ten Zion": 41,
+      "Anz Zu": 13,
+      "Bustin Supreme": 1,
+      "Rotted Mcrotface": 1,
+      "Mooney Blightbane": 32,
+      "Guy Numberone": 9,
+      "Dunka Dunka": 23,
+      "Lunch Mcbox": 28,
+      "Jeaph Redeemed": 9,
+      "Yeti Wintermane": 12,
+      "Ten Zien": 10,
+      "Lionhart Tayrona": 14
+    },
+    "2026-11-22": {
+      "Za Kk": 35,
+      "Chieph Beef": 54,
+      "Turb Low": 42,
+      "Malanyr Malafjar": 23,
+      "Mako Blade": 13,
+      "Zet Blade": 53,
+      "Lia Valentine": 53,
+      "Bloolust Jadebreaker": 45,
+      "Bone Danger": 25,
+      "Torcula Sinus": 52,
+      "Goat Vanios": 23,
+      "Thomans Zu": 23,
+      "Krazykiller Forever": 39,
+      "Pryme Priest": 21,
+      "Alder Stormhide": 36,
+      "Zari Spiritwalker": 10,
+      "Gar Jon": 34,
+      "Clo Vis": 54,
+      "Hobo Magemon": 31,
+      "Mully Midrange": 56,
+      "Kerry Goldhand": 26,
+      "Tensor Fang": 24,
+      "Fillibuster Picklelord": 42,
+      "Tommy Masala": 6,
+      "Glorg Mcgrubb": 12,
+      "Mobak Mohunt": 36,
+      "Blump Trickel": 27,
+      "Budman Budmane": 36,
+      "Evil Zebra": 47,
+      "Hilla Kelkin": 28,
+      "Zen Fuzz": 29,
+      "Damelia Shadowbourn": 17,
+      "Ten Zion": 42,
       "Anz Zu": 13,
       "Bustin Supreme": 1,
       "Rotted Mcrotface": 1,
