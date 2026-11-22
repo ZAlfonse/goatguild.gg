@@ -1,0 +1,407 @@
+{
+  "updatedAt": "2026-11-22T03:50:42.611Z",
+  "maxLevel": 60,
+  "members": [
+    {
+      "name": "Za Kk",
+      "level": 34,
+      "classId": 8,
+      "rank": 0,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Chieph Beef",
+      "level": 53,
+      "classId": 11,
+      "rank": 1,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Turb Low",
+      "level": 40,
+      "classId": 7,
+      "rank": 4,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Malanyr Malafjar",
+      "level": 23,
+      "classId": 9,
+      "rank": 3,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Mako Blade",
+      "level": 13,
+      "classId": 4,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Zet Blade",
+      "level": 52,
+      "classId": 1,
+      "rank": 3,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Lia Valentine",
+      "level": 52,
+      "classId": 3,
+      "rank": 3,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Bloolust Jadebreaker",
+      "level": 44,
+      "classId": 7,
+      "rank": 2,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Bone Danger",
+      "level": 23,
+      "classId": 2,
+      "rank": 3,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Torcula Sinus",
+      "level": 51,
+      "classId": 8,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Goat Vanios",
+      "level": 23,
+      "classId": 7,
+      "rank": 2,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Thomans Zu",
+      "level": 23,
+      "classId": 7,
+      "rank": 4,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Krazykiller Forever",
+      "level": 38,
+      "classId": 1,
+      "rank": 3,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Pryme Priest",
+      "level": 21,
+      "classId": 5,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Alder Stormhide",
+      "level": 36,
+      "classId": 11,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Zari Spiritwalker",
+      "level": 10,
+      "classId": 5,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Gar Jon",
+      "level": 33,
+      "classId": 7,
+      "rank": 2,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Clo Vis",
+      "level": 54,
+      "classId": 1,
+      "rank": 2,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Hobo Magemon",
+      "level": 31,
+      "classId": 8,
+      "rank": 4,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Mully Midrange",
+      "level": 55,
+      "classId": 3,
+      "rank": 3,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Kerry Goldhand",
+      "level": 26,
+      "classId": 2,
+      "rank": 4,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Tensor Fang",
+      "level": 24,
+      "classId": 11,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Fillibuster Picklelord",
+      "level": 42,
+      "classId": 9,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Tommy Masala",
+      "level": 6,
+      "classId": 8,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Glorg Mcgrubb",
+      "level": 12,
+      "classId": 2,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Mobak Mohunt",
+      "level": 35,
+      "classId": 3,
+      "rank": 2,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Blump Trickel",
+      "level": 27,
+      "classId": 9,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Budman Budmane",
+      "level": 36,
+      "classId": 11,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Evil Zebra",
+      "level": 46,
+      "classId": 4,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Hilla Kelkin",
+      "level": 28,
+      "classId": 7,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Zen Fuzz",
+      "level": 28,
+      "classId": 8,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Damelia Shadowbourn",
+      "level": 17,
+      "classId": 5,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Ten Zion",
+      "level": 41,
+      "classId": 2,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Anz Zu",
+      "level": 13,
+      "classId": 5,
+      "rank": 4,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Bustin Supreme",
+      "level": 1,
+      "classId": 5,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Rotted Mcrotface",
+      "level": 1,
+      "classId": 2,
+      "rank": 4,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Mooney Blightbane",
+      "level": 32,
+      "classId": 5,
+      "rank": 3,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Guy Numberone",
+      "level": 9,
+      "classId": 4,
+      "rank": 3,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Dunka Dunka",
+      "level": 23,
+      "classId": 5,
+      "rank": 2,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Lunch Mcbox",
+      "level": 28,
+      "classId": 4,
+      "rank": 4,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Jeaph Redeemed",
+      "level": 9,
+      "classId": 2,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Yeti Wintermane",
+      "level": 12,
+      "classId": 11,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Ten Zien",
+      "level": 10,
+      "classId": 8,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    },
+    {
+      "name": "Lionhart Tayrona",
+      "level": 14,
+      "classId": 3,
+      "rank": 5,
+      "firstSeen": "2026-11-21",
+      "lastLevelUp": null
+    }
+  ],
+  "activity": [],
+  "history": {
+    "2026-11-21": {
+      "Za Kk": 34,
+      "Chieph Beef": 53,
+      "Turb Low": 40,
+      "Malanyr Malafjar": 23,
+      "Mako Blade": 13,
+      "Zet Blade": 52,
+      "Lia Valentine": 52,
+      "Bloolust Jadebreaker": 44,
+      "Bone Danger": 23,
+      "Torcula Sinus": 51,
+      "Goat Vanios": 23,
+      "Thomans Zu": 23,
+      "Krazykiller Forever": 38,
+      "Pryme Priest": 21,
+      "Alder Stormhide": 36,
+      "Zari Spiritwalker": 10,
+      "Gar Jon": 33,
+      "Clo Vis": 54,
+      "Hobo Magemon": 31,
+      "Mully Midrange": 55,
+      "Kerry Goldhand": 26,
+      "Tensor Fang": 24,
+      "Fillibuster Picklelord": 42,
+      "Tommy Masala": 6,
+      "Glorg Mcgrubb": 12,
+      "Mobak Mohunt": 35,
+      "Blump Trickel": 27,
+      "Budman Budmane": 36,
+      "Evil Zebra": 46,
+      "Hilla Kelkin": 28,
+      "Zen Fuzz": 28,
+      "Damelia Shadowbourn": 17,
+      "Ten Zion": 41,
+      "Anz Zu": 13,
+      "Bustin Supreme": 1,
+      "Rotted Mcrotface": 1,
+      "Mooney Blightbane": 32,
+      "Guy Numberone": 9,
+      "Dunka Dunka": 23,
+      "Lunch Mcbox": 28,
+      "Jeaph Redeemed": 9,
+      "Yeti Wintermane": 12,
+      "Ten Zien": 10,
+      "Lionhart Tayrona": 14
+    }
+  }
+}
