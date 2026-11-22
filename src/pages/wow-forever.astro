@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { guild } from '../data/guild';
 import {
   foreverResponses,
   classInterest,
@@ -63,16 +62,6 @@ const factionColors: Record<string, string> = {
           Blizzard's Classic+ relaunch is in beta, and the goats are heading back to old Azeroth.
           Here's what {totalResponses} of us said we're planning to play.
         </p>
-        <div class="mt-6">
-          <a
-            href={guild.discordLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-block bg-accent-purple hover:bg-accent-purple/80 text-white font-medium px-6 py-3 rounded-lg transition-colors"
-          >
-            Join the Discord to get in on it
-          </a>
-        </div>
       </div>
 
       <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">

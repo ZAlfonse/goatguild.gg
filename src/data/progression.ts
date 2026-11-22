@@ -7,8 +7,32 @@ export interface RaidProgress {
   currentBoss?: string;
 }
 
-// Midnight Season 2 (Current) — The Venomous Abyss
-export const currentTier: RaidProgress[] = [
+// Current tier comes from Raider.io via generated/raider.json (refreshed daily).
+// To switch tiers, change CURRENT_RAID_SLUGS. The hand-written list below is only a fallback.
+import raider from './generated/raider.json';
+
+const CURRENT_RAID_SLUGS = ['the-venomous-abyss'];
+const SHOWN_DIFFICULTIES = ['heroic', 'mythic'] as const;
+const DIFF_NAME = { heroic: 'Heroic', mythic: 'Mythic' } as const;
+
+type RaiderRaid = { name: string; totalBosses: number; killed: Record<string, number> };
+const raiderRaids = raider.raids as Record<string, RaiderRaid>;
+
+const liveCurrentTier: RaidProgress[] = CURRENT_RAID_SLUGS.flatMap(slug => {
+  const raid = raiderRaids[slug];
+  if (!raid) return [];
+  return SHOWN_DIFFICULTIES.map(d => ({
+    name: raid.name,
+    difficulty: DIFF_NAME[d],
+    bossesKilled: raid.killed[d] ?? 0,
+    totalBosses: raid.totalBosses,
+  }));
+});
+
+export const progressionUpdatedAt = raider.updatedAt;
+
+// Midnight Season 2 (Current) — The Venomous Abyss (fallback if Raider.io data is missing)
+const fallbackCurrentTier: RaidProgress[] = [
   {
     name: 'The Venomous Abyss',
     difficulty: 'Heroic',
@@ -22,6 +46,8 @@ export const currentTier: RaidProgress[] = [
     totalBosses: 8,
   },
 ];
+
+export const currentTier: RaidProgress[] = liveCurrentTier.length ? liveCurrentTier : fallbackCurrentTier;
 
 // Midnight Season 1 Raids (Previous Season) — AOTC in all three
 export const midnightS1Tier: RaidProgress[] = [

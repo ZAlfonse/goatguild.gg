@@ -1,0 +1,36 @@
+---
+// Latest official Blizzard posts, refreshed daily by scripts/update-site-data.mjs
+import bluePosts from '../data/generated/blue-posts.json';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit = 6 } = Astro.props;
+const posts = bluePosts.posts.slice(0, limit);
+
+const fmt = (iso: string) =>
+  new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/New_York' });
+---
+
+{posts.length > 0 && (
+  <div class="bg-midnight-700 rounded-lg border border-midnight-500 divide-y divide-midnight-500">
+    {posts.map(post => (
+      <a
+        href={post.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block p-4 hover:bg-midnight-600/50 transition-colors first:rounded-t-lg last:rounded-b-lg"
+      >
+        <div class="flex items-center justify-between gap-3 mb-1">
+          <span class={`text-xs font-medium px-2 py-0.5 rounded ${post.game === 'forever' ? 'bg-amber-600 text-white' : 'bg-sky-600 text-white'}`}>
+            {post.game === 'forever' ? 'Forever' : 'Retail'}
+          </span>
+          <time class="text-xs text-gray-500 shrink-0">{fmt(post.date)}</time>
+        </div>
+        <h3 class="font-semibold text-sky-300 text-sm mb-1">{post.title}</h3>
+        <p class="text-xs text-gray-400 line-clamp-2">{post.summary}</p>
+      </a>
+    ))}
+  </div>
+)}

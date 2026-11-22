@@ -13,6 +13,7 @@ const categoryColors = {
   recruitment: 'bg-green-500 text-white',
   guide: 'bg-blue-500 text-white',
   event: 'bg-orange-500 text-white',
+  milestone: 'bg-pink-500 text-white',
 };
 
 const categoryLabels = {
@@ -21,9 +22,10 @@ const categoryLabels = {
   recruitment: 'Recruitment',
   guide: 'Guide',
   event: 'Event',
+  milestone: 'Milestone',
 };
 
-const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
+const formattedDate = new Date(post.date + 'T12:00:00').toLocaleDateString('en-US', {
   month: 'short',
   day: 'numeric',
   year: 'numeric',
@@ -46,7 +48,10 @@ const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
   <h3 class="font-semibold text-gray-100 mb-2">{post.title}</h3>
   <p class="text-sm text-gray-400">{post.summary}</p>
   
-  <div class="mt-3 text-xs text-gray-500">
-    Posted by {post.author}
+  <div class="mt-3 text-xs text-gray-500 flex items-center justify-between gap-2">
+    <span>Posted by {post.author}</span>
+    {post.url && (
+      <a href={post.url} target="_blank" rel="noopener noreferrer" class="text-accent-purple hover:underline">Details →</a>
+    )}
   </div>
 </article>

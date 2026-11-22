@@ -86,3 +86,21 @@ Edit `src/data/addons.ts`:
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
 - **Hosting**: AWS S3
 - **CI/CD**: GitHub Actions
+
+## Automatic Updates
+
+Two scheduled GitHub Actions keep the site current:
+
+| When (Eastern) | Workflow | What it does |
+|---|---|---|
+| 6 AM daily | `deploy.yml` | Runs `scripts/update-site-data.mjs` (Raider.io progression, Blizzard blue posts, WoW: Forever roster), commits `src/data/generated/` if it changed, then deploys. New boss kills and level-60 dings become news posts automatically. |
+| 7 AM daily | `site-curator.yml` | Claude reads the fresh data and may propose theme/content/layout changes as a PR labeled `site-curator`. Merge to deploy, close to discard. It skips days while a curator PR is open. Edit `.github/site-curator.md` to change its brief. |
+
+Both can be run on demand from the Actions tab ("Run workflow").
+
+Setup (repo Settings):
+- Variables `ANTHROPIC_FEDERATION_RULE_ID` (`fdrl_...`) and `ANTHROPIC_ORGANIZATION_ID`: required for the curator. Comes from Claude Console → Keys → Workload identity (GitHub Actions issuer, rule limited to this repo's `main` branch). No API key is stored.
+- Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests": required for the curator
+- Secrets `BLIZZARD_CLIENT_ID` / `BLIZZARD_CLIENT_SECRET` (from develop.battle.net): optional, enables level-60 posts. Forever has no realms, so the guild is found by slug alone. Optional variables: `FOREVER_GUILD_SLUG` (default `goat-guild`), `FOREVER_NAMESPACE` (default `profile-forever-us`; Blizzard hasn't officially documented the Forever API yet)
+
+Hand-written content still lives in `src/data/*.ts`. Manual news posts in `news.ts` are merged with the automatic ones.

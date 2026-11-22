@@ -10,6 +10,15 @@ on:
       - 'LICENSE'
       - '.gitignore'
   workflow_dispatch:
+  schedule:
+    - cron: '0 11 * * *' # Daily, 6 AM Eastern: refresh Raider.io / blue posts / Forever data
+
+permissions:
+  contents: write # lets the daily run commit refreshed data back to main
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -27,6 +36,28 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Refresh guild data
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        env:
+          BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
+          BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
+          FOREVER_GUILD_SLUG: ${{ vars.FOREVER_GUILD_SLUG }}
+          FOREVER_NAMESPACE: ${{ vars.FOREVER_NAMESPACE }}
+        run: node scripts/update-site-data.mjs
+
+      - name: Commit refreshed data
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "goat-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/generated
+          if git diff --cached --quiet; then
+            echo "No data changes"
+          else
+            git commit -m "chore: daily guild data refresh"
+            git push
+          fi
 
       - name: Build
         run: npm run build

@@ -4,16 +4,17 @@ import ProgressionCard from '../components/ProgressionCard.astro';
 import AddonList from '../components/AddonList.astro';
 import NewsCard from '../components/NewsCard.astro';
 import ScheduleTable from '../components/ScheduleTable.astro';
+import BluePosts from '../components/BluePosts.astro';
 
 import { guild } from '../data/guild';
 import { currentTier, midnightS1Tier, twwTier, achievements } from '../data/progression';
-import { news } from '../data/news';
+import { allNews } from '../data/news';
 import { classInterest, roleInterest, totalResponses } from '../data/wowForever';
 
 const topForeverClasses = Object.entries(classInterest).sort((a, b) => b[1] - a[1]).slice(0, 3);
 
-const pinnedNews = news.filter(n => n.pinned);
-const recentNews = news.filter(n => !n.pinned).slice(0, 4);
+const pinnedNews = allNews.filter(n => n.pinned);
+const recentNews = allNews.filter(n => !n.pinned).slice(0, 4);
 
 const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 ---
@@ -182,6 +183,14 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
               <NewsCard post={post} />
             ))}
           </div>
+        </section>
+
+        <!-- Blue Posts (auto-updated daily) -->
+        <section id="blue-posts">
+          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+            <span>💬</span> Blue Posts
+          </h2>
+          <BluePosts />
         </section>
 
         <!-- Schedule -->

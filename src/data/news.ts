@@ -1,13 +1,18 @@
 // Guild News and Announcements
+// Hand-written posts live here. Boss kills and level-60 dings are added automatically
+// to generated/auto-news.json by the daily job, and merged in `allNews` below.
+import autoNews from './generated/auto-news.json';
 export interface NewsPost {
   id: string;
   title: string;
   date: string; // ISO date string
   author: string;
-  category: 'announcement' | 'raid' | 'recruitment' | 'guide' | 'event';
+  category: 'announcement' | 'raid' | 'recruitment' | 'guide' | 'event' | 'milestone';
   summary: string;
   content?: string; // Full content (optional, for future detail pages)
   pinned?: boolean;
+  url?: string; // Optional link (auto posts link to Raider.io)
+  auto?: boolean; // Written by scripts/update-site-data.mjs
 }
 
 export const news: NewsPost[] = [
@@ -37,6 +42,11 @@ export const news: NewsPost[] = [
     summary: 'With AOTC in the bag, we\'re recruiting all classes and roles for Mythic progression in The Venomous Abyss.',
   },
 ];
+
+// Manual + automatic posts, newest first
+export const allNews: NewsPost[] = [...news, ...(autoNews as NewsPost[])].sort((a, b) =>
+  b.date.localeCompare(a.date),
+);
 
 // Upcoming events
 export interface GuildEvent {

@@ -1,0 +1,123 @@
+name: Site Curator (AI)
+
+# Once a day, after the data refresh in deploy.yml, Claude looks at the latest guild data and
+# Blizzard news and may propose changes to the site's look and content as a pull request.
+# Merging the PR deploys it via deploy.yml. Instructions for the AI: .github/site-curator.md
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # Daily, 7 AM Eastern (an hour after the data refresh)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write # lets GitHub prove to Anthropic that this workflow is calling (no API key stored)
+
+concurrency:
+  group: site-curator
+  cancel-in-progress: false
+
+jobs:
+  curate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Skip if a curator PR is already open
+        id: gate
+        run: |
+          open=$(gh pr list --label site-curator --state open --json number --jq 'length' 2>/dev/null || echo 0)
+          if [ "$open" != "0" ]; then
+            echo "A curator PR is still open; review or close it first. Skipping today."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node.js
+        if: steps.gate.outputs.skip != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        if: steps.gate.outputs.skip != 'true'
+        run: npm ci
+
+      - name: Let Claude curate the site
+        if: steps.gate.outputs.skip != 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          # Workload identity federation: set these two repo variables from Claude Console
+          # (Keys -> Workload identity). They're IDs, not secrets.
+          anthropic_federation_rule_id: ${{ vars.ANTHROPIC_FEDERATION_RULE_ID }}
+          anthropic_organization_id: ${{ vars.ANTHROPIC_ORGANIZATION_ID }}
+          github_token: ${{ github.token }}
+          prompt: |
+            Today is ${{ github.run_started_at }}. Read .github/site-curator.md and follow it exactly.
+            Then read .github/site-curator-log.md and the generated data, decide whether the site
+            should change today, and make the changes (or none).
+          # File tools plus the build only: no shell, no git, no web. The workflow below
+          # commits and opens the PR, so the AI never holds push access itself.
+          claude_args: >-
+            --model claude-opus-5-5
+            --max-turns 60
+            --allowedTools "Read,Edit,Write,Glob,Grep,Bash(npm run build)"
+            --disallowedTools "WebFetch,WebSearch"
+
+      - name: Check the changes stay inside the fence
+        if: steps.gate.outputs.skip != 'true'
+        id: fence
+        run: |
+          git add -A
+          git reset -q CURATOR_SUMMARY.md 2>/dev/null || true
+          changed=$(git diff --cached --name-only)
+          if [ -z "$changed" ]; then
+            echo "Claude made no changes today."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Changed files:"; echo "$changed"
+          bad=$( { echo "$changed" | grep -E "^src/data/generated/"; echo "$changed" | grep -Ev '^(src/|tailwind\.config\.mjs$|public/images/.*\.svg$|\.github/site-curator-log\.md$)'; } || true)
+          if [ -n "$bad" ]; then
+            echo "::error::Changes outside the allowed paths, refusing to open a PR:"; echo "$bad"
+            exit 1
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Build and sanity-check the result
+        if: steps.fence.outputs.changed == 'true'
+        run: |
+          npm run build
+          for needle in 'discord.gg/goatguild' 'discord.com/channels/1058475877941395506' 'pixel goat'; do
+            grep -q "$needle" dist/index.html || { echo "::error::Homepage lost required content: $needle"; exit 1; }
+          done
+
+      - name: Open pull request
+        if: steps.fence.outputs.changed == 'true'
+        run: |
+          branch="curator/$(date -u +%Y-%m-%d)-${{ github.run_id }}"
+          if [ -s CURATOR_SUMMARY.md ]; then
+            title=$(head -n1 CURATOR_SUMMARY.md | sed 's/^#* *//' | cut -c1-80)
+            cp CURATOR_SUMMARY.md "$RUNNER_TEMP/body.md"
+          else
+            title="Daily site refresh"
+            echo "Claude didn't leave a summary; see the diff." > "$RUNNER_TEMP/body.md"
+          fi
+          rm -f CURATOR_SUMMARY.md
+          printf '\n\n---\nMerging deploys this to goatguild.gg. Close the PR to discard it.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n' >> "$RUNNER_TEMP/body.md"
+
+          git config user.name "goat-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git commit -m "curator: $title"
+          git push -u origin "$branch"
+          gh label create site-curator --color 8b5cf6 --description "Daily AI site refresh" 2>/dev/null || true
+          gh pr create --base main --head "$branch" --title "🐐 $title" --body-file "$RUNNER_TEMP/body.md" --label site-curator

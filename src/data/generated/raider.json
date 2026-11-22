@@ -1,0 +1,142 @@
+{
+  "updatedAt": "2026-11-22T02:29:41.653Z",
+  "profileUrl": "https://raider.io/guilds/us/malganis/Goat%20Guild",
+  "lastCrawledAt": "2026-11-17T11:03:21.000Z",
+  "raids": {
+    "tier-mn-1": {
+      "name": "Midnight Season 1 (Voidspire / Dreamrift / Quel'Danas)",
+      "totalBosses": 9,
+      "summary": "3/9 M",
+      "killed": {
+        "normal": 9,
+        "heroic": 9,
+        "mythic": 3
+      },
+      "rankings": {
+        "normal": {
+          "world": 147,
+          "region": 147,
+          "realm": 5
+        },
+        "heroic": {
+          "world": 8838,
+          "region": 4005,
+          "realm": 167
+        },
+        "mythic": {
+          "world": 7239,
+          "region": 2248,
+          "realm": 124
+        }
+      }
+    },
+    "sporefall": {
+      "name": "Sporefall",
+      "totalBosses": 1,
+      "summary": "1/1 H",
+      "killed": {
+        "normal": 0,
+        "heroic": 1,
+        "mythic": 0
+      },
+      "rankings": {
+        "normal": {
+          "world": 0,
+          "region": 0,
+          "realm": 0
+        },
+        "heroic": {
+          "world": 517,
+          "region": 517,
+          "realm": 21
+        },
+        "mythic": {
+          "world": 6793,
+          "region": 2312,
+          "realm": 126
+        }
+      }
+    },
+    "the-tidebound-grotto": {
+      "name": "The Tidebound Grotto",
+      "totalBosses": 1,
+      "summary": "1/1 H",
+      "killed": {
+        "normal": 1,
+        "heroic": 1,
+        "mythic": 0
+      },
+      "rankings": {
+        "normal": {
+          "world": 4004,
+          "region": 2167,
+          "realm": 74
+        },
+        "heroic": {
+          "world": 5361,
+          "region": 1729,
+          "realm": 103
+        },
+        "mythic": {
+          "world": 4477,
+          "region": 1326,
+          "realm": 78
+        }
+      }
+    },
+    "the-unbinding-of-kithix": {
+      "name": "The Unbinding of Kith'ix",
+      "totalBosses": 1,
+      "summary": "1/1 H",
+      "killed": {
+        "normal": 0,
+        "heroic": 1,
+        "mythic": 0
+      },
+      "rankings": {
+        "normal": {
+          "world": 0,
+          "region": 0,
+          "realm": 0
+        },
+        "heroic": {
+          "world": 6225,
+          "region": 2109,
+          "realm": 113
+        },
+        "mythic": {
+          "world": 0,
+          "region": 0,
+          "realm": 0
+        }
+      }
+    },
+    "the-venomous-abyss": {
+      "name": "The Venomous Abyss",
+      "totalBosses": 8,
+      "summary": "8/8 H",
+      "killed": {
+        "normal": 8,
+        "heroic": 8,
+        "mythic": 0
+      },
+      "rankings": {
+        "normal": {
+          "world": 2652,
+          "region": 1034,
+          "realm": 61
+        },
+        "heroic": {
+          "world": 5675,
+          "region": 1581,
+          "realm": 93
+        },
+        "mythic": {
+          "world": 0,
+          "region": 0,
+          "realm": 0
+        }
+      }
+    }
+  }
+}
