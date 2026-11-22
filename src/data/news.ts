@@ -23,7 +23,6 @@ export const news: NewsPost[] = [
     author: 'GM',
     category: 'raid',
     summary: 'We cleared 8/8 Heroic in The Venomous Abyss for Ahead of the Curve! Mythic progression starts this week — sign up for raid nights and get your gear sorted.',
-    pinned: true,
   },
   {
     id: 'wow-forever-plans',
@@ -58,13 +57,6 @@ export interface GuildEvent {
 }
 
 export const upcomingEvents: GuildEvent[] = [
-  {
-    title: 'Venomous Abyss Mythic Prog',
-    date: '2026-11-24',
-    time: '8:00 PM EST',
-    description: 'Mythic progression continues on our regular Tuesday night. Sign up in Discord.',
-    type: 'raid',
-  },
   {
     title: 'Midnight: Echoes of the Worldcore Launches',
     date: '2026-12-01',

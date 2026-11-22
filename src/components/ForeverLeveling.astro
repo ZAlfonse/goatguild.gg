@@ -1,0 +1,104 @@
+---
+// "The Climb to 60": live WoW: Forever leveling board, or the survey picks until roster data exists.
+import { foreverRoster, classKey } from '../data/foreverRoster';
+import { classInterest, roleInterest, totalResponses } from '../data/wowForever';
+
+const classText: Record<string, string> = {
+  warrior: 'text-class-warrior', paladin: 'text-class-paladin', hunter: 'text-class-hunter',
+  rogue: 'text-class-rogue', priest: 'text-class-priest', shaman: 'text-class-shaman',
+  mage: 'text-class-mage', warlock: 'text-class-warlock', druid: 'text-class-druid',
+};
+const classBg: Record<string, string> = {
+  warrior: 'bg-class-warrior', paladin: 'bg-class-paladin', hunter: 'bg-class-hunter',
+  rogue: 'bg-class-rogue', priest: 'bg-class-priest', shaman: 'bg-class-shaman',
+  mage: 'bg-class-mage', warlock: 'bg-class-warlock', druid: 'bg-class-druid',
+};
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+const r = foreverRoster;
+const maxBand = r ? Math.max(1, ...r.bands.map(b => b.count)) : 1;
+const topClasses = Object.entries(classInterest).sort((a, b) => b[1] - a[1]);
+const maxClass = Math.max(...topClasses.map(([, n]) => n));
+---
+
+<div class="bg-gradient-to-br from-amber-950/40 via-midnight-700 to-midnight-700 rounded-xl border border-amber-700/40 p-6">
+  {r ? (
+    <>
+      <div class="grid grid-cols-3 gap-3 mb-6">
+        <div class="bg-midnight-800/80 rounded-lg p-4 text-center">
+          <div class="text-3xl font-display font-bold text-accent-gold">{r.atMax}</div>
+          <div class="text-xs text-gray-400 mt-1">at level {r.maxLevel}</div>
+        </div>
+        <div class="bg-midnight-800/80 rounded-lg p-4 text-center">
+          <div class="text-3xl font-display font-bold text-gray-100">{r.averageLevel}</div>
+          <div class="text-xs text-gray-400 mt-1">average level</div>
+        </div>
+        <div class="bg-midnight-800/80 rounded-lg p-4 text-center">
+          <div class="text-3xl font-display font-bold text-gray-100">{r.total}</div>
+          <div class="text-xs text-gray-400 mt-1">goats leveling</div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="text-sm font-semibold text-gray-300 mb-3">Where everyone is</h4>
+          <div class="space-y-2">
+            {r.bands.map(b => (
+              <div class="flex items-center gap-3">
+                <span class="w-14 shrink-0 text-xs text-gray-400">Lv {b.label}</span>
+                <div class="flex-1 bg-midnight-900 rounded-full h-4 overflow-hidden">
+                  <div class="h-4 rounded-full bg-gradient-to-r from-amber-600 to-accent-gold" style={`width: ${(b.count / maxBand) * 100}%`}></div>
+                </div>
+                <span class="w-6 text-right text-sm text-gray-300">{b.count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-gray-300 mb-3">Leading the climb</h4>
+          <ol class="space-y-1.5">
+            {r.top.map((m, i) => {
+              const cls = classKey(m.classId);
+              return (
+                <li class="flex items-center gap-3 text-sm">
+                  <span class="w-5 text-right text-gray-500">{i + 1}.</span>
+                  <span class={`flex-1 truncate font-medium ${cls ? classText[cls] : 'text-gray-200'}`}>{m.name}</span>
+                  <span class={`font-mono ${m.level >= r.maxLevel ? 'text-accent-gold font-bold' : 'text-gray-300'}`}>{m.level}</span>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mt-4">
+        Updated daily from the Blizzard API. Last update {new Date(r.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/New_York' })}.
+      </p>
+    </>
+  ) : (
+    <>
+      <p class="text-gray-300 mb-5">
+        <strong class="text-accent-gold">{totalResponses} goats</strong> told us what they're rolling. Here's the class mix heading into old Azeroth.
+      </p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 space-y-2">
+          {topClasses.map(([cls, count]) => (
+            <div class="flex items-center gap-3">
+              <span class={`w-16 shrink-0 text-sm font-medium ${classText[cls]}`}>{cap(cls)}</span>
+              <div class="flex-1 bg-midnight-900 rounded-full h-3 overflow-hidden">
+                <div class={`h-3 rounded-full ${classBg[cls]}`} style={`width: ${(count / maxClass) * 100}%`}></div>
+              </div>
+              <span class="w-5 text-right text-sm text-gray-300">{count}</span>
+            </div>
+          ))}
+        </div>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between bg-midnight-800/80 rounded-lg px-3 py-2 text-sm"><span class="text-gray-300">🛡️ Tanks</span><span class="text-accent-gold font-medium">{roleInterest['Tank'] ?? 0}</span></div>
+          <div class="flex items-center justify-between bg-midnight-800/80 rounded-lg px-3 py-2 text-sm"><span class="text-gray-300">💚 Healers</span><span class="text-accent-gold font-medium">{roleInterest['Healer'] ?? 0}</span></div>
+          <div class="flex items-center justify-between bg-midnight-800/80 rounded-lg px-3 py-2 text-sm"><span class="text-gray-300">⚔️ DPS</span><span class="text-accent-gold font-medium">{roleInterest['DPS'] ?? 0}</span></div>
+          <a href="/wow-forever" class="block text-center text-sm text-amber-400 hover:underline pt-2">Full survey breakdown →</a>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mt-5">A live leveling board shows up here once our roster sync is connected.</p>
+    </>
+  )}
+</div>

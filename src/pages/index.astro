@@ -5,13 +5,11 @@ import AddonList from '../components/AddonList.astro';
 import NewsCard from '../components/NewsCard.astro';
 import ScheduleTable from '../components/ScheduleTable.astro';
 import BluePosts from '../components/BluePosts.astro';
+import ForeverLeveling from '../components/ForeverLeveling.astro';
 
 import { guild } from '../data/guild';
 import { currentTier, midnightS1Tier, twwTier, achievements } from '../data/progression';
 import { allNews } from '../data/news';
-import { classInterest, roleInterest, totalResponses } from '../data/wowForever';
-
-const topForeverClasses = Object.entries(classInterest).sort((a, b) => b[1] - a[1]).slice(0, 3);
 
 const pinnedNews = allNews.filter(n => n.pinned);
 const recentNews = allNews.filter(n => !n.pinned).slice(0, 4);
@@ -107,51 +105,50 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
     setInterval(updateCountdown, 1000);
   </script>-->
 
-  <!-- Hero Section -->
+
+  <!-- Hero: WoW: Forever is the guild's current focus -->
   <section class="relative overflow-hidden">
-    <!-- Background gradient inspired by Midnight's dark vampire aesthetic -->
-    <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-midnight-900 to-midnight-900"></div>
-    
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+    <div class="absolute inset-0 bg-gradient-to-b from-amber-900/30 via-midnight-900 to-midnight-900"></div>
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/60 to-transparent"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 lg:pt-28 lg:pb-14">
       <div class="text-center">
+        <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/40 text-amber-300 text-sm font-medium rounded-full px-4 py-1.5 mb-6">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+          </span>
+          Now playing: {guild.nowPlaying}
+        </div>
         <img src="/images/pixel goat big.png" alt="Goat Guild" class="w-24 h-24 mx-auto mb-4" />
         <h1 class="font-display text-4xl md:text-6xl font-bold text-accent-gold mb-4">
           {guild.name}
         </h1>
-        <p class="text-xl text-gray-300 mb-2">{guild.server}</p>
+        <p class="text-xl md:text-2xl text-gray-200 font-display mb-3">{guild.tagline}</p>
         <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
           {guild.description}
         </p>
-        
-        <!-- Recruitment Banner -->
+
         {guild.recruitmentStatus !== 'Closed' && (
-          <div class="inline-flex items-center gap-3 bg-midnight-700/80 border border-accent-purple rounded-lg px-6 py-3 mb-8">
-            <span class="flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-            </span>
-            <span class="text-gray-200">
-              <strong class="text-green-400">Recruiting:</strong> {guild.recruitmentNote}
-            </span>
-          </div>
+          <p class="text-gray-300 mb-8">
+            <strong class="text-green-400">Recruiting:</strong> {guild.recruitmentNote}
+          </p>
         )}
-        
+
         <div class="flex flex-wrap justify-center gap-4">
-          <a 
-            href={guild.discordLink} 
-            target="_blank" 
+          <a
+            href={guild.discordLink}
+            target="_blank"
             rel="noopener noreferrer"
             class="bg-accent-purple hover:bg-accent-purple/80 text-white font-medium px-6 py-3 rounded-lg transition-colors"
           >
             Join Our Discord
           </a>
-          <a 
-            href={guild.raidSignupForm}
-            target="_blank"
-            rel="noopener noreferrer" 
+          <a
+            href="/wow-forever"
             class="bg-accent-gold hover:bg-accent-gold/80 text-midnight-900 font-medium px-6 py-3 rounded-lg transition-colors"
           >
-            Sign Up for Next Raid{nextRaidIsUpcoming && ` (${nextRaidFormatted})`}
+            Our Forever Plans
           </a>
         </div>
       </div>
@@ -169,107 +166,69 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
     </section>
   )}
 
-  <!-- Main Content Grid -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+
+    <!-- The Climb to 60 -->
+    <section id="leveling">
+      <h2 class="font-display text-2xl md:text-3xl font-semibold text-gray-100 mb-1 flex items-center gap-2">
+        <span>🏔️</span> The Climb to 60
+      </h2>
+      <p class="text-gray-400 mb-5">Everyone's leveling in WoW: Forever. Here's how the herd is doing.</p>
+      <ForeverLeveling />
+    </section>
+
     <div class="grid lg:grid-cols-3 gap-8">
-      
-      <!-- Left Column: News & Schedule -->
-      <div class="lg:col-span-1 space-y-8">
-        <!-- News -->
-        <section id="news">
-          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
-            <span>📰</span> News
-          </h2>
-          <div class="space-y-4">
-            {recentNews.map(post => (
-              <NewsCard post={post} />
-            ))}
-          </div>
-        </section>
+      <!-- Guild news -->
+      <section id="news" class="lg:col-span-1">
+        <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+          <span>📰</span> Guild News
+        </h2>
+        <div class="space-y-4">
+          {recentNews.map(post => (
+            <NewsCard post={post} />
+          ))}
+        </div>
+      </section>
 
-        <!-- Blue Posts (auto-updated daily) -->
-        <section id="blue-posts">
-          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
-            <span>💬</span> Blue Posts
-          </h2>
-          <BluePosts />
-        </section>
+      <!-- Forever blue posts -->
+      <section id="forever-news" class="lg:col-span-2">
+        <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+          <span>💬</span> WoW: Forever Blue Posts
+        </h2>
+        <BluePosts game="forever" limit={6} />
+      </section>
+    </div>
 
-        <!-- Schedule -->
-        <section id="schedule">
-          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4">Schedule</h2>
-          <ScheduleTable />
-        </section>
-      </div>
+    <!-- Retail: on the back burner while the guild levels in Forever -->
+    <section id="retail">
+      <h2 class="font-display text-2xl font-semibold text-gray-100 mb-1 flex items-center gap-2">
+        <span>⚔️</span> Retail
+      </h2>
+      <p class="text-gray-400 mb-5">On the back burner while we level in Forever. Progression on {guild.server} is still tracked automatically.</p>
 
-      <!-- Right Column: Progression & Roster -->
-      <div class="lg:col-span-2 space-y-8">
-        
-        <!-- WoW: Forever Plans -->
-        <section id="wow-forever">
-          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
-            <span>🏔️</span> WoW: Forever Plans
-          </h2>
-          <div class="bg-midnight-700 rounded-lg p-6 border border-midnight-500">
-            <p class="text-gray-300 mb-4">
-              The goats are heading back to old Azeroth for Blizzard's Classic+ relaunch.
-              <strong class="text-accent-gold">{totalResponses} members</strong> have shared their plans so far.
-            </p>
-            <div class="grid sm:grid-cols-2 gap-4 mb-4">
-              <div class="bg-midnight-800 rounded-lg p-4">
-                <h4 class="text-sm text-gray-400 mb-2">Most Popular Classes</h4>
-                <div class="flex flex-wrap gap-2">
-                  {topForeverClasses.map(([cls, count]) => (
-                    <span class="bg-accent-gold/20 text-accent-gold text-sm px-3 py-1 rounded-full">
-                      {cls.charAt(0).toUpperCase() + cls.slice(1)}: {count}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div class="bg-midnight-800 rounded-lg p-4">
-                <h4 class="text-sm text-gray-400 mb-2">Role Interest</h4>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-accent-purple/20 text-accent-purple text-sm px-3 py-1 rounded-full">🛡️ Tank: {roleInterest['Tank'] ?? 0}</span>
-                  <span class="bg-accent-purple/20 text-accent-purple text-sm px-3 py-1 rounded-full">💚 Healer: {roleInterest['Healer'] ?? 0}</span>
-                  <span class="bg-accent-purple/20 text-accent-purple text-sm px-3 py-1 rounded-full">⚔️ DPS: {roleInterest['DPS'] ?? 0}</span>
-                </div>
-              </div>
-            </div>
-            <a href="/wow-forever" class="text-accent-purple hover:underline font-medium">
-              See the full class breakdown →
-            </a>
-          </div>
-        </section>
-
-        <!-- Progression -->
-        <section id="progression">
-          <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
-            <span>⚔️</span> Raid Progression
-          </h2>
-          <div class="grid sm:grid-cols-2 gap-4 mb-4">
+      <details id="progression" class="group bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
+        <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
+          Raid progression: {currentTier[0]?.name ?? 'Current tier'}
+        </summary>
+        <div class="p-4 pt-0 space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
             {currentTier.map(raid => (
               <ProgressionCard raid={raid} />
             ))}
           </div>
-          
-          <!-- Midnight S1 Collapsible Section -->
-          <details class="bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
-            <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
-              🌙 Midnight Season 1 (Previous Season)
-            </summary>
-            <div class="grid sm:grid-cols-2 gap-4 p-4 pt-0">
+
+          <details class="bg-midnight-900/50 rounded-lg border border-midnight-600">
+            <summary class="cursor-pointer p-3 text-sm font-semibold text-gray-200">🌙 Midnight Season 1</summary>
+            <div class="grid sm:grid-cols-2 gap-4 p-3 pt-0">
               {midnightS1Tier.map(raid => (
                 <ProgressionCard raid={raid} />
               ))}
             </div>
           </details>
 
-          <!-- TWW Collapsible Section -->
-          <details class="bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
-            <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
-              📜 The War Within (Previous Expansion)
-            </summary>
-            <div class="grid sm:grid-cols-2 gap-4 p-4 pt-0">
+          <details class="bg-midnight-900/50 rounded-lg border border-midnight-600">
+            <summary class="cursor-pointer p-3 text-sm font-semibold text-gray-200">📜 The War Within</summary>
+            <div class="grid sm:grid-cols-2 gap-4 p-3 pt-0">
               {twwTier.map(raid => (
                 <ProgressionCard raid={raid} />
               ))}
@@ -277,30 +236,51 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
           </details>
 
           {achievements.length > 0 && (
-            <div class="bg-midnight-700 rounded-lg p-4 border border-midnight-500">
-              <h4 class="font-semibold text-gray-100 mb-3">🏆 Achievements</h4>
-              <div class="flex flex-wrap gap-2">
-                {achievements.map(achievement => (
-                  <span class="bg-accent-gold/20 text-accent-gold text-sm px-3 py-1 rounded-full">
-                    {achievement.name}
-                  </span>
-                ))}
-              </div>
+            <div class="flex flex-wrap gap-2">
+              {achievements.map(achievement => (
+                <span class="bg-accent-gold/20 text-accent-gold text-sm px-3 py-1 rounded-full">
+                  🏆 {achievement.name}
+                </span>
+              ))}
             </div>
           )}
-        </section>
-      </div>
-    </div>
+        </div>
+      </details>
 
-    <!-- Addons Section (Full Width) -->
-    <section id="addons" class="mt-12">
-      <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
-        <span>🔧</span> Addons & Profiles
-      </h2>
-      <p class="text-gray-400 mb-6">
-        Required and recommended addons for raiding, plus guild-specific profiles.
-      </p>
-      <AddonList />
+      <details id="schedule" class="bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
+        <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
+          Raid schedule &amp; sign-ups
+        </summary>
+        <div class="p-4 pt-0 space-y-4">
+          <ScheduleTable />
+          <a
+            href={guild.raidSignupForm}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-midnight-600 hover:bg-midnight-500 text-gray-100 font-medium px-4 py-2 rounded-lg transition-colors"
+          >
+            Raid sign-ups{nextRaidIsUpcoming && ` (${nextRaidFormatted})`}
+          </a>
+        </div>
+      </details>
+
+      <details class="bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
+        <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
+          Retail blue posts
+        </summary>
+        <div class="p-4 pt-0">
+          <BluePosts game="retail" limit={6} />
+        </div>
+      </details>
+
+      <details id="addons" class="bg-midnight-800 rounded-lg border border-midnight-500">
+        <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
+          🔧 Raiding addons &amp; profiles
+        </summary>
+        <div class="p-4 pt-0">
+          <AddonList />
+        </div>
+      </details>
     </section>
   </div>
 </Layout>

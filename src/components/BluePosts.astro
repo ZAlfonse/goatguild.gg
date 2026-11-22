@@ -4,15 +4,19 @@ import bluePosts from '../data/generated/blue-posts.json';
 
 interface Props {
   limit?: number;
+  game?: 'forever' | 'retail'; // omit for both
 }
 
-const { limit = 6 } = Astro.props;
-const posts = bluePosts.posts.slice(0, limit);
+const { limit = 6, game } = Astro.props;
+const posts = bluePosts.posts.filter(p => !game || p.game === game).slice(0, limit);
 
 const fmt = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/New_York' });
 ---
 
+{posts.length === 0 && (
+  <p class="text-sm text-gray-400">No recent blue posts.</p>
+)}
 {posts.length > 0 && (
   <div class="bg-midnight-700 rounded-lg border border-midnight-500 divide-y divide-midnight-500">
     {posts.map(post => (
