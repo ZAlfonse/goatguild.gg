@@ -60,6 +60,14 @@ async function writeJson(file, data) {
   await writeFile(join(OUT, file), JSON.stringify(data, null, 2) + '\n');
 }
 
+// Run fn over items with at most `limit` requests in flight.
+async function mapLimit(items, limit, fn) {
+  const queue = [...items];
+  await Promise.all(Array.from({ length: Math.min(limit, queue.length) }, async () => {
+    while (queue.length) await fn(queue.shift());
+  }));
+}
+
 // Guild runs on Eastern time, so a Tuesday-night kill is dated Tuesday, not Wednesday UTC.
 const today = () => new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
 
@@ -254,10 +262,9 @@ async function updateForever(newPosts) {
     },
     body: 'grant_type=client_credentials',
   });
-  const roster = await getJson(
-    `https://us.api.blizzard.com/data/wow/guild/${guild}/roster?namespace=${namespace}&locale=en_US`,
-    { headers: { Authorization: `Bearer ${token.access_token}` } },
-  );
+  const auth = { headers: { Authorization: `Bearer ${token.access_token}` } };
+  const api = (path) => getJson(`https://us.api.blizzard.com${path}?namespace=${namespace}&locale=en_US`, auth);
+  const roster = await api(`/data/wow/guild/${guild}/roster`);
 
   const now = new Date().toISOString();
   const day = today();
@@ -265,9 +272,11 @@ async function updateForever(newPosts) {
     const c = m.character ?? m;
     return {
       name: [c.name, c.surname].filter(Boolean).join(' '), // "First Last" is unique per region
+      slug: c.slug ?? [c.name, c.surname].filter(Boolean).join('-').toLowerCase(),
       level: c.level ?? null,
       classId: c.playable_class?.id ?? null,
       rank: m.rank ?? null,
+      lastLogin: null,
     };
   });
   if (current.length && current.every((m) => m.level == null)) {
@@ -275,11 +284,35 @@ async function updateForever(newPosts) {
     console.warn('  roster has no level field; sample member:', JSON.stringify(roster.members[0]).slice(0, 500));
   }
 
+  // The roster has no timestamps, but each character profile has last_login_timestamp. A level-up
+  // between two syncs happened in the session ending then, so it dates level-ups far better than
+  // the sync time does (and gives the roster a "last seen" column).
+  // Forever's API only exposes characters from level 10 up, so lower ones would just 404.
+  let profileFailures = 0;
+  await mapLimit(current.filter((m) => (m.level ?? 0) >= 10), 8, async (m) => {
+    try {
+      const profile = await api(`/profile/wow/character/${encodeURIComponent(m.slug)}`);
+      if (profile.last_login_timestamp) m.lastLogin = new Date(profile.last_login_timestamp).toISOString();
+    } catch {
+      profileFailures++;
+    }
+  });
+  if (profileFailures) console.warn(`  ${profileFailures} character profile(s) failed to load`);
+
   const prev = await readJson('forever-roster.json', null);
   const prevByName = new Map((prev?.members ?? []).map((m) => [m.name, m]));
   const isBaseline = !prev?.members;
+  const since = prev?.updatedAt ?? null;
   const activity = prev?.activity ?? [];
   const fresh = [];
+
+  // When something happened since the last sync. last_login_timestamp is set at login, so it only
+  // dates the event if the session started inside the window. Otherwise all we know is the window
+  // itself: approx, between `after` (last sync) and `at` (this sync).
+  const when = (m) =>
+    m.lastLogin && since && m.lastLogin > since && m.lastLogin <= now
+      ? { at: m.lastLogin }
+      : { at: now, approx: true, ...(since ? { after: since } : {}) };
 
   const members = current.map((m) => {
     const before = prevByName.get(m.name);
@@ -290,14 +323,41 @@ async function updateForever(newPosts) {
     };
     if (!isBaseline) {
       if (!before) {
-        fresh.push({ type: 'joined', at: now, name: m.name, classId: m.classId, level: m.level });
+        fresh.push({ type: 'joined', ...when(m), name: m.name, classId: m.classId, level: m.level });
       } else if (m.level != null && before.level != null && m.level > before.level) {
-        out.lastLevelUp = now;
-        fresh.push({ type: 'level', at: now, name: m.name, classId: m.classId, from: before.level, to: m.level });
+        const t = when(m);
+        out.lastLevelUp = t.at;
+        fresh.push({ type: 'level', ...t, name: m.name, classId: m.classId, from: before.level, to: m.level });
       }
     }
     return out;
   });
+
+  // Achievements carry exact completion times. Only check characters who logged in since the last sync.
+  if (!isBaseline && since) {
+    const played = members.filter((m) => m.lastLogin && m.lastLogin > since && prevByName.has(m.name));
+    const sinceMs = new Date(since).getTime();
+    let achievementCount = 0;
+    await mapLimit(played, 8, async (m) => {
+      try {
+        const data = await api(`/profile/wow/character/${encodeURIComponent(m.slug)}/achievements`);
+        for (const a of data.achievements ?? []) {
+          if (!a.completed_timestamp || a.completed_timestamp <= sinceMs || !a.achievement?.name) continue;
+          fresh.push({
+            type: 'achievement',
+            at: new Date(a.completed_timestamp).toISOString(),
+            name: m.name,
+            classId: m.classId,
+            achievement: a.achievement.name,
+          });
+          achievementCount++;
+        }
+      } catch {
+        // A missing achievements page shouldn't block the rest of the sync.
+      }
+    });
+    console.log(`  ${played.length} character(s) played since last sync, ${achievementCount} achievement(s)`);
+  }
   if (isBaseline) console.log('  no previous roster, recording baseline (no activity or ding posts this run)');
 
   // Daily level snapshots (last 31 days) power "levels gained this week".
@@ -325,7 +385,7 @@ async function updateForever(newPosts) {
     updatedAt: now,
     maxLevel,
     members,
-    activity: [...fresh, ...activity].slice(0, 200),
+    activity: [...fresh, ...activity].sort((a, b) => b.at.localeCompare(a.at)).slice(0, 200),
     history,
   });
   console.log(

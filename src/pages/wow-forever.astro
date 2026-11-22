@@ -39,7 +39,8 @@ const maxSurvey = Math.max(...surveyClasses.map(([, n]) => n));
                     <th class="py-2 px-2 font-medium">Character</th>
                     <th class="py-2 px-2 font-medium w-40">Level</th>
                     <th class="py-2 px-2 font-medium text-right">This week</th>
-                    <th class="py-2 pl-2 pr-5 font-medium text-right whitespace-nowrap">Last ding</th>
+                    <th class="py-2 px-2 font-medium text-right whitespace-nowrap">Last ding</th>
+                    <th class="py-2 pl-2 pr-5 font-medium text-right whitespace-nowrap">Last seen</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -63,8 +64,11 @@ const maxSurvey = Math.max(...surveyClasses.map(([, n]) => n));
                         <td class="py-2 px-2 text-right font-mono">
                           {m.gainedThisWeek > 0 ? <span class="text-green-400">+{m.gainedThisWeek}</span> : <span class="text-gray-600">–</span>}
                         </td>
-                        <td class="py-2 pl-2 pr-5 text-right text-gray-400 whitespace-nowrap">
+                        <td class="py-2 px-2 text-right text-gray-400 whitespace-nowrap">
                           {m.lastLevelUp ? <time datetime={m.lastLevelUp} data-ago>{timeAgo(m.lastLevelUp)}</time> : <span class="text-gray-600">–</span>}
+                        </td>
+                        <td class="py-2 pl-2 pr-5 text-right text-gray-400 whitespace-nowrap">
+                          {m.lastLogin ? <time datetime={m.lastLogin} data-ago>{timeAgo(m.lastLogin)}</time> : <span class="text-gray-600">–</span>}
                         </td>
                       </tr>
                     );

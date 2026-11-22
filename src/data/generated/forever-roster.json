@@ -1,356 +1,444 @@
 {
-  "updatedAt": "2026-11-22T17:11:55.849Z",
+  "updatedAt": "2026-11-22T18:47:20.159Z",
   "maxLevel": 60,
   "members": [
     {
       "name": "Za Kk",
+      "slug": "za-kk",
       "level": 35,
       "classId": 8,
       "rank": 0,
+      "lastLogin": "2026-11-22T06:28:22.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Chieph Beef",
+      "slug": "chieph-beef",
       "level": 54,
       "classId": 11,
       "rank": 1,
+      "lastLogin": "2026-11-22T07:43:28.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Turb Low",
+      "slug": "turb-low",
       "level": 42,
       "classId": 7,
       "rank": 4,
+      "lastLogin": "2026-11-22T17:04:47.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Malanyr Malafjar",
+      "slug": "malanyr-malafjar",
       "level": 23,
       "classId": 9,
       "rank": 3,
+      "lastLogin": "2026-11-17T01:03:42.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Mako Blade",
+      "slug": "mako-blade",
       "level": 13,
       "classId": 4,
       "rank": 5,
+      "lastLogin": "2026-11-20T00:03:41.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Zet Blade",
+      "slug": "zet-blade",
       "level": 53,
       "classId": 1,
       "rank": 3,
+      "lastLogin": "2026-11-22T10:58:57.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Lia Valentine",
+      "slug": "lia-valentine",
       "level": 53,
       "classId": 3,
       "rank": 3,
+      "lastLogin": "2026-11-22T10:50:08.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Bloolust Jadebreaker",
+      "slug": "bloolust-jadebreaker",
       "level": 45,
       "classId": 7,
       "rank": 2,
+      "lastLogin": "2026-11-22T05:59:30.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Bone Danger",
+      "slug": "bone-danger",
       "level": 25,
       "classId": 2,
       "rank": 3,
+      "lastLogin": "2026-11-22T05:32:22.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Torcula Sinus",
+      "slug": "torcula-sinus",
       "level": 52,
       "classId": 8,
       "rank": 5,
+      "lastLogin": "2026-11-22T14:55:34.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Goat Vanios",
+      "slug": "goat-vanios",
       "level": 23,
       "classId": 7,
       "rank": 2,
+      "lastLogin": "2026-11-12T12:26:58.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Thomans Zu",
+      "slug": "thomans-zu",
       "level": 23,
       "classId": 7,
       "rank": 4,
+      "lastLogin": "2026-11-22T01:34:32.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Krazykiller Forever",
-      "level": 39,
+      "slug": "krazykiller-forever",
+      "level": 40,
       "classId": 1,
       "rank": 3,
+      "lastLogin": "2026-11-22T16:52:43.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T17:11:55.849Z"
+      "lastLevelUp": "2026-11-22T18:47:20.159Z"
     },
     {
       "name": "Pryme Priest",
+      "slug": "pryme-priest",
       "level": 21,
       "classId": 5,
       "rank": 5,
+      "lastLogin": "2026-11-21T19:36:40.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Alder Stormhide",
+      "slug": "alder-stormhide",
       "level": 36,
       "classId": 11,
       "rank": 5,
+      "lastLogin": "2026-11-21T04:34:27.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Zari Spiritwalker",
+      "slug": "zari-spiritwalker",
       "level": 10,
       "classId": 5,
       "rank": 5,
+      "lastLogin": "2026-11-20T21:51:50.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Gar Jon",
+      "slug": "gar-jon",
       "level": 34,
       "classId": 7,
       "rank": 2,
+      "lastLogin": "2026-11-22T07:02:30.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Clo Vis",
-      "level": 54,
+      "slug": "clo-vis",
+      "level": 55,
       "classId": 1,
       "rank": 2,
+      "lastLogin": "2026-11-21T20:19:35.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T18:47:20.159Z"
     },
     {
       "name": "Hobo Magemon",
+      "slug": "hobo-magemon",
       "level": 31,
       "classId": 8,
       "rank": 4,
+      "lastLogin": "2026-11-22T02:16:38.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Mully Midrange",
+      "slug": "mully-midrange",
       "level": 56,
       "classId": 3,
       "rank": 3,
+      "lastLogin": "2026-11-22T07:37:21.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Kerry Goldhand",
+      "slug": "kerry-goldhand",
       "level": 26,
       "classId": 2,
       "rank": 4,
+      "lastLogin": "2026-11-22T01:49:00.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Tensor Fang",
+      "slug": "tensor-fang",
       "level": 24,
       "classId": 11,
       "rank": 5,
+      "lastLogin": "2026-11-17T04:46:11.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Fillibuster Picklelord",
+      "slug": "fillibuster-picklelord",
       "level": 42,
       "classId": 9,
       "rank": 5,
+      "lastLogin": "2026-11-21T00:16:37.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Tommy Masala",
+      "slug": "tommy-masala",
       "level": 6,
       "classId": 8,
       "rank": 5,
+      "lastLogin": null,
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Glorg Mcgrubb",
+      "slug": "glorg-mcgrubb",
       "level": 12,
       "classId": 2,
       "rank": 5,
+      "lastLogin": "2026-11-06T01:33:21.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Mobak Mohunt",
+      "slug": "mobak-mohunt",
       "level": 36,
       "classId": 3,
       "rank": 2,
+      "lastLogin": "2026-11-22T04:37:57.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Blump Trickel",
+      "slug": "blump-trickel",
       "level": 27,
       "classId": 9,
       "rank": 5,
+      "lastLogin": "2026-11-18T02:58:25.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Budman Budmane",
+      "slug": "budman-budmane",
       "level": 36,
       "classId": 11,
       "rank": 5,
+      "lastLogin": "2026-11-22T05:50:54.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Evil Zebra",
+      "slug": "evil-zebra",
       "level": 47,
       "classId": 4,
       "rank": 5,
+      "lastLogin": "2026-11-22T04:10:17.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Hilla Kelkin",
+      "slug": "hilla-kelkin",
       "level": 28,
       "classId": 7,
       "rank": 5,
+      "lastLogin": "2026-11-21T22:04:22.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Zen Fuzz",
+      "slug": "zen-fuzz",
       "level": 29,
       "classId": 8,
       "rank": 5,
+      "lastLogin": "2026-11-22T17:30:20.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
     {
       "name": "Damelia Shadowbourn",
+      "slug": "damelia-shadowbourn",
       "level": 17,
       "classId": 5,
       "rank": 5,
+      "lastLogin": "2026-11-21T21:55:08.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Ten Zion",
-      "level": 42,
+      "slug": "ten-zion",
+      "level": 43,
       "classId": 2,
       "rank": 5,
+      "lastLogin": "2026-11-22T14:52:22.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T17:11:55.849Z"
+      "lastLevelUp": "2026-11-22T18:47:20.159Z"
     },
     {
       "name": "Anz Zu",
+      "slug": "anz-zu",
       "level": 13,
       "classId": 5,
       "rank": 4,
+      "lastLogin": "2026-11-21T00:18:28.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Bustin Supreme",
+      "slug": "bustin-supreme",
       "level": 1,
       "classId": 5,
       "rank": 5,
+      "lastLogin": null,
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Rotted Mcrotface",
+      "slug": "rotted-mcrotface",
       "level": 1,
       "classId": 2,
       "rank": 4,
+      "lastLogin": null,
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Mooney Blightbane",
+      "slug": "mooney-blightbane",
       "level": 32,
       "classId": 5,
       "rank": 3,
+      "lastLogin": "2026-11-20T19:49:15.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Guy Numberone",
+      "slug": "guy-numberone",
       "level": 9,
       "classId": 4,
       "rank": 3,
+      "lastLogin": null,
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Dunka Dunka",
+      "slug": "dunka-dunka",
       "level": 23,
       "classId": 5,
       "rank": 2,
+      "lastLogin": "2026-11-20T09:04:42.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Lunch Mcbox",
+      "slug": "lunch-mcbox",
       "level": 28,
       "classId": 4,
       "rank": 4,
+      "lastLogin": "2026-11-22T12:07:54.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Jeaph Redeemed",
+      "slug": "jeaph-redeemed",
       "level": 9,
       "classId": 2,
       "rank": 5,
+      "lastLogin": null,
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Yeti Wintermane",
+      "slug": "yeti-wintermane",
       "level": 12,
       "classId": 11,
       "rank": 5,
+      "lastLogin": "2026-11-21T18:50:09.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Ten Zien",
+      "slug": "ten-zien",
       "level": 10,
       "classId": 8,
       "rank": 5,
+      "lastLogin": "2026-11-22T14:39:16.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Lionhart Tayrona",
+      "slug": "lionhart-tayrona",
       "level": 14,
       "classId": 3,
       "rank": 5,
+      "lastLogin": "2026-11-22T03:00:16.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     }
@@ -358,11 +446,43 @@
   "activity": [
     {
       "type": "level",
+      "at": "2026-11-22T18:47:20.159Z",
+      "approx": true,
+      "name": "Krazykiller Forever",
+      "classId": 1,
+      "from": 39,
+      "to": 40,
+      "after": "2026-11-22T17:11:55.849Z"
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T18:47:20.159Z",
+      "approx": true,
+      "name": "Clo Vis",
+      "classId": 1,
+      "from": 54,
+      "to": 55,
+      "after": "2026-11-22T17:11:55.849Z"
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T18:47:20.159Z",
+      "approx": true,
+      "name": "Ten Zion",
+      "classId": 2,
+      "from": 42,
+      "to": 43,
+      "after": "2026-11-22T17:11:55.849Z"
+    },
+    {
+      "type": "level",
       "at": "2026-11-22T17:11:55.849Z",
       "name": "Za Kk",
       "classId": 8,
       "from": 34,
-      "to": 35
+      "to": 35,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -370,7 +490,9 @@
       "name": "Chieph Beef",
       "classId": 11,
       "from": 53,
-      "to": 54
+      "to": 54,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -378,7 +500,9 @@
       "name": "Turb Low",
       "classId": 7,
       "from": 40,
-      "to": 42
+      "to": 42,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -386,7 +510,9 @@
       "name": "Zet Blade",
       "classId": 1,
       "from": 52,
-      "to": 53
+      "to": 53,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -394,7 +520,9 @@
       "name": "Lia Valentine",
       "classId": 3,
       "from": 52,
-      "to": 53
+      "to": 53,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -402,7 +530,9 @@
       "name": "Bloolust Jadebreaker",
       "classId": 7,
       "from": 44,
-      "to": 45
+      "to": 45,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -410,7 +540,9 @@
       "name": "Bone Danger",
       "classId": 2,
       "from": 23,
-      "to": 25
+      "to": 25,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -418,7 +550,9 @@
       "name": "Torcula Sinus",
       "classId": 8,
       "from": 51,
-      "to": 52
+      "to": 52,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -426,7 +560,9 @@
       "name": "Krazykiller Forever",
       "classId": 1,
       "from": 38,
-      "to": 39
+      "to": 39,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -434,7 +570,9 @@
       "name": "Gar Jon",
       "classId": 7,
       "from": 33,
-      "to": 34
+      "to": 34,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -442,7 +580,9 @@
       "name": "Mully Midrange",
       "classId": 3,
       "from": 55,
-      "to": 56
+      "to": 56,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -450,7 +590,9 @@
       "name": "Mobak Mohunt",
       "classId": 3,
       "from": 35,
-      "to": 36
+      "to": 36,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -458,7 +600,9 @@
       "name": "Evil Zebra",
       "classId": 4,
       "from": 46,
-      "to": 47
+      "to": 47,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -466,7 +610,9 @@
       "name": "Zen Fuzz",
       "classId": 8,
       "from": 28,
-      "to": 29
+      "to": 29,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     },
     {
       "type": "level",
@@ -474,7 +620,9 @@
       "name": "Ten Zion",
       "classId": 2,
       "from": 41,
-      "to": 42
+      "to": 42,
+      "approx": true,
+      "after": "2026-11-22T03:50:42.611Z"
     }
   ],
   "history": {
@@ -537,12 +685,12 @@
       "Torcula Sinus": 52,
       "Goat Vanios": 23,
       "Thomans Zu": 23,
-      "Krazykiller Forever": 39,
+      "Krazykiller Forever": 40,
       "Pryme Priest": 21,
       "Alder Stormhide": 36,
       "Zari Spiritwalker": 10,
       "Gar Jon": 34,
-      "Clo Vis": 54,
+      "Clo Vis": 55,
       "Hobo Magemon": 31,
       "Mully Midrange": 56,
       "Kerry Goldhand": 26,
@@ -557,7 +705,7 @@
       "Hilla Kelkin": 28,
       "Zen Fuzz": 29,
       "Damelia Shadowbourn": 17,
-      "Ten Zion": 42,
+      "Ten Zion": 43,
       "Anz Zu": 13,
       "Bustin Supreme": 1,
       "Rotted Mcrotface": 1,

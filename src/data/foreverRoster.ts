@@ -8,11 +8,15 @@ export interface ForeverMember {
   rank: number | null;
   firstSeen: string; // YYYY-MM-DD
   lastLevelUp: string | null; // ISO timestamp
+  lastLogin?: string | null; // ISO timestamp from the character profile
 }
 
+// `approx`: the exact time is unknown; it happened between `after` (previous sync) and `at` (this sync).
+type Timing = { at: string; approx?: boolean; after?: string };
 export type ActivityEvent =
-  | { type: 'level'; at: string; name: string; classId: number | null; from: number; to: number }
-  | { type: 'joined'; at: string; name: string; classId: number | null; level: number | null };
+  | (Timing & { type: 'level'; name: string; classId: number | null; from: number; to: number })
+  | (Timing & { type: 'joined'; name: string; classId: number | null; level: number | null })
+  | { type: 'achievement'; at: string; name: string; classId: number | null; achievement: string };
 
 interface RosterFile {
   updatedAt: string;
@@ -53,6 +57,17 @@ export function timeAgo(iso: string, now = Date.now()) {
   if (hours < 24) return `${hours}h ago`;
   const days = Math.round(hours / 24);
   return days < 30 ? `${days}d ago` : new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+/** "12:11–3:17 PM", or "Nov 21, 10:50 PM – 12:11 PM" across days (Eastern time). */
+export function windowLabel(after: string, at: string) {
+  const tz = 'America/New_York';
+  const day = (d: string) => new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: tz });
+  const time = (d: string) => new Date(d).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: tz });
+  const period = (d: string) => time(d).slice(-2);
+  if (day(after) !== day(at)) return `${day(after)}, ${time(after)} – ${time(at)}`;
+  const start = period(after) === period(at) ? time(after).slice(0, -3) : time(after);
+  return `${start}–${time(at)}`;
 }
 
 export interface RosterRow extends ForeverMember {
