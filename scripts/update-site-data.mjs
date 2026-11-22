@@ -152,17 +152,21 @@ async function updateRaider(newPosts) {
       const cleared = raid.killed[diff] === raid.totalBosses;
       const rank = raid.rankings?.[diff]?.realm;
 
+      // Copy follows the voice guide in CLAUDE.md: plain, no exclamation marks, no emoji.
       const title = cleared
-        ? `${diff === 'heroic' ? 'AOTC! ' : diff === 'mythic' ? 'CUTTING EDGE! ' : ''}${raid.name} ${DIFF_LABEL[diff]} cleared`
+        ? diff === 'heroic'
+          ? `Ahead of the Curve: ${raid.name}`
+          : diff === 'mythic'
+            ? `Cutting Edge: ${raid.name}`
+            : `${raid.name} ${DIFF_LABEL[diff]} cleared`
         : `${gained} new ${DIFF_LABEL[diff]} boss${gained > 1 ? 'es' : ''} down in ${raid.name}`;
       const summary =
         `The goats are now ${raid.killed[diff]}/${raid.totalBosses} ${DIFF_LABEL[diff]} in ${raid.name}` +
-        (rank ? ` (#${rank} on Mal'Ganis).` : '.') +
-        (cleared ? ' GG everyone!' : ' On to the next one.');
+        (rank ? `, #${rank} on Mal'Ganis.` : '.');
 
       newPosts.push({
         id: `kill-${slug}-${diff}-${raid.killed[diff]}`,
-        title: `${cleared ? '🏆' : '⚔️'} ${title}`,
+        title,
         date: today(),
         author: 'Goat Bot',
         category: 'raid',
@@ -308,11 +312,11 @@ async function updateForever(newPosts) {
     const total = members.filter((m) => m.level >= maxLevel).length;
     newPosts.push({
       id: `forever-ding-${day}-${names.join('-').toLowerCase().replace(/[^a-z0-9-]/g, '')}`,
-      title: `🎉 ${list} hit ${maxLevel} in WoW: Forever!`,
+      title: `${list} reached level ${maxLevel}`,
       date: day,
       author: 'Goat Bot',
       category: 'milestone',
-      summary: `Ding! ${total} goat${total === 1 ? ' is' : 's are'} now level ${maxLevel} in WoW: Forever.`,
+      summary: total === 1 ? `The first goat at the level cap in WoW: Forever.` : `That's ${total} goats at the level cap in WoW: Forever.`,
       auto: true,
     });
   }

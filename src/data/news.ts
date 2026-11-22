@@ -18,19 +18,19 @@ export interface NewsPost {
 export const news: NewsPost[] = [
   {
     id: 'venomous-abyss-aotc',
-    title: '🐍 AOTC: The Venomous Abyss — Mythic Prog Begins',
+    title: 'Ahead of the Curve: The Venomous Abyss',
     date: '2026-10-06',
     author: 'GM',
     category: 'raid',
-    summary: 'We cleared 8/8 Heroic in The Venomous Abyss for Ahead of the Curve! Mythic progression starts this week — sign up for raid nights and get your gear sorted.',
+    summary: 'We cleared 8/8 Heroic in The Venomous Abyss. Mythic progression starts this week; sign up for raid nights in Discord.',
   },
   {
     id: 'wow-forever-plans',
-    title: '🏔️ Our WoW: Forever Plans Are In',
+    title: 'WoW: Forever survey results',
     date: '2026-10-09',
     author: 'Officer',
     category: 'announcement',
-    summary: '22 goats answered the WoW: Forever interest survey. Shaman, Priest, and Druid lead the pack. Check the full class and faction breakdown on the WoW Forever page.',
+    summary: '22 goats answered the interest survey. Shaman, Priest, and Druid came out on top. The full breakdown is archived at the bottom of the roster page.',
   },
   {
     id: 'recruitment-s2',

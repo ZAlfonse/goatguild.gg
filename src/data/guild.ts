@@ -6,10 +6,10 @@ export const guild = {
   founded: '1996',
   // What the guild is playing right now; shown in the homepage hero badge
   nowPlaying: 'WoW: Forever',
-  tagline: 'Back in old Azeroth, leveling together.',
-  description: 'A long-running herd of goats, all leveling in WoW: Forever right now. Retail raiding is on the back burner.',
+  tagline: 'A long-running herd of goats.',
+  description: 'Currently leveling in WoW: Forever. Retail will still be there when we get back.',
   recruitmentStatus: 'Open', // 'Open', 'Closed', 'Limited'
-  recruitmentNote: 'Every class welcome. Come level with us in WoW: Forever!',
+  recruitmentNote: 'Open to all classes. Hooves optional.',
   discordLink: 'https://discord.gg/goatguild', // Update with your Discord
   raidSignupForm: 'https://discord.com/channels/1058475877941395506/1277720437396213852/1483660860252491799',
   nextRaidDate: '', // YYYY-MM-DD of the next retail raid; leave empty while retail is paused

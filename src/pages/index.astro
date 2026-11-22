@@ -171,7 +171,7 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
     <!-- The Climb to 60 -->
     <section id="leveling">
       <h2 class="font-display text-2xl md:text-3xl font-semibold text-gray-100 mb-1 flex items-center gap-2">
-        <span>🏔️</span> The Climb to 60
+        The Climb to 60
       </h2>
       <p class="text-gray-400 mb-5">Everyone's leveling in WoW: Forever. Here's how the herd is doing.</p>
       <ForeverLeveling />
@@ -181,7 +181,7 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
       <!-- Guild news -->
       <section id="news" class="lg:col-span-1">
         <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
-          <span>📰</span> Guild News
+          Guild News
         </h2>
         <div class="space-y-4">
           {recentNews.map(post => (
@@ -193,7 +193,7 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
       <!-- Forever blue posts -->
       <section id="forever-news" class="lg:col-span-2">
         <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
-          <span>💬</span> WoW: Forever Blue Posts
+          WoW: Forever Blue Posts
         </h2>
         <BluePosts game="forever" limit={6} />
       </section>
@@ -202,9 +202,9 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
     <!-- Retail: on the back burner while the guild levels in Forever -->
     <section id="retail">
       <h2 class="font-display text-2xl font-semibold text-gray-100 mb-1 flex items-center gap-2">
-        <span>⚔️</span> Retail
+        Retail
       </h2>
-      <p class="text-gray-400 mb-5">On the back burner while we level in Forever. Progression on {guild.server} is still tracked automatically.</p>
+      <p class="text-gray-400 mb-5">On hold while we level in Forever. Raider.io keeps tracking {guild.server} either way.</p>
 
       <details id="progression" class="group bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
         <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
@@ -218,7 +218,7 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
           </div>
 
           <details class="bg-midnight-900/50 rounded-lg border border-midnight-600">
-            <summary class="cursor-pointer p-3 text-sm font-semibold text-gray-200">🌙 Midnight Season 1</summary>
+            <summary class="cursor-pointer p-3 text-sm font-semibold text-gray-200">Midnight Season 1</summary>
             <div class="grid sm:grid-cols-2 gap-4 p-3 pt-0">
               {midnightS1Tier.map(raid => (
                 <ProgressionCard raid={raid} />
@@ -227,7 +227,7 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
           </details>
 
           <details class="bg-midnight-900/50 rounded-lg border border-midnight-600">
-            <summary class="cursor-pointer p-3 text-sm font-semibold text-gray-200">📜 The War Within</summary>
+            <summary class="cursor-pointer p-3 text-sm font-semibold text-gray-200">The War Within</summary>
             <div class="grid sm:grid-cols-2 gap-4 p-3 pt-0">
               {twwTier.map(raid => (
                 <ProgressionCard raid={raid} />
@@ -239,7 +239,7 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
             <div class="flex flex-wrap gap-2">
               {achievements.map(achievement => (
                 <span class="bg-accent-gold/20 text-accent-gold text-sm px-3 py-1 rounded-full">
-                  🏆 {achievement.name}
+                  {achievement.name}
                 </span>
               ))}
             </div>
@@ -275,7 +275,7 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
 
       <details id="addons" class="bg-midnight-800 rounded-lg border border-midnight-500">
         <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
-          🔧 Raiding addons &amp; profiles
+          Raiding addons &amp; profiles
         </summary>
         <div class="p-4 pt-0">
           <AddonList />

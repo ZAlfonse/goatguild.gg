@@ -23,7 +23,7 @@ change a visitor would notice every day.** Bigger moves are welcome, for example
 - Shift the palette or add themed touches for a game moment (a patch, an event, the anniversary,
   a holiday, a guild milestone)
 - Draw small SVG illustrations or decorations (inline, or in `public/images/`)
-- Rewrite stale or flat copy; give the site more of the guild's personality (goats, the climb, old Azeroth)
+- Rewrite stale or flat copy, following the voice guide in `CLAUDE.md` (dry, understated, goat puns welcome)
 - Improve the `/wow-forever` page (it still mostly shows the pre-launch survey)
 - Polish: spacing, mobile layout, hover states, empty states
 
@@ -63,6 +63,9 @@ Good reasons to change things:
 - A section is clearly outdated or a small layout improvement would make current info easier to find.
 
 ## Hard rules
+
+- **All copy follows the voice guide in `CLAUDE.md`.** Dry and understated; goat and herd puns are
+  welcome; no exclamation marks, no emoji, no hype or marketing lines. Re-read it before writing any text.
 
 - Keep the Discord link and raid signup link visible on the homepage.
 - Keep the site's identity: the goat images, the guild name, a dark look. Redesigning a section
