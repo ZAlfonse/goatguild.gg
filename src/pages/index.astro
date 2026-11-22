@@ -17,6 +17,8 @@ const pinnedNews = allNews.filter(n => n.pinned);
 const recentNews = allNews.filter(n => !n.pinned).slice(0, 4);
 
 const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+// Don't advertise a raid date that has already passed
+const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(0, 10);
 ---
 
 <Layout>
@@ -149,7 +151,7 @@ const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDat
             rel="noopener noreferrer" 
             class="bg-accent-gold hover:bg-accent-gold/80 text-midnight-900 font-medium px-6 py-3 rounded-lg transition-colors"
           >
-            Sign Up for Next Raid ({nextRaidFormatted})
+            Sign Up for Next Raid{nextRaidIsUpcoming && ` (${nextRaidFormatted})`}
           </a>
         </div>
       </div>

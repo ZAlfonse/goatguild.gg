@@ -7,6 +7,10 @@ const typeColors: Record<string, string> = {
   'Alt Run / Cleanup': 'text-blue-400',
 };
 
+// Hide events that have already happened (compared at build time; the site rebuilds daily)
+const today = new Date().toISOString().slice(0, 10);
+const futureEvents = upcomingEvents.filter(event => event.date >= today);
+
 const eventTypeColors: Record<string, string> = {
   raid: 'bg-purple-500',
   social: 'bg-green-500',
@@ -51,8 +55,11 @@ const eventTypeColors: Record<string, string> = {
       Upcoming Events
     </h4>
     <div class="space-y-3">
-      {upcomingEvents.slice(0, 5).map(event => {
-        const eventDate = new Date(event.date);
+      {futureEvents.length === 0 && (
+        <p class="text-sm text-gray-400">No events scheduled right now. Check Discord for updates.</p>
+      )}
+      {futureEvents.slice(0, 5).map(event => {
+        const eventDate = new Date(event.date + 'T00:00:00');
         const formattedDate = eventDate.toLocaleDateString('en-US', {
           weekday: 'short',
           month: 'short',

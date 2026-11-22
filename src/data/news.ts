@@ -60,16 +60,16 @@ export interface GuildEvent {
 export const upcomingEvents: GuildEvent[] = [
   {
     title: 'Venomous Abyss Mythic Prog',
-    date: '2026-10-13',
+    date: '2026-11-24',
     time: '8:00 PM EST',
-    description: 'First Mythic progression night in The Venomous Abyss. Bring flasks, pots, and your A-game.',
+    description: 'Mythic progression continues on our regular Tuesday night. Sign up in Discord.',
     type: 'raid',
   },
   {
-    title: 'Venomous Abyss Mythic Prog',
-    date: '2026-10-15',
-    time: '8:00 PM EST',
-    description: 'Mythic progression continues. Sign up in Discord.',
-    type: 'raid',
+    title: 'Midnight: Echoes of the Worldcore Launches',
+    date: '2026-12-01',
+    time: 'Patch day',
+    description: 'The new content update arrives, with Talebound and a return to Dornogal.',
+    type: 'other',
   },
 ];
