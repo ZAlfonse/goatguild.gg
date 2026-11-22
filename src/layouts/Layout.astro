@@ -41,7 +41,7 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
             <a href="/#news" class="text-gray-300 hover:text-accent-purple transition-colors">News</a>
             <a href="/#retail" class="text-gray-300 hover:text-accent-purple transition-colors">Retail</a>
             <a href="/wow-forever" class="bg-accent-gold hover:bg-accent-gold/80 text-midnight-900 px-4 py-2 rounded-lg transition-colors font-medium">
-              Forever Plans
+              Forever Roster
             </a>
             <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="bg-accent-purple hover:bg-accent-purple/80 text-white px-4 py-2 rounded-lg transition-colors">
               Join Discord
@@ -63,7 +63,7 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
           <a href="/#news" class="block text-gray-300 hover:text-accent-purple">News</a>
           <a href="/#retail" class="block text-gray-300 hover:text-accent-purple">Retail</a>
           <a href="/wow-forever" class="block bg-accent-gold text-midnight-900 px-4 py-2 rounded-lg text-center font-medium">
-            Forever Plans
+            Forever Roster
           </a>
           <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="block bg-accent-purple text-white px-4 py-2 rounded-lg text-center">
             Join Discord
@@ -99,6 +99,19 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
       
       menuBtn?.addEventListener('click', () => {
         mobileMenu?.classList.toggle('hidden');
+      });
+
+      // Relative times ("3h ago") are rendered at build time; refresh them against the visitor's clock.
+      const ago = (iso: string) => {
+        const mins = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
+        if (mins < 60) return mins <= 1 ? 'just now' : `${mins}m ago`;
+        const hours = Math.round(mins / 60);
+        if (hours < 24) return `${hours}h ago`;
+        const days = Math.round(hours / 24);
+        return days < 30 ? `${days}d ago` : new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      };
+      document.querySelectorAll<HTMLTimeElement>('time[data-ago]').forEach(el => {
+        el.textContent = ago(el.dateTime);
       });
     </script>
   </body>

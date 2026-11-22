@@ -255,43 +255,78 @@ async function updateForever(newPosts) {
     { headers: { Authorization: `Bearer ${token.access_token}` } },
   );
 
-  const members = roster.members.map((m) => {
+  const now = new Date().toISOString();
+  const day = today();
+  const current = roster.members.map((m) => {
     const c = m.character ?? m;
     return {
       name: [c.name, c.surname].filter(Boolean).join(' '), // "First Last" is unique per region
       level: c.level ?? null,
       classId: c.playable_class?.id ?? null,
+      rank: m.rank ?? null,
     };
   });
-  if (members.length && members.every((m) => m.level == null)) {
-    // The unofficial API's field names may differ; save one raw member so we can adjust.
+  if (current.length && current.every((m) => m.level == null)) {
+    // The unofficial API's field names may differ; log one raw member so we can adjust.
     console.warn('  roster has no level field; sample member:', JSON.stringify(roster.members[0]).slice(0, 500));
   }
 
   const prev = await readJson('forever-roster.json', null);
-  if (prev?.members) {
-    const prevLevel = new Map(prev.members.map((m) => [m.name, m.level]));
-    const dinged = members.filter((m) => m.level >= maxLevel && (prevLevel.get(m.name) ?? 0) < maxLevel);
-    if (dinged.length) {
-      const names = dinged.map((m) => m.name);
-      const list = names.length === 1 ? names[0] : `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`;
-      const total = members.filter((m) => m.level >= maxLevel).length;
-      newPosts.push({
-        id: `forever-ding-${today()}`,
-        title: `🎉 ${list} hit ${maxLevel} in WoW: Forever!`,
-        date: today(),
-        author: 'Goat Bot',
-        category: 'milestone',
-        summary: `Ding! ${total} goat${total === 1 ? ' is' : 's are'} now level ${maxLevel} in WoW: Forever.`,
-        auto: true,
-      });
+  const prevByName = new Map((prev?.members ?? []).map((m) => [m.name, m]));
+  const isBaseline = !prev?.members;
+  const activity = prev?.activity ?? [];
+  const fresh = [];
+
+  const members = current.map((m) => {
+    const before = prevByName.get(m.name);
+    const out = {
+      ...m,
+      firstSeen: before?.firstSeen ?? day,
+      lastLevelUp: before?.lastLevelUp ?? null,
+    };
+    if (!isBaseline) {
+      if (!before) {
+        fresh.push({ type: 'joined', at: now, name: m.name, classId: m.classId, level: m.level });
+      } else if (m.level != null && before.level != null && m.level > before.level) {
+        out.lastLevelUp = now;
+        fresh.push({ type: 'level', at: now, name: m.name, classId: m.classId, from: before.level, to: m.level });
+      }
     }
-  } else {
-    console.log('  no previous roster, recording baseline (no level-up posts this run)');
+    return out;
+  });
+  if (isBaseline) console.log('  no previous roster, recording baseline (no activity or ding posts this run)');
+
+  // Daily level snapshots (last 31 days) power "levels gained this week".
+  const history = { ...(prev?.history ?? {}) };
+  history[day] = Object.fromEntries(members.filter((m) => m.level != null).map((m) => [m.name, m.level]));
+  for (const d of Object.keys(history).sort().slice(0, -31)) delete history[d];
+
+  const dinged = fresh.filter((e) => e.type === 'level' && e.to >= maxLevel && e.from < maxLevel);
+  if (dinged.length) {
+    const names = dinged.map((e) => e.name);
+    const list = names.length === 1 ? names[0] : `${names.slice(0, -1).join(', ')} and ${names.at(-1)}`;
+    const total = members.filter((m) => m.level >= maxLevel).length;
+    newPosts.push({
+      id: `forever-ding-${day}-${names.join('-').toLowerCase().replace(/[^a-z0-9-]/g, '')}`,
+      title: `🎉 ${list} hit ${maxLevel} in WoW: Forever!`,
+      date: day,
+      author: 'Goat Bot',
+      category: 'milestone',
+      summary: `Ding! ${total} goat${total === 1 ? ' is' : 's are'} now level ${maxLevel} in WoW: Forever.`,
+      auto: true,
+    });
   }
 
-  await writeJson('forever-roster.json', { updatedAt: new Date().toISOString(), maxLevel, members });
-  console.log(`  ${members.length} members, ${members.filter((m) => m.level >= maxLevel).length} at max level`);
+  await writeJson('forever-roster.json', {
+    updatedAt: now,
+    maxLevel,
+    members,
+    activity: [...fresh, ...activity].slice(0, 200),
+    history,
+  });
+  console.log(
+    `  ${members.length} members, ${members.filter((m) => m.level >= maxLevel).length} at max level, ${fresh.length} new activity event(s)`,
+  );
 }
 
 // ---------- main ----------

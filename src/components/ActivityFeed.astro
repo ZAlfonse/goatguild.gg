@@ -1,0 +1,38 @@
+---
+// Recent WoW: Forever activity: level-ups and new members, newest first.
+import { nameClass, timeAgo, type ActivityEvent } from '../data/foreverRoster';
+
+interface Props {
+  events: ActivityEvent[];
+  maxLevel: number;
+  limit?: number;
+}
+
+const { events, maxLevel, limit = 10 } = Astro.props;
+const shown = events.slice(0, limit);
+---
+
+{shown.length === 0 ? (
+  <p class="text-sm text-gray-400">No level-ups since the last sync. The herd is resting.</p>
+) : (
+  <ul class="space-y-2">
+    {shown.map(e => (
+      <li class="flex items-start gap-3 text-sm">
+        <span class="mt-0.5 w-5 text-center shrink-0">
+          {e.type === 'joined' ? '👋' : e.to >= maxLevel ? '🎉' : '⬆️'}
+        </span>
+        <span class="flex-1 text-gray-300">
+          <span class={`font-medium ${nameClass(e.classId)}`}>{e.name}</span>
+          {e.type === 'joined' ? (
+            <> joined the guild{e.level != null && <> at level {e.level}</>}</>
+          ) : e.to >= maxLevel ? (
+            <> hit <strong class="text-accent-gold">level {e.to}</strong>!</>
+          ) : (
+            <> reached level <strong class="text-gray-100">{e.to}</strong>{e.to - e.from > 1 && <span class="text-gray-500"> (+{e.to - e.from})</span>}</>
+          )}
+        </span>
+        <time class="text-xs text-gray-500 shrink-0" datetime={e.at} data-ago>{timeAgo(e.at)}</time>
+      </li>
+    ))}
+  </ul>
+)}
