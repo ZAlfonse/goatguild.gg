@@ -9,7 +9,7 @@ export const guild = {
   recruitmentNote: 'Recruiting all classes for Venomous Abyss Mythic progression!',
   discordLink: 'https://discord.gg/goatguild', // Update with your Discord
   raidSignupForm: 'https://discord.com/channels/1058475877941395506/1277720437396213852/1483660860252491799',
-  nextRaidDate: '2026-10-13',
+  nextRaidDate: '2026-11-24',
 };
 
 // Raid Schedule
