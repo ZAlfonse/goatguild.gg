@@ -94,7 +94,7 @@ Two scheduled GitHub Actions keep the site current:
 | When (Eastern) | Workflow | What it does |
 |---|---|---|
 | 6 AM daily | `deploy.yml` | Runs `scripts/update-site-data.mjs` (Raider.io progression, Blizzard blue posts, WoW: Forever roster), commits `src/data/generated/` if it changed, then deploys. New boss kills and level-60 dings become news posts automatically. |
-| 7 AM daily | `site-curator.yml` | Claude reads the fresh data and may propose theme/content/layout changes as a PR labeled `site-curator`. Merge to deploy, close to discard. It skips days while a curator PR is open. Edit `.github/site-curator.md` to change its brief. |
+| 7 AM daily | `site-curator.yml` | Claude reads the fresh data and may propose theme/content/layout changes as a PR labeled `site-curator`. Merge to deploy, close to discard. Each new curator PR closes the previous open one (a day with no changes leaves it open). Edit `.github/site-curator.md` to change its brief. |
 
 Both can be run on demand from the Actions tab ("Run workflow").
 

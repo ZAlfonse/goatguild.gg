@@ -31,24 +31,13 @@ jobs:
         with:
           ref: main
 
-      - name: Skip if a curator PR is already open
-        id: gate
-        run: |
-          open=$(gh pr list --label site-curator --state open --json number --jq 'length' 2>/dev/null || echo 0)
-          if [ "$open" != "0" ]; then
-            echo "A curator PR is still open; review or close it first. Skipping today."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Setup Node.js
-        if: steps.gate.outputs.skip != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
-        if: steps.gate.outputs.skip != 'true'
         run: npm ci
 
       - name: Today's date
@@ -57,7 +46,6 @@ jobs:
 
       - name: Let Claude curate the site
         id: claude
-        if: steps.gate.outputs.skip != 'true'
         uses: anthropics/claude-code-action@v1
         with:
           # Workload identity federation: set these two repo variables from Claude Console
@@ -88,7 +76,6 @@ jobs:
                  | "subtype: \(.subtype)\nerror: \(.result // .error // "none")"' "$f" | cut -c1-1000
 
       - name: Check the changes stay inside the fence
-        if: steps.gate.outputs.skip != 'true'
         id: fence
         run: |
           git add -A
@@ -135,4 +122,13 @@ jobs:
           git commit -m "curator: $title"
           git push -u origin "$branch"
           gh label create site-curator --color 8b5cf6 --description "Daily AI site refresh" 2>/dev/null || true
-          gh pr create --base main --head "$branch" --title "🐐 $title" --body-file "$RUNNER_TEMP/body.md" --label site-curator
+          new_url=$(gh pr create --base main --head "$branch" --title "🐐 $title" --body-file "$RUNNER_TEMP/body.md" --label site-curator)
+          new_num=${new_url##*/}
+          echo "Opened $new_url"
+
+          # Close older curator PRs now that a newer proposal exists. Done after the new PR
+          # opens, so a quiet or failed day never discards a pending PR with nothing to replace it.
+          for old in $(gh pr list --label site-curator --state open --json number --jq ".[].number | select(. != $new_num)"); do
+            gh pr close "$old" --delete-branch --comment "Superseded by #$new_num."
+            echo "Closed #$old"
+          done
