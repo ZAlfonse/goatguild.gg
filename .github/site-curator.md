@@ -54,4 +54,7 @@ Good reasons to change things:
 ## When you finish
 
 If you changed anything, write `CURATOR_SUMMARY.md` in the repo root (it becomes the PR
-description and is not committed): one line on why, then a short bullet list of what changed.
+description and is not committed):
+
+- Line 1: a short PR title, under 60 characters, no trailing period (e.g. `Refresh stale raid dates and events`)
+- Then a blank line, one sentence on why, and a short bullet list of what changed.
