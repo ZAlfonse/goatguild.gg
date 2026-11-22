@@ -89,11 +89,11 @@ Edit `src/data/addons.ts`:
 
 ## Automatic Updates
 
-Two scheduled GitHub Actions keep the site current:
+Two GitHub Actions workflows keep the site current. GitHub's own `schedule:` trigger never fires for this repo, so a crontab on the always-on home server starts them through the API (`~/.local/bin/goatguild-dispatch`, which runs `gh workflow run`; log in `~/.local/state/goatguild/dispatch.log`). The `schedule:` blocks stay in the workflows as a backup.
 
 | When (Eastern) | Workflow | What it does |
 |---|---|---|
-| Every 3 hours (:17) | `deploy.yml` | Runs `scripts/update-site-data.mjs` (Raider.io progression, Blizzard blue posts, WoW: Forever roster), commits `src/data/generated/` if it changed, then deploys. New boss kills and level-60 dings become news posts automatically. |
+| Hourly (:17) | `deploy.yml` | Runs `scripts/update-site-data.mjs` (Raider.io progression, Blizzard blue posts, WoW: Forever roster), commits `src/data/generated/` if it changed, then deploys. New boss kills and level-60 dings become news posts automatically. |
 | ~6:43 AM daily | `site-curator.yml` | Claude reads the fresh data and may propose theme/content/layout changes as a PR labeled `site-curator`. Merge to deploy, close to discard. Each new curator PR closes the previous open one (a day with no changes leaves it open). Edit `.github/site-curator.md` to change its brief. |
 
 Both can be run on demand from the Actions tab ("Run workflow").
