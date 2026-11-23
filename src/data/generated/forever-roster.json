@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T02:17:17.828Z",
+  "updatedAt": "2026-11-23T03:17:21.292Z",
   "maxLevel": 60,
   "members": [
     {
@@ -15,22 +15,22 @@
     {
       "name": "Chieph Beef",
       "slug": "chieph-beef",
-      "level": 55,
+      "level": 56,
       "classId": 11,
       "rank": 1,
       "lastLogin": "2026-11-22T07:43:28.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T00:17:18.999Z"
+      "lastLevelUp": "2026-11-23T03:17:21.292Z"
     },
     {
       "name": "Turb Low",
       "slug": "turb-low",
-      "level": 42,
+      "level": 43,
       "classId": 7,
       "rank": 4,
-      "lastLogin": "2026-11-22T17:04:47.000Z",
+      "lastLogin": "2026-11-23T03:03:49.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T17:11:55.849Z"
+      "lastLevelUp": "2026-11-23T03:03:49.000Z"
     },
     {
       "name": "Malanyr Malafjar",
@@ -68,7 +68,7 @@
       "level": 53,
       "classId": 3,
       "rank": 3,
-      "lastLogin": "2026-11-22T10:50:08.000Z",
+      "lastLogin": "2026-11-23T02:58:39.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
@@ -88,7 +88,7 @@
       "level": 25,
       "classId": 2,
       "rank": 3,
-      "lastLogin": "2026-11-22T05:32:22.000Z",
+      "lastLogin": "2026-11-23T02:40:16.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
@@ -98,7 +98,7 @@
       "level": 52,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-22T21:37:31.000Z",
+      "lastLogin": "2026-11-23T02:55:24.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
@@ -125,12 +125,12 @@
     {
       "name": "Krazykiller Forever",
       "slug": "krazykiller-forever",
-      "level": 40,
+      "level": 41,
       "classId": 1,
       "rank": 3,
-      "lastLogin": "2026-11-23T01:20:31.000Z",
+      "lastLogin": "2026-11-23T02:50:00.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T18:47:20.159Z"
+      "lastLevelUp": "2026-11-23T02:50:00.000Z"
     },
     {
       "name": "Pryme Priest",
@@ -148,7 +148,7 @@
       "level": 36,
       "classId": 11,
       "rank": 5,
-      "lastLogin": "2026-11-23T01:07:54.000Z",
+      "lastLogin": "2026-11-23T02:37:15.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -175,12 +175,12 @@
     {
       "name": "Clo Vis",
       "slug": "clo-vis",
-      "level": 55,
+      "level": 57,
       "classId": 1,
       "rank": 2,
-      "lastLogin": "2026-11-21T20:19:35.000Z",
+      "lastLogin": "2026-11-23T03:03:41.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T18:47:20.159Z"
+      "lastLevelUp": "2026-11-23T03:03:41.000Z"
     },
     {
       "name": "Hobo Magemon",
@@ -255,12 +255,12 @@
     {
       "name": "Mobak Mohunt",
       "slug": "mobak-mohunt",
-      "level": 36,
+      "level": 37,
       "classId": 3,
       "rank": 2,
-      "lastLogin": "2026-11-22T20:32:11.000Z",
+      "lastLogin": "2026-11-23T02:52:08.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T17:11:55.849Z"
+      "lastLevelUp": "2026-11-23T02:52:08.000Z"
     },
     {
       "name": "Blump Trickel",
@@ -435,15 +435,67 @@
     {
       "name": "Lionhart Tayrona",
       "slug": "lionhart-tayrona",
-      "level": 14,
+      "level": 15,
       "classId": 3,
       "rank": 5,
       "lastLogin": "2026-11-23T01:58:03.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-23T03:17:21.292Z"
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-23T03:17:21.292Z",
+      "approx": true,
+      "after": "2026-11-23T02:17:17.828Z",
+      "name": "Chieph Beef",
+      "classId": 11,
+      "from": 55,
+      "to": 56
+    },
+    {
+      "type": "level",
+      "at": "2026-11-23T03:17:21.292Z",
+      "approx": true,
+      "after": "2026-11-23T02:17:17.828Z",
+      "name": "Lionhart Tayrona",
+      "classId": 3,
+      "from": 14,
+      "to": 15
+    },
+    {
+      "type": "level",
+      "at": "2026-11-23T03:03:49.000Z",
+      "name": "Turb Low",
+      "classId": 7,
+      "from": 42,
+      "to": 43
+    },
+    {
+      "type": "level",
+      "at": "2026-11-23T03:03:41.000Z",
+      "name": "Clo Vis",
+      "classId": 1,
+      "from": 55,
+      "to": 57
+    },
+    {
+      "type": "level",
+      "at": "2026-11-23T02:52:08.000Z",
+      "name": "Mobak Mohunt",
+      "classId": 3,
+      "from": 36,
+      "to": 37
+    },
+    {
+      "type": "level",
+      "at": "2026-11-23T02:50:00.000Z",
+      "name": "Krazykiller Forever",
+      "classId": 1,
+      "from": 40,
+      "to": 41
+    },
     {
       "type": "level",
       "at": "2026-11-23T00:17:18.999Z",
@@ -745,8 +797,8 @@
     },
     "2026-11-22": {
       "Za Kk": 36,
-      "Chieph Beef": 55,
-      "Turb Low": 42,
+      "Chieph Beef": 56,
+      "Turb Low": 43,
       "Malanyr Malafjar": 23,
       "Mako Blade": 13,
       "Zet Blade": 53,
@@ -756,12 +808,12 @@
       "Torcula Sinus": 52,
       "Goat Vanios": 23,
       "Thomans Zu": 23,
-      "Krazykiller Forever": 40,
+      "Krazykiller Forever": 41,
       "Pryme Priest": 21,
       "Alder Stormhide": 36,
       "Zari Spiritwalker": 10,
       "Gar Jon": 34,
-      "Clo Vis": 55,
+      "Clo Vis": 57,
       "Hobo Magemon": 31,
       "Mully Midrange": 56,
       "Kerry Goldhand": 26,
@@ -769,7 +821,7 @@
       "Fillibuster Picklelord": 42,
       "Tommy Masala": 6,
       "Glorg Mcgrubb": 12,
-      "Mobak Mohunt": 36,
+      "Mobak Mohunt": 37,
       "Blump Trickel": 27,
       "Budman Budmane": 37,
       "Evil Zebra": 47,
@@ -787,7 +839,7 @@
       "Jeaph Redeemed": 9,
       "Yeti Wintermane": 12,
       "Ten Zien": 10,
-      "Lionhart Tayrona": 14
+      "Lionhart Tayrona": 15
     }
   }
 }
