@@ -7,7 +7,7 @@ export const guild = {
   // What the guild is playing right now; shown in the homepage hero badge
   nowPlaying: 'WoW: Forever',
   tagline: 'Baaaaaaaaaaahhhhhhhhhhhhhh.',
-  description: 'Currently leveling in WoW: Forever. Retail will still be there when we get back.',
+  description: 'Translation: Currently leveling in WoW: Forever.',
   recruitmentStatus: 'Open', // 'Open', 'Closed', 'Limited'
   recruitmentNote: 'Open to all classes. Hooves optional.',
   discordLink: 'https://discord.gg/goatguild', // Update with your Discord
