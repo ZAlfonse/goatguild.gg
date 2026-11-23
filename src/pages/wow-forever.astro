@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ActivityFeed from '../components/ActivityFeed.astro';
+import ParallaxSky from '../components/ParallaxSky.astro';
 import { foreverRoster as r, nameClass, classKey, classBg, classText, timeAgo } from '../data/foreverRoster';
 import { classInterest, roleInterest, factionInterest, totalResponses } from '../data/wowForever';
 
@@ -27,20 +28,23 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
 ---
 
 <Layout title="WoW: Forever Roster" description="Every Goat Guild character in WoW: Forever: names, classes, levels, and who's climbing fastest.">
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-amber-900/25 via-midnight-900 to-midnight-900"></div>
-    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-      <div class="text-center mb-10">
-        <h1 class="font-display text-4xl md:text-5xl font-bold text-accent-gold mb-3">The Forever Roster</h1>
-        <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-          Every goat in WoW: Forever, how high they've climbed, and who's leveling fastest this week.
-        </p>
-      </div>
+  <ParallaxSky artHeight={96} goatAt={0.14} moonAt={0.86} moonHigh={0.34} seed={23} class="h-[400px] md:h-[440px] -mt-[67px]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 md:pt-36 text-center">
+      <p class="eyebrow mb-4">WoW: Forever</p>
+      <h1 class="font-display text-4xl md:text-6xl font-bold text-goat-gold mb-4 tracking-wide hero-title">The Forever Roster</h1>
+      <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
+        Every goat in WoW: Forever, how high they've climbed, and who's leveling fastest this week.
+      </p>
+    </div>
+  </ParallaxSky>
+
+  <section class="relative">
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-14">
 
       {r && (
-        <div class="bg-midnight-700 rounded-xl border border-midnight-500 p-5 mb-8">
+        <div class="panel p-5 mb-10 reveal">
           <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
-            <h2 class="font-display text-xl font-semibold text-gray-100">Where the herd is</h2>
+            <h2 class="section-title text-xl">Where the herd is</h2>
             {busiest && busiest.count > 0 && (
               <span class="text-sm text-gray-400">Most goats are in the {busiest.label} range.</span>
             )}
@@ -48,17 +52,17 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
           <div class="flex items-end gap-2 sm:gap-3 h-36">
             {brackets.map(b => (
               <div class="flex-1 h-full flex flex-col items-center justify-end gap-1" title={`${b.count} at ${b.label}`}>
-                <span class={`text-xs font-mono ${b.cap ? 'text-accent-gold' : 'text-gray-300'}`}>{b.count}</span>
+                <span class={`text-xs tabular-nums font-medium ${b.cap ? 'text-goat-gold' : 'text-gray-300'}`}>{b.count}</span>
                 <div
-                  class={`w-full rounded-t ${b.cap ? 'bg-accent-gold' : 'bg-gradient-to-t from-amber-900/70 to-amber-500/70'}`}
+                  class={`w-full pixel-col ${b.cap ? 'bg-goat-gold' : 'bg-goat-gold-dark/80'}`}
                   style={`height: ${b.count ? Math.max(4, (b.count / maxBracket) * 100) : 1}%`}
                 ></div>
               </div>
             ))}
           </div>
-          <div class="flex gap-2 sm:gap-3 mt-2 border-t border-midnight-500 pt-2">
+          <div class="flex gap-2 sm:gap-3 mt-2 border-t-2 border-midnight-600 pt-2">
             {brackets.map(b => (
-              <span class={`flex-1 text-center text-[10px] sm:text-xs ${b.cap ? 'text-accent-gold font-semibold' : 'text-gray-500'}`}>{b.label}</span>
+              <span class={`flex-1 text-center text-[10px] sm:text-xs tabular-nums ${b.cap ? 'text-goat-gold font-semibold' : 'text-gray-500'}`}>{b.label}</span>
             ))}
           </div>
         </div>
@@ -67,43 +71,43 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
       {r ? (
         <div class="grid lg:grid-cols-3 gap-8">
           <!-- Full roster -->
-          <div class="lg:col-span-2 bg-midnight-700 rounded-xl border border-midnight-500 overflow-hidden">
-            <div class="flex items-center justify-between px-5 py-4 border-b border-midnight-500">
+          <div class="lg:col-span-2 panel overflow-hidden reveal">
+            <div class="flex flex-wrap items-center justify-between gap-2 px-5 py-4 border-b-2 border-midnight-600">
               <h2 class="font-display text-xl font-semibold text-gray-100">{r.total} characters</h2>
-              <span class="text-sm text-gray-400"><span class="text-accent-gold font-semibold">{r.atMax}</span> at {maxLevel} · avg {r.averageLevel}</span>
+              <span class="text-sm text-gray-400"><span class="tabular-nums text-goat-gold font-semibold">{r.atMax}</span> at {maxLevel} · avg {r.averageLevel}</span>
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-sm">
                 <thead>
-                  <tr class="text-left text-gray-400 border-b border-midnight-600">
-                    <th class="py-2 pl-5 pr-2 font-medium w-10">#</th>
-                    <th class="py-2 px-2 font-medium">Character</th>
-                    <th class="py-2 px-2 font-medium w-40">Level</th>
-                    <th class="py-2 px-2 font-medium text-right">This week</th>
-                    <th class="py-2 px-2 font-medium text-right whitespace-nowrap">Last ding</th>
-                    <th class="py-2 pl-2 pr-5 font-medium text-right whitespace-nowrap">Last seen</th>
+                  <tr class="text-left text-gray-500 border-b-2 border-midnight-600 font-pixel text-[10px] uppercase tracking-wider">
+                    <th class="py-2 pl-5 pr-2 font-normal w-10">#</th>
+                    <th class="py-2 px-2 font-normal">Character</th>
+                    <th class="py-2 px-2 font-normal w-40">Level</th>
+                    <th class="py-2 px-2 font-normal text-right">This week</th>
+                    <th class="py-2 px-2 font-normal text-right whitespace-nowrap">Last ding</th>
+                    <th class="py-2 pl-2 pr-5 font-normal text-right whitespace-nowrap">Last seen</th>
                   </tr>
                 </thead>
                 <tbody>
                   {r.members.map((m, i) => {
                     const cls = classKey(m.classId);
                     return (
-                      <tr class="border-b border-midnight-600/60 last:border-0 hover:bg-midnight-600/30">
-                        <td class="py-2 pl-5 pr-2 text-gray-500">{i + 1}</td>
+                      <tr class="border-b border-midnight-600/60 last:border-0 hover:bg-midnight-600/30 transition-colors">
+                        <td class="py-2 pl-5 pr-2 tabular-nums text-gray-600">{i + 1}</td>
                         <td class="py-2 px-2">
                           <div class={`font-medium ${nameClass(m.classId)}`}>{m.name}</div>
                           {cls && <div class="text-xs text-gray-500">{cap(cls)}</div>}
                         </td>
                         <td class="py-2 px-2">
                           <div class="flex items-center gap-2">
-                            <span class={`w-6 font-mono ${m.level >= maxLevel ? 'text-accent-gold font-bold' : 'text-gray-200'}`}>{m.level}</span>
-                            <div class="flex-1 bg-midnight-900 rounded-full h-2 overflow-hidden min-w-16">
-                              <div class={`h-2 rounded-full ${cls ? classBg[cls] : 'bg-gray-400'}`} style={`width: ${Math.min(100, (m.level / maxLevel) * 100)}%`}></div>
+                            <span class={`w-6 tabular-nums font-medium ${m.level >= maxLevel ? 'text-goat-gold font-bold' : 'text-gray-200'}`}>{m.level}</span>
+                            <div class="flex-1 pixel-track h-2 min-w-16">
+                              <div class={`pixel-fill ${cls ? classBg[cls] : 'bg-gray-400'}`} style={`width: ${Math.min(100, (m.level / maxLevel) * 100)}%`}></div>
                             </div>
                           </div>
                         </td>
-                        <td class="py-2 px-2 text-right font-mono">
-                          {m.gainedThisWeek > 0 ? <span class="text-green-400">+{m.gainedThisWeek}</span> : <span class="text-gray-600">–</span>}
+                        <td class="py-2 px-2 text-right tabular-nums font-medium">
+                          {m.gainedThisWeek > 0 ? <span class="text-emerald-400">+{m.gainedThisWeek}</span> : <span class="text-gray-600">–</span>}
                         </td>
                         <td class="py-2 px-2 text-right text-gray-400 whitespace-nowrap">
                           {m.lastLevelUp ? <time datetime={m.lastLevelUp} data-ago>{timeAgo(m.lastLevelUp)}</time> : <span class="text-gray-600">–</span>}
@@ -121,20 +125,20 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
 
           <!-- Sidebar: activity + climbers -->
           <div class="space-y-6">
-            <div class="bg-midnight-700 rounded-xl border border-midnight-500 p-5">
-              <h2 class="font-display text-lg font-semibold text-gray-100 mb-4">Recent activity</h2>
+            <div class="panel p-5 reveal">
+              <h2 class="section-title text-lg mb-4">Recent activity</h2>
               <ActivityFeed events={r.activity} maxLevel={maxLevel} limit={20} />
             </div>
             {r.climbers.length > 0 && (
-              <div class="bg-midnight-700 rounded-xl border border-midnight-500 p-5">
-                <h2 class="font-display text-lg font-semibold text-gray-100 mb-4">Top climbers this week</h2>
+              <div class="panel p-5 reveal">
+                <h2 class="section-title text-lg mb-4">Top climbers this week</h2>
                 <ol class="space-y-2">
                   {r.climbers.map((m, i) => (
                     <li class="flex items-center gap-2 text-sm">
-                      <span class="w-4 text-right text-gray-500">{i + 1}.</span>
+                      <span class="w-4 text-right tabular-nums text-gray-600">{i + 1}</span>
                       <span class={`flex-1 truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
-                      <span class="text-gray-400 font-mono text-xs">lv {m.level}</span>
-                      <span class="w-8 text-right text-green-400 font-mono">+{m.gainedThisWeek}</span>
+                      <span class="text-gray-500 tabular-nums text-xs">lv {m.level}</span>
+                      <span class="w-8 text-right text-emerald-400 tabular-nums font-medium">+{m.gainedThisWeek}</span>
                     </li>
                   ))}
                 </ol>
@@ -146,16 +150,16 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
           </div>
         </div>
       ) : (
-        <div class="max-w-xl mx-auto text-center bg-midnight-700 rounded-xl border border-amber-700/40 p-10">
-          <img src="/images/pixel goat small.png" alt="" class="w-10 h-10 mx-auto mb-3 opacity-80" />
+        <div class="max-w-xl mx-auto text-center panel panel-gold p-10">
+          <img src="/images/pixel goat small.png" alt="" class="w-10 h-10 mx-auto mb-3 opacity-80 pixelated" />
           <p class="text-gray-200 font-medium mb-1">No roster data yet.</p>
           <p class="text-sm text-gray-400">Character names, levels, and level-ups appear here after the first sync with Blizzard.</p>
         </div>
       )}
 
       <!-- Archive: the pre-launch interest survey -->
-      <details class="mt-12 bg-midnight-800 rounded-lg border border-midnight-500">
-        <summary class="cursor-pointer p-4 font-semibold text-gray-300 hover:bg-midnight-700 rounded-lg transition-colors">
+      <details class="mt-14 pixel-details panel panel-inset">
+        <summary>
           Pre-launch survey ({totalResponses} responses)
         </summary>
         <div class="p-5 pt-1 grid md:grid-cols-3 gap-6">
@@ -164,8 +168,8 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
             {surveyClasses.map(([cls, count]) => (
               <div class="flex items-center gap-3">
                 <span class={`w-16 shrink-0 text-sm font-medium ${classText[cls]}`}>{cap(cls)}</span>
-                <div class="flex-1 bg-midnight-900 rounded-full h-3 overflow-hidden">
-                  <div class={`h-3 rounded-full ${classBg[cls]}`} style={`width: ${(count / maxSurvey) * 100}%`}></div>
+                <div class="flex-1 pixel-track h-3">
+                  <div class={`pixel-fill ${classBg[cls]}`} style={`width: ${(count / maxSurvey) * 100}%`}></div>
                 </div>
                 <span class="w-5 text-right text-sm text-gray-300">{count}</span>
               </div>
@@ -173,10 +177,10 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
           </div>
           <div class="space-y-2 text-sm">
             {['Tank', 'Healer', 'DPS'].map(role => (
-              <div class="flex justify-between bg-midnight-900/60 rounded px-3 py-1.5"><span class="text-gray-300">{role}</span><span class="text-accent-gold">{roleInterest[role] ?? 0}</span></div>
+              <div class="flex justify-between bg-midnight-900/60 px-3 py-1.5"><span class="text-gray-300">{role}</span><span class="tabular-nums text-goat-gold">{roleInterest[role] ?? 0}</span></div>
             ))}
             {['Horde', 'Alliance', 'Either'].map(f => (
-              <div class="flex justify-between bg-midnight-900/60 rounded px-3 py-1.5"><span class="text-gray-300">{f}</span><span class="text-accent-gold">{factionInterest[f] ?? 0}</span></div>
+              <div class="flex justify-between bg-midnight-900/60 px-3 py-1.5"><span class="text-gray-300">{f}</span><span class="tabular-nums text-goat-gold">{factionInterest[f] ?? 0}</span></div>
             ))}
           </div>
         </div>

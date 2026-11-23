@@ -15,10 +15,10 @@ const shown = events.slice(0, limit);
 {shown.length === 0 ? (
   <p class="text-sm text-gray-400">No level-ups since the last sync. The herd is resting.</p>
 ) : (
-  <ul class="space-y-2">
+  <ul class="space-y-2.5">
     {shown.map(e => (
       <li class="flex items-start gap-3 text-sm">
-        <span class={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${e.type === 'joined' ? 'bg-sky-400' : e.type === 'achievement' ? 'bg-purple-400' : e.to >= maxLevel ? 'bg-accent-gold' : 'bg-green-500'}`} aria-hidden="true"></span>
+        <span class={`mt-[7px] h-1.5 w-1.5 shrink-0 ${e.type === 'joined' ? 'bg-sky-400' : e.type === 'achievement' ? 'bg-purple-400' : e.to >= maxLevel ? 'bg-goat-gold shadow-[0_0_0_2px_rgb(255_194_14/0.2)]' : 'bg-green-500'}`} aria-hidden="true"></span>
         <span class="flex-1 text-gray-300">
           <span class={`font-medium ${nameClass(e.classId)}`}>{e.name}</span>
           {e.type === 'joined' ? (
@@ -26,9 +26,9 @@ const shown = events.slice(0, limit);
           ) : e.type === 'achievement' ? (
             <> earned <span class="text-purple-300">{e.achievement}</span></>
           ) : e.to >= maxLevel ? (
-            <> reached <strong class="text-accent-gold">level {e.to}</strong></>
+            <> reached <strong class="font-semibold tabular-nums text-goat-gold">level {e.to}</strong></>
           ) : (
-            <> reached level <strong class="text-gray-100">{e.to}</strong>{e.to - e.from > 1 && <span class="text-gray-500"> (+{e.to - e.from})</span>}</>
+            <> reached level <strong class="font-semibold tabular-nums text-gray-100">{e.to}</strong>{e.to - e.from > 1 && <span class="tabular-nums text-emerald-400/80"> +{e.to - e.from}</span>}</>
           )}
         </span>
         {'approx' in e && e.approx && e.after ? (

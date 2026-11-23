@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Pixel primitives. Corners are "notched" by drawing each border edge as its own
+ * box-shadow, which leaves the corner pixel empty, like old game UI.
+ */
+
+@layer base {
+  :root {
+    --px: 2px;
+    --edge: theme('colors.midnight.500');
+    --panel: theme('colors.midnight.700');
+  }
+
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: theme('colors.midnight.900');
+  }
+
+  ::selection {
+    background: theme('colors.goat.gold');
+    color: theme('colors.midnight.900');
+  }
+
+  /* Pixel fonts look best unsmoothed and at whole sizes */
+  .font-display,
+  .font-pixel {
+    -webkit-font-smoothing: none;
+    font-smooth: never;
+  }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: theme('colors.midnight.900'); }
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.midnight.500');
+    border: 2px solid theme('colors.midnight.900');
+  }
+  ::-webkit-scrollbar-thumb:hover { background: theme('colors.goat.gold-dark'); }
+}
+
+@layer components {
+  /* Notched border + a faint bevel: lighter top-left, darker bottom-right. */
+  .panel {
+    background: var(--panel);
+    box-shadow:
+      0 calc(var(--px) * -1) 0 0 var(--edge),
+      0 var(--px) 0 0 var(--edge),
+      calc(var(--px) * -1) 0 0 0 var(--edge),
+      var(--px) 0 0 0 var(--edge),
+      inset var(--px) var(--px) 0 0 rgb(255 255 255 / 0.035),
+      inset calc(var(--px) * -1) calc(var(--px) * -1) 0 0 rgb(0 0 0 / 0.25);
+  }
+  .panel-gold { --edge: theme('colors.goat.gold-dark'); }
+  .panel-inset {
+    --panel: theme('colors.midnight.800');
+    --edge: theme('colors.midnight.600');
+  }
+
+  /* Buttons: notched, with a 3px lip underneath that "presses" on click. */
+  .btn {
+    --btn-bg: theme('colors.midnight.600');
+    --btn-fg: theme('colors.gray.100');
+    --btn-lip: theme('colors.midnight.800');
+    @apply relative inline-flex items-center justify-center gap-2 font-display font-medium
+      text-sm px-5 py-2.5 transition-transform duration-75 select-none;
+    margin: 3px;
+    color: var(--btn-fg);
+    background: var(--btn-bg);
+    box-shadow:
+      0 -3px 0 0 var(--btn-bg),
+      0 3px 0 0 var(--btn-bg),
+      -3px 0 0 0 var(--btn-bg),
+      3px 0 0 0 var(--btn-bg),
+      0 6px 0 0 var(--btn-lip);
+  }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+  .btn:active {
+    transform: translateY(3px);
+    box-shadow:
+      0 -3px 0 0 var(--btn-bg),
+      0 3px 0 0 var(--btn-bg),
+      -3px 0 0 0 var(--btn-bg),
+      3px 0 0 0 var(--btn-bg);
+  }
+  .btn:focus-visible { outline: 2px dashed theme('colors.goat.moon'); outline-offset: 6px; }
+  .btn-gold {
+    --btn-bg: theme('colors.goat.gold');
+    --btn-fg: theme('colors.midnight.900');
+    --btn-lip: theme('colors.goat.horn');
+  }
+  .btn-sm { @apply text-xs px-3 py-1.5; }
+
+  /* Small square label in the 8-bit font */
+  .tag {
+    @apply inline-block font-pixel text-[10px] leading-none uppercase tracking-wider px-1.5 py-1;
+  }
+
+  .eyebrow {
+    @apply font-pixel text-[11px] uppercase tracking-[0.2em] text-goat-gold/80;
+  }
+
+  /* Section heading with a three-step stair in front of it: the climb. */
+  .section-title {
+    @apply font-display font-semibold text-gray-100 flex items-center gap-3;
+  }
+  .section-title::before {
+    content: '';
+    flex: none;
+    width: 4px;
+    height: 4px;
+    margin: 0 10px 10px 0;
+    background: theme('colors.goat.gold');
+    box-shadow:
+      4px 0 0 theme('colors.goat.gold'), 8px 0 0 theme('colors.goat.gold'),
+      4px -4px 0 theme('colors.goat.gold'), 8px -4px 0 theme('colors.goat.gold'),
+      8px -8px 0 theme('colors.goat.gold'),
+      0 4px 0 theme('colors.goat.horn'), 4px 4px 0 theme('colors.goat.horn'), 8px 4px 0 theme('colors.goat.horn');
+    transform: translateY(6px);
+  }
+
+  /* Level bars split into blocks */
+  .pixel-track {
+    @apply relative bg-midnight-900 overflow-hidden;
+    box-shadow: 0 0 0 1px theme('colors.midnight.600');
+  }
+  .pixel-fill {
+    @apply h-full;
+    -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 5px, transparent 5px 7px);
+    mask-image: repeating-linear-gradient(90deg, #000 0 5px, transparent 5px 7px);
+  }
+
+  /* Solid column with a lit top edge, for bar charts */
+  .pixel-col {
+    box-shadow: inset 0 3px 0 0 rgb(255 255 255 / 0.28), inset -3px 0 0 0 rgb(0 0 0 / 0.18);
+  }
+
+  /* Collapsible rows */
+  .pixel-details > summary {
+    @apply cursor-pointer list-none flex items-center gap-3 p-4 font-display font-medium text-gray-100
+      hover:bg-midnight-600/40 transition-colors;
+  }
+  .pixel-details > summary::-webkit-details-marker { display: none; }
+  .pixel-details > summary::after {
+    content: '+';
+    @apply ml-auto font-pixel text-goat-gold text-base leading-none;
+  }
+  .pixel-details[open] > summary::after { content: '-'; }
+
+  .link {
+    @apply text-goat-gold hover:text-goat-moon underline decoration-2 decoration-goat-gold/30 underline-offset-4
+      hover:decoration-goat-moon transition-colors;
+  }
+}
+
+@layer utilities {
+  .pixelated { image-rendering: pixelated; }
+}
+
+/* Hero bits */
+.hero-title {
+  text-shadow: 0 4px 0 theme('colors.goat.horn'), 0 8px 0 rgb(0 0 0 / 0.35);
+}
+.goat-bob { animation: goat-bob 3.2s steps(4, end) infinite; }
+@keyframes goat-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .goat-bob { animation: none; }
+}
+
+/* Faint stars behind all content, drifting slower than the page. */
+.page-stars {
+  position: fixed;
+  inset: 0 0 -240px 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.5;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' shape-rendering='crispEdges'%3E%3Cg fill='%23434c78'%3E%3Crect x='12' y='30' width='2' height='2'/%3E%3Crect x='96' y='12' width='2' height='2'/%3E%3Crect x='170' y='64' width='2' height='2'/%3E%3Crect x='40' y='150' width='2' height='2'/%3E%3Crect x='210' y='190' width='2' height='2'/%3E%3Crect x='130' y='120' width='2' height='2'/%3E%3C/g%3E%3Crect x='70' y='210' width='2' height='2' fill='%23B5850A'/%3E%3C/svg%3E");
+  will-change: transform;
+}
+
+/* Fade sections up as they scroll in (only when JS is running) */
+.js .reveal.reveal-pending {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-out, transform 0.6s steps(6, end);
+}
+.js .reveal.reveal-pending.is-visible { opacity: 1; transform: none; }
+
+@keyframes section-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(255 194 14 / 0); }
+  50% { box-shadow: 0 0 0 4px rgb(255 194 14 / 0.35); }
+}
+section:target { animation: section-pulse 0.6s steps(4, end) 2; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal.reveal-pending { opacity: 1; transform: none; transition: none; }
+  .page-stars { transform: none !important; }
+}

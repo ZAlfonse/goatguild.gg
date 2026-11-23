@@ -1,0 +1,302 @@
+---
+/*
+ * Pixel-art night sky with layered mountain ranges that move at different speeds
+ * on scroll (and a little with the pointer). Everything is generated at build time
+ * from a fixed seed, so the scene is the same on every build. The nearest ridge is
+ * the page background color, so the hero runs straight into the content below.
+ *
+ * Usage: <ParallaxSky class="min-h-[...]"> hero content </ParallaxSky>
+ */
+interface Props {
+  /** Art height in "pixels". The width is always 320. Shorter = wider scene. */
+  artHeight?: number;
+  /** Where the goat stands on the near ridge, 0-1 across the scene */
+  goatAt?: number;
+  /** Where the moon sits, 0-1 across the scene */
+  moonAt?: number;
+  /** Moon height, 0-1 down the scene */
+  moonHigh?: number;
+  seed?: number;
+  class?: string;
+}
+
+const { artHeight = 180, goatAt = 0.83, moonAt = 0.79, moonHigh = 0.2, seed = 7, class: className = '' } = Astro.props;
+
+const W = 320;
+const H = artHeight;
+
+// Deterministic RNG so the mountains don't change between builds
+let s = seed >>> 0;
+const rand = () => ((s = (s * 1664525 + 1013904223) >>> 0) / 2 ** 32);
+const between = (a: number, b: number) => a + rand() * (b - a);
+
+// --- Sky: hard color bands instead of a smooth gradient ---
+const bands = ['#070915', '#090c1b', '#0c1022', '#10142a', '#141933', '#19193b', '#201c42', '#281f47'];
+const bandH = Math.ceil((H * 0.82) / bands.length);
+
+// --- Stars ---
+const starColors = ['#e8ecff', '#aab4e8', '#7c86c0', '#FFE7A8'];
+const stars = Array.from({ length: Math.round(W * H * 0.0012) }, () => ({
+  x: Math.floor(rand() * W),
+  y: Math.floor(rand() * H * 0.6),
+  c: starColors[Math.floor(rand() * starColors.length)],
+}));
+const sparkles = Array.from({ length: 7 }, (_, i) => ({
+  x: Math.floor(between(8, W - 8)),
+  y: Math.floor(between(6, H * 0.4)),
+  delay: (i * 0.9) % 5,
+  dur: between(2.5, 5),
+}));
+
+// --- Moon: a pixel disc with stepped halo rings ---
+const moonR = Math.round(Math.min(13, H * 0.075));
+const moonX = Math.round(W * moonAt);
+const moonY = Math.round(H * moonHigh);
+const discRows = (r: number) => {
+  const rows: string[] = [];
+  for (let dy = -r; dy <= r; dy++) {
+    const half = Math.floor(Math.sqrt(r * r - dy * dy) + 0.3);
+    rows.push(`M${moonX - half} ${moonY + dy}h${half * 2 + 1}v1h${-(half * 2 + 1)}z`);
+  }
+  return rows.join('');
+};
+const craters = [
+  [-4, -3, 2], [3, 2, 3], [-2, 5, 1], [5, -5, 1],
+].map(([dx, dy, r]) => ({ x: moonX + dx, y: moonY + dy, r }));
+
+// --- Mountain ranges: overlapping triangles with stepped slopes ---
+type Peak = { x: number; y: number; l: number; r: number; w?: number };
+function ridge(opts: { peaks: number; top: [number, number]; slope: [number, number]; base: number; jitter: number; forced?: Peak[]; flat?: [number, number, number] }) {
+  const peaks: Peak[] = [
+    ...Array.from({ length: opts.peaks }, () => ({
+      x: between(-W * 0.05, W * 1.05),
+      y: between(opts.top[0], opts.top[1]),
+      l: between(...opts.slope),
+      r: between(...opts.slope),
+    })),
+    ...(opts.forced ?? []),
+  ];
+  const ys: number[] = [];
+  let hold = 0;
+  let wobble = 0;
+  for (let x = 0; x < W; x++) {
+    let y = opts.base;
+    for (const p of peaks) {
+      // w gives a peak a flat top of that half-width
+      const raw = x - p.x;
+      const d = Math.sign(raw) * Math.max(0, Math.abs(raw) - (p.w ?? 0));
+      y = Math.min(y, p.y + (d < 0 ? -d * p.l : d * p.r));
+    }
+    if (hold-- <= 0) {
+      wobble = Math.round((rand() - 0.5) * opts.jitter);
+      hold = Math.floor(between(1, 4));
+    }
+    ys.push(Math.round(y + wobble));
+  }
+  if (opts.flat) {
+    const [from, to, y] = opts.flat;
+    for (let x = Math.max(0, from); x <= Math.min(W - 1, to); x++) ys[x] = y;
+  }
+  return ys;
+}
+const toPath = (ys: number[]) => {
+  let d = `M0 ${H}V${ys[0]}`;
+  for (let x = 1; x < W; x++) if (ys[x] !== ys[x - 1]) d += `H${x}V${ys[x]}`;
+  return d + `H${W}V${H}Z`;
+};
+// A thin cap of snow on anything above the snowline
+const snowPath = (ys: number[], line: number) => {
+  let d = '';
+  ys.forEach((y, x) => {
+    const bottom = line + (x % 3 === 0 ? 1 : 0) + (x % 7 === 0 ? 1 : 0);
+    if (y < bottom) d += `M${x} ${y}h1v${bottom - y}h-1z`;
+  });
+  return d;
+};
+
+const far = ridge({ peaks: 9, top: [H * 0.34, H * 0.5], slope: [0.55, 1.1], base: H * 0.7, jitter: 2 });
+const mid = ridge({ peaks: 8, top: [H * 0.52, H * 0.64], slope: [0.35, 0.8], base: H * 0.8, jitter: 2 });
+
+// Near ridge: force a flat-topped peak for the goat to stand on
+const goatX = Math.round(W * goatAt);
+const goatGround = Math.round(H * 0.66);
+const near = ridge({
+  peaks: 5,
+  top: [H * 0.74, H * 0.84],
+  slope: [0.25, 0.6],
+  base: H * 0.9,
+  jitter: 2,
+  forced: [{ x: goatX, y: goatGround, l: 0.45, r: 0.4, w: 8 }],
+  flat: [goatX - 8, goatX + 8, goatGround],
+});
+
+// --- The goat: 14x12 side-on silhouette, facing left toward the middle of the page ---
+const goatSprite = [
+  '......##......',
+  '.......##.....',
+  '........##....',
+  '........####..',
+  '........#####.',
+  '........######',
+  '#......####.#.',
+  '##########....',
+  '.#########....',
+  '.#########....',
+  '.#.#.....#.#..',
+  '.#.#.....#.#..',
+];
+const facingLeft = goatX > W / 2;
+const goatW = goatSprite[0].length;
+const goatLeft = goatX - Math.floor(goatW / 2);
+const goatTop = goatGround - goatSprite.length;
+let goatPath = '';
+goatSprite.forEach((row, y) => {
+  [...row].forEach((ch, x) => {
+    if (ch === '#') goatPath += `M${goatLeft + (facingLeft ? goatW - 1 - x : x)} ${goatTop + y}h1v1h-1z`;
+  });
+});
+const eye = { x: goatLeft + (facingLeft ? goatW - 1 - 11 : 11), y: goatTop + 4 };
+
+// --- Clouds: a few flat pixel clouds ---
+const cloudShapes = [
+  ['....######......', '..##########....', '################'],
+  ['...####...', '.########.', '##########'],
+  ['.....####.....', '..##########..', '##############'],
+];
+const clouds = cloudShapes.map((shape, i) => {
+  const cx = Math.floor(between(W * 0.05, W * 0.85)) + i * 30;
+  const cy = Math.floor(between(H * 0.18, H * 0.42));
+  let d = '';
+  shape.forEach((row, y) => [...row].forEach((ch, x) => { if (ch === '#') d += `M${(cx + x) % W} ${cy + y}h1v1h-1z`; }));
+  return d;
+});
+
+const svgProps = {
+  viewBox: `0 0 ${W} ${H}`,
+  preserveAspectRatio: 'xMidYMax slice',
+  'shape-rendering': 'crispEdges',
+  'aria-hidden': 'true',
+  class: 'absolute inset-0 h-full w-full',
+};
+---
+
+<section class={`parallax-sky relative isolate overflow-hidden bg-[#070915] ${className}`} data-parallax>
+  <div class="sky-layer" data-depth="0.6" data-drift="2">
+    <svg {...svgProps}>
+      {bands.map((c, i) => <rect x="0" y={i * bandH} width={W} height={i === bands.length - 1 ? H : bandH} fill={c} />)}
+      {stars.map(st => <rect x={st.x} y={st.y} width="1" height="1" fill={st.c} />)}
+      {sparkles.map(sp => (
+        <g class="sparkle" fill="#FFE7A8" style={`animation-delay:${sp.delay}s;animation-duration:${sp.dur}s`}>
+          <rect x={sp.x} y={sp.y - 1} width="1" height="3" />
+          <rect x={sp.x - 1} y={sp.y} width="3" height="1" />
+        </g>
+      ))}
+      <path d={discRows(moonR + 6)} fill="#FFE7A8" opacity="0.06" />
+      <path d={discRows(moonR + 3)} fill="#FFE7A8" opacity="0.1" />
+      <path d={discRows(moonR)} fill="#FFE7A8" />
+      {craters.map(c => <path d={(() => { let d = ''; for (let dy = -c.r; dy <= c.r; dy++) { const h = Math.floor(Math.sqrt(c.r * c.r - dy * dy) + 0.3); d += `M${c.x - h} ${c.y + dy}h${h * 2 + 1}v1h${-(h * 2 + 1)}z`; } return d; })()} fill="#E9C77A" />)}
+    </svg>
+  </div>
+
+  <div class="sky-layer cloud-drift" data-depth="0.5" data-drift="4">
+    <svg {...svgProps}>
+      {clouds.map((d, i) => <path d={d} fill="#2b3264" opacity={0.55 - i * 0.1} />)}
+    </svg>
+  </div>
+
+  <div class="sky-layer" data-depth="0.38" data-drift="6">
+    <svg {...svgProps}>
+      <path d={toPath(far)} fill="#3a4170" />
+      <path d={toPath(far)} fill="#262c52" transform="translate(0 1)" />
+      <path d={snowPath(far, Math.round(H * 0.42))} fill="#6b74a8" />
+    </svg>
+  </div>
+
+  <div class="sky-layer" data-depth="0.2" data-drift="10">
+    <svg {...svgProps}>
+      <path d={toPath(mid)} fill="#272d55" />
+      <path d={toPath(mid)} fill="#161a33" transform="translate(0 1)" />
+    </svg>
+  </div>
+
+  <div class="sky-layer" data-depth="0" data-drift="14">
+    <svg {...svgProps}>
+      <path d={toPath(near)} fill="#1b2040" />
+      <path d={toPath(near)} fill="#0b0e1c" transform="translate(0 1)" />
+      <path d={goatPath} fill="#0b0e1c" />
+      <rect x={eye.x} y={eye.y} width="1" height="1" fill="#FFC20E" />
+    </svg>
+  </div>
+
+  <div class="relative z-10" data-depth="0.3" data-fade>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .sky-layer {
+    position: absolute;
+    inset: -2px -3% 0 -3%;
+    will-change: transform;
+    pointer-events: none;
+  }
+  .sparkle {
+    animation: twinkle 4s steps(2, jump-none) infinite;
+  }
+  @keyframes twinkle {
+    0%, 60%, 100% { opacity: 0.15; }
+    70%, 90% { opacity: 1; }
+  }
+  .cloud-drift svg {
+    animation: drift 90s linear infinite alternate;
+  }
+  @keyframes drift {
+    from { transform: translateX(-4%); }
+    to { transform: translateX(4%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sparkle, .cloud-drift svg { animation: none; }
+  }
+</style>
+
+<script>
+  // Scroll + pointer parallax. Layers with a higher data-depth lag further behind
+  // the page, so they read as farther away. data-drift is the pointer offset in px.
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-parallax]').forEach(scene => {
+    if (reduced) return;
+    const layers = [...scene.querySelectorAll<HTMLElement>('[data-depth]')];
+    let px = 0, py = 0, tx = 0, ty = 0, ticking = false, visible = true;
+
+    const render = () => {
+      ticking = false;
+      // ease the pointer offset toward its target for a soft follow
+      px += (tx - px) * 0.08;
+      py += (ty - py) * 0.08;
+      const rect = scene.getBoundingClientRect();
+      const scrolled = Math.max(0, -rect.top);
+      for (const el of layers) {
+        const depth = parseFloat(el.dataset.depth || '0');
+        const drift = parseFloat(el.dataset.drift || '0');
+        el.style.transform = `translate3d(${(px * drift).toFixed(2)}px, ${(scrolled * depth + py * drift * 0.5).toFixed(2)}px, 0)`;
+        if (el.hasAttribute('data-fade')) el.style.opacity = String(Math.max(0, 1 - scrolled / (rect.height * 0.7)));
+      }
+      if (Math.abs(tx - px) > 0.01 || Math.abs(ty - py) > 0.01) request();
+    };
+    const request = () => {
+      if (!ticking && visible) { ticking = true; requestAnimationFrame(render); }
+    };
+
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; request(); }).observe(scene);
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('pointermove', e => {
+        tx = (e.clientX / window.innerWidth - 0.5) * -2;
+        ty = (e.clientY / window.innerHeight - 0.5) * -2;
+        request();
+      }, { passive: true });
+    }
+    render();
+  });
+</script>

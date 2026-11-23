@@ -6,56 +6,56 @@ import { foreverRoster as r, nameClass } from '../data/foreverRoster';
 const maxLevel = r?.maxLevel ?? 60; // captured for use inside map callbacks
 ---
 
-<div class="bg-gradient-to-br from-amber-950/40 via-midnight-700 to-midnight-700 rounded-xl border border-amber-700/40 p-6">
+<div class="panel panel-gold p-5 md:p-7 bg-gradient-to-br from-goat-horn/10 via-transparent to-transparent">
   {r ? (
     <>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-        <div class="bg-midnight-800/80 rounded-lg p-4 text-center">
-          <div class="text-3xl font-display font-bold text-accent-gold">{r.atMax}</div>
-          <div class="text-xs text-gray-400 mt-1">at level {r.maxLevel}</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="panel panel-inset px-4 py-5 text-center">
+          <div class="text-4xl font-display font-bold text-goat-gold">{r.atMax}</div>
+          <div class="font-pixel text-[10px] uppercase tracking-wider text-gray-400 mt-2">at level {r.maxLevel}</div>
         </div>
-        <div class="bg-midnight-800/80 rounded-lg p-4 text-center">
-          <div class="text-3xl font-display font-bold text-gray-100">{r.averageLevel}</div>
-          <div class="text-xs text-gray-400 mt-1">average level</div>
+        <div class="panel panel-inset px-4 py-5 text-center">
+          <div class="text-4xl font-display font-bold text-gray-100">{r.averageLevel}</div>
+          <div class="font-pixel text-[10px] uppercase tracking-wider text-gray-400 mt-2">average level</div>
         </div>
-        <div class="bg-midnight-800/80 rounded-lg p-4 text-center">
-          <div class="text-3xl font-display font-bold text-gray-100">{r.levelsThisWeek}</div>
-          <div class="text-xs text-gray-400 mt-1">levels gained this week</div>
+        <div class="panel panel-inset px-4 py-5 text-center">
+          <div class="text-4xl font-display font-bold text-gray-100">{r.levelsThisWeek}</div>
+          <div class="font-pixel text-[10px] uppercase tracking-wider text-gray-400 mt-2">levels gained this week</div>
         </div>
-        <div class="bg-midnight-800/80 rounded-lg p-4 text-center">
-          <div class="text-3xl font-display font-bold text-gray-100">{r.total}</div>
-          <div class="text-xs text-gray-400 mt-1">goats leveling</div>
+        <div class="panel panel-inset px-4 py-5 text-center">
+          <div class="text-4xl font-display font-bold text-gray-100">{r.total}</div>
+          <div class="font-pixel text-[10px] uppercase tracking-wider text-gray-400 mt-2">goats leveling</div>
         </div>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
         <div class="md:col-span-2">
-          <h4 class="text-sm font-semibold text-gray-300 mb-3">Recent activity</h4>
+          <h4 class="eyebrow mb-4">Recent activity</h4>
           <ActivityFeed events={r.activity} maxLevel={r.maxLevel} limit={8} />
         </div>
 
         <div class="space-y-6">
           {r.climbers.length > 0 && (
             <div>
-              <h4 class="text-sm font-semibold text-gray-300 mb-3">Top climbers this week</h4>
+              <h4 class="eyebrow mb-4">Top climbers this week</h4>
               <ol class="space-y-1.5">
                 {r.climbers.map(m => (
                   <li class="flex items-center gap-2 text-sm">
                     <span class={`flex-1 truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
-                    <span class="text-green-400 font-mono">+{m.gainedThisWeek}</span>
+                    <span class="tabular-nums font-medium text-emerald-400">+{m.gainedThisWeek}</span>
                   </li>
                 ))}
               </ol>
             </div>
           )}
           <div>
-            <h4 class="text-sm font-semibold text-gray-300 mb-3">Highest level</h4>
+            <h4 class="eyebrow mb-4">Highest level</h4>
             <ol class="space-y-1.5">
               {r.members.slice(0, 5).map((m, i) => (
                 <li class="flex items-center gap-2 text-sm">
-                  <span class="w-4 text-right text-gray-500">{i + 1}.</span>
+                  <span class="w-4 text-right tabular-nums text-gray-600">{i + 1}</span>
                   <span class={`flex-1 truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
-                  <span class={`font-mono ${m.level >= maxLevel ? 'text-accent-gold font-bold' : 'text-gray-300'}`}>{m.level}</span>
+                  <span class={`tabular-nums font-medium ${m.level >= maxLevel ? 'text-goat-gold font-bold' : 'text-gray-300'}`}>{m.level}</span>
                 </li>
               ))}
             </ol>
@@ -63,16 +63,16 @@ const maxLevel = r?.maxLevel ?? 60; // captured for use inside map callbacks
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center justify-between gap-2 mt-6 pt-4 border-t border-midnight-500/60">
+      <div class="flex flex-wrap items-center justify-between gap-2 mt-6 pt-4 border-t-2 border-dashed border-midnight-600">
         <p class="text-xs text-gray-500">
           Synced from the Blizzard API · updated {new Date(r.updatedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' })} ET
         </p>
-        <a href="/wow-forever" class="text-sm text-amber-400 hover:underline font-medium">Full roster →</a>
+        <a href="/wow-forever" class="link font-display text-sm">Full roster</a>
       </div>
     </>
   ) : (
     <div class="text-center py-8">
-      <img src="/images/pixel goat small.png" alt="" class="w-10 h-10 mx-auto mb-3 opacity-80" />
+      <img src="/images/pixel goat small.png" alt="" class="w-10 h-10 mx-auto mb-3 opacity-80 pixelated" />
       <p class="text-gray-200 font-medium mb-1">No roster data yet.</p>
       <p class="text-sm text-gray-400">Real character names, levels, and level-ups show up here after the first sync with Blizzard.</p>
     </div>

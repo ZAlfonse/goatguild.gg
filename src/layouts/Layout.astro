@@ -1,5 +1,6 @@
 ---
 import { guild } from '../data/guild';
+import '../styles/global.css';
 
 interface Props {
   title?: string;
@@ -20,54 +21,49 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b0e1c" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Silkscreen&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>{pageTitle}</title>
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
-  <body class="bg-midnight-900 text-gray-100 min-h-screen font-body">
-    <!-- Header -->
-    <header class="border-b border-midnight-600 bg-midnight-800/80 backdrop-blur-sm sticky top-0 z-50">
+  <body class="bg-midnight-900 text-gray-200 min-h-screen font-body">
+    <div class="page-stars" aria-hidden="true"></div>
+
+    <header class="sticky top-0 z-50 bg-midnight-900/85 backdrop-blur-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <a href="/" class="flex items-center space-x-3">
-            <img src="/images/pixel goat small.png" alt="Goat Guild" class="w-8 h-8" />
-            <span class="font-display font-bold text-xl text-accent-gold">{guild.name}</span>
+          <a href="/" class="group flex items-center gap-3">
+            <img src="/images/pixel goat small.png" alt="" class="w-8 h-8 pixelated transition-transform duration-150 group-hover:-translate-y-0.5" />
+            <span class="font-display font-semibold text-xl text-goat-gold tracking-wide">{guild.name}</span>
           </a>
-          <nav class="hidden md:flex items-center space-x-8">
-            <a href="/" class="text-gray-300 hover:text-accent-purple transition-colors">Home</a>
-            <a href="/#leveling" class="text-gray-300 hover:text-accent-purple transition-colors">Leveling</a>
-            <a href="/#news" class="text-gray-300 hover:text-accent-purple transition-colors">News</a>
-            <a href="/#retail" class="text-gray-300 hover:text-accent-purple transition-colors">Retail</a>
-            <a href="/wow-forever" class="bg-accent-gold hover:bg-accent-gold/80 text-midnight-900 px-4 py-2 rounded-lg transition-colors font-medium">
-              Forever Roster
-            </a>
-            <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="bg-accent-purple hover:bg-accent-purple/80 text-white px-4 py-2 rounded-lg transition-colors">
-              Join Discord
+          <nav class="hidden md:flex items-center gap-7 font-display text-[15px]">
+            <a href="/#leveling" class="nav-link">Leveling</a>
+            <a href="/#news" class="nav-link">News</a>
+            <a href="/#retail" class="nav-link">Retail</a>
+            <a href="/wow-forever" class="nav-link">Roster</a>
+            <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm">
+              Discord
             </a>
           </nav>
-          <!-- Mobile menu button -->
-          <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-300 hover:text-goat-gold" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg class="w-6 h-6" viewBox="0 0 12 12" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true">
+              <rect x="1" y="2" width="10" height="2" /><rect x="1" y="5" width="10" height="2" /><rect x="1" y="8" width="10" height="2" />
             </svg>
           </button>
         </div>
       </div>
-      <!-- Mobile menu -->
-      <div id="mobile-menu" class="hidden md:hidden border-t border-midnight-600">
-        <div class="px-4 py-4 space-y-3">
-          <a href="/" class="block text-gray-300 hover:text-accent-purple">Home</a>
-          <a href="/#leveling" class="block text-gray-300 hover:text-accent-purple">Leveling</a>
-          <a href="/#news" class="block text-gray-300 hover:text-accent-purple">News</a>
-          <a href="/#retail" class="block text-gray-300 hover:text-accent-purple">Retail</a>
-          <a href="/wow-forever" class="block bg-accent-gold text-midnight-900 px-4 py-2 rounded-lg text-center font-medium">
-            Forever Roster
-          </a>
-          <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="block bg-accent-purple text-white px-4 py-2 rounded-lg text-center">
-            Join Discord
-          </a>
+      <!-- A one-pixel ridge under the header instead of a straight border -->
+      <div class="h-[3px] header-edge" aria-hidden="true"></div>
+      <div id="mobile-menu" class="hidden md:hidden bg-midnight-900">
+        <div class="px-4 py-4 space-y-1 font-display">
+          <a href="/#leveling" class="block py-2 text-gray-300 hover:text-goat-gold">Leveling</a>
+          <a href="/#news" class="block py-2 text-gray-300 hover:text-goat-gold">News</a>
+          <a href="/#retail" class="block py-2 text-gray-300 hover:text-goat-gold">Retail</a>
+          <a href="/wow-forever" class="block py-2 text-gray-300 hover:text-goat-gold">Roster</a>
+          <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="btn btn-gold w-[calc(100%-6px)] mt-2">Join the Discord</a>
         </div>
       </div>
     </header>
@@ -76,18 +72,22 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
       <slot />
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-midnight-600 bg-midnight-800 mt-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-          <div class="flex items-center space-x-2 mb-4 md:mb-0">
-            <img src="/images/pixel goat small.png" alt="Goat Guild" class="w-6 h-6" />
-            <span class="font-display text-accent-gold">{guild.name}</span>
-            <span class="text-gray-500">• {guild.server}</span>
-          </div>
-          <div class="flex items-center space-x-6 text-sm text-gray-400">
-            <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="hover:text-accent-purple transition-colors">Discord</a>
-            <span>© {new Date().getFullYear()} {guild.name}</span>
+    <footer class="mt-24 relative">
+      <svg class="block w-full h-6 text-midnight-800" viewBox="0 0 160 12" preserveAspectRatio="none" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true">
+        <path d="M0 12V9h8V7h6V5h4V3h3v2h5v2h7V5h5V2h3V0h2v2h3v3h6v2h10V5h6V4h4v2h5v3h9V7h7V5h3V3h4v2h5v3h8V6h6V4h3V2h2v2h4v3h6v2h26v3z" />
+      </svg>
+      <div class="bg-midnight-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <img src="/images/pixel goat small.png" alt="" class="w-6 h-6 pixelated" />
+              <span class="font-display text-goat-gold">{guild.name}</span>
+              <span class="font-pixel text-[10px] uppercase tracking-widest text-gray-500">{guild.server}</span>
+            </div>
+            <div class="flex items-center gap-6 text-sm text-gray-500">
+              <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="hover:text-goat-gold transition-colors">Discord</a>
+              <span>&copy; {new Date().getFullYear()} {guild.name}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -96,9 +96,10 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
     <script>
       const menuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
-      
+
       menuBtn?.addEventListener('click', () => {
-        mobileMenu?.classList.toggle('hidden');
+        const open = mobileMenu?.classList.toggle('hidden') === false;
+        menuBtn.setAttribute('aria-expanded', String(open));
       });
 
       // Relative times ("3h ago") are rendered at build time; refresh them against the visitor's clock.
@@ -113,43 +114,51 @@ const pageTitle = title === guild.name ? title : `${title} | ${guild.name}`;
       document.querySelectorAll<HTMLTimeElement>('time[data-ago]').forEach(el => {
         el.textContent = ago(el.dateTime);
       });
+
+      // Background stars drift at a fraction of the scroll speed
+      const stars = document.querySelector<HTMLElement>('.page-stars');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (stars && !reduced) {
+        let queued = false;
+        window.addEventListener('scroll', () => {
+          if (queued) return;
+          queued = true;
+          requestAnimationFrame(() => {
+            queued = false;
+            stars.style.transform = `translate3d(0, ${-((window.scrollY * 0.12) % 240)}px, 0)`;
+          });
+        }, { passive: true });
+      }
+
+      // Sections step in as they scroll into view
+      const io = new IntersectionObserver(entries => {
+        for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      }, { rootMargin: '0px 0px -8% 0px' });
+      // Only hide what starts below the fold, so nothing on screen ever flashes in late
+      document.querySelectorAll('.reveal').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) return;
+        el.classList.add('reveal-pending');
+        io.observe(el);
+      });
     </script>
   </body>
 </html>
 
 <style is:global>
-  /* Account for sticky header when scrolling to anchors */
-  html {
-    scroll-padding-top: 5rem;
+  .nav-link {
+    @apply relative text-gray-300 hover:text-goat-gold transition-colors;
   }
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-[2px] w-0 bg-goat-gold transition-all duration-150;
+  }
+  .nav-link:hover::after { @apply w-full; }
 
-  /* Pulse animation when section is targeted */
-  @keyframes section-pulse {
-    0%, 100% {
-      box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
-    }
-    50% {
-      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.4);
-    }
-  }
-
-  section:target {
-    animation: section-pulse 0.6s ease-out 2;
-    border-radius: 0.5rem;
-  }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #12121f;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #363659;
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #4a4a70;
+  .header-edge {
+    background:
+      linear-gradient(90deg, transparent, theme('colors.goat.gold-dark') 20%, theme('colors.goat.gold-dark') 80%, transparent);
+    -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 6px, transparent 6px 9px);
+    mask-image: repeating-linear-gradient(90deg, #000 0 6px, transparent 6px 9px);
+    opacity: 0.45;
   }
 </style>

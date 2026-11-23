@@ -8,12 +8,12 @@ interface Props {
 const { post } = Astro.props;
 
 const categoryColors = {
-  announcement: 'bg-accent-gold text-midnight-900',
-  raid: 'bg-purple-500 text-white',
-  recruitment: 'bg-green-500 text-white',
-  guide: 'bg-blue-500 text-white',
-  event: 'bg-orange-500 text-white',
-  milestone: 'bg-pink-500 text-white',
+  announcement: 'bg-goat-gold text-midnight-900',
+  raid: 'bg-purple-500/20 text-purple-300',
+  recruitment: 'bg-emerald-500/20 text-emerald-300',
+  guide: 'bg-sky-500/20 text-sky-300',
+  event: 'bg-orange-500/20 text-orange-300',
+  milestone: 'bg-goat-snout/20 text-goat-snout',
 };
 
 const categoryLabels = {
@@ -32,26 +32,26 @@ const formattedDate = new Date(post.date + 'T12:00:00').toLocaleDateString('en-U
 });
 ---
 
-<article class={`bg-midnight-700 rounded-lg p-4 border ${post.pinned ? 'border-accent-gold' : 'border-midnight-500'}`}>
+<article class={`panel p-5 ${post.pinned ? 'panel-gold' : ''}`}>
   <div class="flex items-start justify-between gap-4 mb-2">
     <div class="flex items-center gap-2 flex-wrap">
-      <span class={`text-xs font-medium px-2 py-0.5 rounded ${categoryColors[post.category]}`}>
+      <span class={`tag ${categoryColors[post.category]}`}>
         {categoryLabels[post.category]}
       </span>
       {post.pinned && (
-        <span class="text-xs text-accent-gold">Pinned</span>
+        <span class="tag text-goat-gold px-0">Pinned</span>
       )}
     </div>
     <time class="text-xs text-gray-500 shrink-0">{formattedDate}</time>
   </div>
   
-  <h3 class="font-semibold text-gray-100 mb-2">{post.title}</h3>
+  <h3 class="font-display text-lg font-medium text-gray-100 mb-2 leading-snug">{post.title}</h3>
   <p class="text-sm text-gray-400">{post.summary}</p>
   
   <div class="mt-3 text-xs text-gray-500 flex items-center justify-between gap-2">
     <span>Posted by {post.author}</span>
     {post.url && (
-      <a href={post.url} target="_blank" rel="noopener noreferrer" class="text-accent-purple hover:underline">Details →</a>
+      <a href={post.url} target="_blank" rel="noopener noreferrer" class="link">Details</a>
     )}
   </div>
 </article>

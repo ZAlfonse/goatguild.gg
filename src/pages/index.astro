@@ -7,6 +7,7 @@ import ScheduleTable from '../components/ScheduleTable.astro';
 import BluePosts from '../components/BluePosts.astro';
 import ForeverLeveling from '../components/ForeverLeveling.astro';
 import SummitWatch from '../components/SummitWatch.astro';
+import ParallaxSky from '../components/ParallaxSky.astro';
 
 import { guild } from '../data/guild';
 import { currentTier, midnightS1Tier, twwTier, achievements } from '../data/progression';
@@ -108,57 +109,41 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
 
 
   <!-- Hero: WoW: Forever is the guild's current focus -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-amber-900/30 via-midnight-900 to-midnight-900"></div>
-    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/60 to-transparent"></div>
+  <ParallaxSky class="min-h-[620px] h-[78svh] md:h-[92svh] max-h-[880px] -mt-[67px]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-36 pb-10 text-center">
+      <div class="inline-flex items-center gap-2.5 bg-midnight-900/70 text-goat-moon font-pixel text-[11px] uppercase tracking-widest px-3 py-2 mb-8 panel" style="--edge: theme('colors.goat.gold-dark'); --panel: rgb(11 14 28 / 0.7)">
+        <span class="h-2 w-2 bg-goat-gold animate-[blink_1.2s_steps(1)_infinite]"></span>
+        Now playing: {guild.nowPlaying}
+      </div>
+      <img src="/images/pixel goat big.png" alt="" class="w-24 h-24 md:w-28 md:h-28 mx-auto mb-5 pixelated goat-bob" />
+      <h1 class="font-display text-5xl md:text-7xl font-bold text-goat-gold mb-4 tracking-wide hero-title">
+        {guild.name}
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-100 font-display mb-3">{guild.tagline}</p>
+      <p class="text-base md:text-lg text-gray-400 max-w-xl mx-auto mb-8">
+        {guild.description}
+      </p>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 lg:pt-28 lg:pb-14">
-      <div class="text-center">
-        <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/40 text-amber-300 text-sm font-medium rounded-full px-4 py-1.5 mb-6">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
-          </span>
-          Now playing: {guild.nowPlaying}
-        </div>
-        <img src="/images/pixel goat big.png" alt="Goat Guild" class="w-24 h-24 mx-auto mb-4" />
-        <h1 class="font-display text-4xl md:text-6xl font-bold text-accent-gold mb-4">
-          {guild.name}
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-200 font-display mb-3">{guild.tagline}</p>
-        <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
-          {guild.description}
+      {guild.recruitmentStatus !== 'Closed' && (
+        <p class="text-gray-300 mb-8 text-sm md:text-base">
+          <span class="tag bg-emerald-500/15 text-emerald-300 mr-2 align-middle">Recruiting</span>{guild.recruitmentNote}
         </p>
+      )}
 
-        {guild.recruitmentStatus !== 'Closed' && (
-          <p class="text-gray-300 mb-8">
-            <strong class="text-green-400">Recruiting:</strong> {guild.recruitmentNote}
-          </p>
-        )}
-
-        <div class="flex flex-wrap justify-center gap-4">
-          <a
-            href={guild.discordLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-accent-purple hover:bg-accent-purple/80 text-white font-medium px-6 py-3 rounded-lg transition-colors"
-          >
-            Join Our Discord
-          </a>
-          <a
-            href="/wow-forever"
-            class="bg-accent-gold hover:bg-accent-gold/80 text-midnight-900 font-medium px-6 py-3 rounded-lg transition-colors"
-          >
-            See the Roster
-          </a>
-        </div>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href={guild.discordLink} target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+          Join the Discord
+        </a>
+        <a href="/wow-forever" class="btn">
+          See the roster
+        </a>
       </div>
     </div>
-  </section>
+  </ParallaxSky>
 
   <!-- Pinned Announcements -->
   {pinnedNews.length > 0 && (
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-4 relative z-10">
       <div class="grid gap-4">
         {pinnedNews.map(post => (
           <NewsCard post={post} />
@@ -167,22 +152,22 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
     </section>
   )}
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 space-y-16">
 
     <!-- The Climb to 60 -->
-    <section id="leveling">
-      <h2 class="font-display text-2xl md:text-3xl font-semibold text-gray-100 mb-1 flex items-center gap-2">
+    <section id="leveling" class="reveal">
+      <h2 class="section-title text-2xl md:text-3xl mb-2">
         The Climb to 60
       </h2>
-      <p class="text-gray-400 mb-5">Everyone's leveling in WoW: Forever. Here's how the herd is doing.</p>
+      <p class="text-gray-400 mb-6">Everyone's leveling in WoW: Forever. Here's how the herd is doing.</p>
       <SummitWatch />
       <ForeverLeveling />
     </section>
 
-    <div class="grid lg:grid-cols-3 gap-8">
+    <div class="grid lg:grid-cols-3 gap-10">
       <!-- Guild news -->
-      <section id="news" class="lg:col-span-1">
-        <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+      <section id="news" class="lg:col-span-1 reveal">
+        <h2 class="section-title text-2xl mb-5">
           Guild News
         </h2>
         <div class="space-y-4">
@@ -193,8 +178,8 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
       </section>
 
       <!-- Forever blue posts -->
-      <section id="forever-news" class="lg:col-span-2">
-        <h2 class="font-display text-2xl font-semibold text-gray-100 mb-4 flex items-center gap-2">
+      <section id="forever-news" class="lg:col-span-2 reveal">
+        <h2 class="section-title text-2xl mb-5">
           WoW: Forever Blue Posts
         </h2>
         <BluePosts game="forever" limit={6} />
@@ -202,14 +187,14 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
     </div>
 
     <!-- Retail: on the back burner while the guild levels in Forever -->
-    <section id="retail">
-      <h2 class="font-display text-2xl font-semibold text-gray-100 mb-1 flex items-center gap-2">
+    <section id="retail" class="reveal">
+      <h2 class="section-title text-2xl mb-2">
         Retail
       </h2>
       <p class="text-gray-400 mb-5">On hold while we level in Forever. Raider.io keeps tracking {guild.server} either way.</p>
 
-      <details id="progression" class="group bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
-        <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
+      <details id="progression" class="pixel-details panel mb-5">
+        <summary>
           Raid progression: {currentTier[0]?.name ?? 'Current tier'}
         </summary>
         <div class="p-4 pt-0 space-y-4">
@@ -219,8 +204,8 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
             ))}
           </div>
 
-          <details class="bg-midnight-900/50 rounded-lg border border-midnight-600">
-            <summary class="cursor-pointer p-3 text-sm font-semibold text-gray-200">Midnight Season 1</summary>
+          <details class="pixel-details panel panel-inset">
+            <summary class="!p-3 !text-sm">Midnight Season 1</summary>
             <div class="grid sm:grid-cols-2 gap-4 p-3 pt-0">
               {midnightS1Tier.map(raid => (
                 <ProgressionCard raid={raid} />
@@ -228,8 +213,8 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
             </div>
           </details>
 
-          <details class="bg-midnight-900/50 rounded-lg border border-midnight-600">
-            <summary class="cursor-pointer p-3 text-sm font-semibold text-gray-200">The War Within</summary>
+          <details class="pixel-details panel panel-inset">
+            <summary class="!p-3 !text-sm">The War Within</summary>
             <div class="grid sm:grid-cols-2 gap-4 p-3 pt-0">
               {twwTier.map(raid => (
                 <ProgressionCard raid={raid} />
@@ -238,9 +223,9 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
           </details>
 
           {achievements.length > 0 && (
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-3">
               {achievements.map(achievement => (
-                <span class="bg-accent-gold/20 text-accent-gold text-sm px-3 py-1 rounded-full">
+                <span class="tag bg-goat-gold/15 text-goat-gold">
                   {achievement.name}
                 </span>
               ))}
@@ -249,8 +234,8 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
         </div>
       </details>
 
-      <details id="schedule" class="bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
-        <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
+      <details id="schedule" class="pixel-details panel mb-5">
+        <summary>
           Raid schedule &amp; sign-ups
         </summary>
         <div class="p-4 pt-0 space-y-4">
@@ -259,15 +244,15 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
             href={guild.raidSignupForm}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-block bg-midnight-600 hover:bg-midnight-500 text-gray-100 font-medium px-4 py-2 rounded-lg transition-colors"
+            class="btn"
           >
             Raid sign-ups{nextRaidIsUpcoming && ` (${nextRaidFormatted})`}
           </a>
         </div>
       </details>
 
-      <details class="bg-midnight-800 rounded-lg border border-midnight-500 mb-4">
-        <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
+      <details class="pixel-details panel mb-5">
+        <summary>
           Retail blue posts
         </summary>
         <div class="p-4 pt-0">
@@ -275,8 +260,8 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
         </div>
       </details>
 
-      <details id="addons" class="bg-midnight-800 rounded-lg border border-midnight-500">
-        <summary class="cursor-pointer p-4 font-semibold text-gray-100 hover:bg-midnight-700 rounded-lg transition-colors">
+      <details id="addons" class="pixel-details panel">
+        <summary>
           Raiding addons &amp; profiles
         </summary>
         <div class="p-4 pt-0">

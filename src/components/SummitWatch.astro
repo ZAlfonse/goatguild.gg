@@ -27,6 +27,22 @@ const markers = contenders.map(m => {
   return { m, x, y, fill: HEX[classKey(m.classId) ?? ''] ?? '#d1d5db' };
 });
 
+// Turn a polyline into a staircase so slopes read as pixel art
+const stairs = (pts: [number, number][], step = 6) => {
+  let d = `M${pts[0][0]} ${pts[0][1]}`;
+  for (let i = 1; i < pts.length; i++) {
+    const [x0, y0] = pts[i - 1];
+    const [x1, y1] = pts[i];
+    const n = Math.max(1, Math.round(Math.abs(x1 - x0) / step));
+    for (let k = 1; k <= n; k++) {
+      d += `H${Math.round(x0 + ((x1 - x0) * k) / n)}V${Math.round(y0 + ((y1 - y0) * k) / n)}`;
+    }
+  }
+  return d;
+};
+const farRange = stairs([[0, 165], [0, 140], [70, 110], [130, 135], [210, 80], [300, 128], [360, 95], [520, 150]]) + 'V165Z';
+const mountain = stairs([[0, 165], [0, base.y], [base.x, base.y], [peak.x, peak.y], [520, 120]]) + 'V165Z';
+
 const plural = (n: number, one: string, many: string) => (n === 1 ? one : many);
 let headline = '';
 if (atTop.length > 0) {
@@ -39,56 +55,51 @@ if (atTop.length > 0) {
 ---
 
 {r && contenders.length > 0 && (
-  <div class="bg-midnight-800/80 rounded-xl border border-amber-700/30 overflow-hidden mb-6">
+  <div class="panel panel-inset overflow-hidden mb-8">
     <div class="grid md:grid-cols-5">
       <div class="md:col-span-3 relative">
-        <svg viewBox="0 0 520 165" class="w-full h-auto block" role="img" aria-label={`Goats within ten levels of ${maxLevel}, placed on a mountain by level`}>
-          <defs>
-            <linearGradient id="summit-sky" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#2a1a08" stop-opacity="0.55" />
-              <stop offset="100%" stop-color="#12121f" stop-opacity="0" />
-            </linearGradient>
-            <linearGradient id="summit-rock" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#4a4a70" />
-              <stop offset="100%" stop-color="#1a1a2e" />
-            </linearGradient>
-          </defs>
-          <rect width="520" height="165" fill="url(#summit-sky)" />
+        <svg viewBox="0 0 520 165" class="w-full h-auto block" shape-rendering="crispEdges" role="img" aria-label={`Goats within ten levels of ${maxLevel}, placed on a mountain by level`}>
+          <rect width="520" height="56" fill="#0c1022" />
+          <rect y="56" width="520" height="56" fill="#10142a" />
+          <rect y="112" width="520" height="53" fill="#141933" />
           <!-- far range -->
-          <path d="M0 165 L70 110 L130 135 L210 80 L300 128 L360 95 L520 150 L520 165 Z" fill="#252542" opacity="0.6" />
-          <!-- the mountain -->
-          <path d={`M0 165 L${base.x} ${base.y} L${peak.x} ${peak.y} L520 120 L520 165 Z`} fill="url(#summit-rock)" />
-          <path d={`M${peak.x - 28} ${peak.y + 9} L${peak.x} ${peak.y} L${peak.x + 24} ${peak.y + 7} L${peak.x + 10} ${peak.y + 12} L${peak.x - 6} ${peak.y + 6} Z`} fill="#e5e7eb" opacity="0.85" />
+          <path d={farRange} fill="#1c2244" />
+          <!-- the mountain, with a lit edge -->
+          <path d={mountain} fill="#3a4170" />
+          <path d={mountain} fill="#262c52" transform="translate(0 3)" />
+          <!-- snowcap -->
+          <path d={`M${peak.x - 24}  ${peak.y + 9}h6v-3h6v-3h6v-3h12v3h6v3h6v3h-6v3h-12v-3h-12v3h-12z`} fill="#c7cdea" />
           <!-- level ticks along the ridge -->
           {[floor, floor + 5].map(l => {
             const t = (l - floor) / (maxLevel - floor);
             const x = base.x + (peak.x - base.x) * t;
             const y = base.y + (peak.y - base.y) * t;
-            return <text x={x + 6} y={y + 16} fill="#9ca3af" font-size="10" font-family="Inter, sans-serif">{l}</text>;
+            return <text x={x + 6} y={y + 13} fill="#8b93bd" font-size="10" font-family="Silkscreen, monospace">{l}</text>;
           })}
           <!-- flag at the cap -->
-          <line x1={peak.x} y1={peak.y} x2={peak.x} y2={peak.y - 24} stroke="#fbbf24" stroke-width="1.5" />
-          <path d={`M${peak.x} ${peak.y - 24} L${peak.x + 16} ${peak.y - 19} L${peak.x} ${peak.y - 14} Z`} fill="#fbbf24" />
-          <text x={peak.x - 6} y={peak.y - 16} text-anchor="end" fill="#fbbf24" font-size="11" font-weight="700" font-family="Cinzel, serif">{maxLevel}</text>
+          <rect x={peak.x - 1} y={peak.y - 24} width="2" height="24" fill="#FFC20E" />
+          <path d={`M${peak.x + 1} ${peak.y - 24}h14v3h-4v3h4v3h-14z`} fill="#FFC20E" />
+          <text x={peak.x - 6} y={peak.y - 14} text-anchor="end" fill="#FFC20E" font-size="12" font-weight="700" font-family="'Pixelify Sans', monospace">{maxLevel}</text>
           <!-- the goats -->
           {markers.map(({ m, x, y, fill }) => (
             <g>
               <title>{`${m.name}, level ${m.level}`}</title>
-              <circle cx={x} cy={y} r="6" fill={fill} stroke="#0a0a12" stroke-width="2" />
+              <rect x={Math.round(x) - 6} y={Math.round(y) - 6} width="12" height="12" fill="#0b0e1c" />
+              <rect x={Math.round(x) - 4} y={Math.round(y) - 4} width="8" height="8" fill={fill} />
             </g>
           ))}
         </svg>
       </div>
-      <div class="md:col-span-2 p-5 md:border-l border-t md:border-t-0 border-midnight-600">
-        <h3 class="font-display text-lg font-semibold text-gray-100">Near the summit</h3>
+      <div class="md:col-span-2 p-5 md:border-l-2 border-t-2 md:border-t-0 border-midnight-600">
+        <h3 class="section-title text-lg">Near the summit</h3>
         <p class="text-sm text-gray-400 mb-4">{headline}</p>
         <ol class="space-y-1.5">
           {contenders.map(m => (
             <li class="flex items-center gap-2 text-sm">
               <span class={`flex-1 truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
-              <span class={`font-mono ${m.level >= maxLevel ? 'text-accent-gold font-bold' : 'text-gray-200'}`}>{m.level}</span>
+              <span class={`tabular-nums font-medium ${m.level >= maxLevel ? 'text-goat-gold font-bold' : 'text-gray-200'}`}>{m.level}</span>
               <span class="w-16 text-right text-xs text-gray-500">
-                {m.level >= maxLevel ? <span class="text-accent-gold">at the top</span> : `${maxLevel - m.level} to go`}
+                {m.level >= maxLevel ? <span class="text-goat-gold">at the top</span> : `${maxLevel - m.level} to go`}
               </span>
             </li>
           ))}

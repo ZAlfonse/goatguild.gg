@@ -4,19 +4,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Midnight expansion theme
+        // Night sky behind the mountains. 900 is the page and the nearest ridge.
         midnight: {
-          900: '#0a0a12',
-          800: '#12121f',
-          700: '#1a1a2e',
-          600: '#252542',
-          500: '#363659',
-          400: '#4a4a70',
+          900: '#0b0e1c',
+          800: '#10142a',
+          700: '#161b35',
+          600: '#202846',
+          500: '#2d3559',
+          400: '#434c78',
+        },
+        // Lifted from the pixel goat logo
+        goat: {
+          gold: '#FFC20E',
+          'gold-dark': '#B5850A',
+          horn: '#9C5A3C',
+          snout: '#FFA3B1',
+          moon: '#FFE7A8',
         },
         accent: {
-          purple: '#8b5cf6',
-          blue: '#3b82f6',
-          gold: '#fbbf24',
+          purple: '#a78bfa',
+          blue: '#7aa2f7',
+          gold: '#FFC20E',
         },
         // WoW Class Colors
         'class-warrior': '#C79C6E',
@@ -34,8 +42,9 @@ export default {
         'class-evoker': '#33937F',
       },
       fontFamily: {
-        display: ['Cinzel', 'serif'],
-        body: ['Inter', 'sans-serif'],
+        display: ['"Pixelify Sans"', 'monospace'],
+        pixel: ['Silkscreen', 'monospace'],
+        body: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
       },
     },
   },
