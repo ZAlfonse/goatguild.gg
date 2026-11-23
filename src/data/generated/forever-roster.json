@@ -1,26 +1,26 @@
 {
-  "updatedAt": "2026-11-22T18:47:20.159Z",
+  "updatedAt": "2026-11-23T00:17:18.999Z",
   "maxLevel": 60,
   "members": [
     {
       "name": "Za Kk",
       "slug": "za-kk",
-      "level": 35,
+      "level": 36,
       "classId": 8,
       "rank": 0,
-      "lastLogin": "2026-11-22T06:28:22.000Z",
+      "lastLogin": "2026-11-22T23:46:33.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T17:11:55.849Z"
+      "lastLevelUp": "2026-11-22T23:46:33.000Z"
     },
     {
       "name": "Chieph Beef",
       "slug": "chieph-beef",
-      "level": 54,
+      "level": 55,
       "classId": 11,
       "rank": 1,
       "lastLogin": "2026-11-22T07:43:28.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T17:11:55.849Z"
+      "lastLevelUp": "2026-11-23T00:17:18.999Z"
     },
     {
       "name": "Turb Low",
@@ -75,12 +75,12 @@
     {
       "name": "Bloolust Jadebreaker",
       "slug": "bloolust-jadebreaker",
-      "level": 45,
+      "level": 46,
       "classId": 7,
       "rank": 2,
-      "lastLogin": "2026-11-22T05:59:30.000Z",
+      "lastLogin": "2026-11-22T22:28:47.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T17:11:55.849Z"
+      "lastLevelUp": "2026-11-22T22:28:47.000Z"
     },
     {
       "name": "Bone Danger",
@@ -98,7 +98,7 @@
       "level": 52,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-22T14:55:34.000Z",
+      "lastLogin": "2026-11-22T21:37:31.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
@@ -128,7 +128,7 @@
       "level": 40,
       "classId": 1,
       "rank": 3,
-      "lastLogin": "2026-11-22T16:52:43.000Z",
+      "lastLogin": "2026-11-22T22:37:12.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T18:47:20.159Z"
     },
@@ -168,7 +168,7 @@
       "level": 34,
       "classId": 7,
       "rank": 2,
-      "lastLogin": "2026-11-22T07:02:30.000Z",
+      "lastLogin": "2026-11-22T22:25:32.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
@@ -208,7 +208,7 @@
       "level": 26,
       "classId": 2,
       "rank": 4,
-      "lastLogin": "2026-11-22T01:49:00.000Z",
+      "lastLogin": "2026-11-22T19:06:56.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -258,7 +258,7 @@
       "level": 36,
       "classId": 3,
       "rank": 2,
-      "lastLogin": "2026-11-22T04:37:57.000Z",
+      "lastLogin": "2026-11-22T20:32:11.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T17:11:55.849Z"
     },
@@ -275,12 +275,12 @@
     {
       "name": "Budman Budmane",
       "slug": "budman-budmane",
-      "level": 36,
+      "level": 37,
       "classId": 11,
       "rank": 5,
-      "lastLogin": "2026-11-22T05:50:54.000Z",
+      "lastLogin": "2026-11-22T21:17:21.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T21:17:21.000Z"
     },
     {
       "name": "Evil Zebra",
@@ -298,19 +298,19 @@
       "level": 28,
       "classId": 7,
       "rank": 5,
-      "lastLogin": "2026-11-21T22:04:22.000Z",
+      "lastLogin": "2026-11-22T23:15:05.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
     {
       "name": "Zen Fuzz",
       "slug": "zen-fuzz",
-      "level": 29,
+      "level": 30,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-22T17:30:20.000Z",
+      "lastLogin": "2026-11-22T22:05:38.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T17:11:55.849Z"
+      "lastLevelUp": "2026-11-22T22:05:38.000Z"
     },
     {
       "name": "Damelia Shadowbourn",
@@ -328,7 +328,7 @@
       "level": 43,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-22T14:52:22.000Z",
+      "lastLogin": "2026-11-22T22:38:04.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T18:47:20.159Z"
     },
@@ -385,12 +385,12 @@
     {
       "name": "Dunka Dunka",
       "slug": "dunka-dunka",
-      "level": 23,
+      "level": 24,
       "classId": 5,
       "rank": 2,
-      "lastLogin": "2026-11-20T09:04:42.000Z",
+      "lastLogin": "2026-11-22T23:26:09.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-22T23:26:09.000Z"
     },
     {
       "name": "Lunch Mcbox",
@@ -428,7 +428,7 @@
       "level": 10,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-22T14:39:16.000Z",
+      "lastLogin": "2026-11-22T22:43:58.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -438,12 +438,83 @@
       "level": 14,
       "classId": 3,
       "rank": 5,
-      "lastLogin": "2026-11-22T03:00:16.000Z",
+      "lastLogin": "2026-11-23T00:10:13.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-23T00:17:18.999Z",
+      "approx": true,
+      "after": "2026-11-22T18:47:20.159Z",
+      "name": "Chieph Beef",
+      "classId": 11,
+      "from": 54,
+      "to": 55
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T23:46:33.000Z",
+      "name": "Za Kk",
+      "classId": 8,
+      "from": 35,
+      "to": 36
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T23:26:09.000Z",
+      "name": "Dunka Dunka",
+      "classId": 5,
+      "from": 23,
+      "to": 24
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T22:28:47.000Z",
+      "name": "Bloolust Jadebreaker",
+      "classId": 7,
+      "from": 45,
+      "to": 46
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T22:05:38.000Z",
+      "name": "Zen Fuzz",
+      "classId": 8,
+      "from": 29,
+      "to": 30
+    },
+    {
+      "type": "level",
+      "at": "2026-11-22T21:17:21.000Z",
+      "name": "Budman Budmane",
+      "classId": 11,
+      "from": 36,
+      "to": 37
+    },
+    {
+      "type": "achievement",
+      "at": "2026-11-22T20:28:43.000Z",
+      "name": "Torcula Sinus",
+      "classId": 8,
+      "achievement": "Explore Un'Goro Crater"
+    },
+    {
+      "type": "achievement",
+      "at": "2026-11-22T18:52:00.000Z",
+      "name": "Ten Zion",
+      "classId": 2,
+      "achievement": "Experienced Spelunker"
+    },
+    {
+      "type": "achievement",
+      "at": "2026-11-22T18:52:00.000Z",
+      "name": "Ten Zien",
+      "classId": 8,
+      "achievement": "Experienced Spelunker"
+    },
     {
       "type": "level",
       "at": "2026-11-22T18:47:20.159Z",
@@ -673,14 +744,14 @@
       "Lionhart Tayrona": 14
     },
     "2026-11-22": {
-      "Za Kk": 35,
-      "Chieph Beef": 54,
+      "Za Kk": 36,
+      "Chieph Beef": 55,
       "Turb Low": 42,
       "Malanyr Malafjar": 23,
       "Mako Blade": 13,
       "Zet Blade": 53,
       "Lia Valentine": 53,
-      "Bloolust Jadebreaker": 45,
+      "Bloolust Jadebreaker": 46,
       "Bone Danger": 25,
       "Torcula Sinus": 52,
       "Goat Vanios": 23,
@@ -700,10 +771,10 @@
       "Glorg Mcgrubb": 12,
       "Mobak Mohunt": 36,
       "Blump Trickel": 27,
-      "Budman Budmane": 36,
+      "Budman Budmane": 37,
       "Evil Zebra": 47,
       "Hilla Kelkin": 28,
-      "Zen Fuzz": 29,
+      "Zen Fuzz": 30,
       "Damelia Shadowbourn": 17,
       "Ten Zion": 43,
       "Anz Zu": 13,
@@ -711,7 +782,7 @@
       "Rotted Mcrotface": 1,
       "Mooney Blightbane": 32,
       "Guy Numberone": 9,
-      "Dunka Dunka": 23,
+      "Dunka Dunka": 24,
       "Lunch Mcbox": 28,
       "Jeaph Redeemed": 9,
       "Yeti Wintermane": 12,
