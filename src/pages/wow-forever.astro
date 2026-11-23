@@ -10,6 +10,20 @@ const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 // Pre-launch survey (archived at the bottom of the page)
 const surveyClasses = Object.entries(classInterest).sort((a, b) => b[1] - a[1]);
 const maxSurvey = Math.max(...surveyClasses.map(([, n]) => n));
+
+// Where the herd is: characters per 10-level bracket, with the cap in its own column
+const brackets = r
+  ? [
+      ...Array.from({ length: Math.ceil(maxLevel / 10) }, (_, i) => {
+        const lo = Math.max(1, i * 10);
+        const hi = Math.min(maxLevel - 1, i * 10 + 9);
+        return { label: `${lo}–${hi}`, count: r.members.filter(m => m.level >= lo && m.level <= hi).length, cap: false };
+      }),
+      { label: `${maxLevel}`, count: r.atMax, cap: true },
+    ]
+  : [];
+const maxBracket = Math.max(1, ...brackets.map(b => b.count));
+const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[0]);
 ---
 
 <Layout title="WoW: Forever Roster" description="Every Goat Guild character in WoW: Forever: names, classes, levels, and who's climbing fastest.">
@@ -22,6 +36,33 @@ const maxSurvey = Math.max(...surveyClasses.map(([, n]) => n));
           Every goat in WoW: Forever, how high they've climbed, and who's leveling fastest this week.
         </p>
       </div>
+
+      {r && (
+        <div class="bg-midnight-700 rounded-xl border border-midnight-500 p-5 mb-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+            <h2 class="font-display text-xl font-semibold text-gray-100">Where the herd is</h2>
+            {busiest && busiest.count > 0 && (
+              <span class="text-sm text-gray-400">Most goats are in the {busiest.label} range.</span>
+            )}
+          </div>
+          <div class="flex items-end gap-2 sm:gap-3 h-36">
+            {brackets.map(b => (
+              <div class="flex-1 h-full flex flex-col items-center justify-end gap-1" title={`${b.count} at ${b.label}`}>
+                <span class={`text-xs font-mono ${b.cap ? 'text-accent-gold' : 'text-gray-300'}`}>{b.count}</span>
+                <div
+                  class={`w-full rounded-t ${b.cap ? 'bg-accent-gold' : 'bg-gradient-to-t from-amber-900/70 to-amber-500/70'}`}
+                  style={`height: ${b.count ? Math.max(4, (b.count / maxBracket) * 100) : 1}%`}
+                ></div>
+              </div>
+            ))}
+          </div>
+          <div class="flex gap-2 sm:gap-3 mt-2 border-t border-midnight-500 pt-2">
+            {brackets.map(b => (
+              <span class={`flex-1 text-center text-[10px] sm:text-xs ${b.cap ? 'text-accent-gold font-semibold' : 'text-gray-500'}`}>{b.label}</span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {r ? (
         <div class="grid lg:grid-cols-3 gap-8">

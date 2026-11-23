@@ -1,0 +1,99 @@
+---
+// "Near the summit": the goats within 10 levels of the WoW: Forever cap, drawn on a mountain.
+// Everything is computed from generated/forever-roster.json; nothing here is hand-written data.
+import { foreverRoster as r, classKey, nameClass } from '../data/foreverRoster';
+
+const maxLevel = r?.maxLevel ?? 60;
+const floor = maxLevel - 10;
+const contenders = (r?.members ?? []).filter(m => m.level >= floor).slice(0, 8);
+const atTop = contenders.filter(m => m.level >= maxLevel);
+const leader = contenders[0];
+
+// Raw hex so the SVG fill works without Tailwind (matches tailwind.config.mjs class colors)
+const HEX: Record<string, string> = {
+  warrior: '#C79C6E', paladin: '#F58CBA', hunter: '#ABD473', rogue: '#FFF569', priest: '#FFFFFF',
+  shaman: '#0070DE', mage: '#69CCF0', warlock: '#9482C9', druid: '#FF7D0A',
+};
+
+// Ridge runs from the base (floor level) to the peak (max level)
+const base = { x: 40, y: 150 };
+const peak = { x: 470, y: 30 };
+const seen: Record<number, number> = {};
+const markers = contenders.map(m => {
+  const t = Math.min(1, (m.level - floor) / (maxLevel - floor));
+  const stack = (seen[m.level] = (seen[m.level] ?? -1) + 1);
+  const x = base.x + (peak.x - base.x) * t;
+  const y = base.y + (peak.y - base.y) * t - 9 - stack * 15;
+  return { m, x, y, fill: HEX[classKey(m.classId) ?? ''] ?? '#d1d5db' };
+});
+
+const plural = (n: number, one: string, many: string) => (n === 1 ? one : many);
+let headline = '';
+if (atTop.length > 0) {
+  headline = `${atTop.length} ${plural(atTop.length, 'goat', 'goats')} at the summit.`;
+} else if (leader) {
+  const tied = contenders.filter(m => m.level === leader.level).length;
+  const gap = maxLevel - leader.level;
+  headline = `Nobody at ${maxLevel} yet. ${tied > 1 ? `${tied} goats are` : `${leader.name} is`} ${gap} ${plural(gap, 'level', 'levels')} short.`;
+}
+---
+
+{r && contenders.length > 0 && (
+  <div class="bg-midnight-800/80 rounded-xl border border-amber-700/30 overflow-hidden mb-6">
+    <div class="grid md:grid-cols-5">
+      <div class="md:col-span-3 relative">
+        <svg viewBox="0 0 520 165" class="w-full h-auto block" role="img" aria-label={`Goats within ten levels of ${maxLevel}, placed on a mountain by level`}>
+          <defs>
+            <linearGradient id="summit-sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2a1a08" stop-opacity="0.55" />
+              <stop offset="100%" stop-color="#12121f" stop-opacity="0" />
+            </linearGradient>
+            <linearGradient id="summit-rock" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4a4a70" />
+              <stop offset="100%" stop-color="#1a1a2e" />
+            </linearGradient>
+          </defs>
+          <rect width="520" height="165" fill="url(#summit-sky)" />
+          <!-- far range -->
+          <path d="M0 165 L70 110 L130 135 L210 80 L300 128 L360 95 L520 150 L520 165 Z" fill="#252542" opacity="0.6" />
+          <!-- the mountain -->
+          <path d={`M0 165 L${base.x} ${base.y} L${peak.x} ${peak.y} L520 120 L520 165 Z`} fill="url(#summit-rock)" />
+          <path d={`M${peak.x - 28} ${peak.y + 9} L${peak.x} ${peak.y} L${peak.x + 24} ${peak.y + 7} L${peak.x + 10} ${peak.y + 12} L${peak.x - 6} ${peak.y + 6} Z`} fill="#e5e7eb" opacity="0.85" />
+          <!-- level ticks along the ridge -->
+          {[floor, floor + 5].map(l => {
+            const t = (l - floor) / (maxLevel - floor);
+            const x = base.x + (peak.x - base.x) * t;
+            const y = base.y + (peak.y - base.y) * t;
+            return <text x={x + 6} y={y + 16} fill="#9ca3af" font-size="10" font-family="Inter, sans-serif">{l}</text>;
+          })}
+          <!-- flag at the cap -->
+          <line x1={peak.x} y1={peak.y} x2={peak.x} y2={peak.y - 24} stroke="#fbbf24" stroke-width="1.5" />
+          <path d={`M${peak.x} ${peak.y - 24} L${peak.x + 16} ${peak.y - 19} L${peak.x} ${peak.y - 14} Z`} fill="#fbbf24" />
+          <text x={peak.x - 6} y={peak.y - 16} text-anchor="end" fill="#fbbf24" font-size="11" font-weight="700" font-family="Cinzel, serif">{maxLevel}</text>
+          <!-- the goats -->
+          {markers.map(({ m, x, y, fill }) => (
+            <g>
+              <title>{`${m.name}, level ${m.level}`}</title>
+              <circle cx={x} cy={y} r="6" fill={fill} stroke="#0a0a12" stroke-width="2" />
+            </g>
+          ))}
+        </svg>
+      </div>
+      <div class="md:col-span-2 p-5 md:border-l border-t md:border-t-0 border-midnight-600">
+        <h3 class="font-display text-lg font-semibold text-gray-100">Near the summit</h3>
+        <p class="text-sm text-gray-400 mb-4">{headline}</p>
+        <ol class="space-y-1.5">
+          {contenders.map(m => (
+            <li class="flex items-center gap-2 text-sm">
+              <span class={`flex-1 truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
+              <span class={`font-mono ${m.level >= maxLevel ? 'text-accent-gold font-bold' : 'text-gray-200'}`}>{m.level}</span>
+              <span class="w-16 text-right text-xs text-gray-500">
+                {m.level >= maxLevel ? <span class="text-accent-gold">at the top</span> : `${maxLevel - m.level} to go`}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </div>
+)}
