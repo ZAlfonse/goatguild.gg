@@ -6,6 +6,7 @@ import NewsCard from '../components/NewsCard.astro';
 import ScheduleTable from '../components/ScheduleTable.astro';
 import BluePosts from '../components/BluePosts.astro';
 import ForeverLeveling from '../components/ForeverLeveling.astro';
+import SummitWatch from '../components/SummitWatch.astro';
 
 import { guild } from '../data/guild';
 import { currentTier, midnightS1Tier, twwTier, achievements } from '../data/progression';
@@ -174,6 +175,7 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
         The Climb to 60
       </h2>
       <p class="text-gray-400 mb-5">Everyone's leveling in WoW: Forever. Here's how the herd is doing.</p>
+      <SummitWatch />
       <ForeverLeveling />
     </section>
 
