@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T19:17:15.914Z",
+  "updatedAt": "2026-11-23T20:17:18.574Z",
   "maxLevel": 60,
   "members": [
     {
@@ -15,12 +15,12 @@
     {
       "name": "Chieph Beef",
       "slug": "chieph-beef",
-      "level": 57,
+      "level": 58,
       "classId": 11,
       "rank": 1,
       "lastLogin": "2026-11-23T05:59:04.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T07:17:19.836Z"
+      "lastLevelUp": "2026-11-23T20:17:18.574Z"
     },
     {
       "name": "Turb Low",
@@ -165,22 +165,22 @@
     {
       "name": "Gar Jon",
       "slug": "gar-jon",
-      "level": 34,
+      "level": 35,
       "classId": 7,
       "rank": 2,
       "lastLogin": "2026-11-23T18:59:34.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T17:11:55.849Z"
+      "lastLevelUp": "2026-11-23T20:17:18.574Z"
     },
     {
       "name": "Clo Vis",
       "slug": "clo-vis",
-      "level": 57,
+      "level": 58,
       "classId": 1,
       "rank": 2,
       "lastLogin": "2026-11-23T03:03:41.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T03:03:41.000Z"
+      "lastLevelUp": "2026-11-23T20:17:18.574Z"
     },
     {
       "name": "Hobo Magemon",
@@ -325,12 +325,12 @@
     {
       "name": "Ten Zion",
       "slug": "ten-zion",
-      "level": 44,
+      "level": 45,
       "classId": 2,
       "rank": 5,
       "lastLogin": "2026-11-23T16:22:01.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T06:34:43.000Z"
+      "lastLevelUp": "2026-11-23T20:17:18.574Z"
     },
     {
       "name": "Anz Zu",
@@ -444,6 +444,46 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-23T20:17:18.574Z",
+      "approx": true,
+      "after": "2026-11-23T19:17:15.914Z",
+      "name": "Chieph Beef",
+      "classId": 11,
+      "from": 57,
+      "to": 58
+    },
+    {
+      "type": "level",
+      "at": "2026-11-23T20:17:18.574Z",
+      "approx": true,
+      "after": "2026-11-23T19:17:15.914Z",
+      "name": "Gar Jon",
+      "classId": 7,
+      "from": 34,
+      "to": 35
+    },
+    {
+      "type": "level",
+      "at": "2026-11-23T20:17:18.574Z",
+      "approx": true,
+      "after": "2026-11-23T19:17:15.914Z",
+      "name": "Clo Vis",
+      "classId": 1,
+      "from": 57,
+      "to": 58
+    },
+    {
+      "type": "level",
+      "at": "2026-11-23T20:17:18.574Z",
+      "approx": true,
+      "after": "2026-11-23T19:17:15.914Z",
+      "name": "Ten Zion",
+      "classId": 2,
+      "from": 44,
+      "to": 45
+    },
     {
       "type": "level",
       "at": "2026-11-23T16:17:19.467Z",
@@ -963,7 +1003,7 @@
     },
     "2026-11-23": {
       "Za Kk": 36,
-      "Chieph Beef": 57,
+      "Chieph Beef": 58,
       "Turb Low": 43,
       "Malanyr Malafjar": 23,
       "Mako Blade": 13,
@@ -978,8 +1018,8 @@
       "Pryme Priest": 21,
       "Alder Stormhide": 36,
       "Zari Spiritwalker": 10,
-      "Gar Jon": 34,
-      "Clo Vis": 57,
+      "Gar Jon": 35,
+      "Clo Vis": 58,
       "Hobo Magemon": 32,
       "Mully Midrange": 57,
       "Kerry Goldhand": 26,
@@ -994,7 +1034,7 @@
       "Hilla Kelkin": 28,
       "Zen Fuzz": 31,
       "Damelia Shadowbourn": 17,
-      "Ten Zion": 44,
+      "Ten Zion": 45,
       "Anz Zu": 13,
       "Bustin Supreme": 1,
       "Rotted Mcrotface": 1,
