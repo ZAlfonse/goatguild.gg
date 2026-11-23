@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T13:17:21.945Z",
+  "updatedAt": "2026-11-23T14:17:21.823Z",
   "maxLevel": 60,
   "members": [
     {
@@ -188,7 +188,7 @@
       "level": 32,
       "classId": 8,
       "rank": 4,
-      "lastLogin": "2026-11-23T12:06:05.000Z",
+      "lastLogin": "2026-11-23T14:14:17.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-23T07:17:19.836Z"
     },
@@ -398,7 +398,7 @@
       "level": 28,
       "classId": 4,
       "rank": 4,
-      "lastLogin": "2026-11-22T12:07:54.000Z",
+      "lastLogin": "2026-11-23T13:43:54.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -444,6 +444,20 @@
     }
   ],
   "activity": [
+    {
+      "type": "achievement",
+      "at": "2026-11-23T14:11:10.000Z",
+      "name": "Hobo Magemon",
+      "classId": 8,
+      "achievement": "Explore The Barrens"
+    },
+    {
+      "type": "achievement",
+      "at": "2026-11-23T13:22:33.000Z",
+      "name": "Hobo Magemon",
+      "classId": 8,
+      "achievement": "Explore Mulgore"
+    },
     {
       "type": "level",
       "at": "2026-11-23T07:17:19.836Z",
