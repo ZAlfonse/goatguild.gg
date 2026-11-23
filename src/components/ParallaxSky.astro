@@ -17,10 +17,12 @@ interface Props {
   /** Moon height, 0-1 down the scene */
   moonHigh?: number;
   seed?: number;
+  /** Slow pixel fireworks over the far peaks, for occasions like the WoW anniversary */
+  fireworks?: boolean;
   class?: string;
 }
 
-const { artHeight = 180, goatAt = 0.83, moonAt = 0.79, moonHigh = 0.2, seed = 7, class: className = '' } = Astro.props;
+const { artHeight = 180, goatAt = 0.83, moonAt = 0.79, moonHigh = 0.2, seed = 7, fireworks = false, class: className = '' } = Astro.props;
 
 const W = 320;
 const H = artHeight;
@@ -171,6 +173,37 @@ const clouds = cloudShapes.map((shape, i) => {
   return d;
 });
 
+// --- Fireworks: stepped pixel bursts (center, a ring of rays, then scattered sparks) ---
+// Kept out of the moon's way and above the far ridge. Each burst gets its own slot in a
+// long cycle so only one or two are lit at a time.
+const fireworkColors = ['#FFC20E', '#FFA3B1', '#FFE7A8', '#FFC20E'];
+const fwSlots = [0.16, 0.36, 0.56, 0.3].map(f => (Math.abs(f - moonAt) < 0.1 ? f + 0.2 : f));
+const fireworkBursts = fireworks
+  ? fwSlots.map((fx, i) => {
+      const cx = Math.round(W * fx + between(-10, 10));
+      const cy = Math.round(between(H * 0.12, H * 0.3));
+      const rays: string[] = [];
+      const sparks: string[] = [];
+      // 8 directions; diagonals are single pixels so the burst stays on the grid
+      for (const [dx, dy] of [[0, -1], [1, 0], [0, 1], [-1, 0]]) {
+        for (const k of [2, 3]) rays.push(`M${cx + dx * k} ${cy + dy * k}h1v1h-1z`);
+        sparks.push(`M${cx + dx * 6} ${cy + dy * 6}h1v1h-1z`);
+      }
+      for (const [dx, dy] of [[1, -1], [1, 1], [-1, 1], [-1, -1]]) {
+        rays.push(`M${cx + dx * 2} ${cy + dy * 2}h1v1h-1z`);
+        sparks.push(`M${cx + dx * 4} ${cy + dy * 4}h1v1h-1z`, `M${cx + dx * 5} ${cy + dy * 3}h1v1h-1z`);
+      }
+      return {
+        cx,
+        cy,
+        color: fireworkColors[i % fireworkColors.length],
+        rays: rays.join(''),
+        sparks: sparks.join(''),
+        delay: i * 3.5,
+      };
+    })
+  : [];
+
 const svgProps = {
   viewBox: `0 0 ${W} ${H}`,
   preserveAspectRatio: 'xMidYMax slice',
@@ -194,6 +227,13 @@ const svgProps = {
       <path d={discRows(moonR + 6)} fill="#FFE7A8" opacity="0.06" />
       <path d={discRows(moonR + 3)} fill="#FFE7A8" opacity="0.1" />
       <path d={discRows(moonR)} fill="#FFE7A8" />
+      {fireworkBursts.map(fw => (
+        <g fill={fw.color}>
+          <rect class="fw fw-core" x={fw.cx} y={fw.cy} width="1" height="1" style={`animation-delay:${fw.delay}s`} />
+          <path class="fw fw-rays" d={fw.rays} style={`animation-delay:${fw.delay}s`} />
+          <path class="fw fw-sparks" d={fw.sparks} style={`animation-delay:${fw.delay}s`} />
+        </g>
+      ))}
       {craters.map(c => <path d={(() => { let d = ''; for (let dy = -c.r; dy <= c.r; dy++) { const h = Math.floor(Math.sqrt(c.r * c.r - dy * dy) + 0.3); d += `M${c.x - h} ${c.y + dy}h${h * 2 + 1}v1h${-(h * 2 + 1)}z`; } return d; })()} fill="#E9C77A" />)}
     </svg>
   </div>
@@ -254,8 +294,36 @@ const svgProps = {
     from { transform: translateX(-4%); }
     to { transform: translateX(4%); }
   }
+  /* Fireworks: a 14s cycle per burst. Core flashes, rays open, sparks linger and fade. */
+  .fw {
+    opacity: 0;
+    animation: 14s steps(1, end) infinite;
+  }
+  .fw-core { animation-name: fw-core; }
+  .fw-rays { animation-name: fw-rays; }
+  .fw-sparks { animation-name: fw-sparks; }
+  @keyframes fw-core {
+    0% { opacity: 1; }
+    3%, 100% { opacity: 0; }
+  }
+  @keyframes fw-rays {
+    0%, 2% { opacity: 0; }
+    3% { opacity: 1; }
+    7% { opacity: 0.5; }
+    10%, 100% { opacity: 0; }
+  }
+  @keyframes fw-sparks {
+    0%, 6% { opacity: 0; }
+    7% { opacity: 0.9; }
+    12% { opacity: 0.5; }
+    16% { opacity: 0.2; }
+    19%, 100% { opacity: 0; }
+  }
   @media (prefers-reduced-motion: reduce) {
-    .sparkle, .cloud-drift svg { animation: none; }
+    .sparkle, .cloud-drift svg, .fw { animation: none; }
+    /* Show the bursts as still decorations instead */
+    .fw-rays { opacity: 0.6; }
+    .fw-sparks { opacity: 0.35; }
   }
 </style>
 

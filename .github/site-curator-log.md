@@ -11,3 +11,10 @@ Newest entries at the bottom. One short entry per PR: date, what changed, why.
 - Added a "Near the summit" card (`SummitWatch.astro`) at the top of the homepage Climb to 60 section. It's an inline SVG mountain with every goat within 10 levels of the cap placed on the ridge by level in their class color, plus a list showing how many levels each has left. The headline is built from the data ("Nobody at 60 yet. 3 goats are 3 levels short." today). Once someone hits 60 it switches to a count of goats at the summit.
 - Added a "Where the herd is" level-bracket chart to the top of `/wow-forever` (1–9 through 50–59, with 60 in its own gold column).
 - Why: Chieph Beef, Clo Vis, and Mully Midrange are all at 57, so the first 60 is close. Retail is unchanged: the 3/9 Mythic shown on Raider.io is last season's Midnight S1, and there are no new kills. Possible next steps: a pinned Goat Bot post when the first goat reaches 60. Holiday and anniversary theming are still untouched.
+
+## 2026-11-23 (second run)
+- Added an optional `fireworks` prop to `ParallaxSky.astro`: four stepped pixel bursts (gold, snout pink, moon) over the far peaks. Each goes off in turn on a slow 14s cycle, kept clear of the moon. Under reduced motion they show as still, dim bursts. The homepage turns it on only while Blizzard's anniversary blue post is less than 45 days old, so it switches itself off.
+- Hero line under the tagline: "World of Warcraft turns 22 this month. The guild is older." The number comes from the post title. The second sentence only shows if `guild.founded` is before WoW's launch year.
+- New Goat Bot news post, "Two goats at 58" (Chieph Beef, Clo Vis; Mully Midrange at 57; 48 levels gained across 44 characters since tracking began Nov 21).
+- NewsCard's raid tag was still purple. It's now horn and moon.
+- Why: it's anniversary week (blue post, Nov 17), and the last run did charts, so this one is theming and news instead. Still nobody at 60. When someone gets there, pin a Goat Bot post. Thanksgiving theming is still untouched.

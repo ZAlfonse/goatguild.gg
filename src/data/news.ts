@@ -17,6 +17,14 @@ export interface NewsPost {
 
 export const news: NewsPost[] = [
   {
+    id: 'forever-two-at-58',
+    title: 'Two goats at 58',
+    date: '2026-11-23',
+    author: 'Goat Bot',
+    category: 'milestone',
+    summary: 'Chieph Beef and Clo Vis both reached 58 today. Mully Midrange is one behind at 57. Since roster tracking started on Nov 21, the herd has gained 48 levels across 44 characters. Nobody is at 60 yet.',
+  },
+  {
     id: 'venomous-abyss-aotc',
     title: 'Ahead of the Curve: The Venomous Abyss',
     date: '2026-10-06',
