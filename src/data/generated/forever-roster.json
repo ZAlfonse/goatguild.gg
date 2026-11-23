@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T15:17:19.099Z",
+  "updatedAt": "2026-11-23T16:17:19.467Z",
   "maxLevel": 60,
   "members": [
     {
@@ -328,7 +328,7 @@
       "level": 44,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-23T14:27:26.000Z",
+      "lastLogin": "2026-11-23T15:49:51.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-23T06:34:43.000Z"
     },
@@ -365,12 +365,12 @@
     {
       "name": "Mooney Blightbane",
       "slug": "mooney-blightbane",
-      "level": 32,
+      "level": 33,
       "classId": 5,
       "rank": 3,
       "lastLogin": "2026-11-20T19:49:15.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-23T16:17:19.467Z"
     },
     {
       "name": "Guy Numberone",
@@ -444,6 +444,16 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-23T16:17:19.467Z",
+      "approx": true,
+      "after": "2026-11-23T15:17:19.099Z",
+      "name": "Mooney Blightbane",
+      "classId": 5,
+      "from": 32,
+      "to": 33
+    },
     {
       "type": "achievement",
       "at": "2026-11-23T14:11:10.000Z",
@@ -988,7 +998,7 @@
       "Anz Zu": 13,
       "Bustin Supreme": 1,
       "Rotted Mcrotface": 1,
-      "Mooney Blightbane": 32,
+      "Mooney Blightbane": 33,
       "Guy Numberone": 9,
       "Dunka Dunka": 24,
       "Lunch Mcbox": 28,
