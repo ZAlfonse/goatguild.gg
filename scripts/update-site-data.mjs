@@ -16,6 +16,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'src/data/generated');
 const UA = 'goatguild.gg-site-updater/1.0';
+const CURATOR_NAME = 'Billidan Stormrage';
 
 const GUILD = { region: 'us', realm: 'mal-ganis', name: 'Goat Guild', display: 'Goat Guild' };
 const RAIDER_EXPANSIONS = [10, 11]; // TWW, Midnight. Add the next id when a new expansion launches.
@@ -176,7 +177,7 @@ async function updateRaider(newPosts) {
         id: `kill-${slug}-${diff}-${raid.killed[diff]}`,
         title,
         date: today(),
-        author: 'Goat Bot',
+        author: CURATOR_NAME,
         category: 'raid',
         summary,
         url: profile.profile_url,
@@ -374,7 +375,7 @@ async function updateForever(newPosts) {
       id: `forever-ding-${day}-${names.join('-').toLowerCase().replace(/[^a-z0-9-]/g, '')}`,
       title: `${list} reached level ${maxLevel}`,
       date: day,
-      author: 'Goat Bot',
+      author: CURATOR_NAME,
       category: 'milestone',
       summary: total === 1 ? `The first goat at the level cap in WoW: Forever.` : `That's ${total} goats at the level cap in WoW: Forever.`,
       auto: true,

@@ -6,6 +6,7 @@ export const guild = {
   founded: '1996',
   // What the guild is playing right now; shown in the homepage hero badge
   nowPlaying: 'WoW: Forever',
+  curatorName: 'Billidan Stormrage',
   tagline: 'Baaaaaaaaaaahhhhhhhhhhhhhh.',
   description: 'Translation: Currently leveling in WoW: Forever.',
   recruitmentStatus: 'Open', // 'Open', 'Closed', 'Limited'
