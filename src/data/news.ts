@@ -17,6 +17,15 @@ export interface NewsPost {
 
 export const news: NewsPost[] = [
   {
+    id: 'forever-first-60s',
+    title: 'First goats at the summit',
+    date: '2026-11-24',
+    author: 'Goat Bot',
+    category: 'milestone',
+    summary: 'Chieph Beef and Clo Vis reached level 60, the first of the herd to hit the cap in WoW: Forever. Mully Midrange is next at 57. Everyone else is still on the climb, and the summit has room.',
+    pinned: true,
+  },
+  {
     id: 'venomous-abyss-aotc',
     title: 'Ahead of the Curve: The Venomous Abyss',
     date: '2026-10-06',

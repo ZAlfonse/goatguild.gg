@@ -17,10 +17,14 @@ interface Props {
   /** Moon height, 0-1 down the scene */
   moonHigh?: number;
   seed?: number;
+  /** Slow pixel snowfall in front of the far mountains (seasonal) */
+  snow?: boolean;
+  /** Plant a small gold flag on the goat's peak (for a summit milestone) */
+  flag?: boolean;
   class?: string;
 }
 
-const { artHeight = 180, goatAt = 0.83, moonAt = 0.79, moonHigh = 0.2, seed = 7, class: className = '' } = Astro.props;
+const { artHeight = 180, goatAt = 0.83, moonAt = 0.79, moonHigh = 0.2, seed = 7, snow = false, flag = false, class: className = '' } = Astro.props;
 
 const W = 320;
 const H = artHeight;
@@ -157,6 +161,15 @@ goatSprite.forEach((row, y) => {
 });
 const eye = { x: goatLeft + (facingLeft ? goatW - 1 - 11 : 11), y: goatTop + 4 };
 
+// --- Summit flag: a pole behind the goat's tail with a stepped gold banner, two frames ---
+const flagX = goatX + (facingLeft ? 7 : -8);
+const flagDir = facingLeft ? 1 : -1;
+const flagTop = goatGround - 13;
+const flagFrames = [
+  ['######', '#######', '######', '####'],
+  ['#####', '######', '#######', '#####'],
+].map(rows => rows.map((row, y) => ({ x: flagDir > 0 ? flagX + 1 : flagX - row.length, y: flagTop + y, w: row.length })));
+
 // --- Clouds: a few flat pixel clouds ---
 const cloudShapes = [
   ['....######......', '..##########....', '################'],
@@ -170,6 +183,12 @@ const clouds = cloudShapes.map((shape, i) => {
   shape.forEach((row, y) => [...row].forEach((ch, x) => { if (ch === '#') d += `M${(cx + x) % W} ${cy + y}h1v1h-1z`; }));
   return d;
 });
+
+// --- Snow (after the clouds so the clouds don't move when snow is on): flakes over one scene height, drawn twice (stacked) so the fall can loop ---
+const flakes = (count: number) =>
+  Array.from({ length: count }, () => ({ x: Math.floor(rand() * W), y: Math.floor(rand() * H), tall: rand() < 0.2 }));
+const snowFar = snow ? flakes(Math.round(W * H * 0.0009)) : [];
+const snowNear = snow ? flakes(Math.round(W * H * 0.0004)) : [];
 
 const svgProps = {
   viewBox: `0 0 ${W} ${H}`,
@@ -212,6 +231,16 @@ const svgProps = {
     </svg>
   </div>
 
+  {snow && (
+    <div class="sky-layer" data-depth="0.3" data-drift="8">
+      <svg {...svgProps}>
+        <g class="snowfall" style={`--fall:${H}px;animation:snowfall 70s steps(${H}) infinite`} fill="#aab4e8" opacity="0.55">
+          {[0, -H].map(dy => snowFar.map(f => <rect x={f.x} y={f.y + dy} width="1" height="1" />))}
+        </g>
+      </svg>
+    </div>
+  )}
+
   <div class="sky-layer" data-depth="0.2" data-drift="10">
     <svg {...svgProps}>
       <path d={toPath(mid)} fill="#272d55" />
@@ -225,8 +254,29 @@ const svgProps = {
       <path d={toPath(near)} fill="#0b0e1c" transform="translate(0 1)" />
       <path d={goatPath} fill="#0b0e1c" />
       <rect x={eye.x} y={eye.y} width="1" height="1" fill="#FFC20E" />
+      {flag && (
+        <g>
+          <rect x={flagX} y={flagTop} width="1" height={goatGround - flagTop} fill="#9C5A3C" />
+          {flagFrames.map((frame, i) => (
+            <g class={`flag-frame flag-frame-${i}`} fill="#FFC20E">
+              {frame.map(r => <rect x={r.x} y={r.y} width={r.w} height="1" />)}
+              <rect x={frame[1].x + (flagDir > 0 ? 0 : frame[1].w - 2)} y={frame[1].y} width="2" height="1" fill="#B5850A" />
+            </g>
+          ))}
+        </g>
+      )}
     </svg>
   </div>
+
+  {snow && (
+    <div class="sky-layer" data-depth="0" data-drift="18">
+      <svg {...svgProps}>
+        <g class="snowfall" style={`--fall:${H}px;animation:snowfall 42s steps(${H}) infinite`} fill="#e8ecff" opacity="0.8">
+          {[0, -H].map(dy => snowNear.map(f => <rect x={f.x} y={f.y + dy} width="1" height={f.tall ? 2 : 1} />))}
+        </g>
+      </svg>
+    </div>
+  )}
 
   <div class="relative z-10" data-depth="0.3" data-fade>
     <slot />
@@ -254,8 +304,20 @@ const svgProps = {
     from { transform: translateX(-4%); }
     to { transform: translateX(4%); }
   }
+  /* Snow falls one scene height per loop, one art pixel at a time */
+  @keyframes snowfall {
+    from { transform: translateY(0); }
+    to { transform: translateY(var(--fall)); }
+  }
+  /* The summit flag swaps between two frames, slowly */
+  .flag-frame-0 { animation: flag-a 1.6s steps(1) infinite; }
+  .flag-frame-1 { animation: flag-b 1.6s steps(1) infinite; }
+  @keyframes flag-a { 0% { opacity: 1; } 50% { opacity: 0; } }
+  @keyframes flag-b { 0% { opacity: 0; } 50% { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) {
-    .sparkle, .cloud-drift svg { animation: none; }
+    .sparkle, .cloud-drift svg, .flag-frame-0 { animation: none; }
+    .snowfall { animation: none !important; }
+    .flag-frame-1 { animation: none; opacity: 0; }
   }
 </style>
 
