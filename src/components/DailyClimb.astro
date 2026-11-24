@@ -1,0 +1,89 @@
+---
+// "The daily climb": levels the herd gained each day, from the daily snapshots in
+// generated/forever-roster.json. Columns per day, then a short log of who did the climbing.
+import { foreverRoster as r, nameClass } from '../data/foreverRoster';
+
+const days = (r?.daily ?? []).slice(-14);
+const maxGain = Math.max(1, ...days.map(d => d.gained));
+const total = days.reduce((s, d) => s + d.gained, 0);
+const fmt = (day: string) =>
+  new Date(day + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+const best = days.filter(d => !d.partial).reduce<(typeof days)[number] | null>((a, d) => (!a || d.gained > a.gained ? d : a), null);
+const log = [...days].reverse().slice(0, 4);
+---
+
+{days.length > 0 && (
+  <div class="panel p-5 mb-10 reveal">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+      <h2 class="section-title text-xl">The daily climb</h2>
+      <span class="text-sm text-gray-400">
+        <span class="tabular-nums text-gray-200 font-medium">{total}</span> levels in {`${days.length} ${days.length === 1 ? 'day' : 'days'}`}.
+        {best && <> Best day so far: {fmt(best.day)}.</>}
+      </span>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-6">
+      <!-- Columns: one per day -->
+      <div class="md:col-span-3">
+        <div class="flex items-end gap-2 sm:gap-3 h-36">
+          {days.map(d => (
+            <div class="flex-1 h-full flex flex-col items-center justify-end gap-1" title={`${d.gained} levels on ${fmt(d.day)}${d.partial ? ' so far' : ''}`}>
+              {d.reachedCap.length > 0 && (
+                <svg viewBox="0 0 8 9" width="12" height="14" shape-rendering="crispEdges" aria-hidden="true">
+                  <rect x="1" y="0" width="1" height="9" fill="#FFE7A8" />
+                  <rect x="2" y="0" width="5" height="3" fill="#FFC20E" />
+                  <rect x="2" y="3" width="3" height="1" fill="#FFC20E" />
+                </svg>
+              )}
+              <span class={`text-xs tabular-nums font-medium ${d.partial ? 'text-gray-500' : 'text-gray-300'}`}>+{d.gained}</span>
+              <div
+                class={`w-full pixel-col ${d.partial ? 'climb-partial' : d.reachedCap.length ? 'bg-goat-gold' : 'bg-goat-gold-dark/80'}`}
+                style={`height: ${d.gained ? Math.max(4, (d.gained / maxGain) * 100) : 1}%`}
+              ></div>
+            </div>
+          ))}
+        </div>
+        <div class="flex gap-2 sm:gap-3 mt-2 border-t-2 border-midnight-600 pt-2">
+          {days.map(d => (
+            <span class="flex-1 text-center text-[10px] sm:text-xs tabular-nums text-gray-500 leading-tight">
+              {fmt(d.day)}{d.partial && <span class="block text-gray-600">so far</span>}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Log: newest day first -->
+      <ol class="md:col-span-2 space-y-3">
+        {log.map(d => (
+          <li class="panel panel-inset px-3 py-2.5 text-sm">
+            <div class="flex items-baseline justify-between gap-2">
+              <span class="font-pixel text-[10px] uppercase tracking-wider text-goat-moon">{fmt(d.day)}{d.partial && ' · so far'}</span>
+              <span class="text-xs text-gray-400"><span class="tabular-nums text-gray-200">+{d.gained}</span> across <span class="tabular-nums">{d.goats}</span> {d.goats === 1 ? 'goat' : 'goats'}</span>
+            </div>
+            {d.top.length > 0 ? (
+              <p class="mt-1 text-gray-400 truncate">
+                {d.top.map((t, i) => (
+                  <>{i > 0 && ', '}<span class={`font-medium ${nameClass(t.classId)}`}>{t.name}</span> <span class="tabular-nums text-emerald-400">+{t.gained}</span></>
+                ))}
+              </p>
+            ) : (
+              <p class="mt-1 text-gray-500">No levels. Grazing day.</p>
+            )}
+            {d.reachedCap.length > 0 && (
+              <p class="mt-1 text-goat-gold text-xs">Reached {r?.maxLevel}: {d.reachedCap.join(', ')}</p>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+)}
+
+<style>
+  /* Today's column is still filling in: stepped gold stripes instead of a solid fill */
+  .climb-partial {
+    background: repeating-linear-gradient(to top, #B5850A 0 4px, transparent 4px 7px);
+    outline: 2px solid #B5850A;
+    outline-offset: -2px;
+  }
+</style>

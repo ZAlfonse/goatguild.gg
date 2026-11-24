@@ -78,6 +78,40 @@ export interface RosterRow extends ForeverMember {
   gainedThisWeek: number;
 }
 
+export interface ClimbDay {
+  day: string; // YYYY-MM-DD (UTC, the day of the snapshot)
+  gained: number; // levels gained by the whole herd since the previous snapshot
+  goats: number; // how many characters gained at least one level
+  top: { name: string; classId: number | null; gained: number }[];
+  reachedCap: string[]; // names that hit the level cap that day
+  partial: boolean; // the day isn't over yet at the last sync
+}
+
+/** Levels gained per day, from consecutive daily snapshots in `history`. Newest last. */
+function dailyClimb(f: RosterFile): ClimbDay[] {
+  const history = f.history ?? {};
+  const days = Object.keys(history).sort();
+  const classOf = new Map(f.members.map(m => [m.name, m.classId]));
+  const today = f.updatedAt.slice(0, 10);
+  return days.slice(1).map((day, i) => {
+    const prev = history[days[i]];
+    const gains = Object.entries(history[day])
+      .map(([name, level]) => ({ name, classId: classOf.get(name) ?? null, gained: level - (prev[name] ?? level) }))
+      .filter(g => g.gained > 0)
+      .sort((a, b) => b.gained - a.gained || a.name.localeCompare(b.name));
+    return {
+      day,
+      gained: gains.reduce((s, g) => s + g.gained, 0),
+      goats: gains.length,
+      top: gains.slice(0, 3),
+      reachedCap: Object.entries(history[day])
+        .filter(([name, level]) => level >= f.maxLevel && (prev[name] ?? 0) < f.maxLevel)
+        .map(([name]) => name),
+      partial: day === today,
+    };
+  });
+}
+
 function build(f: RosterFile) {
   const maxLevel = f.maxLevel;
   const history = f.history ?? {};
@@ -105,6 +139,7 @@ function build(f: RosterFile) {
     levelsThisWeek: members.reduce((s, m) => s + m.gainedThisWeek, 0),
     climbers: members.filter(m => m.gainedThisWeek > 0).sort((a, b) => b.gainedThisWeek - a.gainedThisWeek).slice(0, 5),
     activity: (f.activity ?? []).slice(0, 50),
+    daily: dailyClimb(f),
   };
 }
 
