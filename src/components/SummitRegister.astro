@@ -1,0 +1,99 @@
+---
+// "Summit register": the logbook at the top of the climb. Every goat that reached the level cap,
+// in the order they arrived, plus who's close enough to sign next. Built from the activity feed
+// (level-ups to the cap), falling back to the daily snapshots when an arrival predates the feed.
+import { foreverRoster as r, nameClass, classKey, windowLabel } from '../data/foreverRoster';
+
+const maxLevel = r?.maxLevel ?? 60;
+const tz = 'America/New_York';
+const fmtIso = (iso: string) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: tz });
+const fmtDay = (day: string) =>
+  new Date(day + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+
+type Entry = { name: string; classId: number | null; date: string; sort: string; window?: string };
+const entries: Entry[] = [];
+if (r) {
+  const atCap = new Map(r.members.filter(m => m.level >= maxLevel).map(m => [m.name, m]));
+  for (const e of r.activity) {
+    if (e.type !== 'level' || e.to < maxLevel || !atCap.has(e.name) || entries.some(x => x.name === e.name)) continue;
+    entries.push({
+      name: e.name,
+      classId: e.classId,
+      date: fmtIso(e.at),
+      sort: e.at,
+      window: e.approx && e.after ? windowLabel(e.after, e.at) + ' ET' : undefined,
+    });
+  }
+  for (const d of r.daily) {
+    for (const name of d.reachedCap) {
+      if (!atCap.has(name) || entries.some(x => x.name === name)) continue;
+      entries.push({ name, classId: atCap.get(name)!.classId, date: fmtDay(d.day), sort: d.day + 'T23:59:59Z' });
+    }
+  }
+  // Anyone at the cap with no recorded arrival still gets a line, undated, at the end.
+  for (const m of atCap.values()) {
+    if (!entries.some(x => x.name === m.name)) entries.push({ name: m.name, classId: m.classId, date: '', sort: '9999' });
+  }
+  entries.sort((a, b) => a.sort.localeCompare(b.sort) || a.name.localeCompare(b.name));
+}
+
+// Arrivals in the same sync share a line number.
+let n = 0;
+const numbered = entries.map((e, i) => ({ ...e, no: i > 0 && entries[i - 1].sort === e.sort ? n : ++n }));
+
+const next = (r?.members ?? []).filter(m => m.level < maxLevel && m.level >= maxLevel - 3).slice(0, 3);
+const cap = (s: string | null) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : '');
+---
+
+{r && (
+  <div class="panel panel-gold p-5 reveal">
+    <div class="flex items-center gap-3 mb-4">
+      <svg viewBox="0 0 12 12" width="24" height="24" shape-rendering="crispEdges" aria-hidden="true" class="shrink-0">
+        <rect x="0" y="1" width="10" height="11" fill="#9C5A3C" />
+        <rect x="1" y="2" width="8" height="9" fill="#FFE7A8" />
+        <rect x="2" y="4" width="6" height="1" fill="#B5850A" />
+        <rect x="2" y="6" width="6" height="1" fill="#B5850A" />
+        <rect x="2" y="8" width="4" height="1" fill="#B5850A" />
+        <rect x="10" y="0" width="1" height="7" fill="#FFE7A8" />
+        <rect x="11" y="0" width="1" height="3" fill="#FFC20E" />
+      </svg>
+      <div>
+        <h2 class="font-display text-lg font-semibold text-goat-gold leading-tight">Summit register</h2>
+        <p class="text-xs text-gray-400">Signed on arrival at level {maxLevel}.</p>
+      </div>
+    </div>
+
+    {numbered.length > 0 ? (
+      <ol class="border-t-2 border-dashed border-midnight-500">
+        {numbered.map(e => (
+          <li class="flex items-baseline gap-3 py-2 border-b-2 border-dashed border-midnight-500 text-sm" title={e.window ? `Reached ${maxLevel} between ${e.window}` : undefined}>
+            <span class="w-6 shrink-0 text-right tabular-nums text-goat-gold-dark font-semibold">{e.no}.</span>
+            <span class="flex-1 min-w-0 truncate">
+              <span class={`font-medium ${nameClass(e.classId)}`}>{e.name}</span>
+              <span class="text-xs text-gray-500 ml-1">{cap(classKey(e.classId))}</span>
+            </span>
+            <span class="text-xs tabular-nums text-gray-400 shrink-0">{e.date || '–'}</span>
+          </li>
+        ))}
+      </ol>
+    ) : (
+      <p class="text-sm text-gray-400 border-t-2 border-dashed border-midnight-500 pt-3">No signatures yet. The pen is waiting.</p>
+    )}
+
+    {next.length > 0 && (
+      <div class="mt-4">
+        <p class="font-pixel text-[10px] uppercase tracking-wider text-goat-moon mb-2">Next to sign</p>
+        <ul class="space-y-1">
+          {next.map(m => (
+            <li class="flex items-baseline justify-between gap-2 text-sm">
+              <span class={`truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
+              <span class="text-xs text-gray-400 shrink-0">
+                <span class="tabular-nums text-gray-200">{maxLevel - m.level}</span> {maxLevel - m.level === 1 ? 'level' : 'levels'} to go
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+)}

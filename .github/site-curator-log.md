@@ -21,3 +21,10 @@ Newest entries at the bottom. One short entry per PR: date, what changed, why.
 - Added "The daily climb" (`DailyClimb.astro`) to `/wow-forever`, under "Where the herd is". It has one column per day for levels the herd gained, built from the daily `history` snapshots. A small gold pixel flag marks days when someone reached 60. Today's column is striped and labeled "so far". Next to it is a log of the last 4 days with the top 3 climbers and who reached the cap. `foreverRoster.ts` now exports `daily` (per-day gains, goats, top climbers, cap arrivals).
 - Fixed the pinned "First goats at the summit" post. It said Mully Midrange was at 57, but the snapshot has shown 58 since Nov 23.
 - Why: the day's hero and news work had already shipped, so this one adds data the site wasn't showing yet: the pace of the climb (+33 Nov 22, +28 Nov 23). Retail is unchanged. Possible next steps: when Mully reaches 60, unpin or update the summit post. Patch-day touch for Dec 1.
+
+## 2026-11-24 (third run)
+- Added a "Summit register" (`SummitRegister.astro`) to the top of the `/wow-forever` sidebar. It's a gold-edged logbook with a small pixel ledger-and-flag icon, listing every goat at 60 in the order they arrived (from level-up activity, falling back to the daily snapshots). Goats who arrived in the same sync share a line number. Under it, a "Next to sign" list of goats within 3 levels of the cap.
+- Added a "From Blizzard" section to `/wow-forever` with the 4 latest Forever blue posts, above the survey archive. Until now the roster page had no news.
+- Emptied `confirmedAtMax`: the Blizzard snapshot now reports Chieph Beef and Clo Vis at 60 itself.
+- Updated the pinned summit post: Mully Midrange is at 59 as of Nov 24, not 58.
+- Why: Mully went from 58 to 59 after the second run, and the API caught up on the first two 60s. Retail is unchanged: Raider.io crawled Nov 24 with no new kills. Possible next steps: when Mully reaches 60, update or unpin the summit post (the register fills in automatically). Patch-day touch for Dec 1.

@@ -27,7 +27,7 @@ interface RosterFile {
 }
 
 // Hand-confirmed level-cap names. Remove a name once Blizzard's generated snapshot catches up.
-export const confirmedAtMax = new Set(['Chieph Beef', 'Clo Vis']);
+export const confirmedAtMax = new Set<string>([]);
 
 // import.meta.glob returns {} instead of failing the build when the file is missing.
 const files = import.meta.glob<RosterFile>('./generated/forever-roster.json', { eager: true, import: 'default' });

@@ -22,7 +22,7 @@ export const news: NewsPost[] = [
     date: '2026-11-24',
     author: 'Billidan Stormrage',
     category: 'milestone',
-    summary: 'Chieph Beef and Clo Vis reached level 60, the first of the herd to hit the cap in WoW: Forever. Mully Midrange is next, at 58 as of Nov 23. Everyone else is still on the climb, and the summit has room.',
+    summary: 'Chieph Beef and Clo Vis reached level 60, the first of the herd to hit the cap in WoW: Forever. Mully Midrange is next, at 59 as of Nov 24. Everyone else is still on the climb, and the summit has room.',
     pinned: true,
   },
   {
