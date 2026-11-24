@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T12:17:27.917Z",
+  "updatedAt": "2026-11-24T13:17:23.079Z",
   "maxLevel": 60,
   "members": [
     {
@@ -328,7 +328,7 @@
       "level": 45,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-24T12:04:44.000Z",
+      "lastLogin": "2026-11-24T12:19:24.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-23T20:17:18.574Z"
     },
@@ -398,7 +398,7 @@
       "level": 28,
       "classId": 4,
       "rank": 4,
-      "lastLogin": "2026-11-23T20:31:19.000Z",
+      "lastLogin": "2026-11-24T12:18:30.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -428,7 +428,7 @@
       "level": 10,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-24T12:10:12.000Z",
+      "lastLogin": "2026-11-24T12:20:51.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
