@@ -1,37 +1,36 @@
 ---
-// "Near the summit": every goat from level 10 up, drawn on a mountain that runs from 10 to the
-// WoW: Forever cap. The list beside it is the top 8.
-// Everything is computed from generated/forever-roster.json; nothing here is hand-written data.
+// "Near the summit": every goat from level 10 up, drawn as a class sprite on a mountain that runs
+// from 10 to the WoW: Forever cap. The chart zooms and pans; names appear over heads when zoomed in.
+// The list beside it is the top 8. Everything comes from generated/forever-roster.json.
 import { foreverRoster as r, classKey, nameClass } from '../data/foreverRoster';
+import { renderSprite, CLASS_HEX, SPRITE_W, SPRITE_H } from '../data/classSprites';
 
 const maxLevel = r?.maxLevel ?? 60;
 const floor = 10;
 // Everyone on the mountain; the side list only shows the top 8
-const climbers = (r?.members ?? []).filter(m => m.level >= floor);
+const climbers = (r?.members ?? []).filter(m => (m.level ?? 0) >= floor);
 const contenders = climbers.slice(0, 8);
-const atTop = contenders.filter(m => m.level >= maxLevel);
+const atTop = contenders.filter(m => (m.level ?? 0) >= maxLevel);
 const leader = contenders[0];
 
-// Raw hex so the SVG fill works without Tailwind (matches tailwind.config.mjs class colors)
-const HEX: Record<string, string> = {
-  warrior: '#C79C6E', paladin: '#F58CBA', hunter: '#ABD473', rogue: '#FFF569', priest: '#FFFFFF',
-  shaman: '#0070DE', mage: '#69CCF0', warlock: '#9482C9', druid: '#FF7D0A',
+// Scene size in SVG units
+const VW = 520;
+const VH = 190;
+const base = { x: 40, y: 172 };
+const peak = { x: 470, y: 52 };
+
+// The slope is a staircase; keep its steps so goats can stand on them exactly
+const STEP = 6;
+const nSteps = Math.round((peak.x - base.x) / STEP);
+const stepX = Array.from({ length: nSteps + 1 }, (_, k) => Math.round(base.x + ((peak.x - base.x) * k) / nSteps));
+const stepY = Array.from({ length: nSteps + 1 }, (_, k) => Math.round(base.y + ((peak.y - base.y) * k) / nSteps));
+const groundAt = (x: number) => {
+  const k = stepX.findIndex(sx => sx >= x);
+  return k <= 0 ? base.y : stepY[k - 1];
 };
 
-// Ridge runs from the base (floor level) to the peak (max level)
-const base = { x: 40, y: 150 };
-const peak = { x: 470, y: 30 };
-const seen: Record<number, number> = {};
-const markers = climbers.map(m => {
-  const t = Math.min(1, (m.level - floor) / (maxLevel - floor));
-  const stack = (seen[m.level] = (seen[m.level] ?? -1) + 1);
-  const x = base.x + (peak.x - base.x) * t;
-  const y = base.y + (peak.y - base.y) * t - 7 - stack * 10;
-  return { m, x, y, fill: HEX[classKey(m.classId) ?? ''] ?? '#d1d5db' };
-});
-
 // Turn a polyline into a staircase so slopes read as pixel art
-const stairs = (pts: [number, number][], step = 6) => {
+const stairs = (pts: [number, number][], step = STEP) => {
   let d = `M${pts[0][0]} ${pts[0][1]}`;
   for (let i = 1; i < pts.length; i++) {
     const [x0, y0] = pts[i - 1];
@@ -43,8 +42,38 @@ const stairs = (pts: [number, number][], step = 6) => {
   }
   return d;
 };
-const farRange = stairs([[0, 165], [0, 140], [70, 110], [130, 135], [210, 80], [300, 128], [360, 95], [520, 150]]) + 'V165Z';
-const mountain = stairs([[0, 165], [0, base.y], [base.x, base.y], [peak.x, peak.y], [520, 120]]) + 'V165Z';
+const farRange = stairs([[0, VH], [0, 160], [70, 130], [130, 155], [210, 100], [300, 148], [360, 115], [VW, 170]]) + `V${VH}Z`;
+const mountain = stairs([[0, VH], [0, base.y], [base.x, base.y], [peak.x, peak.y], [VW, 140]]) + `V${VH}Z`;
+
+// One sprite per class, defined once and reused
+const spriteClasses = [...new Set(climbers.map(m => classKey(m.classId) ?? 'none'))];
+const sprites = spriteClasses.map(cls => ({ id: `gg-sprite-${cls}`, paths: renderSprite(cls === 'none' ? null : cls) }));
+
+// Place goats: by level along the slope, same-level goats side by side
+const byLevel: Record<number, number> = {};
+const counts: Record<number, number> = {};
+climbers.forEach(m => { counts[m.level!] = (counts[m.level!] ?? 0) + 1; });
+const goats = climbers
+  .map(m => {
+    const level = m.level!;
+    const t = Math.min(1, (level - floor) / (maxLevel - floor));
+    const j = (byLevel[level] = (byLevel[level] ?? -1) + 1);
+    const x = Math.round(base.x + (peak.x - base.x) * t + (j - (counts[level] - 1) / 2) * 6);
+    const ground = groundAt(x);
+    const cls = classKey(m.classId);
+    return {
+      m,
+      cx: x,
+      x: x - Math.floor(SPRITE_W / 2),
+      y: ground - SPRITE_H + 1,
+      headY: ground - SPRITE_H + 2,
+      sprite: `gg-sprite-${cls ?? 'none'}`,
+      color: (cls && CLASS_HEX[cls]) || '#d1d5db',
+    };
+  })
+  .sort((a, b) => a.cx - b.cx)
+  // name tags alternate between three heights so neighbors don't sit on each other
+  .map((g, i) => ({ ...g, tier: i % 3 }));
 
 const plural = (n: number, one: string, many: string) => (n === 1 ? one : many);
 let headline = '';
@@ -52,7 +81,7 @@ if (atTop.length > 0) {
   headline = `${atTop.length} ${plural(atTop.length, 'goat', 'goats')} at the summit.`;
 } else if (leader) {
   const tied = contenders.filter(m => m.level === leader.level).length;
-  const gap = maxLevel - leader.level;
+  const gap = maxLevel - (leader.level ?? 0);
   headline = `Nobody at ${maxLevel} yet. ${tied > 1 ? `${tied} goats are` : `${leader.name} is`} ${gap} ${plural(gap, 'level', 'levels')} short.`;
 }
 ---
@@ -60,18 +89,23 @@ if (atTop.length > 0) {
 {r && climbers.length > 0 && (
   <div class="panel panel-inset overflow-hidden mb-8">
     <div class="grid md:grid-cols-5">
-      <div class="md:col-span-3 relative bg-[#262c52]">
-        <svg viewBox="0 0 520 165" class="w-full h-auto block" shape-rendering="crispEdges" role="img" aria-label={`Goats level ${floor} and up, placed on a mountain by level`}>
-          <rect width="520" height="56" fill="#0c1022" />
-          <rect y="56" width="520" height="56" fill="#10142a" />
-          <rect y="112" width="520" height="53" fill="#141933" />
+      <div class="md:col-span-3 relative bg-[#262c52] summit" data-summit data-w={VW} data-h={VH}>
+        <svg viewBox={`0 0 ${VW} ${VH}`} class="w-full h-auto block select-none" shape-rendering="crispEdges" role="img" aria-label={`${climbers.length} goats level ${floor} and up, placed on a mountain by level`}>
+          <defs>
+            {sprites.map(s => (
+              <g id={s.id}>{s.paths.map(p => <path d={p.d} fill={p.fill} />)}</g>
+            ))}
+          </defs>
+          <rect width={VW} height="64" fill="#0c1022" />
+          <rect y="64" width={VW} height="64" fill="#10142a" />
+          <rect y="128" width={VW} height={VH - 128} fill="#141933" />
           <!-- far range -->
           <path d={farRange} fill="#1c2244" />
           <!-- the mountain, with a lit edge -->
           <path d={mountain} fill="#3a4170" />
           <path d={mountain} fill="#262c52" transform="translate(0 3)" />
           <!-- snowcap -->
-          <path d={`M${peak.x - 24}  ${peak.y + 9}h6v-3h6v-3h6v-3h12v3h6v3h6v3h-6v3h-12v-3h-12v3h-12z`} fill="#c7cdea" />
+          <path d={`M${peak.x - 24} ${peak.y + 9}h6v-3h6v-3h6v-3h12v3h6v3h6v3h-6v3h-12v-3h-12v3h-12z`} fill="#c7cdea" />
           <!-- level ticks along the ridge -->
           {Array.from({ length: Math.floor((maxLevel - floor) / 10) }, (_, i) => floor + i * 10).map(l => {
             const t = (l - floor) / (maxLevel - floor);
@@ -84,14 +118,28 @@ if (atTop.length > 0) {
           <path d={`M${peak.x + 1} ${peak.y - 24}h14v3h-4v3h4v3h-14z`} fill="#FFC20E" />
           <text x={peak.x - 6} y={peak.y - 14} text-anchor="end" fill="#FFC20E" font-size="12" font-weight="700" font-family="'Pixelify Sans', monospace">{maxLevel}</text>
           <!-- the goats -->
-          {markers.map(({ m, x, y, fill }) => (
-            <g>
-              <title>{`${m.name}, level ${m.level}`}</title>
-              <rect x={Math.round(x) - 5} y={Math.round(y) - 5} width="10" height="10" fill="#0b0e1c" />
-              <rect x={Math.round(x) - 3} y={Math.round(y) - 3} width="6" height="6" fill={fill} />
-            </g>
+          {goats.map(g => (
+            <use href={`#${g.sprite}`} x={g.x} y={g.y}>
+              <title>{`${g.m.name}, level ${g.m.level}`}</title>
+            </use>
           ))}
+          <!-- name tags, sized in screen pixels by the script below -->
+          <g class="summit-names" shape-rendering="auto">
+            {goats.map(g => (
+              <g class="summit-name" data-x={g.cx} data-y={g.headY} data-tier={g.tier}>
+                <line x1="0" y1="-2" x2="0" y2="-2" stroke={g.color} stroke-opacity="0.5" stroke-width="1" />
+                <text x="0" y="0" text-anchor="middle" fill={g.color}>{g.m.name}</text>
+              </g>
+            ))}
+          </g>
         </svg>
+
+        <div class="absolute top-2 left-2 flex gap-1">
+          <button type="button" class="summit-btn" data-zoom="in" aria-label="Zoom in">+</button>
+          <button type="button" class="summit-btn" data-zoom="out" aria-label="Zoom out">-</button>
+          <button type="button" class="summit-btn summit-reset" data-zoom="reset" aria-label="Reset zoom">Reset</button>
+        </div>
+        <p class="summit-hint absolute bottom-2 left-3 font-pixel text-[9px] uppercase tracking-wider text-gray-400 pointer-events-none">Zoom in for names</p>
       </div>
       <div class="md:col-span-2 p-5 md:border-l-2 border-t-2 md:border-t-0 border-midnight-600">
         <h3 class="section-title text-lg">Near the summit</h3>
@@ -100,9 +148,9 @@ if (atTop.length > 0) {
           {contenders.map(m => (
             <li class="flex items-center gap-2 text-sm">
               <span class={`flex-1 truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
-              <span class={`tabular-nums font-medium ${m.level >= maxLevel ? 'text-goat-gold font-bold' : 'text-gray-200'}`}>{m.level}</span>
+              <span class={`tabular-nums font-medium ${(m.level ?? 0) >= maxLevel ? 'text-goat-gold font-bold' : 'text-gray-200'}`}>{m.level}</span>
               <span class="w-16 text-right text-xs text-gray-500">
-                {m.level >= maxLevel ? <span class="text-goat-gold">at the top</span> : `${maxLevel - m.level} to go`}
+                {(m.level ?? 0) >= maxLevel ? <span class="text-goat-gold">at the top</span> : `${maxLevel - (m.level ?? 0)} to go`}
               </span>
             </li>
           ))}
@@ -111,3 +159,156 @@ if (atTop.length > 0) {
     </div>
   </div>
 )}
+
+<style>
+  .summit svg { touch-action: pan-y; }
+  .summit[data-zoomed] svg { touch-action: none; cursor: grab; }
+  .summit[data-dragging] svg { cursor: grabbing; }
+
+  .summit-names { display: none; }
+  .summit[data-names] .summit-names { display: inline; }
+  .summit[data-names] .summit-hint { opacity: 0; }
+  .summit-hint { transition: opacity 0.2s; }
+  .summit-name text {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    paint-order: stroke;
+    stroke: #0b0e1c;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+
+  .summit-btn {
+    @apply font-display text-sm leading-none text-gray-200 bg-midnight-800/90 hover:bg-midnight-600 hover:text-goat-gold
+      min-w-[26px] h-[26px] px-2 transition-colors;
+    box-shadow: 0 0 0 2px theme('colors.midnight.600');
+  }
+  .summit-reset { @apply text-xs hidden; }
+  .summit[data-zoomed] .summit-reset { @apply inline-block; }
+</style>
+
+<script>
+  // Zoom and pan by rewriting the SVG viewBox. Name tags are scaled by 1/(px per unit) so they
+  // stay 11px on screen at every zoom, and they only show once there is room to read them.
+  const TIER_PX = [10, 24, 38];
+  const NAMES_AT = 3.2; // screen px per SVG unit before names show
+
+  document.querySelectorAll<HTMLElement>('[data-summit]').forEach(root => {
+    const svg = root.querySelector('svg')!;
+    const W = Number(root.dataset.w);
+    const H = Number(root.dataset.h);
+    const names = [...root.querySelectorAll<SVGGElement>('.summit-name')].map(el => ({
+      el,
+      x: Number(el.dataset.x),
+      y: Number(el.dataset.y),
+      lift: TIER_PX[Number(el.dataset.tier)] ?? 10,
+      line: el.querySelector('line')!,
+      text: el.querySelector('text')!,
+    }));
+    names.forEach(n => {
+      n.line.setAttribute('y2', String(-n.lift + 3));
+      n.text.setAttribute('y', String(-n.lift));
+    });
+
+    let vb = { x: 0, y: 0, w: W, h: H };
+    const pxPerUnitAt1 = () => svg.getBoundingClientRect().width / W;
+    const maxZoom = () => Math.max(8, 9 / pxPerUnitAt1());
+
+    const apply = () => {
+      vb.w = Math.min(W, vb.w);
+      vb.h = vb.w * (H / W);
+      vb.x = Math.min(Math.max(0, vb.x), W - vb.w);
+      vb.y = Math.min(Math.max(0, vb.y), H - vb.h);
+      svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+      const zoom = W / vb.w;
+      const px = svg.getBoundingClientRect().width / vb.w;
+      root.toggleAttribute('data-zoomed', zoom > 1.01);
+      root.toggleAttribute('data-names', px >= NAMES_AT);
+      if (px >= NAMES_AT) {
+        const s = 1 / px;
+        for (const n of names) n.el.setAttribute('transform', `translate(${n.x} ${n.y}) scale(${s})`);
+      }
+    };
+
+    const toUnits = (clientX: number, clientY: number) => {
+      const rect = svg.getBoundingClientRect();
+      return { x: vb.x + ((clientX - rect.left) / rect.width) * vb.w, y: vb.y + ((clientY - rect.top) / rect.height) * vb.h };
+    };
+    const zoomAt = (factor: number, cx: number, cy: number) => {
+      const zoom = Math.min(maxZoom(), Math.max(1, (W / vb.w) * factor));
+      const w = W / zoom;
+      const h = w * (H / W);
+      vb = { x: cx - (cx - vb.x) * (w / vb.w), y: cy - (cy - vb.y) * (h / vb.h), w, h };
+      apply();
+    };
+    const center = () => ({ x: vb.x + vb.w / 2, y: vb.y + vb.h / 2 });
+
+    root.querySelectorAll<HTMLButtonElement>('[data-zoom]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const c = center();
+        if (btn.dataset.zoom === 'in') zoomAt(1.8, c.x, c.y);
+        else if (btn.dataset.zoom === 'out') zoomAt(1 / 1.8, c.x, c.y);
+        else { vb = { x: 0, y: 0, w: W, h: H }; apply(); }
+      });
+    });
+
+    // Ctrl/Cmd + wheel (and trackpad pinch, which arrives as ctrl+wheel) zooms; plain wheel scrolls the page
+    svg.addEventListener('wheel', e => {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      const p = toUnits(e.clientX, e.clientY);
+      zoomAt(Math.exp(-e.deltaY * 0.004), p.x, p.y);
+    }, { passive: false });
+
+    svg.addEventListener('dblclick', e => {
+      e.preventDefault();
+      const p = toUnits(e.clientX, e.clientY);
+      zoomAt(2, p.x, p.y);
+    });
+
+    // Drag to pan, two fingers to pinch
+    const pointers = new Map<number, { x: number; y: number }>();
+    let pinchDist = 0;
+    svg.addEventListener('pointerdown', e => {
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.size === 2) {
+        const [a, b] = [...pointers.values()];
+        pinchDist = Math.hypot(a.x - b.x, a.y - b.y);
+      }
+      if (root.hasAttribute('data-zoomed') || pointers.size === 2) {
+        svg.setPointerCapture(e.pointerId);
+        root.toggleAttribute('data-dragging', true);
+      }
+    });
+    svg.addEventListener('pointermove', e => {
+      const prev = pointers.get(e.pointerId);
+      if (!prev) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.size === 2) {
+        const [a, b] = [...pointers.values()];
+        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+        if (pinchDist > 0) {
+          const mid = toUnits((a.x + b.x) / 2, (a.y + b.y) / 2);
+          zoomAt(dist / pinchDist, mid.x, mid.y);
+        }
+        pinchDist = dist;
+      } else if (root.hasAttribute('data-zoomed') && svg.hasPointerCapture(e.pointerId)) {
+        const rect = svg.getBoundingClientRect();
+        vb.x -= ((e.clientX - prev.x) / rect.width) * vb.w;
+        vb.y -= ((e.clientY - prev.y) / rect.height) * vb.h;
+        apply();
+      }
+    });
+    const release = (e: PointerEvent) => {
+      pointers.delete(e.pointerId);
+      if (pointers.size < 2) pinchDist = 0;
+      if (pointers.size === 0) root.removeAttribute('data-dragging');
+    };
+    svg.addEventListener('pointerup', release);
+    svg.addEventListener('pointercancel', release);
+
+    window.addEventListener('resize', apply);
+    apply();
+  });
+</script>
