@@ -1,26 +1,26 @@
 {
-  "updatedAt": "2026-11-24T03:17:21.207Z",
+  "updatedAt": "2026-11-24T04:17:19.964Z",
   "maxLevel": 60,
   "members": [
     {
       "name": "Za Kk",
       "slug": "za-kk",
-      "level": 36,
+      "level": 37,
       "classId": 8,
-      "rank": 0,
+      "rank": 1,
       "lastLogin": "2026-11-24T03:02:16.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-22T23:46:33.000Z"
+      "lastLevelUp": "2026-11-24T04:17:19.964Z"
     },
     {
       "name": "Chieph Beef",
       "slug": "chieph-beef",
-      "level": 59,
+      "level": 60,
       "classId": 11,
-      "rank": 1,
+      "rank": 0,
       "lastLogin": "2026-11-24T02:21:53.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T00:17:19.318Z"
+      "lastLevelUp": "2026-11-24T04:17:19.964Z"
     },
     {
       "name": "Turb Low",
@@ -148,7 +148,7 @@
       "level": 37,
       "classId": 11,
       "rank": 5,
-      "lastLogin": "2026-11-23T20:29:28.000Z",
+      "lastLogin": "2026-11-24T04:00:07.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T00:17:19.318Z"
     },
@@ -175,12 +175,12 @@
     {
       "name": "Clo Vis",
       "slug": "clo-vis",
-      "level": 59,
+      "level": 60,
       "classId": 1,
-      "rank": 2,
+      "rank": 1,
       "lastLogin": "2026-11-24T02:58:26.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T00:17:19.318Z"
+      "lastLevelUp": "2026-11-24T04:17:19.964Z"
     },
     {
       "name": "Hobo Magemon",
@@ -195,12 +195,12 @@
     {
       "name": "Mully Midrange",
       "slug": "mully-midrange",
-      "level": 57,
+      "level": 58,
       "classId": 3,
       "rank": 3,
       "lastLogin": "2026-11-23T22:19:54.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T06:42:15.000Z"
+      "lastLevelUp": "2026-11-24T04:17:19.964Z"
     },
     {
       "name": "Kerry Goldhand",
@@ -255,12 +255,12 @@
     {
       "name": "Mobak Mohunt",
       "slug": "mobak-mohunt",
-      "level": 37,
+      "level": 38,
       "classId": 3,
       "rank": 2,
-      "lastLogin": "2026-11-23T16:18:55.000Z",
+      "lastLogin": "2026-11-24T03:37:12.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T02:52:08.000Z"
+      "lastLevelUp": "2026-11-24T03:37:12.000Z"
     },
     {
       "name": "Blump Trickel",
@@ -328,7 +328,7 @@
       "level": 45,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-23T21:36:31.000Z",
+      "lastLogin": "2026-11-24T03:59:48.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-23T20:17:18.574Z"
     },
@@ -385,12 +385,12 @@
     {
       "name": "Dunka Dunka",
       "slug": "dunka-dunka",
-      "level": 25,
+      "level": 27,
       "classId": 5,
       "rank": 2,
       "lastLogin": "2026-11-24T00:01:14.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T00:01:14.000Z"
+      "lastLevelUp": "2026-11-24T04:17:19.964Z"
     },
     {
       "name": "Lunch Mcbox",
@@ -444,6 +444,64 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-24T04:17:19.964Z",
+      "approx": true,
+      "after": "2026-11-24T03:17:21.207Z",
+      "name": "Za Kk",
+      "classId": 8,
+      "from": 36,
+      "to": 37
+    },
+    {
+      "type": "level",
+      "at": "2026-11-24T04:17:19.964Z",
+      "approx": true,
+      "after": "2026-11-24T03:17:21.207Z",
+      "name": "Chieph Beef",
+      "classId": 11,
+      "from": 59,
+      "to": 60
+    },
+    {
+      "type": "level",
+      "at": "2026-11-24T04:17:19.964Z",
+      "approx": true,
+      "after": "2026-11-24T03:17:21.207Z",
+      "name": "Clo Vis",
+      "classId": 1,
+      "from": 59,
+      "to": 60
+    },
+    {
+      "type": "level",
+      "at": "2026-11-24T04:17:19.964Z",
+      "approx": true,
+      "after": "2026-11-24T03:17:21.207Z",
+      "name": "Mully Midrange",
+      "classId": 3,
+      "from": 57,
+      "to": 58
+    },
+    {
+      "type": "level",
+      "at": "2026-11-24T04:17:19.964Z",
+      "approx": true,
+      "after": "2026-11-24T03:17:21.207Z",
+      "name": "Dunka Dunka",
+      "classId": 5,
+      "from": 25,
+      "to": 27
+    },
+    {
+      "type": "level",
+      "at": "2026-11-24T03:37:12.000Z",
+      "name": "Mobak Mohunt",
+      "classId": 3,
+      "from": 37,
+      "to": 38
+    },
     {
       "type": "achievement",
       "at": "2026-11-24T02:24:46.000Z",
@@ -1067,8 +1125,8 @@
       "Lionhart Tayrona": 15
     },
     "2026-11-23": {
-      "Za Kk": 36,
-      "Chieph Beef": 59,
+      "Za Kk": 37,
+      "Chieph Beef": 60,
       "Turb Low": 43,
       "Malanyr Malafjar": 23,
       "Mako Blade": 13,
@@ -1084,15 +1142,15 @@
       "Alder Stormhide": 37,
       "Zari Spiritwalker": 10,
       "Gar Jon": 35,
-      "Clo Vis": 59,
+      "Clo Vis": 60,
       "Hobo Magemon": 32,
-      "Mully Midrange": 57,
+      "Mully Midrange": 58,
       "Kerry Goldhand": 26,
       "Tensor Fang": 24,
       "Fillibuster Picklelord": 42,
       "Tommy Masala": 6,
       "Glorg Mcgrubb": 12,
-      "Mobak Mohunt": 37,
+      "Mobak Mohunt": 38,
       "Blump Trickel": 27,
       "Budman Budmane": 39,
       "Evil Zebra": 48,
@@ -1105,7 +1163,7 @@
       "Rotted Mcrotface": 1,
       "Mooney Blightbane": 33,
       "Guy Numberone": 9,
-      "Dunka Dunka": 25,
+      "Dunka Dunka": 27,
       "Lunch Mcbox": 28,
       "Jeaph Redeemed": 9,
       "Yeti Wintermane": 12,
