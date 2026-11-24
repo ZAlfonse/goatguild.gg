@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T07:17:20.630Z",
+  "updatedAt": "2026-11-24T08:17:20.623Z",
   "maxLevel": 60,
   "members": [
     {
@@ -95,12 +95,12 @@
     {
       "name": "Torcula Sinus",
       "slug": "torcula-sinus",
-      "level": 53,
+      "level": 54,
       "classId": 8,
       "rank": 5,
       "lastLogin": "2026-11-24T04:42:29.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T07:17:19.836Z"
+      "lastLevelUp": "2026-11-24T08:17:20.623Z"
     },
     {
       "name": "Goat Vanios",
@@ -125,12 +125,12 @@
     {
       "name": "Krazykiller Forever",
       "slug": "krazykiller-forever",
-      "level": 41,
+      "level": 42,
       "classId": 1,
       "rank": 3,
       "lastLogin": "2026-11-24T04:18:40.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T02:50:00.000Z"
+      "lastLevelUp": "2026-11-24T08:17:20.623Z"
     },
     {
       "name": "Pryme Priest",
@@ -185,12 +185,12 @@
     {
       "name": "Hobo Magemon",
       "slug": "hobo-magemon",
-      "level": 32,
+      "level": 33,
       "classId": 8,
       "rank": 4,
       "lastLogin": "2026-11-24T04:35:43.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T07:17:19.836Z"
+      "lastLevelUp": "2026-11-24T08:17:20.623Z"
     },
     {
       "name": "Mully Midrange",
@@ -405,12 +405,12 @@
     {
       "name": "Jeaph Redeemed",
       "slug": "jeaph-redeemed",
-      "level": 9,
+      "level": 11,
       "classId": 2,
       "rank": 5,
-      "lastLogin": null,
+      "lastLogin": "2026-11-24T06:01:45.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-24T08:17:20.623Z"
     },
     {
       "name": "Yeti Wintermane",
@@ -444,6 +444,46 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-24T08:17:20.623Z",
+      "approx": true,
+      "after": "2026-11-24T07:17:20.630Z",
+      "name": "Torcula Sinus",
+      "classId": 8,
+      "from": 53,
+      "to": 54
+    },
+    {
+      "type": "level",
+      "at": "2026-11-24T08:17:20.623Z",
+      "approx": true,
+      "after": "2026-11-24T07:17:20.630Z",
+      "name": "Krazykiller Forever",
+      "classId": 1,
+      "from": 41,
+      "to": 42
+    },
+    {
+      "type": "level",
+      "at": "2026-11-24T08:17:20.623Z",
+      "approx": true,
+      "after": "2026-11-24T07:17:20.630Z",
+      "name": "Hobo Magemon",
+      "classId": 8,
+      "from": 32,
+      "to": 33
+    },
+    {
+      "type": "level",
+      "at": "2026-11-24T08:17:20.623Z",
+      "approx": true,
+      "after": "2026-11-24T07:17:20.630Z",
+      "name": "Jeaph Redeemed",
+      "classId": 2,
+      "from": 9,
+      "to": 11
+    },
     {
       "type": "level",
       "at": "2026-11-24T04:17:19.964Z",
@@ -1180,16 +1220,16 @@
       "Lia Valentine": 54,
       "Bloolust Jadebreaker": 47,
       "Bone Danger": 25,
-      "Torcula Sinus": 53,
+      "Torcula Sinus": 54,
       "Goat Vanios": 23,
       "Thomans Zu": 23,
-      "Krazykiller Forever": 41,
+      "Krazykiller Forever": 42,
       "Pryme Priest": 21,
       "Alder Stormhide": 37,
       "Zari Spiritwalker": 10,
       "Gar Jon": 35,
       "Clo Vis": 60,
-      "Hobo Magemon": 32,
+      "Hobo Magemon": 33,
       "Mully Midrange": 58,
       "Kerry Goldhand": 26,
       "Tensor Fang": 24,
@@ -1211,7 +1251,7 @@
       "Guy Numberone": 9,
       "Dunka Dunka": 27,
       "Lunch Mcbox": 28,
-      "Jeaph Redeemed": 9,
+      "Jeaph Redeemed": 11,
       "Yeti Wintermane": 12,
       "Ten Zien": 10,
       "Lionhart Tayrona": 15
