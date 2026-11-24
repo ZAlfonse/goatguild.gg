@@ -1,11 +1,14 @@
 ---
-// "Near the summit": the goats within 10 levels of the WoW: Forever cap, drawn on a mountain.
+// "Near the summit": every goat from level 10 up, drawn on a mountain that runs from 10 to the
+// WoW: Forever cap. The list beside it is the top 8.
 // Everything is computed from generated/forever-roster.json; nothing here is hand-written data.
 import { foreverRoster as r, classKey, nameClass } from '../data/foreverRoster';
 
 const maxLevel = r?.maxLevel ?? 60;
-const floor = maxLevel - 10;
-const contenders = (r?.members ?? []).filter(m => m.level >= floor).slice(0, 8);
+const floor = 10;
+// Everyone on the mountain; the side list only shows the top 8
+const climbers = (r?.members ?? []).filter(m => m.level >= floor);
+const contenders = climbers.slice(0, 8);
 const atTop = contenders.filter(m => m.level >= maxLevel);
 const leader = contenders[0];
 
@@ -19,11 +22,11 @@ const HEX: Record<string, string> = {
 const base = { x: 40, y: 150 };
 const peak = { x: 470, y: 30 };
 const seen: Record<number, number> = {};
-const markers = contenders.map(m => {
+const markers = climbers.map(m => {
   const t = Math.min(1, (m.level - floor) / (maxLevel - floor));
   const stack = (seen[m.level] = (seen[m.level] ?? -1) + 1);
   const x = base.x + (peak.x - base.x) * t;
-  const y = base.y + (peak.y - base.y) * t - 9 - stack * 15;
+  const y = base.y + (peak.y - base.y) * t - 7 - stack * 10;
   return { m, x, y, fill: HEX[classKey(m.classId) ?? ''] ?? '#d1d5db' };
 });
 
@@ -54,11 +57,11 @@ if (atTop.length > 0) {
 }
 ---
 
-{r && contenders.length > 0 && (
+{r && climbers.length > 0 && (
   <div class="panel panel-inset overflow-hidden mb-8">
     <div class="grid md:grid-cols-5">
-      <div class="md:col-span-3 relative">
-        <svg viewBox="0 0 520 165" class="w-full h-auto block" shape-rendering="crispEdges" role="img" aria-label={`Goats within ten levels of ${maxLevel}, placed on a mountain by level`}>
+      <div class="md:col-span-3 relative bg-[#262c52]">
+        <svg viewBox="0 0 520 165" class="w-full h-auto block" shape-rendering="crispEdges" role="img" aria-label={`Goats level ${floor} and up, placed on a mountain by level`}>
           <rect width="520" height="56" fill="#0c1022" />
           <rect y="56" width="520" height="56" fill="#10142a" />
           <rect y="112" width="520" height="53" fill="#141933" />
@@ -70,7 +73,7 @@ if (atTop.length > 0) {
           <!-- snowcap -->
           <path d={`M${peak.x - 24}  ${peak.y + 9}h6v-3h6v-3h6v-3h12v3h6v3h6v3h-6v3h-12v-3h-12v3h-12z`} fill="#c7cdea" />
           <!-- level ticks along the ridge -->
-          {[floor, floor + 5].map(l => {
+          {Array.from({ length: Math.floor((maxLevel - floor) / 10) }, (_, i) => floor + i * 10).map(l => {
             const t = (l - floor) / (maxLevel - floor);
             const x = base.x + (peak.x - base.x) * t;
             const y = base.y + (peak.y - base.y) * t;
@@ -84,8 +87,8 @@ if (atTop.length > 0) {
           {markers.map(({ m, x, y, fill }) => (
             <g>
               <title>{`${m.name}, level ${m.level}`}</title>
-              <rect x={Math.round(x) - 6} y={Math.round(y) - 6} width="12" height="12" fill="#0b0e1c" />
-              <rect x={Math.round(x) - 4} y={Math.round(y) - 4} width="8" height="8" fill={fill} />
+              <rect x={Math.round(x) - 5} y={Math.round(y) - 5} width="10" height="10" fill="#0b0e1c" />
+              <rect x={Math.round(x) - 3} y={Math.round(y) - 3} width="6" height="6" fill={fill} />
             </g>
           ))}
         </svg>
