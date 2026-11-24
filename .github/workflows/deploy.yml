@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
   schedule:
     # Off the top of the hour on purpose: GitHub delays or drops :00 schedules under load.
-    - cron: '17 */3 * * *' # Every 3 hours at :17: refresh Raider.io / blue posts / Forever data
+    - cron: '17 * * * *' # Hourly at :17: refresh Raider.io / blue posts / Forever data
 
 permissions:
   contents: write # lets the daily run commit refreshed data back to main
