@@ -34,12 +34,6 @@ const FOREVER = {
   maxLevel: Number(process.env.FOREVER_MAX_LEVEL || 60),
 };
 
-// Temporary/manual level corrections. These are applied after the API snapshot and survive refreshes.
-const FOREVER_LEVEL_OVERRIDES = {
-  'Chieph Beef': 60,
-  'Clo Vis': 60,
-};
-
 // ---------- helpers ----------
 
 async function getJson(url, opts = {}) {
@@ -276,11 +270,10 @@ async function updateForever(newPosts) {
   const day = today();
   const current = roster.members.map((m) => {
     const c = m.character ?? m;
-    const name = [c.name, c.surname].filter(Boolean).join(' '); // "First Last" is unique per region
     return {
-      name,
+      name: [c.name, c.surname].filter(Boolean).join(' '), // "First Last" is unique per region
       slug: c.slug ?? [c.name, c.surname].filter(Boolean).join('-').toLowerCase(),
-      level: FOREVER_LEVEL_OVERRIDES[name] ?? c.level ?? null,
+      level: c.level ?? null,
       classId: c.playable_class?.id ?? null,
       rank: m.rank ?? null,
       lastLogin: null,
