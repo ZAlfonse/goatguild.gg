@@ -1,7 +1,15 @@
 {
-  "updatedAt": "2026-11-24T17:17:15.335Z",
+  "updatedAt": "2026-11-24T18:17:19.557Z",
   "source": "https://us.forums.blizzard.com/en/wow/groups/blizzard-tracker/posts.rss",
   "posts": [
+    {
+      "topicId": "2427978",
+      "title": "Don’t Miss the World of Warcraft: Forever Comic, “Al'Aketh Rising”",
+      "date": "2026-11-24T18:03:28.000Z",
+      "url": "https://us.forums.blizzard.com/en/wow/t/don%E2%80%99t-miss-the-world-of-warcraft-forever-comic-%E2%80%9Calaketh-rising%E2%80%9D/2427978",
+      "summary": "Join Constable Aonda of the Skyborne as she travels into a remote settlement in the shadow of a growing threat. To find out why, she plays along, but quickly finds herself overwhelmed by hidden agendas and fanatic…",
+      "game": "forever"
+    },
     {
       "topicId": "2403040",
       "title": "WoW: Forever Hotfixes - November 23, 2026",
@@ -112,14 +120,6 @@
       "date": "2026-11-12T17:46:04.000Z",
       "url": "https://us.forums.blizzard.com/en/wow/t/the-wow-forever-podcast-episode-7-turbo-nerds-lore-ing-out-ft-nobbel87-platinum-wow/2412856",
       "summary": "Turbo Nerds Lore-ing Out | Episode 7 - The WoW: Forever Podcast",
-      "game": "forever"
-    },
-    {
-      "topicId": "2408781",
-      "title": "PvP Faction Balance Updates - November 10",
-      "date": "2026-11-10T02:05:13.000Z",
-      "url": "https://us.forums.blizzard.com/en/wow/t/pvp-faction-balance-updates-november-10/2408781",
-      "summary": "It’s vitally important that the PvP rulesets in WoW: Forever have balanced factions where both factions vie for supremacy, creating memories of epic victories and stunning defeats that we all remember for years to come…",
       "game": "forever"
     }
   ]
