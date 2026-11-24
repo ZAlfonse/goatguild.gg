@@ -1,0 +1,22 @@
+---
+// A class goat sprite at a whole-pixel scale. Needs <ClassSpriteDefs> once on the page.
+import { SPRITE_W, SPRITE_H } from '../data/classSprites';
+
+interface Props {
+  cls: string | null;
+  /** Screen pixels per sprite pixel */
+  scale?: number;
+  prefix?: string;
+  class?: string;
+}
+const { cls, scale = 2, prefix = 'gg-class', class: className = '' } = Astro.props;
+---
+
+<svg
+  viewBox={`0 0 ${SPRITE_W} ${SPRITE_H}`}
+  width={SPRITE_W * scale}
+  height={SPRITE_H * scale}
+  shape-rendering="crispEdges"
+  class={`shrink-0 ${className}`}
+  aria-hidden="true"
+><use href={`#${prefix}-${cls ?? 'none'}`} /></svg>

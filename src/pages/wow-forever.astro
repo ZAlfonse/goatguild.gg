@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import ActivityFeed from '../components/ActivityFeed.astro';
 import ParallaxSky from '../components/ParallaxSky.astro';
+import ClassSprite from '../components/ClassSprite.astro';
+import ClassSpriteDefs from '../components/ClassSpriteDefs.astro';
 import { foreverRoster as r, nameClass, classKey, classBg, classText, timeAgo } from '../data/foreverRoster';
 import { classInterest, roleInterest, factionInterest, totalResponses } from '../data/wowForever';
 
@@ -28,6 +30,7 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
 ---
 
 <Layout title="WoW: Forever Roster" description="Every Goat Guild character in WoW: Forever: names, classes, levels, and who's climbing fastest.">
+  <ClassSpriteDefs />
   <ParallaxSky artHeight={96} goatAt={0.14} moonAt={0.86} moonHigh={0.34} seed={23} class="h-[400px] md:h-[440px] -mt-[67px]">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 md:pt-36 text-center">
       <p class="eyebrow mb-4">WoW: Forever</p>
@@ -92,11 +95,16 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
                   {r.members.map((m, i) => {
                     const cls = classKey(m.classId);
                     return (
-                      <tr class="border-b border-midnight-600/60 last:border-0 hover:bg-midnight-600/30 transition-colors">
+                      <tr class="group border-b border-midnight-600/60 last:border-0 hover:bg-midnight-600/30 transition-colors">
                         <td class="py-2 pl-5 pr-2 tabular-nums text-gray-600">{i + 1}</td>
                         <td class="py-2 px-2">
-                          <div class={`font-medium ${nameClass(m.classId)}`}>{m.name}</div>
-                          {cls && <div class="text-xs text-gray-500">{cap(cls)}</div>}
+                          <div class="flex items-center gap-3">
+                            <ClassSprite cls={cls} class="roster-goat" />
+                            <div class="min-w-0">
+                              <div class={`font-medium ${nameClass(m.classId)}`}>{m.name}</div>
+                              {cls && <div class="text-xs text-gray-500">{cap(cls)}</div>}
+                            </div>
+                          </div>
                         </td>
                         <td class="py-2 px-2">
                           <div class="flex items-center gap-2">
@@ -188,3 +196,18 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
     </div>
   </section>
 </Layout>
+
+<style is:global>
+  /* The goat hops once when you hover its row */
+  .group:hover .roster-goat { animation: roster-hop 0.45s steps(1, end); }
+  @keyframes roster-hop {
+    0%   { transform: translateY(0); }
+    25%  { transform: translateY(-3px); }
+    50%  { transform: translateY(-5px); }
+    75%  { transform: translateY(-2px); }
+    100% { transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .group:hover .roster-goat { animation: none; }
+  }
+</style>

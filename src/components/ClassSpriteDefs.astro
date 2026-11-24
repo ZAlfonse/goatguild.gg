@@ -1,0 +1,22 @@
+---
+// Defines the class sprites once per page so <ClassSprite> can reference them with <use>.
+// Kept out of the layout (positioned off-screen, not display:none, which breaks <use> in some browsers).
+import { renderSprite, CLASS_HEX } from '../data/classSprites';
+
+interface Props {
+  /** Must match the prefix passed to <ClassSprite> */
+  prefix?: string;
+}
+const { prefix = 'gg-class' } = Astro.props;
+const classes = [...Object.keys(CLASS_HEX), 'none'];
+---
+
+<svg width="0" height="0" class="absolute overflow-hidden" aria-hidden="true" focusable="false">
+  <defs>
+    {classes.map(cls => (
+      <g id={`${prefix}-${cls}`}>
+        {renderSprite(cls === 'none' ? null : cls).map(p => <path d={p.d} fill={p.fill} />)}
+      </g>
+    ))}
+  </defs>
+</svg>
