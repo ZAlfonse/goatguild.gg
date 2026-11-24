@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-24T01:17:17.551Z",
+  "updatedAt": "2026-11-24T02:17:19.244Z",
   "source": "https://us.forums.blizzard.com/en/wow/groups/blizzard-tracker/posts.rss",
   "posts": [
     {
       "topicId": "2403040",
-      "title": "WoW: Forever Hotfixes - November 20, 2026",
-      "date": "2026-11-21T00:18:29.000Z",
-      "url": "https://us.forums.blizzard.com/en/wow/t/wow-forever-hotfixes-november-20-2026/2403040/14",
-      "summary": "November 20, 2026 Classes Rogue Combat Blade Flurry will now correctly cause Shank’s damage to hit an additional target. Warlock Demonology Fixed a bug where the effects of the Demonic Aegis talent could be snapshotted…",
+      "title": "WoW: Forever Hotfixes - November 23, 2026",
+      "date": "2026-11-24T02:06:52.000Z",
+      "url": "https://us.forums.blizzard.com/en/wow/t/wow-forever-hotfixes-november-23-2026/2403040/15",
+      "summary": "November 23, 2026 Classes Druid The 4-piece Feralheart set for Druids now correctly grants 4 Energy regeneration every 1 second for 5 seconds. Priest Mind Vision should no longer proc effects. Shadow Fixed an issue where…",
       "game": "forever"
     },
     {
