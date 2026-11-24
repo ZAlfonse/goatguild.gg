@@ -59,10 +59,13 @@ const goats = climbers
     const t = Math.min(1, (level - floor) / (maxLevel - floor));
     const j = (byLevel[level] = (byLevel[level] ?? -1) + 1);
     const x = Math.round(base.x + (peak.x - base.x) * t + (j - (counts[level] - 1) / 2) * 6);
-    const ground = groundAt(x);
+    const summit = level >= maxLevel;
+    // Goats at the cap stand on the snowcap, which is flat at the peak's height
+    const ground = summit ? peak.y : groundAt(x);
     const cls = classKey(m.classId);
     return {
       m,
+      summit,
       cx: x,
       x: x - Math.floor(SPRITE_W / 2),
       y: ground - SPRITE_H + 1,
@@ -117,11 +120,13 @@ if (atTop.length > 0) {
           <rect x={peak.x - 1} y={peak.y - 24} width="2" height="24" fill="#FFC20E" />
           <path d={`M${peak.x + 1} ${peak.y - 24}h14v3h-4v3h4v3h-14z`} fill="#FFC20E" />
           <text x={peak.x - 6} y={peak.y - 14} text-anchor="end" fill="#FFC20E" font-size="12" font-weight="700" font-family="'Pixelify Sans', monospace">{maxLevel}</text>
-          <!-- the goats -->
+          <!-- the goats. Position on the group and animate the <use>: Firefox treats x/y on <use> as part of its transform -->
           {goats.map(g => (
-            <use href={`#${g.sprite}`} x={g.x} y={g.y}>
-              <title>{`${g.m.name}, level ${g.m.level}`}</title>
-            </use>
+            <g transform={`translate(${g.x} ${g.y})`}>
+              <use href={`#${g.sprite}`} class={g.summit ? 'summit-hop' : undefined} style={g.summit ? `animation-delay: -${(g.cx % 7) * 0.37}s` : undefined}>
+                <title>{`${g.m.name}, level ${g.m.level}`}</title>
+              </use>
+            </g>
           ))}
           <!-- name tags, sized in screen pixels by the script below -->
           <g class="summit-names" shape-rendering="auto">
@@ -186,6 +191,33 @@ if (atTop.length > 0) {
   }
   .summit-reset { @apply text-xs hidden; }
   .summit[data-zoomed] .summit-reset { @apply inline-block; }
+
+  /* Goats at the cap hop, turn around, and hop some more. Offset delays keep them out of sync. */
+  .summit-hop {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: summit-hop 2.6s steps(1, end) infinite;
+  }
+  @keyframes summit-hop {
+    0%   { transform: translateY(0); }
+    8%   { transform: translateY(-3px); }
+    14%  { transform: translateY(-6px); }
+    20%  { transform: translateY(-3px); }
+    26%  { transform: translateY(0); }
+    34%  { transform: translateY(-4px); }
+    40%  { transform: translateY(0); }
+    50%  { transform: scaleX(-1) translateY(0); }
+    58%  { transform: scaleX(-1) translateY(-3px); }
+    64%  { transform: scaleX(-1) translateY(-6px); }
+    70%  { transform: scaleX(-1) translateY(-3px); }
+    76%  { transform: scaleX(-1) translateY(0); }
+    84%  { transform: scaleX(-1) translateY(-4px); }
+    90%  { transform: scaleX(-1) translateY(0); }
+    100% { transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .summit-hop { animation: none; }
+  }
 </style>
 
 <script>
