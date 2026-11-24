@@ -26,6 +26,9 @@ interface RosterFile {
   history?: Record<string, Record<string, number>>; // day -> name -> level
 }
 
+// Hand-confirmed level-cap names. Remove a name once Blizzard's generated snapshot catches up.
+export const confirmedAtMax = new Set(['Chieph Beef', 'Clo Vis']);
+
 // import.meta.glob returns {} instead of failing the build when the file is missing.
 const files = import.meta.glob<RosterFile>('./generated/forever-roster.json', { eager: true, import: 'default' });
 const file = Object.values(files)[0] ?? null;
@@ -86,7 +89,10 @@ function build(f: RosterFile) {
 
   const members: RosterRow[] = f.members
     .filter((m): m is ForeverMember & { level: number } => m.level != null)
-    .map(m => ({ ...m, gainedThisWeek: Math.max(0, m.level - (base[m.name] ?? m.level)) }))
+    .map(m => {
+      const level = confirmedAtMax.has(m.name) ? maxLevel : m.level;
+      return { ...m, level, gainedThisWeek: Math.max(0, level - (base[m.name] ?? level)) };
+    })
     .sort((a, b) => b.level - a.level || a.name.localeCompare(b.name));
 
   return {
