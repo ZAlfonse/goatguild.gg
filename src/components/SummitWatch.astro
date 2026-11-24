@@ -253,12 +253,16 @@ if (atTop.length > 0) {
       });
     });
 
-    // Ctrl/Cmd + wheel (and trackpad pinch, which arrives as ctrl+wheel) zooms; plain wheel scrolls the page
+    // Scrolling over the chart zooms. At the zoom limits the scroll passes through to the page,
+    // so scrolling down past a zoomed-out chart (or up past a fully zoomed one) never gets stuck.
     svg.addEventListener('wheel', e => {
-      if (!e.ctrlKey && !e.metaKey) return;
+      // Firefox mouse wheels report lines, not pixels
+      const dy = Math.max(-120, Math.min(120, e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY));
+      const zoom = W / vb.w;
+      if ((dy > 0 && zoom <= 1.001) || (dy < 0 && zoom >= maxZoom() - 0.001)) return;
       e.preventDefault();
       const p = toUnits(e.clientX, e.clientY);
-      zoomAt(Math.exp(-e.deltaY * 0.004), p.x, p.y);
+      zoomAt(Math.exp(-dy * 0.004), p.x, p.y);
     }, { passive: false });
 
     svg.addEventListener('dblclick', e => {
