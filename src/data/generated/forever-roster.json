@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T02:22:41.539Z",
+  "updatedAt": "2026-11-24T03:17:21.207Z",
   "maxLevel": 60,
   "members": [
     {
@@ -8,7 +8,7 @@
       "level": 36,
       "classId": 8,
       "rank": 0,
-      "lastLogin": "2026-11-24T01:56:06.000Z",
+      "lastLogin": "2026-11-24T03:02:16.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-22T23:46:33.000Z"
     },
@@ -78,7 +78,7 @@
       "level": 47,
       "classId": 7,
       "rank": 2,
-      "lastLogin": "2026-11-23T23:22:26.000Z",
+      "lastLogin": "2026-11-24T03:03:23.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-23T07:17:19.836Z"
     },
@@ -178,7 +178,7 @@
       "level": 59,
       "classId": 1,
       "rank": 2,
-      "lastLogin": "2026-11-24T01:43:51.000Z",
+      "lastLogin": "2026-11-24T02:58:26.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T00:17:19.318Z"
     },
@@ -444,6 +444,13 @@
     }
   ],
   "activity": [
+    {
+      "type": "achievement",
+      "at": "2026-11-24T02:24:46.000Z",
+      "name": "Clo Vis",
+      "classId": 1,
+      "achievement": "Explore Mount Hyjal"
+    },
     {
       "type": "level",
       "at": "2026-11-24T00:17:19.318Z",
