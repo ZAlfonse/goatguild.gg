@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T17:17:20.890Z",
+  "updatedAt": "2026-11-25T18:17:20.245Z",
   "maxLevel": 60,
   "members": [
     {
@@ -148,7 +148,7 @@
       "level": 38,
       "classId": 11,
       "rank": 5,
-      "lastLogin": "2026-11-25T03:31:22.000Z",
+      "lastLogin": "2026-11-25T17:47:54.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T19:35:51.000Z"
     },
@@ -198,7 +198,7 @@
       "level": 60,
       "classId": 3,
       "rank": 3,
-      "lastLogin": "2026-11-25T07:18:22.000Z",
+      "lastLogin": "2026-11-25T17:48:40.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-25T04:17:17.147Z"
     },
@@ -328,7 +328,7 @@
       "level": 47,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-25T12:51:52.000Z",
+      "lastLogin": "2026-11-25T17:37:36.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-25T16:17:23.000Z"
     },
@@ -388,7 +388,7 @@
       "level": 31,
       "classId": 5,
       "rank": 2,
-      "lastLogin": "2026-11-25T04:41:55.000Z",
+      "lastLogin": "2026-11-25T17:22:48.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-25T08:17:17.257Z"
     },
@@ -398,7 +398,7 @@
       "level": 29,
       "classId": 4,
       "rank": 4,
-      "lastLogin": "2026-11-25T16:59:00.000Z",
+      "lastLogin": "2026-11-25T17:42:35.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T20:17:22.595Z"
     },
@@ -444,6 +444,13 @@
     }
   ],
   "activity": [
+    {
+      "type": "achievement",
+      "at": "2026-11-25T17:18:32.000Z",
+      "name": "Lunch Mcbox",
+      "classId": 4,
+      "achievement": "Explore Thousand Needles"
+    },
     {
       "type": "level",
       "at": "2026-11-25T16:17:23.000Z",
