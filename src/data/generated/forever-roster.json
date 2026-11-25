@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T23:29:44.736Z",
+  "updatedAt": "2026-11-25T00:17:23.274Z",
   "maxLevel": 60,
   "members": [
     {
@@ -48,7 +48,7 @@
       "level": 13,
       "classId": 4,
       "rank": 5,
-      "lastLogin": "2026-11-20T00:03:41.000Z",
+      "lastLogin": "2026-11-25T00:04:45.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -78,7 +78,7 @@
       "level": 47,
       "classId": 7,
       "rank": 2,
-      "lastLogin": "2026-11-24T21:11:44.000Z",
+      "lastLogin": "2026-11-24T23:37:09.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-23T07:17:19.836Z"
     },
@@ -165,12 +165,12 @@
     {
       "name": "Gar Jon",
       "slug": "gar-jon",
-      "level": 36,
+      "level": 37,
       "classId": 7,
       "rank": 2,
       "lastLogin": "2026-11-24T23:07:50.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T20:17:22.595Z"
+      "lastLevelUp": "2026-11-25T00:17:23.274Z"
     },
     {
       "name": "Clo Vis",
@@ -198,7 +198,7 @@
       "level": 59,
       "classId": 3,
       "rank": 3,
-      "lastLogin": "2026-11-24T05:41:14.000Z",
+      "lastLogin": "2026-11-24T23:38:06.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T20:17:22.595Z"
     },
@@ -235,12 +235,12 @@
     {
       "name": "Tommy Masala",
       "slug": "tommy-masala",
-      "level": 6,
+      "level": 8,
       "classId": 8,
       "rank": 5,
       "lastLogin": null,
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-25T00:17:23.274Z"
     },
     {
       "name": "Glorg Mcgrubb",
@@ -275,12 +275,12 @@
     {
       "name": "Budman Budmane",
       "slug": "budman-budmane",
-      "level": 40,
+      "level": 41,
       "classId": 11,
       "rank": 5,
       "lastLogin": "2026-11-24T21:45:01.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T19:37:34.000Z"
+      "lastLevelUp": "2026-11-25T00:17:23.274Z"
     },
     {
       "name": "Evil Zebra",
@@ -385,12 +385,12 @@
     {
       "name": "Dunka Dunka",
       "slug": "dunka-dunka",
-      "level": 28,
+      "level": 30,
       "classId": 5,
       "rank": 2,
       "lastLogin": "2026-11-24T23:11:30.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T20:17:22.595Z"
+      "lastLevelUp": "2026-11-25T00:17:23.274Z"
     },
     {
       "name": "Lunch Mcbox",
@@ -444,6 +444,46 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-25T00:17:23.274Z",
+      "approx": true,
+      "after": "2026-11-24T23:29:44.736Z",
+      "name": "Gar Jon",
+      "classId": 7,
+      "from": 36,
+      "to": 37
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T00:17:23.274Z",
+      "approx": true,
+      "after": "2026-11-24T23:29:44.736Z",
+      "name": "Tommy Masala",
+      "classId": 8,
+      "from": 6,
+      "to": 8
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T00:17:23.274Z",
+      "approx": true,
+      "after": "2026-11-24T23:29:44.736Z",
+      "name": "Budman Budmane",
+      "classId": 11,
+      "from": 40,
+      "to": 41
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T00:17:23.274Z",
+      "approx": true,
+      "after": "2026-11-24T23:29:44.736Z",
+      "name": "Dunka Dunka",
+      "classId": 5,
+      "from": 28,
+      "to": 30
+    },
     {
       "type": "level",
       "at": "2026-11-24T20:17:22.595Z",
@@ -1310,18 +1350,18 @@
       "Pryme Priest": 21,
       "Alder Stormhide": 38,
       "Zari Spiritwalker": 10,
-      "Gar Jon": 36,
+      "Gar Jon": 37,
       "Clo Vis": 60,
       "Hobo Magemon": 33,
       "Mully Midrange": 59,
       "Kerry Goldhand": 26,
       "Tensor Fang": 24,
       "Fillibuster Picklelord": 42,
-      "Tommy Masala": 6,
+      "Tommy Masala": 8,
       "Glorg Mcgrubb": 12,
       "Mobak Mohunt": 38,
       "Blump Trickel": 27,
-      "Budman Budmane": 40,
+      "Budman Budmane": 41,
       "Evil Zebra": 48,
       "Hilla Kelkin": 28,
       "Zen Fuzz": 31,
@@ -1332,7 +1372,7 @@
       "Rotted Mcrotface": 1,
       "Mooney Blightbane": 33,
       "Guy Numberone": 9,
-      "Dunka Dunka": 28,
+      "Dunka Dunka": 30,
       "Lunch Mcbox": 29,
       "Jeaph Redeemed": 11,
       "Yeti Wintermane": 12,
