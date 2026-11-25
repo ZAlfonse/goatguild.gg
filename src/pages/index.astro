@@ -12,6 +12,10 @@ import ParallaxSky from '../components/ParallaxSky.astro';
 import { guild } from '../data/guild';
 import { currentTier, midnightS1Tier, twwTier, achievements } from '../data/progression';
 import { allNews } from '../data/news';
+import { foreverRoster, nameClass } from '../data/foreverRoster';
+
+// Hero roll call: everyone at the WoW: Forever level cap, from the generated roster
+const summitGoats = (foreverRoster?.members ?? []).filter(m => m.level >= foreverRoster!.maxLevel);
 
 const pinnedNews = allNews.filter(n => n.pinned);
 const recentNews = allNews.filter(n => !n.pinned).slice(0, 4);
@@ -123,6 +127,24 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
       <p class="text-base md:text-lg text-gray-400 max-w-xl mx-auto mb-8">
         {guild.description}
       </p>
+
+      {summitGoats.length > 0 && (
+        <div class="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 bg-midnight-900/70 px-4 py-2.5 mb-8 panel text-sm" style="--panel: rgb(11 14 28 / 0.7)">
+          <span class="inline-flex items-center gap-2 font-pixel text-[10px] uppercase tracking-wider text-goat-moon">
+            <svg viewBox="0 0 7 9" width="14" height="18" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="0" y="0" width="1" height="9" fill="#9C5A3C" />
+              <rect x="1" y="0" width="5" height="1" fill="#FFC20E" />
+              <rect x="1" y="1" width="6" height="2" fill="#FFC20E" />
+              <rect x="1" y="3" width="4" height="1" fill="#FFC20E" />
+              <rect x="5" y="3" width="1" height="1" fill="#B5850A" />
+            </svg>
+            At level {foreverRoster!.maxLevel}
+          </span>
+          {summitGoats.map((m, i) => (
+            <span class={`font-medium ${nameClass(m.classId)}`}>{m.name}{i < summitGoats.length - 1 && <span class="text-gray-600 ml-3" aria-hidden="true">/</span>}</span>
+          ))}
+        </div>
+      )}
 
       {guild.recruitmentStatus !== 'Closed' && (
         <p class="text-gray-300 mb-8 text-sm md:text-base">
