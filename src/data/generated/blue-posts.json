@@ -1,7 +1,15 @@
 {
-  "updatedAt": "2026-11-25T00:17:22.726Z",
+  "updatedAt": "2026-11-25T01:17:18.765Z",
   "source": "https://us.forums.blizzard.com/en/wow/groups/blizzard-tracker/posts.rss",
   "posts": [
+    {
+      "topicId": "2382684",
+      "title": "World of Warcraft: Midnight Hotfixes - November 24",
+      "date": "2026-11-25T00:35:15.000Z",
+      "url": "https://us.forums.blizzard.com/en/wow/t/world-of-warcraft-midnight-hotfixes-november-24/2382684/175",
+      "summary": "November 24, 2026 Items Ascendant Venomstones will now drop in greater quantities depending on content difficulty. More details about this change will be shared in an upcoming article. Content Type Ascendant Venomstone…",
+      "game": "retail"
+    },
     {
       "topicId": "2427978",
       "title": "Don’t Miss the World of Warcraft: Forever Comic, “Al'Aketh Rising”",
@@ -112,14 +120,6 @@
       "date": "2026-11-13T18:02:13.000Z",
       "url": "https://us.forums.blizzard.com/en/wow/t/watch-the-wow-forever-short-story-%E2%80%9Ccost-of-honor%E2%80%9D/2414424",
       "summary": "Join Demar Brant for a special fireside telling of our newest short story to learn through tales of war, sacrifice, and hard choices, that the true strength of a people lies not in victory alone, but in the courage to…",
-      "game": "forever"
-    },
-    {
-      "topicId": "2412856",
-      "title": "The WoW Forever Podcast: Episode 7 - Turbo Nerds Lore-ing Out ft. @Nobbel87 & Platinum WoW",
-      "date": "2026-11-12T17:46:04.000Z",
-      "url": "https://us.forums.blizzard.com/en/wow/t/the-wow-forever-podcast-episode-7-turbo-nerds-lore-ing-out-ft-nobbel87-platinum-wow/2412856",
-      "summary": "Turbo Nerds Lore-ing Out | Episode 7 - The WoW: Forever Podcast",
       "game": "forever"
     }
   ]
