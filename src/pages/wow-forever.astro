@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ActivityFeed from '../components/ActivityFeed.astro';
 import DailyClimb from '../components/DailyClimb.astro';
+import ClassMix from '../components/ClassMix.astro';
 import SummitRegister from '../components/SummitRegister.astro';
 import BluePosts from '../components/BluePosts.astro';
 import ParallaxSky from '../components/ParallaxSky.astro';
@@ -75,6 +76,8 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
       )}
 
       <DailyClimb />
+
+      <ClassMix />
 
       {r ? (
         <div class="grid lg:grid-cols-3 gap-8">

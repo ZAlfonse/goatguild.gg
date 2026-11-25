@@ -1,0 +1,86 @@
+---
+// "Survey vs. the herd": how many characters each class has on the WoW: Forever roster,
+// next to how often the class was picked in the pre-launch survey. Bars are characters
+// rolled; the gold notch on each track marks survey picks on the same scale.
+// Needs <ClassSpriteDefs> on the page.
+import ClassSprite from './ClassSprite.astro';
+import { foreverRoster as r, classKey, classBg, classText } from '../data/foreverRoster';
+import { classInterest, totalResponses } from '../data/wowForever';
+
+const maxLevel = r?.maxLevel ?? 60;
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const CLASSES = ['warrior', 'paladin', 'hunter', 'rogue', 'priest', 'shaman', 'mage', 'warlock', 'druid'];
+
+const rows = r
+  ? CLASSES.map(cls => {
+      const goats = r.members.filter(m => classKey(m.classId) === cls);
+      return {
+        cls,
+        rolled: goats.length,
+        picked: classInterest[cls] ?? 0,
+        avg: goats.length ? Math.round(goats.reduce((s, m) => s + m.level, 0) / goats.length) : 0,
+        top: goats[0] ?? null, // members are already sorted by level
+      };
+    }).sort((a, b) => b.rolled - a.rolled || b.avg - a.avg || a.cls.localeCompare(b.cls))
+  : [];
+const scale = Math.max(1, ...rows.map(x => Math.max(x.rolled, x.picked)));
+
+// "Priest", "Mage and Shaman", "Mage, Paladin, and Shaman"
+const list = (names: string[]) =>
+  names.length <= 2 ? names.join(' and ') : `${names.slice(0, -1).join(', ')}, and ${names.at(-1)}`;
+const leaders = (key: 'rolled' | 'picked') => {
+  const best = Math.max(...rows.map(x => x[key]));
+  return rows.filter(x => x[key] === best).map(x => cap(x.cls)).sort();
+};
+const surveyTop = rows.length ? leaders('picked') : [];
+const herdTop = rows.length ? leaders('rolled') : [];
+const agreed = surveyTop.join() === herdTop.join();
+---
+
+{r && rows.length > 0 && (
+  <div class="panel p-5 mb-10 reveal">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+      <h2 class="section-title text-xl">Survey vs. the herd</h2>
+      <span class="text-sm text-gray-400">
+        {agreed
+          ? <>The survey picked {list(surveyTop)}, and the herd agreed.</>
+          : <>The survey picked {list(surveyTop)}. The herd rolled {list(herdTop)}.</>}
+      </span>
+    </div>
+    <p class="text-xs text-gray-500 mb-5">
+      Bars are characters on the roster. The gold notch is how often the class was picked by the {totalResponses} goats who answered the pre-launch survey, where more than one pick was allowed.
+    </p>
+
+    <div class="hidden sm:grid grid-cols-[8.5rem_1fr_3rem_3rem_9rem] gap-x-3 font-pixel text-[10px] uppercase tracking-wider text-gray-500 pb-2 border-b-2 border-midnight-600">
+      <span>Class</span>
+      <span>Rolled</span>
+      <span class="text-right">Picks</span>
+      <span class="text-right">Avg</span>
+      <span class="text-right">Highest</span>
+    </div>
+    <ul>
+      {rows.map(x => (
+        <li class="grid grid-cols-[7rem_1fr] sm:grid-cols-[8.5rem_1fr_3rem_3rem_9rem] items-center gap-x-3 gap-y-1 py-2 border-b border-midnight-600/60 last:border-0 text-sm">
+          <span class="flex items-center gap-2 min-w-0">
+            <ClassSprite cls={x.cls} />
+            <span class={`font-medium truncate ${classText[x.cls]}`}>{cap(x.cls)}</span>
+          </span>
+          <span class="relative flex items-center gap-2" title={`${x.rolled} rolled, ${x.picked} survey picks`}>
+            <span class="relative flex-1 pixel-track h-3">
+              <span class={`block pixel-fill ${classBg[x.cls]}`} style={`width: ${(x.rolled / scale) * 100}%`}></span>
+              <span class="absolute top-0 bottom-0 w-[3px] bg-goat-gold" style={`left: max(0px, calc(${(x.picked / scale) * 100}% - 3px))`} aria-hidden="true"></span>
+            </span>
+            <span class="w-5 text-right tabular-nums font-medium text-gray-100">{x.rolled}</span>
+          </span>
+          <span class="hidden sm:block text-right tabular-nums text-goat-gold">{x.picked}</span>
+          <span class="hidden sm:block text-right tabular-nums text-gray-300">{x.rolled ? x.avg : '–'}</span>
+          <span class="hidden sm:block text-right truncate text-xs text-gray-400">
+            {x.top ? (
+              <>{x.top.name} <span class={`tabular-nums ${x.top.level >= maxLevel ? 'text-goat-gold font-semibold' : 'text-gray-300'}`}>{x.top.level}</span></>
+            ) : '–'}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}

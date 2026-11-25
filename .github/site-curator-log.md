@@ -35,3 +35,9 @@ Newest entries at the bottom. One short entry per PR: date, what changed, why.
 - The Summit register's "Next to sign" list now shows the three closest goats below the cap at any distance. Before, it only counted goats within 3 levels, so it went empty once Mully reached 60.
 - Renamed the pinned post to "Three goats at the summit" and updated it: Mully Midrange reached 60 on Nov 24, and Zet Blade and Lia Valentine are next at 55.
 - Why: Mully reached 60 overnight, so the first three are all at the cap. Retail is unchanged: Raider.io last crawled Nov 24 and has no new kills. Thanksgiving (Nov 26) was left alone again. Possible next steps: unpin the summit post once the next wave arrives or it goes stale. Patch-day touch for Dec 1.
+
+## 2026-11-25 (second run)
+- Added "Survey vs. the herd" (`ClassMix.astro`) to `/wow-forever`, under "The daily climb". It has one row per class with a class sprite and a pixel bar for characters on the roster. A gold notch on the same bar marks how many pre-launch survey picks that class got. Wider screens also get columns for survey picks, average level, and the highest goat of each class. The headline is built from the data: "The survey picked Shaman. The herd rolled Priest." The survey data was only shown in the collapsed archive before.
+- Recent activity now shows achievements (exploration, Spelunker) in `goat-moon` instead of purple, since purple is off-palette.
+- Updated the pinned summit post. Lia Valentine reached 56 after the morning run, so she's next on her own, with Zet Blade at 55.
+- Why: the morning run already covered the hero and summit, so this run adds a different angle: what the herd actually rolled. Retail is unchanged: Raider.io last crawled Nov 24 and has no new kills. Possible next steps: unpin the summit post when the next goat reaches 60. Patch-day touch for Dec 1. `ClassRoster.astro` (retail Midnight comp) is unused and could be retired or reworked.
