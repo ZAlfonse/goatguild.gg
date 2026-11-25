@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T07:17:21.640Z",
+  "updatedAt": "2026-11-25T08:17:17.257Z",
   "maxLevel": 60,
   "members": [
     {
@@ -125,12 +125,12 @@
     {
       "name": "Krazykiller Forever",
       "slug": "krazykiller-forever",
-      "level": 42,
+      "level": 43,
       "classId": 1,
       "rank": 3,
       "lastLogin": "2026-11-25T04:46:04.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T08:17:20.623Z"
+      "lastLevelUp": "2026-11-25T08:17:17.257Z"
     },
     {
       "name": "Pryme Priest",
@@ -185,12 +185,12 @@
     {
       "name": "Hobo Magemon",
       "slug": "hobo-magemon",
-      "level": 33,
+      "level": 34,
       "classId": 8,
       "rank": 4,
       "lastLogin": "2026-11-25T04:35:00.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T08:17:20.623Z"
+      "lastLevelUp": "2026-11-25T08:17:17.257Z"
     },
     {
       "name": "Mully Midrange",
@@ -198,7 +198,7 @@
       "level": 60,
       "classId": 3,
       "rank": 3,
-      "lastLogin": "2026-11-24T23:38:06.000Z",
+      "lastLogin": "2026-11-25T07:18:22.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-25T04:17:17.147Z"
     },
@@ -385,12 +385,12 @@
     {
       "name": "Dunka Dunka",
       "slug": "dunka-dunka",
-      "level": 30,
+      "level": 31,
       "classId": 5,
       "rank": 2,
       "lastLogin": "2026-11-25T04:41:55.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T00:17:23.274Z"
+      "lastLevelUp": "2026-11-25T08:17:17.257Z"
     },
     {
       "name": "Lunch Mcbox",
@@ -444,6 +444,36 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-25T08:17:17.257Z",
+      "approx": true,
+      "after": "2026-11-25T07:17:21.640Z",
+      "name": "Krazykiller Forever",
+      "classId": 1,
+      "from": 42,
+      "to": 43
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T08:17:17.257Z",
+      "approx": true,
+      "after": "2026-11-25T07:17:21.640Z",
+      "name": "Hobo Magemon",
+      "classId": 8,
+      "from": 33,
+      "to": 34
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T08:17:17.257Z",
+      "approx": true,
+      "after": "2026-11-25T07:17:21.640Z",
+      "name": "Dunka Dunka",
+      "classId": 5,
+      "from": 30,
+      "to": 31
+    },
     {
       "type": "level",
       "at": "2026-11-25T04:17:17.147Z",
@@ -1473,13 +1503,13 @@
       "Torcula Sinus": 54,
       "Goat Vanios": 23,
       "Thomans Zu": 23,
-      "Krazykiller Forever": 42,
+      "Krazykiller Forever": 43,
       "Pryme Priest": 21,
       "Alder Stormhide": 38,
       "Zari Spiritwalker": 10,
       "Gar Jon": 37,
       "Clo Vis": 60,
-      "Hobo Magemon": 33,
+      "Hobo Magemon": 34,
       "Mully Midrange": 60,
       "Kerry Goldhand": 27,
       "Tensor Fang": 24,
@@ -1499,7 +1529,7 @@
       "Rotted Mcrotface": 1,
       "Mooney Blightbane": 33,
       "Guy Numberone": 9,
-      "Dunka Dunka": 30,
+      "Dunka Dunka": 31,
       "Lunch Mcbox": 29,
       "Jeaph Redeemed": 11,
       "Yeti Wintermane": 12,
