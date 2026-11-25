@@ -1,7 +1,15 @@
 {
-  "updatedAt": "2026-11-25T18:17:19.877Z",
+  "updatedAt": "2026-11-25T19:17:17.742Z",
   "source": "https://us.forums.blizzard.com/en/wow/groups/blizzard-tracker/posts.rss",
   "posts": [
+    {
+      "topicId": "2429007",
+      "title": "Balance Druid Adjustments - November 25",
+      "date": "2026-11-25T18:32:04.000Z",
+      "url": "https://us.forums.blizzard.com/en/wow/t/balance-druid-adjustments-november-25/2429007",
+      "summary": "With changes that are now live, we’ve adjusted Druid talents to improve the talent flow and experience for players as they’re leveling up Balance. Classes Druid Improved Wrath is now renamed Starlight Wrath. Starlight…",
+      "game": "retail"
+    },
     {
       "topicId": "2428989",
       "title": "Get More from World of Warcraft with the WoW Celebration Pass",
@@ -113,14 +121,6 @@
       "url": "https://us.forums.blizzard.com/en/wow/t/lost-training-purchase-refunds-november-13/2415068",
       "summary": "With in-game mail that has now gone out to all affected players, we have refunded the cost of skill purchases that were made on Monday, November 9 between 1:17 p.m. PST and 2:17 p.m. PST (8:17-9:17 a.m. on November 10…",
       "game": "forever"
-    },
-    {
-      "topicId": "2414817",
-      "title": "Raid Encounter Design in Season 3",
-      "date": "2026-11-13T21:36:41.000Z",
-      "url": "https://us.forums.blizzard.com/en/wow/t/raid-encounter-design-in-season-3/2414817",
-      "summary": "Last week we made several adjustments to The Venomous Abyss with the intent of reducing the number of damage events that could kill you or your entire raid with a single individual mistake. We believe this type of severe…",
-      "game": "retail"
     }
   ]
 }
