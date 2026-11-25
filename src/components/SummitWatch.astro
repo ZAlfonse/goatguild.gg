@@ -82,6 +82,15 @@ const plural = (n: number, one: string, many: string) => (n === 1 ? one : many);
 let headline = '';
 if (atTop.length > 0) {
   headline = `${atTop.length} ${plural(atTop.length, 'goat', 'goats')} at the summit.`;
+  // Who's next: everyone tied for the highest level below the cap
+  const below = climbers.filter(m => (m.level ?? 0) < maxLevel);
+  if (below.length > 0) {
+    const nextLevel = below[0].level ?? 0;
+    const tied = below.filter(m => m.level === nextLevel);
+    const gap = maxLevel - nextLevel;
+    const who = tied.length <= 2 ? tied.map(m => m.name).join(' and ') : `${tied.length} goats`;
+    headline += ` ${who} ${tied.length > 1 ? 'are' : 'is'} next, ${gap} ${plural(gap, 'level', 'levels')} short.`;
+  }
 } else if (leader) {
   const tied = contenders.filter(m => m.level === leader.level).length;
   const gap = maxLevel - (leader.level ?? 0);

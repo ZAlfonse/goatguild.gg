@@ -41,7 +41,8 @@ if (r) {
 let n = 0;
 const numbered = entries.map((e, i) => ({ ...e, no: i > 0 && entries[i - 1].sort === e.sort ? n : ++n }));
 
-const next = (r?.members ?? []).filter(m => m.level < maxLevel && m.level >= maxLevel - 3).slice(0, 3);
+// The three closest below the cap, however far off they are
+const next = (r?.members ?? []).filter(m => m.level < maxLevel).slice(0, 3);
 const cap = (s: string | null) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : '');
 ---
 

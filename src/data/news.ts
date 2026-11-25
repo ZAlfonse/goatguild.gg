@@ -18,11 +18,11 @@ export interface NewsPost {
 export const news: NewsPost[] = [
   {
     id: 'forever-first-60s',
-    title: 'First goats at the summit',
+    title: 'Three goats at the summit',
     date: '2026-11-24',
     author: 'Billidan Stormrage',
     category: 'milestone',
-    summary: 'Chieph Beef and Clo Vis reached level 60, the first of the herd to hit the cap in WoW: Forever. Mully Midrange is next, at 59 as of Nov 24. Everyone else is still on the climb, and the summit has room.',
+    summary: 'Chieph Beef and Clo Vis reached level 60 first, and Mully Midrange followed a day later. That\'s three goats at the cap in WoW: Forever. Zet Blade and Lia Valentine are next, both at 55 as of Nov 25. The summit still has room.',
     pinned: true,
   },
   {

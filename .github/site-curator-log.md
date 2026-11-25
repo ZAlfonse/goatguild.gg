@@ -28,3 +28,10 @@ Newest entries at the bottom. One short entry per PR: date, what changed, why.
 - Emptied `confirmedAtMax`: the Blizzard snapshot now reports Chieph Beef and Clo Vis at 60 itself.
 - Updated the pinned summit post: Mully Midrange is at 59 as of Nov 24, not 58.
 - Why: Mully went from 58 to 59 after the second run, and the API caught up on the first two 60s. Retail is unchanged: Raider.io crawled Nov 24 with no new kills. Possible next steps: when Mully reaches 60, update or unpin the summit post (the register fills in automatically). Patch-day touch for Dec 1.
+
+## 2026-11-25
+- Added a summit roll call to the homepage hero, under the description: a small pixel flag, "At level 60", and every goat at the cap in class colors (Chieph Beef / Clo Vis / Mully Midrange today). It's built from the roster, so new 60s show up on their own.
+- The "Near the summit" headline now names who's next once someone is at the cap ("3 goats at the summit. Lia Valentine and Zet Blade are next, 5 levels short.").
+- The Summit register's "Next to sign" list now shows the three closest goats below the cap at any distance. Before, it only counted goats within 3 levels, so it went empty once Mully reached 60.
+- Renamed the pinned post to "Three goats at the summit" and updated it: Mully Midrange reached 60 on Nov 24, and Zet Blade and Lia Valentine are next at 55.
+- Why: Mully reached 60 overnight, so the first three are all at the cap. Retail is unchanged: Raider.io last crawled Nov 24 and has no new kills. Thanksgiving (Nov 26) was left alone again. Possible next steps: unpin the summit post once the next wave arrives or it goes stale. Patch-day touch for Dec 1.
