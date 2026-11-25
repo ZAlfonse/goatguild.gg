@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T15:17:25.493Z",
+  "updatedAt": "2026-11-25T16:17:23.000Z",
   "maxLevel": 60,
   "members": [
     {
@@ -65,12 +65,12 @@
     {
       "name": "Lia Valentine",
       "slug": "lia-valentine",
-      "level": 55,
+      "level": 56,
       "classId": 3,
       "rank": 3,
       "lastLogin": "2026-11-25T10:00:48.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T04:17:17.147Z"
+      "lastLevelUp": "2026-11-25T16:17:23.000Z"
     },
     {
       "name": "Bloolust Jadebreaker",
@@ -325,12 +325,12 @@
     {
       "name": "Ten Zion",
       "slug": "ten-zion",
-      "level": 46,
+      "level": 47,
       "classId": 2,
       "rank": 5,
       "lastLogin": "2026-11-25T12:51:52.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T20:17:22.595Z"
+      "lastLevelUp": "2026-11-25T16:17:23.000Z"
     },
     {
       "name": "Anz Zu",
@@ -398,7 +398,7 @@
       "level": 29,
       "classId": 4,
       "rank": 4,
-      "lastLogin": "2026-11-25T14:01:34.000Z",
+      "lastLogin": "2026-11-25T15:25:45.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T20:17:22.595Z"
     },
@@ -444,6 +444,26 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-25T16:17:23.000Z",
+      "approx": true,
+      "after": "2026-11-25T15:17:25.493Z",
+      "name": "Lia Valentine",
+      "classId": 3,
+      "from": 55,
+      "to": 56
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T16:17:23.000Z",
+      "approx": true,
+      "after": "2026-11-25T15:17:25.493Z",
+      "name": "Ten Zion",
+      "classId": 2,
+      "from": 46,
+      "to": 47
+    },
     {
       "type": "level",
       "at": "2026-11-25T08:17:17.257Z",
@@ -1497,7 +1517,7 @@
       "Malanyr Malafjar": 23,
       "Mako Blade": 14,
       "Zet Blade": 55,
-      "Lia Valentine": 55,
+      "Lia Valentine": 56,
       "Bloolust Jadebreaker": 48,
       "Bone Danger": 25,
       "Torcula Sinus": 54,
@@ -1523,7 +1543,7 @@
       "Hilla Kelkin": 28,
       "Zen Fuzz": 31,
       "Damelia Shadowbourn": 17,
-      "Ten Zion": 46,
+      "Ten Zion": 47,
       "Anz Zu": 13,
       "Bustin Supreme": 1,
       "Rotted Mcrotface": 1,
