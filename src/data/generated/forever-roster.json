@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T03:17:20.387Z",
+  "updatedAt": "2026-11-25T04:17:17.147Z",
   "maxLevel": 60,
   "members": [
     {
@@ -25,12 +25,12 @@
     {
       "name": "Turb Low",
       "slug": "turb-low",
-      "level": 43,
+      "level": 44,
       "classId": 7,
       "rank": 4,
       "lastLogin": "2026-11-25T02:39:27.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T03:03:49.000Z"
+      "lastLevelUp": "2026-11-25T04:17:17.147Z"
     },
     {
       "name": "Malanyr Malafjar",
@@ -45,12 +45,12 @@
     {
       "name": "Mako Blade",
       "slug": "mako-blade",
-      "level": 13,
+      "level": 14,
       "classId": 4,
       "rank": 5,
       "lastLogin": "2026-11-25T00:04:45.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-25T04:17:17.147Z"
     },
     {
       "name": "Zet Blade",
@@ -65,22 +65,22 @@
     {
       "name": "Lia Valentine",
       "slug": "lia-valentine",
-      "level": 54,
+      "level": 55,
       "classId": 3,
       "rank": 3,
       "lastLogin": "2026-11-25T02:18:48.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T07:17:19.836Z"
+      "lastLevelUp": "2026-11-25T04:17:17.147Z"
     },
     {
       "name": "Bloolust Jadebreaker",
       "slug": "bloolust-jadebreaker",
-      "level": 47,
+      "level": 48,
       "classId": 7,
       "rank": 2,
-      "lastLogin": "2026-11-25T00:53:31.000Z",
+      "lastLogin": "2026-11-25T03:59:02.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T07:17:19.836Z"
+      "lastLevelUp": "2026-11-25T03:59:02.000Z"
     },
     {
       "name": "Bone Danger",
@@ -98,7 +98,7 @@
       "level": 54,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-24T04:42:29.000Z",
+      "lastLogin": "2026-11-25T04:04:57.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T08:17:20.623Z"
     },
@@ -128,7 +128,7 @@
       "level": 42,
       "classId": 1,
       "rank": 3,
-      "lastLogin": "2026-11-25T01:29:12.000Z",
+      "lastLogin": "2026-11-25T03:34:33.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T08:17:20.623Z"
     },
@@ -148,7 +148,7 @@
       "level": 38,
       "classId": 11,
       "rank": 5,
-      "lastLogin": "2026-11-25T01:33:18.000Z",
+      "lastLogin": "2026-11-25T03:31:22.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T19:35:51.000Z"
     },
@@ -195,22 +195,22 @@
     {
       "name": "Mully Midrange",
       "slug": "mully-midrange",
-      "level": 59,
+      "level": 60,
       "classId": 3,
       "rank": 3,
       "lastLogin": "2026-11-24T23:38:06.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T20:17:22.595Z"
+      "lastLevelUp": "2026-11-25T04:17:17.147Z"
     },
     {
       "name": "Kerry Goldhand",
       "slug": "kerry-goldhand",
-      "level": 26,
+      "level": 27,
       "classId": 2,
       "rank": 4,
-      "lastLogin": "2026-11-24T23:09:10.000Z",
+      "lastLogin": "2026-11-25T03:45:29.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-25T03:45:29.000Z"
     },
     {
       "name": "Tensor Fang",
@@ -255,12 +255,12 @@
     {
       "name": "Mobak Mohunt",
       "slug": "mobak-mohunt",
-      "level": 38,
+      "level": 39,
       "classId": 3,
       "rank": 2,
-      "lastLogin": "2026-11-24T22:19:54.000Z",
+      "lastLogin": "2026-11-25T04:00:44.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T03:37:12.000Z"
+      "lastLevelUp": "2026-11-25T04:00:44.000Z"
     },
     {
       "name": "Blump Trickel",
@@ -268,7 +268,7 @@
       "level": 27,
       "classId": 9,
       "rank": 5,
-      "lastLogin": "2026-11-18T02:58:25.000Z",
+      "lastLogin": "2026-11-25T03:35:46.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -435,15 +435,96 @@
     {
       "name": "Lionhart Tayrona",
       "slug": "lionhart-tayrona",
-      "level": 15,
+      "level": 16,
       "classId": 3,
       "rank": 5,
       "lastLogin": "2026-11-25T02:16:34.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-23T03:17:21.292Z"
+      "lastLevelUp": "2026-11-25T04:17:17.147Z"
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-25T04:17:17.147Z",
+      "approx": true,
+      "after": "2026-11-25T03:17:20.387Z",
+      "name": "Turb Low",
+      "classId": 7,
+      "from": 43,
+      "to": 44
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T04:17:17.147Z",
+      "approx": true,
+      "after": "2026-11-25T03:17:20.387Z",
+      "name": "Mako Blade",
+      "classId": 4,
+      "from": 13,
+      "to": 14
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T04:17:17.147Z",
+      "approx": true,
+      "after": "2026-11-25T03:17:20.387Z",
+      "name": "Lia Valentine",
+      "classId": 3,
+      "from": 54,
+      "to": 55
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T04:17:17.147Z",
+      "approx": true,
+      "after": "2026-11-25T03:17:20.387Z",
+      "name": "Mully Midrange",
+      "classId": 3,
+      "from": 59,
+      "to": 60
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T04:17:17.147Z",
+      "approx": true,
+      "after": "2026-11-25T03:17:20.387Z",
+      "name": "Lionhart Tayrona",
+      "classId": 3,
+      "from": 15,
+      "to": 16
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T04:00:44.000Z",
+      "name": "Mobak Mohunt",
+      "classId": 3,
+      "from": 38,
+      "to": 39
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T03:59:02.000Z",
+      "name": "Bloolust Jadebreaker",
+      "classId": 7,
+      "from": 47,
+      "to": 48
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T03:45:29.000Z",
+      "name": "Kerry Goldhand",
+      "classId": 2,
+      "from": 26,
+      "to": 27
+    },
+    {
+      "type": "achievement",
+      "at": "2026-11-25T03:44:49.000Z",
+      "name": "Bloolust Jadebreaker",
+      "classId": 7,
+      "achievement": "Explore Moonglade"
+    },
     {
       "type": "level",
       "at": "2026-11-25T00:17:23.274Z",
@@ -1336,12 +1417,12 @@
     "2026-11-24": {
       "Za Kk": 37,
       "Chieph Beef": 60,
-      "Turb Low": 43,
+      "Turb Low": 44,
       "Malanyr Malafjar": 23,
-      "Mako Blade": 13,
+      "Mako Blade": 14,
       "Zet Blade": 55,
-      "Lia Valentine": 54,
-      "Bloolust Jadebreaker": 47,
+      "Lia Valentine": 55,
+      "Bloolust Jadebreaker": 48,
       "Bone Danger": 25,
       "Torcula Sinus": 54,
       "Goat Vanios": 23,
@@ -1353,13 +1434,13 @@
       "Gar Jon": 37,
       "Clo Vis": 60,
       "Hobo Magemon": 33,
-      "Mully Midrange": 59,
-      "Kerry Goldhand": 26,
+      "Mully Midrange": 60,
+      "Kerry Goldhand": 27,
       "Tensor Fang": 24,
       "Fillibuster Picklelord": 42,
       "Tommy Masala": 8,
       "Glorg Mcgrubb": 12,
-      "Mobak Mohunt": 38,
+      "Mobak Mohunt": 39,
       "Blump Trickel": 27,
       "Budman Budmane": 41,
       "Evil Zebra": 48,
@@ -1377,7 +1458,7 @@
       "Jeaph Redeemed": 11,
       "Yeti Wintermane": 12,
       "Ten Zien": 10,
-      "Lionhart Tayrona": 15
+      "Lionhart Tayrona": 16
     }
   }
 }
