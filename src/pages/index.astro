@@ -7,6 +7,7 @@ import ScheduleTable from '../components/ScheduleTable.astro';
 import BluePosts from '../components/BluePosts.astro';
 import ForeverLeveling from '../components/ForeverLeveling.astro';
 import SummitWatch from '../components/SummitWatch.astro';
+import TrailLog from '../components/TrailLog.astro';
 import ParallaxSky from '../components/ParallaxSky.astro';
 
 import { guild } from '../data/guild';
@@ -21,6 +22,13 @@ const pinnedNews = allNews.filter(n => n.pinned);
 const recentNews = allNews.filter(n => !n.pinned).slice(0, 4);
 
 const nextRaidFormatted = new Date(guild.nextRaidDate + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+// US Thanksgiving (fourth Thursday of November, Eastern time): a small note in the hero, that day only
+const etParts = Object.fromEntries(
+  new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', year: 'numeric', month: 'numeric', day: 'numeric', weekday: 'short' })
+    .formatToParts(new Date()).map(p => [p.type, p.value]),
+);
+const isThanksgiving = etParts.month === '11' && etParts.weekday === 'Thu' && +etParts.day >= 22 && +etParts.day <= 28;
+
 // Don't advertise a raid date that has already passed
 const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(0, 10);
 ---
@@ -146,6 +154,20 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
         </div>
       )}
 
+      {isThanksgiving && (
+        <p class="flex items-center justify-center gap-2.5 text-sm text-gray-300 mb-6">
+          <svg viewBox="0 0 10 7" width="20" height="14" shape-rendering="crispEdges" aria-hidden="true" class="shrink-0">
+            <rect x="0" y="6" width="10" height="1" fill="#434c78" />
+            <rect x="1" y="3" width="8" height="3" fill="#B5850A" />
+            <rect x="2" y="2" width="6" height="1" fill="#FFC20E" />
+            <rect x="3" y="1" width="4" height="1" fill="#FFC20E" />
+            <rect x="2" y="4" width="6" height="1" fill="#9C5A3C" />
+            <rect x="4" y="0" width="1" height="1" fill="#FFE7A8" />
+          </svg>
+          Happy Thanksgiving from the herd. Pie first, then the climb.
+        </p>
+      )}
+
       {guild.recruitmentStatus !== 'Closed' && (
         <p class="text-gray-300 mb-8 text-sm md:text-base">
           <span class="tag bg-emerald-500/15 text-emerald-300 mr-2 align-middle">Recruiting</span>{guild.recruitmentNote}
@@ -184,6 +206,7 @@ const nextRaidIsUpcoming = guild.nextRaidDate >= new Date().toISOString().slice(
       <p class="text-gray-400 mb-6">Everyone's leveling in WoW: Forever. Here's how the herd is doing.</p>
       <SummitWatch />
       <ForeverLeveling />
+      <TrailLog />
     </section>
 
     <div class="grid lg:grid-cols-3 gap-10">

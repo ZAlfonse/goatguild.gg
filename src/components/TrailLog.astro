@@ -1,0 +1,97 @@
+---
+// "Trail log": zones the herd has explored and other achievements earned, from the activity feed.
+// Exploration achievements ("Explore Moonglade") are grouped by zone; everything else is listed below.
+import { foreverRoster as r, nameClass } from '../data/foreverRoster';
+
+const tz = 'America/New_York';
+const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: tz });
+
+type Who = { name: string; classId: number | null; at: string };
+const zones = new Map<string, Who[]>();
+const badges: (Who & { achievement: string })[] = [];
+
+for (const e of r?.achievements ?? []) {
+  const m = e.achievement.match(/^Explore (.+)$/);
+  if (m) {
+    const list = zones.get(m[1]) ?? [];
+    if (!list.some(w => w.name === e.name)) list.push({ name: e.name, classId: e.classId, at: e.at });
+    zones.set(m[1], list);
+  } else {
+    badges.push({ name: e.name, classId: e.classId, at: e.at, achievement: e.achievement });
+  }
+}
+
+// Newest first by latest visit; each zone lists its visitors oldest first.
+const zoneRows = [...zones.entries()]
+  .map(([zone, who]) => ({ zone, who: [...who].sort((a, b) => a.at.localeCompare(b.at)) }))
+  .map(z => ({ ...z, latest: z.who[z.who.length - 1].at }))
+  .sort((a, b) => b.latest.localeCompare(a.latest));
+
+const since = r?.activitySince ? fmt(r.activitySince) : null;
+const mostVisited = zoneRows.reduce<(typeof zoneRows)[number] | null>((a, z) => (!a || z.who.length > a.who.length ? z : a), null);
+const headline =
+  zoneRows.length === 0
+    ? null
+    : `${zoneRows.length} ${zoneRows.length === 1 ? 'zone' : 'zones'} mapped${since ? ` since ${since}` : ''}.` +
+      (mostVisited && mostVisited.who.length > 1 ? ` ${mostVisited.zone} has had ${mostVisited.who.length} visitors.` : '');
+---
+
+{r && (zoneRows.length > 0 || badges.length > 0) && (
+  <div class="panel p-5 md:p-6 mt-6 reveal">
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+      <div class="flex items-center gap-3">
+        <svg viewBox="0 0 12 12" width="24" height="24" shape-rendering="crispEdges" aria-hidden="true" class="shrink-0">
+          <rect x="5" y="1" width="2" height="11" fill="#9C5A3C" />
+          <rect x="1" y="2" width="8" height="3" fill="#FFC20E" />
+          <rect x="9" y="3" width="1" height="1" fill="#FFC20E" />
+          <rect x="2" y="3" width="5" height="1" fill="#B5850A" />
+          <rect x="3" y="6" width="8" height="3" fill="#FFE7A8" />
+          <rect x="2" y="7" width="1" height="1" fill="#FFE7A8" />
+          <rect x="5" y="7" width="5" height="1" fill="#9C5A3C" />
+          <rect x="3" y="11" width="6" height="1" fill="#2d3559" />
+        </svg>
+        <div>
+          <h3 class="font-display text-xl font-semibold text-gray-100 leading-tight">Trail log</h3>
+          <p class="text-xs text-gray-400">Where the herd wandered between level-ups.</p>
+        </div>
+      </div>
+      {headline && <p class="text-sm text-gray-300">{headline}</p>}
+    </div>
+
+    {zoneRows.length > 0 && (
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {zoneRows.map(z => (
+          <li class="panel panel-inset px-4 py-3">
+            <div class="flex items-baseline justify-between gap-2 mb-1">
+              <span class="flex items-center gap-2 min-w-0">
+                <span class="h-2 w-2 shrink-0 bg-goat-moon" aria-hidden="true"></span>
+                <span class="font-display text-goat-moon truncate">{z.zone}</span>
+              </span>
+              <time class="text-xs tabular-nums text-gray-500 shrink-0" datetime={z.latest}>{fmt(z.latest)}</time>
+            </div>
+            <p class="text-sm text-gray-400 pl-4">
+              {z.who.map((w, i) => (
+                <><span class={`font-medium ${nameClass(w.classId)}`}>{w.name}</span>{i < z.who.length - 1 && <span class="text-gray-600">, </span>}</>
+              ))}
+            </p>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {badges.length > 0 && (
+      <div class="mt-5 pt-4 border-t-2 border-dashed border-midnight-600">
+        <p class="font-pixel text-[10px] uppercase tracking-wider text-goat-moon mb-2">Also earned</p>
+        <ul class="flex flex-wrap gap-x-6 gap-y-1.5 text-sm">
+          {badges.map(b => (
+            <li class="text-gray-400">
+              <span class={`font-medium ${nameClass(b.classId)}`}>{b.name}</span>
+              <span class="text-gray-300"> {b.achievement}</span>
+              <span class="text-xs tabular-nums text-gray-500 ml-1">{fmt(b.at)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+)}

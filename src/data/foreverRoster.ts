@@ -139,6 +139,9 @@ function build(f: RosterFile) {
     levelsThisWeek: members.reduce((s, m) => s + m.gainedThisWeek, 0),
     climbers: members.filter(m => m.gainedThisWeek > 0).sort((a, b) => b.gainedThisWeek - a.gainedThisWeek).slice(0, 5),
     activity: (f.activity ?? []).slice(0, 50),
+    // Achievements (zone exploration, professions, Spelunker) across the whole activity window, newest first
+    achievements: (f.activity ?? []).filter((e): e is Extract<ActivityEvent, { type: 'achievement' }> => e.type === 'achievement'),
+    activitySince: (f.activity ?? []).reduce<string | null>((min, e) => (!min || e.at < min ? e.at : min), null),
     daily: dailyClimb(f),
   };
 }
