@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T21:17:18.119Z",
+  "updatedAt": "2026-11-26T22:17:20.361Z",
   "maxLevel": 60,
   "members": [
     {
@@ -168,7 +168,7 @@
       "level": 39,
       "classId": 7,
       "rank": 2,
-      "lastLogin": "2026-11-26T06:27:00.000Z",
+      "lastLogin": "2026-11-26T21:50:08.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-26T08:17:22.948Z"
     },
@@ -218,7 +218,7 @@
       "level": 24,
       "classId": 11,
       "rank": 5,
-      "lastLogin": "2026-11-17T04:46:11.000Z",
+      "lastLogin": "2026-11-26T21:49:14.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -308,7 +308,7 @@
       "level": 32,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-26T14:31:26.000Z",
+      "lastLogin": "2026-11-26T21:19:57.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-26T08:17:22.948Z"
     },
@@ -328,7 +328,7 @@
       "level": 48,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-26T13:10:09.000Z",
+      "lastLogin": "2026-11-26T21:22:21.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-26T20:17:17.079Z"
     },
@@ -444,6 +444,13 @@
     }
   ],
   "activity": [
+    {
+      "type": "achievement",
+      "at": "2026-11-26T21:21:00.000Z",
+      "name": "Tensor Fang",
+      "classId": 11,
+      "achievement": "Novice Druid"
+    },
     {
       "type": "level",
       "at": "2026-11-26T20:17:17.079Z",
