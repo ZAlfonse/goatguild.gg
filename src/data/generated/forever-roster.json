@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T11:17:19.021Z",
+  "updatedAt": "2026-11-26T12:17:20.822Z",
   "maxLevel": 60,
   "members": [
     {
@@ -65,12 +65,12 @@
     {
       "name": "Lia Valentine",
       "slug": "lia-valentine",
-      "level": 56,
+      "level": 57,
       "classId": 3,
       "rank": 3,
       "lastLogin": "2026-11-26T10:02:53.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T16:17:23.000Z"
+      "lastLevelUp": "2026-11-26T12:17:20.822Z"
     },
     {
       "name": "Bloolust Jadebreaker",
@@ -444,6 +444,16 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-26T12:17:20.822Z",
+      "approx": true,
+      "after": "2026-11-26T11:17:19.021Z",
+      "name": "Lia Valentine",
+      "classId": 3,
+      "from": 56,
+      "to": 57
+    },
     {
       "type": "achievement",
       "at": "2026-11-26T09:50:45.000Z",
@@ -1766,7 +1776,7 @@
       "Malanyr Malafjar": 23,
       "Mako Blade": 14,
       "Zet Blade": 56,
-      "Lia Valentine": 56,
+      "Lia Valentine": 57,
       "Bloolust Jadebreaker": 49,
       "Bone Danger": 25,
       "Torcula Sinus": 55,
