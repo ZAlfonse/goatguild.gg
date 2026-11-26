@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T23:17:20.774Z",
+  "updatedAt": "2026-11-26T00:17:20.852Z",
   "maxLevel": 60,
   "members": [
     {
@@ -8,7 +8,7 @@
       "level": 38,
       "classId": 8,
       "rank": 1,
-      "lastLogin": "2026-11-25T22:42:08.000Z",
+      "lastLogin": "2026-11-25T23:31:50.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-25T19:45:23.000Z"
     },
@@ -75,12 +75,12 @@
     {
       "name": "Bloolust Jadebreaker",
       "slug": "bloolust-jadebreaker",
-      "level": 48,
+      "level": 49,
       "classId": 7,
       "rank": 2,
       "lastLogin": "2026-11-25T20:13:06.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T03:59:02.000Z"
+      "lastLevelUp": "2026-11-26T00:17:20.852Z"
     },
     {
       "name": "Bone Danger",
@@ -128,7 +128,7 @@
       "level": 43,
       "classId": 1,
       "rank": 3,
-      "lastLogin": "2026-11-25T04:46:04.000Z",
+      "lastLogin": "2026-11-26T00:00:55.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-25T08:17:17.257Z"
     },
@@ -188,7 +188,7 @@
       "level": 34,
       "classId": 8,
       "rank": 4,
-      "lastLogin": "2026-11-25T21:40:12.000Z",
+      "lastLogin": "2026-11-25T23:48:31.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-25T08:17:17.257Z"
     },
@@ -235,12 +235,12 @@
     {
       "name": "Tommy Masala",
       "slug": "tommy-masala",
-      "level": 8,
+      "level": 10,
       "classId": 8,
       "rank": 5,
-      "lastLogin": null,
+      "lastLogin": "2026-11-25T23:46:04.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T00:17:23.274Z"
+      "lastLevelUp": "2026-11-25T23:46:04.000Z"
     },
     {
       "name": "Glorg Mcgrubb",
@@ -285,12 +285,12 @@
     {
       "name": "Evil Zebra",
       "slug": "evil-zebra",
-      "level": 48,
+      "level": 49,
       "classId": 4,
       "rank": 5,
       "lastLogin": "2026-11-25T22:37:39.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T00:17:19.318Z"
+      "lastLevelUp": "2026-11-26T00:17:20.852Z"
     },
     {
       "name": "Hilla Kelkin",
@@ -385,12 +385,12 @@
     {
       "name": "Dunka Dunka",
       "slug": "dunka-dunka",
-      "level": 32,
+      "level": 33,
       "classId": 5,
       "rank": 2,
       "lastLogin": "2026-11-25T22:36:30.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T20:17:20.361Z"
+      "lastLevelUp": "2026-11-26T00:17:20.852Z"
     },
     {
       "name": "Lunch Mcbox",
@@ -418,7 +418,7 @@
       "level": 12,
       "classId": 11,
       "rank": 5,
-      "lastLogin": "2026-11-25T21:41:23.000Z",
+      "lastLogin": "2026-11-25T23:47:16.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -428,7 +428,7 @@
       "level": 10,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-25T12:54:56.000Z",
+      "lastLogin": "2026-11-25T23:41:09.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -444,6 +444,51 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-26T00:17:20.852Z",
+      "approx": true,
+      "after": "2026-11-25T23:17:20.774Z",
+      "name": "Bloolust Jadebreaker",
+      "classId": 7,
+      "from": 48,
+      "to": 49
+    },
+    {
+      "type": "level",
+      "at": "2026-11-26T00:17:20.852Z",
+      "approx": true,
+      "after": "2026-11-25T23:17:20.774Z",
+      "name": "Evil Zebra",
+      "classId": 4,
+      "from": 48,
+      "to": 49
+    },
+    {
+      "type": "level",
+      "at": "2026-11-26T00:17:20.852Z",
+      "approx": true,
+      "after": "2026-11-25T23:17:20.774Z",
+      "name": "Dunka Dunka",
+      "classId": 5,
+      "from": 32,
+      "to": 33
+    },
+    {
+      "type": "achievement",
+      "at": "2026-11-25T23:52:00.000Z",
+      "name": "Krazykiller Forever",
+      "classId": 1,
+      "achievement": "Experienced Spelunker"
+    },
+    {
+      "type": "level",
+      "at": "2026-11-25T23:46:04.000Z",
+      "name": "Tommy Masala",
+      "classId": 8,
+      "from": 8,
+      "to": 10
+    },
     {
       "type": "level",
       "at": "2026-11-25T20:17:20.361Z",
@@ -1583,7 +1628,7 @@
       "Mako Blade": 14,
       "Zet Blade": 55,
       "Lia Valentine": 56,
-      "Bloolust Jadebreaker": 48,
+      "Bloolust Jadebreaker": 49,
       "Bone Danger": 25,
       "Torcula Sinus": 54,
       "Goat Vanios": 23,
@@ -1599,12 +1644,12 @@
       "Kerry Goldhand": 27,
       "Tensor Fang": 24,
       "Fillibuster Picklelord": 42,
-      "Tommy Masala": 8,
+      "Tommy Masala": 10,
       "Glorg Mcgrubb": 12,
       "Mobak Mohunt": 40,
       "Blump Trickel": 27,
       "Budman Budmane": 42,
-      "Evil Zebra": 48,
+      "Evil Zebra": 49,
       "Hilla Kelkin": 28,
       "Zen Fuzz": 31,
       "Damelia Shadowbourn": 17,
@@ -1614,7 +1659,7 @@
       "Rotted Mcrotface": 1,
       "Mooney Blightbane": 33,
       "Guy Numberone": 9,
-      "Dunka Dunka": 32,
+      "Dunka Dunka": 33,
       "Lunch Mcbox": 29,
       "Jeaph Redeemed": 11,
       "Yeti Wintermane": 12,
