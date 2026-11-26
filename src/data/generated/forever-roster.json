@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T03:17:22.443Z",
+  "updatedAt": "2026-11-26T04:17:19.174Z",
   "maxLevel": 60,
   "members": [
     {
@@ -95,12 +95,12 @@
     {
       "name": "Torcula Sinus",
       "slug": "torcula-sinus",
-      "level": 54,
+      "level": 55,
       "classId": 8,
       "rank": 5,
       "lastLogin": "2026-11-25T05:00:43.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T08:17:20.623Z"
+      "lastLevelUp": "2026-11-26T04:17:19.174Z"
     },
     {
       "name": "Goat Vanios",
@@ -108,7 +108,7 @@
       "level": 23,
       "classId": 7,
       "rank": 2,
-      "lastLogin": "2026-11-12T12:26:58.000Z",
+      "lastLogin": "2026-11-26T04:12:04.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": null
     },
@@ -125,12 +125,12 @@
     {
       "name": "Krazykiller Forever",
       "slug": "krazykiller-forever",
-      "level": 43,
+      "level": 44,
       "classId": 1,
       "rank": 3,
       "lastLogin": "2026-11-26T01:44:10.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T08:17:17.257Z"
+      "lastLevelUp": "2026-11-26T04:17:19.174Z"
     },
     {
       "name": "Pryme Priest",
@@ -145,12 +145,12 @@
     {
       "name": "Alder Stormhide",
       "slug": "alder-stormhide",
-      "level": 39,
+      "level": 40,
       "classId": 11,
       "rank": 5,
       "lastLogin": "2026-11-25T22:30:41.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T20:17:20.361Z"
+      "lastLevelUp": "2026-11-26T04:17:19.174Z"
     },
     {
       "name": "Zari Spiritwalker",
@@ -388,7 +388,7 @@
       "level": 33,
       "classId": 5,
       "rank": 2,
-      "lastLogin": "2026-11-25T22:36:30.000Z",
+      "lastLogin": "2026-11-26T04:09:07.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-26T00:17:20.852Z"
     },
@@ -444,6 +444,36 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-26T04:17:19.174Z",
+      "approx": true,
+      "after": "2026-11-26T03:17:22.443Z",
+      "name": "Torcula Sinus",
+      "classId": 8,
+      "from": 54,
+      "to": 55
+    },
+    {
+      "type": "level",
+      "at": "2026-11-26T04:17:19.174Z",
+      "approx": true,
+      "after": "2026-11-26T03:17:22.443Z",
+      "name": "Krazykiller Forever",
+      "classId": 1,
+      "from": 43,
+      "to": 44
+    },
+    {
+      "type": "level",
+      "at": "2026-11-26T04:17:19.174Z",
+      "approx": true,
+      "after": "2026-11-26T03:17:22.443Z",
+      "name": "Alder Stormhide",
+      "classId": 11,
+      "from": 39,
+      "to": 40
+    },
     {
       "type": "level",
       "at": "2026-11-26T00:17:20.852Z",
@@ -1630,12 +1660,12 @@
       "Lia Valentine": 56,
       "Bloolust Jadebreaker": 49,
       "Bone Danger": 25,
-      "Torcula Sinus": 54,
+      "Torcula Sinus": 55,
       "Goat Vanios": 23,
       "Thomans Zu": 23,
-      "Krazykiller Forever": 43,
+      "Krazykiller Forever": 44,
       "Pryme Priest": 21,
-      "Alder Stormhide": 39,
+      "Alder Stormhide": 40,
       "Zari Spiritwalker": 10,
       "Gar Jon": 38,
       "Clo Vis": 60,
