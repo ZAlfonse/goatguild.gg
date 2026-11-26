@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T19:17:19.360Z",
+  "updatedAt": "2026-11-26T20:17:17.079Z",
   "maxLevel": 60,
   "members": [
     {
@@ -98,19 +98,19 @@
       "level": 55,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-26T04:50:20.000Z",
+      "lastLogin": "2026-11-26T19:19:58.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-26T04:17:19.174Z"
     },
     {
       "name": "Goat Vanios",
       "slug": "goat-vanios",
-      "level": 23,
+      "level": 24,
       "classId": 7,
       "rank": 2,
       "lastLogin": "2026-11-26T16:59:33.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-26T20:17:17.079Z"
     },
     {
       "name": "Thomans Zu",
@@ -275,12 +275,12 @@
     {
       "name": "Budman Budmane",
       "slug": "budman-budmane",
-      "level": 42,
+      "level": 43,
       "classId": 11,
       "rank": 5,
       "lastLogin": "2026-11-26T04:34:18.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T20:17:20.361Z"
+      "lastLevelUp": "2026-11-26T20:17:17.079Z"
     },
     {
       "name": "Evil Zebra",
@@ -325,12 +325,12 @@
     {
       "name": "Ten Zion",
       "slug": "ten-zion",
-      "level": 47,
+      "level": 48,
       "classId": 2,
       "rank": 5,
       "lastLogin": "2026-11-26T13:10:09.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T16:17:23.000Z"
+      "lastLevelUp": "2026-11-26T20:17:17.079Z"
     },
     {
       "name": "Anz Zu",
@@ -444,6 +444,36 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-26T20:17:17.079Z",
+      "approx": true,
+      "after": "2026-11-26T19:17:19.360Z",
+      "name": "Goat Vanios",
+      "classId": 7,
+      "from": 23,
+      "to": 24
+    },
+    {
+      "type": "level",
+      "at": "2026-11-26T20:17:17.079Z",
+      "approx": true,
+      "after": "2026-11-26T19:17:19.360Z",
+      "name": "Budman Budmane",
+      "classId": 11,
+      "from": 42,
+      "to": 43
+    },
+    {
+      "type": "level",
+      "at": "2026-11-26T20:17:17.079Z",
+      "approx": true,
+      "after": "2026-11-26T19:17:19.360Z",
+      "name": "Ten Zion",
+      "classId": 2,
+      "from": 47,
+      "to": 48
+    },
     {
       "type": "level",
       "at": "2026-11-26T16:17:22.991Z",
@@ -1790,7 +1820,7 @@
       "Bloolust Jadebreaker": 49,
       "Bone Danger": 25,
       "Torcula Sinus": 55,
-      "Goat Vanios": 23,
+      "Goat Vanios": 24,
       "Thomans Zu": 23,
       "Krazykiller Forever": 44,
       "Pryme Priest": 21,
@@ -1807,12 +1837,12 @@
       "Glorg Mcgrubb": 12,
       "Mobak Mohunt": 40,
       "Blump Trickel": 27,
-      "Budman Budmane": 42,
+      "Budman Budmane": 43,
       "Evil Zebra": 49,
       "Hilla Kelkin": 29,
       "Zen Fuzz": 32,
       "Damelia Shadowbourn": 18,
-      "Ten Zion": 47,
+      "Ten Zion": 48,
       "Anz Zu": 13,
       "Bustin Supreme": 1,
       "Rotted Mcrotface": 1,

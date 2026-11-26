@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T19:17:17.840Z",
+  "updatedAt": "2026-11-26T20:17:15.747Z",
   "profileUrl": "https://raider.io/guilds/us/malganis/Goat%20Guild",
   "lastCrawledAt": "2026-11-24T11:04:30.000Z",
   "raids": {
@@ -78,7 +78,7 @@
           "realm": 103
         },
         "mythic": {
-          "world": 4508,
+          "world": 4509,
           "region": 1329,
           "realm": 79
         }
