@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-11-27T03:17:21.842Z",
+  "updatedAt": "2026-11-27T04:17:17.292Z",
   "maxLevel": 60,
   "members": [
     {
       "name": "Za Kk",
       "slug": "za-kk",
-      "level": 39,
+      "level": 40,
       "classId": 8,
       "rank": 1,
       "lastLogin": "2026-11-26T17:18:43.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T08:17:22.948Z"
+      "lastLevelUp": "2026-11-27T04:17:17.292Z"
     },
     {
       "name": "Chieph Beef",
@@ -75,12 +75,12 @@
     {
       "name": "Bloolust Jadebreaker",
       "slug": "bloolust-jadebreaker",
-      "level": 49,
+      "level": 50,
       "classId": 7,
       "rank": 2,
       "lastLogin": "2026-11-27T03:04:05.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T00:17:20.852Z"
+      "lastLevelUp": "2026-11-27T04:17:17.292Z"
     },
     {
       "name": "Bone Danger",
@@ -165,12 +165,12 @@
     {
       "name": "Gar Jon",
       "slug": "gar-jon",
-      "level": 39,
+      "level": 40,
       "classId": 7,
       "rank": 2,
       "lastLogin": "2026-11-26T21:50:08.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T08:17:22.948Z"
+      "lastLevelUp": "2026-11-27T04:17:17.292Z"
     },
     {
       "name": "Clo Vis",
@@ -258,7 +258,7 @@
       "level": 40,
       "classId": 3,
       "rank": 2,
-      "lastLogin": "2026-11-26T17:50:00.000Z",
+      "lastLogin": "2026-11-27T03:55:09.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-25T20:17:20.361Z"
     },
@@ -285,12 +285,12 @@
     {
       "name": "Evil Zebra",
       "slug": "evil-zebra",
-      "level": 49,
+      "level": 50,
       "classId": 4,
       "rank": 5,
       "lastLogin": "2026-11-27T02:09:21.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T00:17:20.852Z"
+      "lastLevelUp": "2026-11-27T04:17:17.292Z"
     },
     {
       "name": "Hilla Kelkin",
@@ -305,12 +305,12 @@
     {
       "name": "Zen Fuzz",
       "slug": "zen-fuzz",
-      "level": 33,
+      "level": 34,
       "classId": 8,
       "rank": 5,
-      "lastLogin": "2026-11-26T21:19:57.000Z",
+      "lastLogin": "2026-11-27T03:54:05.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T00:17:19.605Z"
+      "lastLevelUp": "2026-11-27T03:54:05.000Z"
     },
     {
       "name": "Damelia Shadowbourn",
@@ -328,7 +328,7 @@
       "level": 48,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-27T01:50:20.000Z",
+      "lastLogin": "2026-11-27T04:03:08.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-26T20:17:17.079Z"
     },
@@ -385,12 +385,12 @@
     {
       "name": "Dunka Dunka",
       "slug": "dunka-dunka",
-      "level": 34,
+      "level": 35,
       "classId": 5,
       "rank": 2,
       "lastLogin": "2026-11-26T16:01:08.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T00:17:19.605Z"
+      "lastLevelUp": "2026-11-27T04:17:17.292Z"
     },
     {
       "name": "Lunch Mcbox",
@@ -405,12 +405,12 @@
     {
       "name": "Jeaph Redeemed",
       "slug": "jeaph-redeemed",
-      "level": 11,
+      "level": 13,
       "classId": 2,
       "rank": 5,
       "lastLogin": "2026-11-27T02:00:55.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-24T08:17:20.623Z"
+      "lastLevelUp": "2026-11-27T04:17:17.292Z"
     },
     {
       "name": "Yeti Wintermane",
@@ -444,6 +444,74 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-27T04:17:17.292Z",
+      "approx": true,
+      "after": "2026-11-27T03:17:21.842Z",
+      "name": "Za Kk",
+      "classId": 8,
+      "from": 39,
+      "to": 40
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T04:17:17.292Z",
+      "approx": true,
+      "after": "2026-11-27T03:17:21.842Z",
+      "name": "Bloolust Jadebreaker",
+      "classId": 7,
+      "from": 49,
+      "to": 50
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T04:17:17.292Z",
+      "approx": true,
+      "after": "2026-11-27T03:17:21.842Z",
+      "name": "Gar Jon",
+      "classId": 7,
+      "from": 39,
+      "to": 40
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T04:17:17.292Z",
+      "approx": true,
+      "after": "2026-11-27T03:17:21.842Z",
+      "name": "Evil Zebra",
+      "classId": 4,
+      "from": 49,
+      "to": 50
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T04:17:17.292Z",
+      "approx": true,
+      "after": "2026-11-27T03:17:21.842Z",
+      "name": "Dunka Dunka",
+      "classId": 5,
+      "from": 34,
+      "to": 35
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T04:17:17.292Z",
+      "approx": true,
+      "after": "2026-11-27T03:17:21.842Z",
+      "name": "Jeaph Redeemed",
+      "classId": 2,
+      "from": 11,
+      "to": 13
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T03:54:05.000Z",
+      "name": "Zen Fuzz",
+      "classId": 8,
+      "from": 33,
+      "to": 34
+    },
     {
       "type": "level",
       "at": "2026-11-27T00:17:19.605Z",
@@ -1867,14 +1935,14 @@
       "Lionhart Tayrona": 16
     },
     "2026-11-26": {
-      "Za Kk": 39,
+      "Za Kk": 40,
       "Chieph Beef": 60,
       "Turb Low": 44,
       "Malanyr Malafjar": 23,
       "Mako Blade": 14,
       "Zet Blade": 56,
       "Lia Valentine": 57,
-      "Bloolust Jadebreaker": 49,
+      "Bloolust Jadebreaker": 50,
       "Bone Danger": 25,
       "Torcula Sinus": 56,
       "Goat Vanios": 24,
@@ -1883,7 +1951,7 @@
       "Pryme Priest": 21,
       "Alder Stormhide": 41,
       "Zari Spiritwalker": 10,
-      "Gar Jon": 39,
+      "Gar Jon": 40,
       "Clo Vis": 60,
       "Hobo Magemon": 34,
       "Mully Midrange": 60,
@@ -1895,9 +1963,9 @@
       "Mobak Mohunt": 40,
       "Blump Trickel": 27,
       "Budman Budmane": 43,
-      "Evil Zebra": 49,
+      "Evil Zebra": 50,
       "Hilla Kelkin": 29,
-      "Zen Fuzz": 33,
+      "Zen Fuzz": 34,
       "Damelia Shadowbourn": 18,
       "Ten Zion": 48,
       "Anz Zu": 13,
@@ -1905,9 +1973,9 @@
       "Rotted Mcrotface": 1,
       "Mooney Blightbane": 33,
       "Guy Numberone": 9,
-      "Dunka Dunka": 34,
+      "Dunka Dunka": 35,
       "Lunch Mcbox": 30,
-      "Jeaph Redeemed": 11,
+      "Jeaph Redeemed": 13,
       "Yeti Wintermane": 12,
       "Ten Zien": 10,
       "Lionhart Tayrona": 16
