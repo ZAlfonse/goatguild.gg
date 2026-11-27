@@ -1,0 +1,186 @@
+---
+// "Who's around": every goat whose character logged in on the day of the last sync (Eastern time),
+// standing in a small pixel pasture, plus the goats nobody has seen in a while.
+// Built from lastLogin and level-up activity in generated/forever-roster.json.
+import { foreverRoster as r, classKey, nameClass } from '../data/foreverRoster';
+import { renderSprite, SPRITE_W, SPRITE_H } from '../data/classSprites';
+
+const TZ = 'America/New_York';
+const etDay = (iso: string) => new Date(iso).toLocaleDateString('en-CA', { timeZone: TZ }); // YYYY-MM-DD
+const short = (iso: string) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: TZ });
+
+const today = r ? etDay(r.updatedAt) : '';
+const members = r?.members ?? [];
+const seen = members.filter(m => m.lastLogin && etDay(m.lastLogin) === today);
+
+// Levels gained today, from level-up events that landed on the same Eastern day
+const levelsToday = (r?.activity ?? [])
+  .filter(e => e.type === 'level' && etDay(e.at) === today)
+  .reduce((s, e) => s + (e.type === 'level' ? e.to - e.from : 0), 0);
+
+// Not seen for 5+ days, longest absence first
+const AWAY_DAYS = 5;
+const now = r ? new Date(r.updatedAt).getTime() : 0;
+const away = members
+  .filter(m => m.lastLogin && now - new Date(m.lastLogin).getTime() >= AWAY_DAYS * 864e5)
+  .sort((a, b) => a.lastLogin!.localeCompare(b.lastLogin!));
+const noRecord = members.filter(m => !m.lastLogin).length;
+
+// Holidays the herd might be expected to skip. Thanksgiving: fourth Thursday of November.
+function holiday(day: string) {
+  const [y, mo, d] = day.split('-').map(Number);
+  if (mo === 11) {
+    const firstDow = new Date(Date.UTC(y, 10, 1)).getUTCDay();
+    const firstThu = 1 + ((4 - firstDow + 7) % 7);
+    if (d === firstThu + 21) return 'Thanksgiving';
+  }
+  if (mo === 12 && d === 25) return 'Christmas';
+  if (mo === 1 && d === 1) return "New Year's Day";
+  return null;
+}
+const holidayName = today ? holiday(today) : null;
+
+const plural = (n: number, one: string, many: string) => (n === 1 ? one : many);
+const headline = holidayName
+  ? `${seen.length} ${plural(seen.length, 'goat', 'goats')} logged in on ${holidayName}.`
+  : `${seen.length} ${plural(seen.length, 'goat', 'goats')} logged in today.`;
+const subline =
+  seen.length === 0
+    ? 'The pasture is empty. Everyone is somewhere else.'
+    : levelsToday > 0
+      ? `${levelsToday} ${plural(levelsToday, 'level', 'levels')} gained so far today.`
+      : 'No levels gained yet today. Some grazing is just grazing.';
+
+// ---- The pasture scene ----
+const VW = 320;
+const VH = 112;
+const GROUND = 46; // where the field starts
+const ROWS = 3;
+const ROW_Y = [62, 80, 98]; // feet line of each row, back to front
+
+// Deterministic jitter from the name so the herd doesn't shuffle on every build
+const hash = (s: string) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+
+const perRow = Math.ceil(seen.length / ROWS);
+const goats = seen.map((m, i) => {
+  const row = Math.min(ROWS - 1, Math.floor(i / Math.max(1, perRow)));
+  const inRow = seen.filter((_, j) => Math.min(ROWS - 1, Math.floor(j / Math.max(1, perRow))) === row).length;
+  const k = i - row * perRow;
+  const span = VW - 60;
+  const h = hash(m.name);
+  const x = Math.round(30 + (span * (k + 0.5)) / inRow + ((h % 7) - 3) + (row % 2 ? 8 : -4) - SPRITE_W / 2);
+  const y = ROW_Y[row] - SPRITE_H + 1 + ((h >> 3) % 3) - 1;
+  const cls = classKey(m.classId);
+  return { m, x, y, flip: (h >> 5) % 2 === 1, sprite: `gg-pasture-${cls ?? 'none'}`, graze: (h >> 7) % 3 === 0, delay: (h % 11) * 0.7 };
+});
+const spriteClasses = [...new Set(seen.map(m => classKey(m.classId) ?? 'none'))];
+const sprites = spriteClasses.map(cls => ({ id: `gg-pasture-${cls}`, paths: renderSprite(cls === 'none' ? null : cls) }));
+
+// Fence posts along the back of the field
+const posts = Array.from({ length: Math.floor(VW / 24) + 1 }, (_, i) => i * 24 + 6);
+// A few fixed stars and grass tufts
+const stars = [[22, 8], [71, 18], [118, 6], [164, 22], [203, 10], [262, 26], [296, 16], [140, 30], [40, 28]];
+const tufts = [[18, 70], [96, 88], [150, 66], [214, 92], [268, 74], [300, 104], [58, 106], [182, 108]];
+---
+
+{r && (
+  <div class="panel panel-inset overflow-hidden">
+    <div class="grid md:grid-cols-5">
+      <div class="md:col-span-3 bg-midnight-900">
+        <svg viewBox={`0 0 ${VW} ${VH}`} class="w-full h-auto block" shape-rendering="crispEdges" role="img" aria-label={`${seen.length} goats in the pasture: everyone who logged in today`}>
+          <defs>
+            {sprites.map(s => (
+              <g id={s.id}>{s.paths.map(p => <path d={p.d} fill={p.fill} />)}</g>
+            ))}
+          </defs>
+          <!-- sky in bands -->
+          <rect width={VW} height="18" fill="#0b0e1c" />
+          <rect y="18" width={VW} height={GROUND - 18} fill="#10142a" />
+          {stars.map(([x, y], i) => <rect x={x} y={y} width="1" height="1" fill={i % 3 === 0 ? '#FFE7A8' : '#8b93bd'} class={i % 3 === 0 ? 'pasture-twinkle' : undefined} style={`animation-delay: -${i * 0.9}s`} />)}
+          <!-- moon -->
+          <path d="M232 6h6v1h2v2h1v6h-1v2h-2v1h-6v-1h-2v-2h-1v-6h1v-2h2z" fill="#FFE7A8" />
+          <path d="M234 9h2v2h-2zM238 13h1v1h-1z" fill="#FFC20E" />
+          <!-- far hill line -->
+          <path d={`M0 ${GROUND}V40h40v-3h50v3h60v-5h44v5h70v-2h56v2V${GROUND}z`} fill="#161b35" />
+          <!-- field in bands -->
+          <rect y={GROUND} width={VW} height="20" fill="#202846" />
+          <rect y={GROUND + 20} width={VW} height={VH - GROUND - 20} fill="#2d3559" />
+          {tufts.map(([x, y]) => <path d={`M${x} ${y}h1v-2h1v2h1v-1h1v1h1v1h-5z`} fill="#434c78" />)}
+          <!-- fence -->
+          <rect y={GROUND - 2} width={VW} height="2" fill="#9C5A3C" />
+          <rect y={GROUND + 4} width={VW} height="2" fill="#9C5A3C" />
+          {posts.map(x => <rect x={x} y={GROUND - 5} width="2" height="13" fill="#9C5A3C" />)}
+          <!-- hay bale -->
+          <rect x={VW - 34} y={GROUND + 6} width="20" height="10" fill="#B5850A" />
+          <rect x={VW - 34} y={GROUND + 6} width="20" height="2" fill="#FFC20E" />
+          <rect x={VW - 28} y={GROUND + 6} width="2" height="10" fill="#9C5A3C" />
+          <rect x={VW - 21} y={GROUND + 6} width="2" height="10" fill="#9C5A3C" />
+          <!-- the goats -->
+          {goats.map(g => (
+            <g transform={`translate(${g.x + (g.flip ? SPRITE_W : 0)} ${g.y}) scale(${g.flip ? -1 : 1} 1)`}>
+              <use href={`#${g.sprite}`} class={g.graze ? 'pasture-graze' : undefined} style={g.graze ? `animation-delay: -${g.delay}s` : undefined}>
+                <title>{`${g.m.name}, level ${g.m.level}`}</title>
+              </use>
+            </g>
+          ))}
+          {seen.length === 0 && (
+            <text x={VW / 2} y={GROUND + 36} text-anchor="middle" fill="#8b93bd" font-size="9" font-family="Silkscreen, monospace">Nobody here</text>
+          )}
+        </svg>
+      </div>
+
+      <div class="md:col-span-2 p-5 md:border-l-2 border-t-2 md:border-t-0 border-midnight-600">
+        <h3 class="section-title text-lg">Who's around</h3>
+        <p class="text-sm text-gray-200 mb-0.5">{headline}</p>
+        <p class="text-sm text-gray-400 mb-4">{subline}</p>
+
+        {seen.length > 0 && (
+          <p class="text-sm leading-relaxed mb-5">
+            {seen.map((m, i) => (
+              <span class={`font-medium ${nameClass(m.classId)}`}>{m.name}{i < seen.length - 1 && <span class="text-gray-600 mx-1.5" aria-hidden="true">/</span>}</span>
+            ))}
+          </p>
+        )}
+
+        {away.length > 0 && (
+          <div>
+            <h4 class="eyebrow mb-2">Out to pasture</h4>
+            <ul class="space-y-1">
+              {away.map(m => (
+                <li class="flex items-center gap-2 text-sm">
+                  <span class={`flex-1 truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
+                  <span class="tabular-nums text-gray-400">{m.level}</span>
+                  <span class="w-24 text-right text-xs text-gray-500">last seen {short(m.lastLogin!)}</span>
+                </li>
+              ))}
+            </ul>
+            {noRecord > 0 && (
+              <p class="text-xs text-gray-500 mt-2">{noRecord} more with no login on record.</p>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  /* A few goats lower their heads now and then. Small, slow, stepped. */
+  .pasture-graze {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: pasture-graze 7s steps(1, end) infinite;
+  }
+  @keyframes pasture-graze {
+    0%, 70%, 100% { transform: translateY(0); }
+    74%, 90% { transform: translateY(1px); }
+  }
+  .pasture-twinkle { animation: pasture-twinkle 5s steps(1, end) infinite; }
+  @keyframes pasture-twinkle {
+    0%, 60%, 100% { opacity: 1; }
+    65%, 80% { opacity: 0.25; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pasture-graze, .pasture-twinkle { animation: none; }
+  }
+</style>
