@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T23:17:17.478Z",
+  "updatedAt": "2026-11-27T00:17:19.605Z",
   "maxLevel": 60,
   "members": [
     {
@@ -95,12 +95,12 @@
     {
       "name": "Torcula Sinus",
       "slug": "torcula-sinus",
-      "level": 55,
+      "level": 56,
       "classId": 8,
       "rank": 5,
       "lastLogin": "2026-11-26T20:50:48.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T04:17:19.174Z"
+      "lastLevelUp": "2026-11-27T00:17:19.605Z"
     },
     {
       "name": "Goat Vanios",
@@ -145,12 +145,12 @@
     {
       "name": "Alder Stormhide",
       "slug": "alder-stormhide",
-      "level": 40,
+      "level": 41,
       "classId": 11,
       "rank": 4,
       "lastLogin": "2026-11-26T14:32:41.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T04:17:19.174Z"
+      "lastLevelUp": "2026-11-27T00:17:19.605Z"
     },
     {
       "name": "Zari Spiritwalker",
@@ -215,12 +215,12 @@
     {
       "name": "Tensor Fang",
       "slug": "tensor-fang",
-      "level": 24,
+      "level": 25,
       "classId": 11,
       "rank": 5,
       "lastLogin": "2026-11-26T21:49:14.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-27T00:17:19.605Z"
     },
     {
       "name": "Fillibuster Picklelord",
@@ -305,12 +305,12 @@
     {
       "name": "Zen Fuzz",
       "slug": "zen-fuzz",
-      "level": 32,
+      "level": 33,
       "classId": 8,
       "rank": 5,
       "lastLogin": "2026-11-26T21:19:57.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T08:17:22.948Z"
+      "lastLevelUp": "2026-11-27T00:17:19.605Z"
     },
     {
       "name": "Damelia Shadowbourn",
@@ -328,7 +328,7 @@
       "level": 48,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-26T23:07:29.000Z",
+      "lastLogin": "2026-11-26T23:50:26.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-26T20:17:17.079Z"
     },
@@ -385,12 +385,12 @@
     {
       "name": "Dunka Dunka",
       "slug": "dunka-dunka",
-      "level": 33,
+      "level": 34,
       "classId": 5,
       "rank": 2,
       "lastLogin": "2026-11-26T16:01:08.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T00:17:20.852Z"
+      "lastLevelUp": "2026-11-27T00:17:19.605Z"
     },
     {
       "name": "Lunch Mcbox",
@@ -444,6 +444,56 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-27T00:17:19.605Z",
+      "approx": true,
+      "after": "2026-11-26T23:17:17.478Z",
+      "name": "Torcula Sinus",
+      "classId": 8,
+      "from": 55,
+      "to": 56
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T00:17:19.605Z",
+      "approx": true,
+      "after": "2026-11-26T23:17:17.478Z",
+      "name": "Alder Stormhide",
+      "classId": 11,
+      "from": 40,
+      "to": 41
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T00:17:19.605Z",
+      "approx": true,
+      "after": "2026-11-26T23:17:17.478Z",
+      "name": "Tensor Fang",
+      "classId": 11,
+      "from": 24,
+      "to": 25
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T00:17:19.605Z",
+      "approx": true,
+      "after": "2026-11-26T23:17:17.478Z",
+      "name": "Zen Fuzz",
+      "classId": 8,
+      "from": 32,
+      "to": 33
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T00:17:19.605Z",
+      "approx": true,
+      "after": "2026-11-26T23:17:17.478Z",
+      "name": "Dunka Dunka",
+      "classId": 5,
+      "from": 33,
+      "to": 34
+    },
     {
       "type": "achievement",
       "at": "2026-11-26T21:21:00.000Z",
@@ -1826,19 +1876,19 @@
       "Lia Valentine": 57,
       "Bloolust Jadebreaker": 49,
       "Bone Danger": 25,
-      "Torcula Sinus": 55,
+      "Torcula Sinus": 56,
       "Goat Vanios": 24,
       "Thomans Zu": 23,
       "Krazykiller Forever": 44,
       "Pryme Priest": 21,
-      "Alder Stormhide": 40,
+      "Alder Stormhide": 41,
       "Zari Spiritwalker": 10,
       "Gar Jon": 39,
       "Clo Vis": 60,
       "Hobo Magemon": 34,
       "Mully Midrange": 60,
       "Kerry Goldhand": 27,
-      "Tensor Fang": 24,
+      "Tensor Fang": 25,
       "Fillibuster Picklelord": 42,
       "Tommy Masala": 10,
       "Glorg Mcgrubb": 12,
@@ -1847,7 +1897,7 @@
       "Budman Budmane": 43,
       "Evil Zebra": 49,
       "Hilla Kelkin": 29,
-      "Zen Fuzz": 32,
+      "Zen Fuzz": 33,
       "Damelia Shadowbourn": 18,
       "Ten Zion": 48,
       "Anz Zu": 13,
@@ -1855,7 +1905,7 @@
       "Rotted Mcrotface": 1,
       "Mooney Blightbane": 33,
       "Guy Numberone": 9,
-      "Dunka Dunka": 33,
+      "Dunka Dunka": 34,
       "Lunch Mcbox": 30,
       "Jeaph Redeemed": 11,
       "Yeti Wintermane": 12,
