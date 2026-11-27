@@ -76,6 +76,12 @@ export function windowLabel(after: string, at: string) {
 export interface RosterRow extends ForeverMember {
   level: number;
   gainedThisWeek: number;
+  trail: TrailDay[]; // levels gained per day this week, oldest first
+}
+
+export interface TrailDay {
+  day: string; // YYYY-MM-DD of the snapshot
+  gained: number;
 }
 
 export interface ClimbDay {
@@ -120,12 +126,22 @@ function build(f: RosterFile) {
   const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
   const baseDay = days.find(d => d >= weekAgo) ?? days[0];
   const base = baseDay ? history[baseDay] : {};
+  // Day-over-day steps since the base snapshot, for each goat's weekly trail.
+  const trailDays = baseDay ? days.slice(days.indexOf(baseDay)) : [];
+  const trailOf = (name: string): TrailDay[] =>
+    trailDays.slice(1).map((day, i) => {
+      const before = history[trailDays[i]][name];
+      const after = history[day][name];
+      // Goats missing from the base snapshot count as +0 this week, matching gainedThisWeek.
+      const counted = base[name] != null && before != null && after != null;
+      return { day, gained: counted ? Math.max(0, after - before) : 0 };
+    });
 
   const members: RosterRow[] = f.members
     .filter((m): m is ForeverMember & { level: number } => m.level != null)
     .map(m => {
       const level = confirmedAtMax.has(m.name) ? maxLevel : m.level;
-      return { ...m, level, gainedThisWeek: Math.max(0, level - (base[m.name] ?? level)) };
+      return { ...m, level, gainedThisWeek: Math.max(0, level - (base[m.name] ?? level)), trail: trailOf(m.name) };
     })
     .sort((a, b) => b.level - a.level || a.name.localeCompare(b.name));
 
@@ -137,6 +153,8 @@ function build(f: RosterFile) {
     atMax: members.filter(m => m.level >= maxLevel).length,
     averageLevel: members.length ? Math.round(members.reduce((s, m) => s + m.level, 0) / members.length) : 0,
     levelsThisWeek: members.reduce((s, m) => s + m.gainedThisWeek, 0),
+    // Biggest single-day gain by anyone this week, so every trail shares one scale.
+    trailMax: Math.max(1, ...members.flatMap(m => m.trail.map(t => t.gained))),
     climbers: members.filter(m => m.gainedThisWeek > 0).sort((a, b) => b.gainedThisWeek - a.gainedThisWeek).slice(0, 5),
     activity: (f.activity ?? []).slice(0, 50),
     daily: dailyClimb(f),

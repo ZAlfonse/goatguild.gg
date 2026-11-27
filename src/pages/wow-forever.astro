@@ -7,6 +7,7 @@ import SummitRegister from '../components/SummitRegister.astro';
 import BluePosts from '../components/BluePosts.astro';
 import ParallaxSky from '../components/ParallaxSky.astro';
 import ClassSprite from '../components/ClassSprite.astro';
+import ClimbTrail from '../components/ClimbTrail.astro';
 import ClassSpriteDefs from '../components/ClassSpriteDefs.astro';
 import { foreverRoster as r, nameClass, classKey, classBg, classText, timeAgo } from '../data/foreverRoster';
 import { classInterest, roleInterest, factionInterest, totalResponses } from '../data/wowForever';
@@ -122,8 +123,9 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
                             </div>
                           </div>
                         </td>
-                        <td class="py-2 px-2 text-right tabular-nums font-medium">
-                          {m.gainedThisWeek > 0 ? <span class="text-emerald-400">+{m.gainedThisWeek}</span> : <span class="text-gray-600">–</span>}
+                        <td class="py-2 px-2 text-right tabular-nums font-medium whitespace-nowrap">
+                          <ClimbTrail trail={m.trail} max={r.trailMax} classId={m.classId} name={m.name} class="mr-2 opacity-80 group-hover:opacity-100 transition-opacity" />
+                          {m.gainedThisWeek > 0 ? <span class="inline-block w-7 text-emerald-400">+{m.gainedThisWeek}</span> : <span class="inline-block w-7 text-gray-600">–</span>}
                         </td>
                         <td class="py-2 px-2 text-right text-gray-400 whitespace-nowrap">
                           {m.lastLevelUp ? <time datetime={m.lastLevelUp} data-ago>{timeAgo(m.lastLevelUp)}</time> : <span class="text-gray-600">–</span>}
@@ -154,6 +156,7 @@ const busiest = brackets.reduce((a, b) => (b.count > a.count ? b : a), brackets[
                     <li class="flex items-center gap-2 text-sm">
                       <span class="w-4 text-right tabular-nums text-gray-600">{i + 1}</span>
                       <span class={`flex-1 truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
+                      <ClimbTrail trail={m.trail} max={r.trailMax} classId={m.classId} name={m.name} />
                       <span class="text-gray-500 tabular-nums text-xs">lv {m.level}</span>
                       <span class="w-8 text-right text-emerald-400 tabular-nums font-medium">+{m.gainedThisWeek}</span>
                     </li>

@@ -1,0 +1,32 @@
+---
+// A goat's week in one glance: one small stepped column per day, height = levels gained that day.
+// All trails share the same scale (`max`), so a tall step means the same thing on every row.
+import type { TrailDay } from '../data/foreverRoster';
+import { classBg, classKey } from '../data/foreverRoster';
+
+interface Props {
+  trail: TrailDay[];
+  max: number;
+  classId: number | null;
+  name: string;
+  class?: string;
+}
+
+const { trail, max, classId, name, class: className = '' } = Astro.props;
+const cls = classKey(classId);
+const fill = cls ? classBg[cls] : 'bg-gray-400';
+const STEPS = 5; // heights snap to fifths, so the columns stay blocky
+const day = (d: string) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+const label = `${name}, levels per day: ` + trail.map(t => `${day(t.day)} +${t.gained}`).join(', ');
+---
+
+{trail.length > 0 && (
+  <span class={`climb-trail inline-flex items-end gap-px h-4 align-middle ${className}`} role="img" aria-label={label} title={label}>
+    {trail.map(t => {
+      const steps = t.gained > 0 ? Math.max(1, Math.round((t.gained / max) * STEPS)) : 0;
+      return steps > 0
+        ? <span class={`block w-[3px] ${fill}`} style={`height: ${(steps / STEPS) * 100}%`}></span>
+        : <span class="block w-[3px] h-px bg-midnight-500"></span>;
+    })}
+  </span>
+)}

@@ -1,6 +1,7 @@
 ---
 // Homepage "The Climb to 60": live WoW: Forever stats, activity feed, weekly climbers, top levels.
 import ActivityFeed from './ActivityFeed.astro';
+import ClimbTrail from './ClimbTrail.astro';
 import { foreverRoster as r, nameClass } from '../data/foreverRoster';
 
 const maxLevel = r?.maxLevel ?? 60; // captured for use inside map callbacks
@@ -37,12 +38,14 @@ const maxLevel = r?.maxLevel ?? 60; // captured for use inside map callbacks
         <div class="space-y-6">
           {r.climbers.length > 0 && (
             <div>
-              <h4 class="eyebrow mb-4">Top climbers this week</h4>
+              <h4 class="eyebrow mb-1">Top climbers this week</h4>
+              <p class="text-xs text-gray-500 mb-3">One step per day. Taller is a better day.</p>
               <ol class="space-y-1.5">
                 {r.climbers.map(m => (
                   <li class="flex items-center gap-2 text-sm">
                     <span class={`flex-1 truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
-                    <span class="tabular-nums font-medium text-emerald-400">+{m.gainedThisWeek}</span>
+                    <ClimbTrail trail={m.trail} max={r.trailMax} classId={m.classId} name={m.name} />
+                    <span class="w-7 text-right tabular-nums font-medium text-emerald-400">+{m.gainedThisWeek}</span>
                   </li>
                 ))}
               </ol>

@@ -22,7 +22,7 @@ export const news: NewsPost[] = [
     date: '2026-11-24',
     author: 'Billidan Stormrage',
     category: 'milestone',
-    summary: 'Chieph Beef and Clo Vis reached level 60 first, and Mully Midrange followed a day later. That\'s three goats at the cap in WoW: Forever. Lia Valentine is next at 57, Zet Blade is at 56, and Torcula Sinus is at 55, as of Nov 26. The summit still has room.',
+    summary: 'Chieph Beef and Clo Vis reached level 60 first, and Mully Midrange followed a day later. That\'s three goats at the cap in WoW: Forever. Zet Blade and Lia Valentine are tied for next at 57, and Torcula Sinus is at 56, as of Nov 27. The summit still has room.',
     pinned: true,
   },
   {
