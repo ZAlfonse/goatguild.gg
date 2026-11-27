@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T07:17:18.909Z",
+  "updatedAt": "2026-11-27T08:17:21.515Z",
   "maxLevel": 60,
   "members": [
     {
@@ -55,12 +55,12 @@
     {
       "name": "Zet Blade",
       "slug": "zet-blade",
-      "level": 56,
+      "level": 57,
       "classId": 1,
       "rank": 3,
       "lastLogin": "2026-11-27T06:49:04.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T07:42:45.000Z"
+      "lastLevelUp": "2026-11-27T08:17:21.515Z"
     },
     {
       "name": "Lia Valentine",
@@ -145,12 +145,12 @@
     {
       "name": "Alder Stormhide",
       "slug": "alder-stormhide",
-      "level": 41,
+      "level": 42,
       "classId": 11,
       "rank": 4,
       "lastLogin": "2026-11-27T04:24:42.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T00:17:19.605Z"
+      "lastLevelUp": "2026-11-27T08:17:21.515Z"
     },
     {
       "name": "Zari Spiritwalker",
@@ -165,12 +165,12 @@
     {
       "name": "Gar Jon",
       "slug": "gar-jon",
-      "level": 40,
+      "level": 41,
       "classId": 7,
       "rank": 2,
       "lastLogin": "2026-11-27T05:06:46.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T04:17:17.292Z"
+      "lastLevelUp": "2026-11-27T08:17:21.515Z"
     },
     {
       "name": "Clo Vis",
@@ -255,12 +255,12 @@
     {
       "name": "Mobak Mohunt",
       "slug": "mobak-mohunt",
-      "level": 40,
+      "level": 41,
       "classId": 3,
       "rank": 2,
       "lastLogin": "2026-11-27T03:55:09.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-25T20:17:20.361Z"
+      "lastLevelUp": "2026-11-27T08:17:21.515Z"
     },
     {
       "name": "Blump Trickel",
@@ -295,12 +295,12 @@
     {
       "name": "Hilla Kelkin",
       "slug": "hilla-kelkin",
-      "level": 29,
+      "level": 31,
       "classId": 7,
       "rank": 5,
-      "lastLogin": "2026-11-26T07:44:51.000Z",
+      "lastLogin": "2026-11-27T08:07:26.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T07:44:51.000Z"
+      "lastLevelUp": "2026-11-27T08:07:26.000Z"
     },
     {
       "name": "Zen Fuzz",
@@ -385,12 +385,12 @@
     {
       "name": "Dunka Dunka",
       "slug": "dunka-dunka",
-      "level": 35,
+      "level": 36,
       "classId": 5,
       "rank": 2,
       "lastLogin": "2026-11-27T04:57:54.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T04:17:17.292Z"
+      "lastLevelUp": "2026-11-27T08:17:21.515Z"
     },
     {
       "name": "Lunch Mcbox",
@@ -444,6 +444,64 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-27T08:17:21.515Z",
+      "approx": true,
+      "after": "2026-11-27T07:17:18.909Z",
+      "name": "Zet Blade",
+      "classId": 1,
+      "from": 56,
+      "to": 57
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T08:17:21.515Z",
+      "approx": true,
+      "after": "2026-11-27T07:17:18.909Z",
+      "name": "Alder Stormhide",
+      "classId": 11,
+      "from": 41,
+      "to": 42
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T08:17:21.515Z",
+      "approx": true,
+      "after": "2026-11-27T07:17:18.909Z",
+      "name": "Gar Jon",
+      "classId": 7,
+      "from": 40,
+      "to": 41
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T08:17:21.515Z",
+      "approx": true,
+      "after": "2026-11-27T07:17:18.909Z",
+      "name": "Mobak Mohunt",
+      "classId": 3,
+      "from": 40,
+      "to": 41
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T08:17:21.515Z",
+      "approx": true,
+      "after": "2026-11-27T07:17:18.909Z",
+      "name": "Dunka Dunka",
+      "classId": 5,
+      "from": 35,
+      "to": 36
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T08:07:26.000Z",
+      "name": "Hilla Kelkin",
+      "classId": 7,
+      "from": 29,
+      "to": 31
+    },
     {
       "type": "level",
       "at": "2026-11-27T04:17:17.292Z",
@@ -1986,7 +2044,7 @@
       "Turb Low": 44,
       "Malanyr Malafjar": 23,
       "Mako Blade": 14,
-      "Zet Blade": 56,
+      "Zet Blade": 57,
       "Lia Valentine": 57,
       "Bloolust Jadebreaker": 50,
       "Bone Danger": 25,
@@ -1995,9 +2053,9 @@
       "Thomans Zu": 23,
       "Krazykiller Forever": 44,
       "Pryme Priest": 21,
-      "Alder Stormhide": 41,
+      "Alder Stormhide": 42,
       "Zari Spiritwalker": 10,
-      "Gar Jon": 40,
+      "Gar Jon": 41,
       "Clo Vis": 60,
       "Hobo Magemon": 34,
       "Mully Midrange": 60,
@@ -2006,11 +2064,11 @@
       "Fillibuster Picklelord": 42,
       "Tommy Masala": 10,
       "Glorg Mcgrubb": 12,
-      "Mobak Mohunt": 40,
+      "Mobak Mohunt": 41,
       "Blump Trickel": 27,
       "Budman Budmane": 43,
       "Evil Zebra": 50,
-      "Hilla Kelkin": 29,
+      "Hilla Kelkin": 31,
       "Zen Fuzz": 34,
       "Damelia Shadowbourn": 18,
       "Ten Zion": 48,
@@ -2019,7 +2077,7 @@
       "Rotted Mcrotface": 1,
       "Mooney Blightbane": 33,
       "Guy Numberone": 9,
-      "Dunka Dunka": 35,
+      "Dunka Dunka": 36,
       "Lunch Mcbox": 30,
       "Jeaph Redeemed": 13,
       "Yeti Wintermane": 12,
