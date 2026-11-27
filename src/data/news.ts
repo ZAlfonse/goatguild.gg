@@ -13,17 +13,33 @@ export interface NewsPost {
   pinned?: boolean;
   url?: string; // Optional link (auto posts link to Raider.io)
   auto?: boolean; // Written by scripts/update-site-data.mjs
+  // Optional stat row shown under the summary. Values are frozen at the time of writing.
+  highlights?: { label: string; value: string; note?: string }[];
 }
 
 export const news: NewsPost[] = [
+  {
+    id: 'forever-week-one',
+    title: 'The first week on the mountain',
+    date: '2026-11-27',
+    author: 'Billidan Stormrage',
+    category: 'milestone',
+    summary: 'The first roster sync was Nov 21. Since then the herd has gained 138 levels across 31 of 44 goats, and three of them reached 60. Dunka Dunka climbed the most, from 23 to 36. Zet Blade and Lia Valentine are both at 57, so the race for fourth is a tie for now. Numbers as of the Nov 27 sync.',
+    pinned: true,
+    highlights: [
+      { label: 'Levels gained', value: '138' },
+      { label: 'At level 60', value: '3', note: 'was 0' },
+      { label: 'Goats who leveled', value: '31', note: 'of 44' },
+      { label: 'Average level', value: '31', note: 'was 28' },
+    ],
+  },
   {
     id: 'forever-first-60s',
     title: 'Three goats at the summit',
     date: '2026-11-24',
     author: 'Billidan Stormrage',
     category: 'milestone',
-    summary: 'Chieph Beef and Clo Vis reached level 60 first, and Mully Midrange followed a day later. That\'s three goats at the cap in WoW: Forever. Lia Valentine is next at 57, Zet Blade is at 56, and Torcula Sinus is at 55, as of Nov 26. The summit still has room.',
-    pinned: true,
+    summary: 'Chieph Beef and Clo Vis reached level 60 first, and Mully Midrange followed a day later. That\'s three goats at the cap in WoW: Forever. Zet Blade and Lia Valentine are next at 57, and Torcula Sinus is at 56, as of Nov 27. The summit still has room.',
   },
   {
     id: 'venomous-abyss-aotc',

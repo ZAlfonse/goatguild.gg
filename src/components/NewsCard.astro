@@ -9,7 +9,7 @@ const { post } = Astro.props;
 
 const categoryColors = {
   announcement: 'bg-goat-gold text-midnight-900',
-  raid: 'bg-purple-500/20 text-purple-300',
+  raid: 'bg-goat-horn/30 text-goat-moon',
   recruitment: 'bg-emerald-500/20 text-emerald-300',
   guide: 'bg-sky-500/20 text-sky-300',
   event: 'bg-orange-500/20 text-orange-300',
@@ -39,7 +39,15 @@ const formattedDate = new Date(post.date + 'T12:00:00').toLocaleDateString('en-U
         {categoryLabels[post.category]}
       </span>
       {post.pinned && (
-        <span class="tag text-goat-gold px-0">Pinned</span>
+        <span class="tag text-goat-gold px-0 inline-flex items-center gap-1.5">
+          <svg viewBox="0 0 5 7" width="10" height="14" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="1" y="0" width="3" height="1" fill="#FFE7A8" />
+            <rect x="0" y="1" width="5" height="2" fill="#FFC20E" />
+            <rect x="1" y="3" width="3" height="1" fill="#B5850A" />
+            <rect x="2" y="4" width="1" height="3" fill="#9C5A3C" />
+          </svg>
+          Pinned
+        </span>
       )}
     </div>
     <time class="text-xs text-gray-500 shrink-0">{formattedDate}</time>
@@ -47,6 +55,20 @@ const formattedDate = new Date(post.date + 'T12:00:00').toLocaleDateString('en-U
   
   <h3 class="font-display text-lg font-medium text-gray-100 mb-2 leading-snug">{post.title}</h3>
   <p class="text-sm text-gray-400">{post.summary}</p>
+
+  {post.highlights && post.highlights.length > 0 && (
+    <dl class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+      {post.highlights.map(h => (
+        <div class="panel panel-inset px-3 py-3">
+          <dt class="font-pixel text-[10px] uppercase tracking-wider text-gray-400">{h.label}</dt>
+          <dd class="mt-1.5 flex items-baseline gap-2">
+            <span class="font-display text-3xl font-bold text-goat-gold leading-none">{h.value}</span>
+            {h.note && <span class="text-xs tabular-nums text-gray-500">{h.note}</span>}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  )}
   
   <div class="mt-3 text-xs text-gray-500 flex items-center justify-between gap-2">
     <span>Posted by {post.author}</span>
