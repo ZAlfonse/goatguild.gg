@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T19:17:20.907Z",
+  "updatedAt": "2026-11-27T20:17:24.463Z",
   "maxLevel": 60,
   "members": [
     {
@@ -18,7 +18,7 @@
       "level": 60,
       "classId": 11,
       "rank": 0,
-      "lastLogin": "2026-11-27T06:47:03.000Z",
+      "lastLogin": "2026-11-27T19:41:16.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T04:17:19.964Z"
     },
@@ -178,7 +178,7 @@
       "level": 60,
       "classId": 1,
       "rank": 1,
-      "lastLogin": "2026-11-27T18:09:08.000Z",
+      "lastLogin": "2026-11-27T19:55:27.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T04:17:19.964Z"
     },
@@ -255,12 +255,12 @@
     {
       "name": "Mobak Mohunt",
       "slug": "mobak-mohunt",
-      "level": 41,
+      "level": 42,
       "classId": 3,
       "rank": 2,
       "lastLogin": "2026-11-27T17:23:42.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T08:17:21.515Z"
+      "lastLevelUp": "2026-11-27T20:17:24.463Z"
     },
     {
       "name": "Blump Trickel",
@@ -295,12 +295,12 @@
     {
       "name": "Hilla Kelkin",
       "slug": "hilla-kelkin",
-      "level": 31,
+      "level": 32,
       "classId": 7,
       "rank": 5,
       "lastLogin": "2026-11-27T18:00:30.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T08:07:26.000Z"
+      "lastLevelUp": "2026-11-27T20:17:24.463Z"
     },
     {
       "name": "Zen Fuzz",
@@ -315,22 +315,22 @@
     {
       "name": "Damelia Shadowbourn",
       "slug": "damelia-shadowbourn",
-      "level": 18,
+      "level": 19,
       "classId": 5,
       "rank": 5,
       "lastLogin": "2026-11-26T05:01:46.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T08:17:22.948Z"
+      "lastLevelUp": "2026-11-27T20:17:24.463Z"
     },
     {
       "name": "Ten Zion",
       "slug": "ten-zion",
-      "level": 48,
+      "level": 49,
       "classId": 2,
       "rank": 5,
       "lastLogin": "2026-11-27T19:00:27.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T20:17:17.079Z"
+      "lastLevelUp": "2026-11-27T20:17:24.463Z"
     },
     {
       "name": "Anz Zu",
@@ -444,6 +444,46 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-27T20:17:24.463Z",
+      "approx": true,
+      "after": "2026-11-27T19:17:20.907Z",
+      "name": "Mobak Mohunt",
+      "classId": 3,
+      "from": 41,
+      "to": 42
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T20:17:24.463Z",
+      "approx": true,
+      "after": "2026-11-27T19:17:20.907Z",
+      "name": "Hilla Kelkin",
+      "classId": 7,
+      "from": 31,
+      "to": 32
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T20:17:24.463Z",
+      "approx": true,
+      "after": "2026-11-27T19:17:20.907Z",
+      "name": "Damelia Shadowbourn",
+      "classId": 5,
+      "from": 18,
+      "to": 19
+    },
+    {
+      "type": "level",
+      "at": "2026-11-27T20:17:24.463Z",
+      "approx": true,
+      "after": "2026-11-27T19:17:20.907Z",
+      "name": "Ten Zion",
+      "classId": 2,
+      "from": 48,
+      "to": 49
+    },
     {
       "type": "level",
       "at": "2026-11-27T08:17:21.515Z",
@@ -2064,14 +2104,14 @@
       "Fillibuster Picklelord": 42,
       "Tommy Masala": 10,
       "Glorg Mcgrubb": 12,
-      "Mobak Mohunt": 41,
+      "Mobak Mohunt": 42,
       "Blump Trickel": 27,
       "Budman Budmane": 43,
       "Evil Zebra": 50,
-      "Hilla Kelkin": 31,
+      "Hilla Kelkin": 32,
       "Zen Fuzz": 34,
-      "Damelia Shadowbourn": 18,
-      "Ten Zion": 48,
+      "Damelia Shadowbourn": 19,
+      "Ten Zion": 49,
       "Anz Zu": 13,
       "Bustin Supreme": 1,
       "Rotted Mcrotface": 1,
