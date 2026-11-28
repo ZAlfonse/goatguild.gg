@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-28T07:17:20.836Z",
+  "updatedAt": "2026-11-28T07:53:54.065Z",
   "maxLevel": 60,
   "members": [
     {
@@ -18,7 +18,7 @@
       "level": 60,
       "classId": 11,
       "rank": 0,
-      "lastLogin": "2026-11-27T19:41:16.000Z",
+      "lastLogin": "2026-11-28T07:27:12.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-24T04:17:19.964Z"
     },
@@ -168,7 +168,7 @@
       "level": 42,
       "classId": 7,
       "rank": 2,
-      "lastLogin": "2026-11-28T03:10:22.000Z",
+      "lastLogin": "2026-11-28T07:33:41.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-28T04:17:19.845Z"
     },
@@ -275,22 +275,22 @@
     {
       "name": "Budman Budmane",
       "slug": "budman-budmane",
-      "level": 43,
+      "level": 44,
       "classId": 11,
       "rank": 5,
       "lastLogin": "2026-11-28T05:17:16.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-26T20:17:17.079Z"
+      "lastLevelUp": "2026-11-28T07:53:54.065Z"
     },
     {
       "name": "Evil Zebra",
       "slug": "evil-zebra",
-      "level": 51,
+      "level": 52,
       "classId": 4,
       "rank": 5,
       "lastLogin": "2026-11-28T05:53:00.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-28T00:17:24.536Z"
+      "lastLevelUp": "2026-11-28T07:53:54.065Z"
     },
     {
       "name": "Hilla Kelkin",
@@ -455,15 +455,43 @@
     {
       "name": "Ketchup Tom",
       "slug": "ketchup-tom",
-      "level": 21,
+      "level": 22,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-28T02:54:12.000Z",
+      "lastLogin": "2026-11-28T07:30:55.000Z",
       "firstSeen": "2026-11-27",
-      "lastLevelUp": null
+      "lastLevelUp": "2026-11-28T07:30:55.000Z"
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-28T07:53:54.065Z",
+      "approx": true,
+      "after": "2026-11-28T07:17:20.836Z",
+      "name": "Budman Budmane",
+      "classId": 11,
+      "from": 43,
+      "to": 44
+    },
+    {
+      "type": "level",
+      "at": "2026-11-28T07:53:54.065Z",
+      "approx": true,
+      "after": "2026-11-28T07:17:20.836Z",
+      "name": "Evil Zebra",
+      "classId": 4,
+      "from": 51,
+      "to": 52
+    },
+    {
+      "type": "level",
+      "at": "2026-11-28T07:30:55.000Z",
+      "name": "Ketchup Tom",
+      "classId": 2,
+      "from": 21,
+      "to": 22
+    },
     {
       "type": "level",
       "at": "2026-11-28T04:17:19.845Z",
@@ -2258,8 +2286,8 @@
       "Glorg Mcgrubb": 12,
       "Mobak Mohunt": 43,
       "Blump Trickel": 27,
-      "Budman Budmane": 43,
-      "Evil Zebra": 51,
+      "Budman Budmane": 44,
+      "Evil Zebra": 52,
       "Hilla Kelkin": 32,
       "Zen Fuzz": 34,
       "Damelia Shadowbourn": 20,
@@ -2276,7 +2304,7 @@
       "Ten Zien": 10,
       "Lionhart Tayrona": 16,
       "Oom Athurman": 43,
-      "Ketchup Tom": 21
+      "Ketchup Tom": 22
     }
   }
 }
