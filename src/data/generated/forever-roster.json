@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-28T15:17:20.815Z",
+  "updatedAt": "2026-11-28T16:17:17.781Z",
   "maxLevel": 60,
   "members": [
     {
@@ -145,12 +145,12 @@
     {
       "name": "Alder Stormhide",
       "slug": "alder-stormhide",
-      "level": 43,
+      "level": 44,
       "classId": 11,
       "rank": 4,
       "lastLogin": "2026-11-28T05:04:48.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-28T00:11:58.000Z"
+      "lastLevelUp": "2026-11-28T16:17:17.781Z"
     },
     {
       "name": "Zari Spiritwalker",
@@ -278,7 +278,7 @@
       "level": 44,
       "classId": 11,
       "rank": 5,
-      "lastLogin": "2026-11-28T05:17:16.000Z",
+      "lastLogin": "2026-11-28T16:01:59.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-28T07:53:54.065Z"
     },
@@ -464,6 +464,16 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-28T16:17:17.781Z",
+      "approx": true,
+      "after": "2026-11-28T15:17:20.815Z",
+      "name": "Alder Stormhide",
+      "classId": 11,
+      "from": 43,
+      "to": 44
+    },
     {
       "type": "level",
       "at": "2026-11-28T12:01:57.000Z",
@@ -2281,7 +2291,7 @@
       "Thomans Zu": 23,
       "Krazykiller Forever": 44,
       "Pryme Priest": 21,
-      "Alder Stormhide": 43,
+      "Alder Stormhide": 44,
       "Zari Spiritwalker": 10,
       "Gar Jon": 42,
       "Clo Vis": 60,
