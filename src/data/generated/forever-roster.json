@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T23:29:21.434Z",
+  "updatedAt": "2026-11-28T00:17:24.536Z",
   "maxLevel": 60,
   "members": [
     {
@@ -58,7 +58,7 @@
       "level": 57,
       "classId": 1,
       "rank": 3,
-      "lastLogin": "2026-11-27T08:33:41.000Z",
+      "lastLogin": "2026-11-27T23:59:08.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-27T08:17:21.515Z"
     },
@@ -145,12 +145,12 @@
     {
       "name": "Alder Stormhide",
       "slug": "alder-stormhide",
-      "level": 42,
+      "level": 43,
       "classId": 11,
       "rank": 4,
-      "lastLogin": "2026-11-27T21:28:55.000Z",
+      "lastLogin": "2026-11-28T00:11:58.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T08:17:21.515Z"
+      "lastLevelUp": "2026-11-28T00:11:58.000Z"
     },
     {
       "name": "Zari Spiritwalker",
@@ -285,12 +285,12 @@
     {
       "name": "Evil Zebra",
       "slug": "evil-zebra",
-      "level": 50,
+      "level": 51,
       "classId": 4,
       "rank": 5,
       "lastLogin": "2026-11-27T20:36:11.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T04:17:17.292Z"
+      "lastLevelUp": "2026-11-28T00:17:24.536Z"
     },
     {
       "name": "Hilla Kelkin",
@@ -315,12 +315,12 @@
     {
       "name": "Damelia Shadowbourn",
       "slug": "damelia-shadowbourn",
-      "level": 19,
+      "level": 20,
       "classId": 5,
       "rank": 5,
       "lastLogin": "2026-11-27T20:57:02.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T20:17:24.463Z"
+      "lastLevelUp": "2026-11-28T00:17:24.536Z"
     },
     {
       "name": "Ten Zion",
@@ -441,9 +441,54 @@
       "lastLogin": "2026-11-26T22:36:51.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-25T04:17:17.147Z"
+    },
+    {
+      "name": "Oom Athurman",
+      "slug": "oom-athurman",
+      "level": 43,
+      "classId": 11,
+      "rank": 5,
+      "lastLogin": "2026-11-27T23:49:14.000Z",
+      "firstSeen": "2026-11-27",
+      "lastLevelUp": null
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-28T00:17:24.536Z",
+      "approx": true,
+      "after": "2026-11-27T23:29:21.434Z",
+      "name": "Evil Zebra",
+      "classId": 4,
+      "from": 50,
+      "to": 51
+    },
+    {
+      "type": "level",
+      "at": "2026-11-28T00:17:24.536Z",
+      "approx": true,
+      "after": "2026-11-27T23:29:21.434Z",
+      "name": "Damelia Shadowbourn",
+      "classId": 5,
+      "from": 19,
+      "to": 20
+    },
+    {
+      "type": "level",
+      "at": "2026-11-28T00:11:58.000Z",
+      "name": "Alder Stormhide",
+      "classId": 11,
+      "from": 42,
+      "to": 43
+    },
+    {
+      "type": "joined",
+      "at": "2026-11-27T23:49:14.000Z",
+      "name": "Oom Athurman",
+      "classId": 11,
+      "level": 43
+    },
     {
       "type": "level",
       "at": "2026-11-27T20:17:24.463Z",
@@ -2093,7 +2138,7 @@
       "Thomans Zu": 23,
       "Krazykiller Forever": 44,
       "Pryme Priest": 21,
-      "Alder Stormhide": 42,
+      "Alder Stormhide": 43,
       "Zari Spiritwalker": 10,
       "Gar Jon": 41,
       "Clo Vis": 60,
@@ -2107,10 +2152,10 @@
       "Mobak Mohunt": 42,
       "Blump Trickel": 27,
       "Budman Budmane": 43,
-      "Evil Zebra": 50,
+      "Evil Zebra": 51,
       "Hilla Kelkin": 32,
       "Zen Fuzz": 34,
-      "Damelia Shadowbourn": 19,
+      "Damelia Shadowbourn": 20,
       "Ten Zion": 49,
       "Anz Zu": 13,
       "Bustin Supreme": 1,
@@ -2122,7 +2167,8 @@
       "Jeaph Redeemed": 13,
       "Yeti Wintermane": 12,
       "Ten Zien": 10,
-      "Lionhart Tayrona": 16
+      "Lionhart Tayrona": 16,
+      "Oom Athurman": 43
     }
   }
 }
