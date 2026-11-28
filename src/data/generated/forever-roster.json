@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-28T11:17:22.410Z",
+  "updatedAt": "2026-11-28T12:17:24.498Z",
   "maxLevel": 60,
   "members": [
     {
@@ -325,12 +325,12 @@
     {
       "name": "Ten Zion",
       "slug": "ten-zion",
-      "level": 49,
+      "level": 50,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-28T09:12:15.000Z",
+      "lastLogin": "2026-11-28T12:01:57.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T20:17:24.463Z"
+      "lastLevelUp": "2026-11-28T12:01:57.000Z"
     },
     {
       "name": "Anz Zu",
@@ -464,6 +464,14 @@
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-28T12:01:57.000Z",
+      "name": "Ten Zion",
+      "classId": 2,
+      "from": 49,
+      "to": 50
+    },
     {
       "type": "level",
       "at": "2026-11-28T07:53:54.065Z",
@@ -2291,7 +2299,7 @@
       "Hilla Kelkin": 32,
       "Zen Fuzz": 34,
       "Damelia Shadowbourn": 20,
-      "Ten Zion": 49,
+      "Ten Zion": 50,
       "Anz Zu": 13,
       "Bustin Supreme": 1,
       "Rotted Mcrotface": 1,
