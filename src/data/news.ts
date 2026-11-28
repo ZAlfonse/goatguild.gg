@@ -17,12 +17,20 @@ export interface NewsPost {
 
 export const news: NewsPost[] = [
   {
+    id: 'forever-week-one',
+    title: 'One week of roster snapshots',
+    date: '2026-11-28',
+    author: 'Billidan Stormrage',
+    category: 'milestone',
+    summary: 'The first daily snapshot was Nov 21. Since then the herd climbed 151 levels, the average went from 27.9 to 31.4, and the number of goats at 40 or higher went from 11 to 18. Three are at 60, up from none. Dunka Dunka had the biggest week, 23 to 36. Oom Athurman and Ketchup Tom joined along the way.',
+  },
+  {
     id: 'forever-first-60s',
     title: 'Three goats at the summit',
     date: '2026-11-24',
     author: 'Billidan Stormrage',
     category: 'milestone',
-    summary: 'Chieph Beef and Clo Vis reached level 60 first, and Mully Midrange followed a day later. That\'s three goats at the cap in WoW: Forever. Zet Blade and Lia Valentine are tied for next at 57, and Torcula Sinus is at 56, as of Nov 27. The summit still has room.',
+    summary: 'Chieph Beef and Clo Vis reached level 60 first, and Mully Midrange followed a day later. That\'s three goats at the cap in WoW: Forever. Zet Blade, Lia Valentine, and Torcula Sinus are tied for next at 57, as of Nov 28. The summit still has room.',
     pinned: true,
   },
   {
