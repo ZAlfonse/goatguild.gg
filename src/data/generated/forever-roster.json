@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-11-28T03:17:21.878Z",
+  "updatedAt": "2026-11-28T04:17:19.845Z",
   "maxLevel": 60,
   "members": [
     {
       "name": "Za Kk",
       "slug": "za-kk",
-      "level": 40,
+      "level": 41,
       "classId": 8,
       "rank": 1,
       "lastLogin": "2026-11-28T02:03:43.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T04:17:17.292Z"
+      "lastLevelUp": "2026-11-28T04:17:19.845Z"
     },
     {
       "name": "Chieph Beef",
@@ -95,12 +95,12 @@
     {
       "name": "Torcula Sinus",
       "slug": "torcula-sinus",
-      "level": 56,
+      "level": 57,
       "classId": 8,
       "rank": 5,
       "lastLogin": "2026-11-27T04:52:20.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T00:17:19.605Z"
+      "lastLevelUp": "2026-11-28T04:17:19.845Z"
     },
     {
       "name": "Goat Vanios",
@@ -165,12 +165,12 @@
     {
       "name": "Gar Jon",
       "slug": "gar-jon",
-      "level": 41,
+      "level": 42,
       "classId": 7,
       "rank": 2,
       "lastLogin": "2026-11-28T03:10:22.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T08:17:21.515Z"
+      "lastLevelUp": "2026-11-28T04:17:19.845Z"
     },
     {
       "name": "Clo Vis",
@@ -255,12 +255,12 @@
     {
       "name": "Mobak Mohunt",
       "slug": "mobak-mohunt",
-      "level": 42,
+      "level": 43,
       "classId": 3,
       "rank": 2,
       "lastLogin": "2026-11-28T02:59:10.000Z",
       "firstSeen": "2026-11-21",
-      "lastLevelUp": "2026-11-27T20:17:24.463Z"
+      "lastLevelUp": "2026-11-28T04:17:19.845Z"
     },
     {
       "name": "Blump Trickel",
@@ -328,7 +328,7 @@
       "level": 49,
       "classId": 2,
       "rank": 5,
-      "lastLogin": "2026-11-28T01:59:59.000Z",
+      "lastLogin": "2026-11-28T03:59:45.000Z",
       "firstSeen": "2026-11-21",
       "lastLevelUp": "2026-11-27T20:17:24.463Z"
     },
@@ -451,9 +451,68 @@
       "lastLogin": "2026-11-27T23:49:14.000Z",
       "firstSeen": "2026-11-27",
       "lastLevelUp": null
+    },
+    {
+      "name": "Ketchup Tom",
+      "slug": "ketchup-tom",
+      "level": 21,
+      "classId": 2,
+      "rank": 5,
+      "lastLogin": "2026-11-28T02:54:12.000Z",
+      "firstSeen": "2026-11-27",
+      "lastLevelUp": null
     }
   ],
   "activity": [
+    {
+      "type": "level",
+      "at": "2026-11-28T04:17:19.845Z",
+      "approx": true,
+      "after": "2026-11-28T03:17:21.878Z",
+      "name": "Za Kk",
+      "classId": 8,
+      "from": 40,
+      "to": 41
+    },
+    {
+      "type": "level",
+      "at": "2026-11-28T04:17:19.845Z",
+      "approx": true,
+      "after": "2026-11-28T03:17:21.878Z",
+      "name": "Torcula Sinus",
+      "classId": 8,
+      "from": 56,
+      "to": 57
+    },
+    {
+      "type": "level",
+      "at": "2026-11-28T04:17:19.845Z",
+      "approx": true,
+      "after": "2026-11-28T03:17:21.878Z",
+      "name": "Gar Jon",
+      "classId": 7,
+      "from": 41,
+      "to": 42
+    },
+    {
+      "type": "level",
+      "at": "2026-11-28T04:17:19.845Z",
+      "approx": true,
+      "after": "2026-11-28T03:17:21.878Z",
+      "name": "Mobak Mohunt",
+      "classId": 3,
+      "from": 42,
+      "to": 43
+    },
+    {
+      "type": "joined",
+      "at": "2026-11-28T04:17:19.845Z",
+      "approx": true,
+      "after": "2026-11-28T03:17:21.878Z",
+      "name": "Ketchup Tom",
+      "classId": 2,
+      "level": 21
+    },
     {
       "type": "level",
       "at": "2026-11-28T00:17:24.536Z",
@@ -2124,7 +2183,7 @@
       "Lionhart Tayrona": 16
     },
     "2026-11-27": {
-      "Za Kk": 40,
+      "Za Kk": 41,
       "Chieph Beef": 60,
       "Turb Low": 44,
       "Malanyr Malafjar": 23,
@@ -2133,14 +2192,14 @@
       "Lia Valentine": 57,
       "Bloolust Jadebreaker": 50,
       "Bone Danger": 25,
-      "Torcula Sinus": 56,
+      "Torcula Sinus": 57,
       "Goat Vanios": 24,
       "Thomans Zu": 23,
       "Krazykiller Forever": 44,
       "Pryme Priest": 21,
       "Alder Stormhide": 43,
       "Zari Spiritwalker": 10,
-      "Gar Jon": 41,
+      "Gar Jon": 42,
       "Clo Vis": 60,
       "Hobo Magemon": 34,
       "Mully Midrange": 60,
@@ -2149,7 +2208,7 @@
       "Fillibuster Picklelord": 42,
       "Tommy Masala": 10,
       "Glorg Mcgrubb": 12,
-      "Mobak Mohunt": 42,
+      "Mobak Mohunt": 43,
       "Blump Trickel": 27,
       "Budman Budmane": 43,
       "Evil Zebra": 51,
@@ -2168,7 +2227,8 @@
       "Yeti Wintermane": 12,
       "Ten Zien": 10,
       "Lionhart Tayrona": 16,
-      "Oom Athurman": 43
+      "Oom Athurman": 43,
+      "Ketchup Tom": 21
     }
   }
 }
