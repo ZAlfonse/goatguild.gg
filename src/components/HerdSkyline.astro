@@ -1,0 +1,185 @@
+---
+// "The week in the herd": every goat as one column, sorted by level, so the herd reads as a skyline.
+// The dark part of a column is where the goat stood at the start of the week (the oldest daily
+// snapshot within 7 days); the class-colored part on top is what they climbed since.
+// Goats who joined during the week are drawn in full and marked with a pale cap.
+import { foreverRoster as r, classKey, nameClass } from '../data/foreverRoster';
+import { CLASS_HEX } from '../data/classSprites';
+
+const maxLevel = r?.maxLevel ?? 60;
+const baseDay = r?.weekBaseDay ?? null;
+const today = r?.updatedAt.slice(0, 10) ?? '';
+const members = [...(r?.members ?? [])].sort((a, b) => a.level - b.level || a.name.localeCompare(b.name));
+const show = !!r && !!baseDay && baseDay < today && members.length > 0;
+
+const fmt = (day: string) =>
+  new Date(day + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+const since = baseDay ? fmt(baseDay) : '';
+const plural = (n: number, one: string, many: string) => (n === 1 ? one : many);
+
+// ---- Numbers for the side panel ----
+const veterans = members.filter(m => m.startLevel != null);
+const newcomers = members.filter(m => m.startLevel == null).sort((a, b) => b.level - a.level);
+const avg = (xs: number[]) => (xs.length ? xs.reduce((s, x) => s + x, 0) / xs.length : 0);
+const avgThen = avg(veterans.map(m => m.startLevel!));
+const avgNow = avg(members.map(m => m.level));
+const climbed = r?.levelsThisWeek ?? 0;
+const over = (t: number) => ({
+  then: veterans.filter(m => m.startLevel! >= t).length,
+  now: members.filter(m => m.level >= t).length,
+});
+const stats = [
+  { label: 'Average level', now: avgNow.toFixed(1), then: avgThen.toFixed(1) },
+  { label: 'Level 40+', now: String(over(40).now), then: String(over(40).then) },
+  { label: 'Level 50+', now: String(over(50).now), then: String(over(50).then) },
+  { label: `At ${maxLevel}`, now: String(over(maxLevel).now), then: String(over(maxLevel).then), gold: true },
+];
+const biggest = [...veterans].sort((a, b) => b.gainedThisWeek - a.gainedThisWeek || a.name.localeCompare(b.name))[0];
+const moved = veterans.filter(m => m.gainedThisWeek > 0).length;
+const subline = [
+  `${climbed} ${plural(climbed, 'level', 'levels')} climbed by ${moved} ${plural(moved, 'goat', 'goats')}.`,
+  newcomers.length > 0 ? `${newcomers.length} new ${plural(newcomers.length, 'arrival', 'arrivals')}.` : '',
+  climbed > 0 ? 'The skyline went up.' : 'The skyline held still.',
+].filter(Boolean).join(' ');
+
+// ---- The skyline ----
+const COL = 6;
+const GAP = 2;
+const UNIT = 2; // px per level
+const LEFT = 20;
+const TOP = 10;
+const VW = LEFT + members.length * (COL + GAP) + 4;
+const PLOT_H = maxLevel * UNIT;
+const VH = TOP + PLOT_H + 6;
+const floorY = TOP + PLOT_H;
+const yOf = (level: number) => floorY - level * UNIT;
+const grid = Array.from({ length: Math.floor(maxLevel / 10) }, (_, i) => (i + 1) * 10);
+
+const cols = members.map((m, i) => {
+  const cls = classKey(m.classId);
+  const color = (cls && CLASS_HEX[cls]) || '#d1d5db';
+  const start = m.startLevel == null ? null : Math.min(m.startLevel, m.level);
+  const title =
+    start == null
+      ? `${m.name}: joined this week, level ${m.level}`
+      : m.level > start
+        ? `${m.name}: ${start} to ${m.level}`
+        : `${m.name}: level ${m.level}, no change`;
+  return { m, x: LEFT + i * (COL + GAP), color, start, title, summit: m.level >= maxLevel };
+});
+---
+
+{show && (
+  <div class="panel p-5 reveal">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+      <h3 class="section-title text-xl">The week in the herd</h3>
+      <span class="font-pixel text-[10px] uppercase tracking-wider text-goat-moon">Since {since}</span>
+    </div>
+    <p class="text-sm text-gray-400 mb-5 tabular-nums">{subline}</p>
+
+    <div class="grid md:grid-cols-5 gap-6">
+      <div class="md:col-span-3">
+        <div class="panel panel-inset bg-[#10142a] p-2 overflow-hidden">
+          <svg viewBox={`0 0 ${VW} ${VH}`} class="w-full h-auto block" shape-rendering="crispEdges" role="img"
+            aria-label={`${members.length} goats sorted by level. Since ${since} the herd climbed ${climbed} levels.`}>
+            <!-- sky bands -->
+            <rect width={VW} height={TOP + PLOT_H / 3} fill="#0c1022" />
+            <rect y={TOP + PLOT_H / 3} width={VW} height={PLOT_H / 3} fill="#10142a" />
+            <rect y={TOP + (2 * PLOT_H) / 3} width={VW} height={VH - TOP - (2 * PLOT_H) / 3} fill="#141933" />
+            <!-- level lines -->
+            {grid.map(l => (
+              <>
+                <rect x={LEFT - 2} y={yOf(l)} width={VW - LEFT - 2} height="1" fill={l === maxLevel ? '#B5850A' : '#1c2244'} />
+                {l % 20 === 0 && (
+                  <text x={LEFT - 4} y={yOf(l) + 3} text-anchor="end" font-size="7" font-family="Silkscreen, monospace"
+                    fill={l === maxLevel ? '#FFC20E' : '#5c6494'}>{l}</text>
+                )}
+              </>
+            ))}
+            <!-- the goats -->
+            {cols.map(c => (
+              <g>
+                <title>{c.title}</title>
+                {c.start == null ? (
+                  <>
+                    <rect x={c.x} y={yOf(c.m.level)} width={COL} height={c.m.level * UNIT} fill={c.color} fill-opacity="0.45" />
+                    <rect x={c.x} y={yOf(c.m.level) - 2} width={COL} height="2" fill="#FFE7A8" />
+                  </>
+                ) : (
+                  <>
+                    <rect x={c.x} y={yOf(c.start)} width={COL} height={c.start * UNIT} fill="#2a3160" />
+                    <rect x={c.x} y={yOf(c.start)} width={COL} height="1" fill="#3a4170" />
+                    {c.m.level > c.start && (
+                      <rect x={c.x} y={yOf(c.m.level)} width={COL} height={(c.m.level - c.start) * UNIT} fill={c.color}
+                        class="skyline-gain" style={`animation-delay: ${(c.x % 9) * 0.12}s`} />
+                    )}
+                  </>
+                )}
+                {c.summit && <rect x={c.x + 2} y={yOf(c.m.level) - 4} width="2" height="2" fill="#FFC20E" />}
+              </g>
+            ))}
+            <!-- ground -->
+            <rect x={LEFT - 2} y={floorY} width={VW - LEFT - 2} height="2" fill="#3a4170" />
+          </svg>
+        </div>
+        <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-xs text-gray-400">
+          <li class="flex items-center gap-1.5"><span class="inline-block w-2.5 h-2.5 bg-[#2a3160] outline outline-1 outline-[#3a4170]"></span>Level on {since}</li>
+          <li class="flex items-center gap-1.5"><span class="inline-flex"><span class="w-1 h-2.5 bg-class-druid"></span><span class="w-1 h-2.5 bg-class-mage"></span><span class="w-1 h-2.5 bg-class-hunter"></span></span>Climbed since</li>
+          <li class="flex items-center gap-1.5"><span class="inline-block w-2.5 h-[3px] bg-goat-moon"></span>Joined this week</li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-2 flex flex-col gap-4">
+        <dl class="grid grid-cols-2 gap-3">
+          {stats.map(s => (
+            <div class={`panel panel-inset px-3 py-2.5 ${s.gold ? 'panel-gold' : ''}`}>
+              <dt class="font-pixel text-[10px] uppercase tracking-wider text-gray-400">{s.label}</dt>
+              <dd class="mt-1 flex items-baseline gap-2">
+                <span class={`font-display text-2xl leading-none ${s.gold ? 'text-goat-gold' : 'text-gray-100'}`}>{s.now}</span>
+                <span class="text-xs text-gray-500">from <span class="tabular-nums">{s.then}</span></span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        {biggest && biggest.gainedThisWeek > 0 && (
+          <p class="text-sm text-gray-400">
+            Biggest week: <span class={`font-medium ${nameClass(biggest.classId)}`}>{biggest.name}</span>,
+            <span class="tabular-nums text-gray-200">{biggest.startLevel}</span> to <span class="tabular-nums text-gray-200">{biggest.level}</span>.
+          </p>
+        )}
+
+        {newcomers.length > 0 && (
+          <div>
+            <p class="eyebrow mb-1.5">New to the herd</p>
+            <ul class="space-y-1 text-sm">
+              {newcomers.slice(0, 5).map(m => (
+                <li class="flex items-baseline justify-between gap-2">
+                  <span class={`truncate font-medium ${nameClass(m.classId)}`}>{m.name}</span>
+                  <span class="text-xs text-gray-500">level <span class="tabular-nums text-gray-300">{m.level}</span></span>
+                </li>
+              ))}
+            </ul>
+            {newcomers.length > 5 && <p class="mt-1 text-xs text-gray-500">and {newcomers.length - 5} more</p>}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  /* This week's climb steps up into place once, in three blocky stages */
+  .skyline-gain {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: skyline-rise 1.2s steps(3, end) both;
+  }
+  @keyframes skyline-rise {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .skyline-gain { animation: none; }
+  }
+</style>

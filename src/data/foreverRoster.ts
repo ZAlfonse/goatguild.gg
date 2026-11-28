@@ -76,6 +76,7 @@ export function windowLabel(after: string, at: string) {
 export interface RosterRow extends ForeverMember {
   level: number;
   gainedThisWeek: number;
+  startLevel: number | null; // level in the week's base snapshot; null if they joined since
   trail: TrailDay[]; // levels gained per day this week, oldest first
 }
 
@@ -141,7 +142,7 @@ function build(f: RosterFile) {
     .filter((m): m is ForeverMember & { level: number } => m.level != null)
     .map(m => {
       const level = confirmedAtMax.has(m.name) ? maxLevel : m.level;
-      return { ...m, level, gainedThisWeek: Math.max(0, level - (base[m.name] ?? level)), trail: trailOf(m.name) };
+      return { ...m, level, gainedThisWeek: Math.max(0, level - (base[m.name] ?? level)), startLevel: base[m.name] ?? null, trail: trailOf(m.name) };
     })
     .sort((a, b) => b.level - a.level || a.name.localeCompare(b.name));
 
@@ -152,6 +153,7 @@ function build(f: RosterFile) {
     total: members.length,
     atMax: members.filter(m => m.level >= maxLevel).length,
     averageLevel: members.length ? Math.round(members.reduce((s, m) => s + m.level, 0) / members.length) : 0,
+    weekBaseDay: baseDay ?? null, // YYYY-MM-DD of the snapshot "this week" is measured from
     levelsThisWeek: members.reduce((s, m) => s + m.gainedThisWeek, 0),
     // Biggest single-day gain by anyone this week, so every trail shares one scale.
     trailMax: Math.max(1, ...members.flatMap(m => m.trail.map(t => t.gained))),
